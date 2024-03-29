@@ -29,6 +29,15 @@ export interface MsgCreateRequest {
 export interface MsgCreateRequestResponse {
 }
 
+export interface MsgApproveRequest {
+  creator: string;
+  senderAddress: string;
+  transactionId: string;
+}
+
+export interface MsgApproveRequestResponse {
+}
+
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return { authority: "", params: undefined };
 }
@@ -280,6 +289,138 @@ export const MsgCreateRequestResponse = {
   },
 };
 
+function createBaseMsgApproveRequest(): MsgApproveRequest {
+  return { creator: "", senderAddress: "", transactionId: "" };
+}
+
+export const MsgApproveRequest = {
+  encode(message: MsgApproveRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.senderAddress !== "") {
+      writer.uint32(18).string(message.senderAddress);
+    }
+    if (message.transactionId !== "") {
+      writer.uint32(26).string(message.transactionId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgApproveRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgApproveRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.senderAddress = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.transactionId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgApproveRequest {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      senderAddress: isSet(object.senderAddress) ? String(object.senderAddress) : "",
+      transactionId: isSet(object.transactionId) ? String(object.transactionId) : "",
+    };
+  },
+
+  toJSON(message: MsgApproveRequest): unknown {
+    const obj: any = {};
+    if (message.creator !== "") {
+      obj.creator = message.creator;
+    }
+    if (message.senderAddress !== "") {
+      obj.senderAddress = message.senderAddress;
+    }
+    if (message.transactionId !== "") {
+      obj.transactionId = message.transactionId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgApproveRequest>, I>>(base?: I): MsgApproveRequest {
+    return MsgApproveRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgApproveRequest>, I>>(object: I): MsgApproveRequest {
+    const message = createBaseMsgApproveRequest();
+    message.creator = object.creator ?? "";
+    message.senderAddress = object.senderAddress ?? "";
+    message.transactionId = object.transactionId ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgApproveRequestResponse(): MsgApproveRequestResponse {
+  return {};
+}
+
+export const MsgApproveRequestResponse = {
+  encode(_: MsgApproveRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgApproveRequestResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgApproveRequestResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgApproveRequestResponse {
+    return {};
+  },
+
+  toJSON(_: MsgApproveRequestResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgApproveRequestResponse>, I>>(base?: I): MsgApproveRequestResponse {
+    return MsgApproveRequestResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgApproveRequestResponse>, I>>(_: I): MsgApproveRequestResponse {
+    const message = createBaseMsgApproveRequestResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -288,6 +429,7 @@ export interface Msg {
    */
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
   CreateRequest(request: MsgCreateRequest): Promise<MsgCreateRequestResponse>;
+  ApproveRequest(request: MsgApproveRequest): Promise<MsgApproveRequestResponse>;
 }
 
 export const MsgServiceName = "sigmoidtest.sigmoidtest.Msg";
@@ -299,6 +441,7 @@ export class MsgClientImpl implements Msg {
     this.rpc = rpc;
     this.UpdateParams = this.UpdateParams.bind(this);
     this.CreateRequest = this.CreateRequest.bind(this);
+    this.ApproveRequest = this.ApproveRequest.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -310,6 +453,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgCreateRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "CreateRequest", data);
     return promise.then((data) => MsgCreateRequestResponse.decode(_m0.Reader.create(data)));
+  }
+
+  ApproveRequest(request: MsgApproveRequest): Promise<MsgApproveRequestResponse> {
+    const data = MsgApproveRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "ApproveRequest", data);
+    return promise.then((data) => MsgApproveRequestResponse.decode(_m0.Reader.create(data)));
   }
 }
 

@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName  = "/sigmoidtest.sigmoidtest.Msg/UpdateParams"
-	Msg_CreateRequest_FullMethodName = "/sigmoidtest.sigmoidtest.Msg/CreateRequest"
+	Msg_UpdateParams_FullMethodName   = "/sigmoidtest.sigmoidtest.Msg/UpdateParams"
+	Msg_CreateRequest_FullMethodName  = "/sigmoidtest.sigmoidtest.Msg/CreateRequest"
+	Msg_ApproveRequest_FullMethodName = "/sigmoidtest.sigmoidtest.Msg/ApproveRequest"
 )
 
 // MsgClient is the client API for Msg service.
@@ -31,6 +32,7 @@ type MsgClient interface {
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(ctx context.Context, in *MsgUpdateParams, opts ...grpc.CallOption) (*MsgUpdateParamsResponse, error)
 	CreateRequest(ctx context.Context, in *MsgCreateRequest, opts ...grpc.CallOption) (*MsgCreateRequestResponse, error)
+	ApproveRequest(ctx context.Context, in *MsgApproveRequest, opts ...grpc.CallOption) (*MsgApproveRequestResponse, error)
 }
 
 type msgClient struct {
@@ -59,6 +61,15 @@ func (c *msgClient) CreateRequest(ctx context.Context, in *MsgCreateRequest, opt
 	return out, nil
 }
 
+func (c *msgClient) ApproveRequest(ctx context.Context, in *MsgApproveRequest, opts ...grpc.CallOption) (*MsgApproveRequestResponse, error) {
+	out := new(MsgApproveRequestResponse)
+	err := c.cc.Invoke(ctx, Msg_ApproveRequest_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -67,6 +78,7 @@ type MsgServer interface {
 	// parameters. The authority defaults to the x/gov module account.
 	UpdateParams(context.Context, *MsgUpdateParams) (*MsgUpdateParamsResponse, error)
 	CreateRequest(context.Context, *MsgCreateRequest) (*MsgCreateRequestResponse, error)
+	ApproveRequest(context.Context, *MsgApproveRequest) (*MsgApproveRequestResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -79,6 +91,9 @@ func (UnimplementedMsgServer) UpdateParams(context.Context, *MsgUpdateParams) (*
 }
 func (UnimplementedMsgServer) CreateRequest(context.Context, *MsgCreateRequest) (*MsgCreateRequestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateRequest not implemented")
+}
+func (UnimplementedMsgServer) ApproveRequest(context.Context, *MsgApproveRequest) (*MsgApproveRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ApproveRequest not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -129,6 +144,24 @@ func _Msg_CreateRequest_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_ApproveRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgApproveRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).ApproveRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_ApproveRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).ApproveRequest(ctx, req.(*MsgApproveRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -143,6 +176,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateRequest",
 			Handler:    _Msg_CreateRequest_Handler,
+		},
+		{
+			MethodName: "ApproveRequest",
+			Handler:    _Msg_ApproveRequest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

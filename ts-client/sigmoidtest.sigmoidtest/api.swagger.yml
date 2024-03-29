@@ -144,6 +144,8 @@ definitions:
     properties:
       params:
         type: object
+  MsgApproveRequestResponse:
+    type: object
   MsgCreateRequestResponse:
     type: object
   MsgUpdateParamsResponse:

@@ -35,6 +35,8 @@ export interface QueryParamsResponse {
   params?: object;
 }
 
+export type MsgApproveRequestResponse = object;
+
 export type MsgCreateRequestResponse = object;
 
 export type MsgUpdateParamsResponse = object;
