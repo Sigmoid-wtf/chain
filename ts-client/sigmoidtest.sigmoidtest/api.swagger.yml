@@ -65,5 +65,7 @@ definitions:
     properties:
       params:
         type: object
+  MsgCreateRequestResponse:
+    type: object
   MsgUpdateParamsResponse:
     type: object

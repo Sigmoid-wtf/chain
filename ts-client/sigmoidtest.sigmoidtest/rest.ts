@@ -26,6 +26,8 @@ export interface QueryParamsResponse {
   params?: object;
 }
 
+export type MsgCreateRequestResponse = object;
+
 export type MsgUpdateParamsResponse = object;
 
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
