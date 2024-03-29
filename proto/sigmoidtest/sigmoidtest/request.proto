@@ -1,0 +1,12 @@
+syntax = "proto3";
+package sigmoidtest.sigmoidtest;
+
+option go_package = "sigmoid-test/x/sigmoidtest/types";
+
+message Request {
+  
+  string senderAddress = 1; 
+  string mintAddress = 2; 
+  int32 status = 3; 
+  int32 amount = 4; 
+}
