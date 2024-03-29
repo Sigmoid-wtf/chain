@@ -4,6 +4,43 @@ info:
   name: ''
   description: ''
 paths:
+  /sigmoid-test/sigmoidtest/get_amount/{senderAddress}:
+    get:
+      operationId: Query_GetAmount
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              amount:
+                type: string
+                format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: senderAddress
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
   /sigmoid-test/sigmoidtest/params:
     get:
       operationId: Query_Params
@@ -60,6 +97,12 @@ definitions:
           additionalProperties: {}
   Params:
     type: object
+  QueryGetAmountResponse:
+    type: object
+    properties:
+      amount:
+        type: string
+        format: uint64
   QueryParamsResponse:
     type: object
     properties:

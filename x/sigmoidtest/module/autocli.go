@@ -17,6 +17,13 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:       "params",
 					Short:     "Shows the parameters of the module",
 				},
+				{
+					RpcMethod:      "GetAmount",
+					Use:            "get-amount [sender-address]",
+					Short:          "Query get-amount",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "senderAddress"}},
+				},
+
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

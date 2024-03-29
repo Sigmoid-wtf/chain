@@ -22,6 +22,11 @@ export interface Status {
 
 export type Params = object;
 
+export interface QueryGetAmountResponse {
+  /** @format uint64 */
+  amount?: string;
+}
+
 export interface QueryParamsResponse {
   params?: object;
 }
@@ -154,6 +159,20 @@ export class HttpClient<SecurityDataType = unknown> {
  * @title HTTP API Console sigmoidtest.sigmoidtest
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryGetAmount
+   * @request GET:/sigmoid-test/sigmoidtest/get_amount/{senderAddress}
+   */
+  queryGetAmount = (senderAddress: string, params: RequestParams = {}) =>
+    this.request<{ amount?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+      path: `/sigmoid-test/sigmoidtest/get_amount/${senderAddress}`,
+      method: "GET",
+      ...params,
+    });
+
   /**
    * No description
    *
