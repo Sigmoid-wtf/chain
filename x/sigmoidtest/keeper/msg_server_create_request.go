@@ -11,8 +11,13 @@ import (
 func (k msgServer) CreateRequest(goCtx context.Context, msg *types.MsgCreateRequest) (*types.MsgCreateRequestResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Handling the message
-	_ = ctx
+	request := &types.Request{
+		SenderAddress: msg.SenderAddress,
+		MintAddress:   msg.Creator,
+		Amount:        int32(msg.Amount),
+		Status:        0,
+	}
 
+	k.Keeper.AppendRequest(ctx, request)
 	return &types.MsgCreateRequestResponse{}, nil
 }
