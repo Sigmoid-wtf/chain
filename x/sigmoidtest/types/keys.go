@@ -12,7 +12,9 @@ const (
 )
 
 var (
-	ParamsKey = []byte("p_sigmoidtest")
+	ParamsKey          = []byte("p_sigmoidtest")
+	PendingRequestsKey = "requests/"
+	LastProcessedKey   = "last_processed/"
 )
 
 func KeyPrefix(p string) []byte {
