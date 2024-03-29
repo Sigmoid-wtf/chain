@@ -17,8 +17,5 @@ func (k Keeper) GetLastProcessed(goCtx context.Context, req *types.QueryGetLastP
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Process the query
-	_ = ctx
-
-	return &types.QueryGetLastProcessedResponse{}, nil
+	return &types.QueryGetLastProcessedResponse{TransactionId: k.GetLastProcessedTransaction(ctx)}, nil
 }
