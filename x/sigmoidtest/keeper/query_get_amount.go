@@ -6,6 +6,7 @@ import (
 	"sigmoid-test/x/sigmoidtest/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -17,8 +18,10 @@ func (k Keeper) GetAmount(goCtx context.Context, req *types.QueryGetAmountReques
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Process the query
-	_ = ctx
+	request, found := k.GetRequest(ctx, &req.SenderAddress)
+	if !found {
+		return nil, sdkerrors.ErrKeyNotFound
+	}
 
-	return &types.QueryGetAmountResponse{}, nil
+	return &types.QueryGetAmountResponse{Amount: uint64(request.Amount)}, nil
 }
