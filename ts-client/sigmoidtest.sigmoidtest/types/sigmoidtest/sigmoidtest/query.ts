@@ -23,6 +23,13 @@ export interface QueryGetAmountResponse {
   amount: number;
 }
 
+export interface QueryGetLastProcessedRequest {
+}
+
+export interface QueryGetLastProcessedResponse {
+  transactionId: string;
+}
+
 function createBaseQueryParamsRequest(): QueryParamsRequest {
   return {};
 }
@@ -239,12 +246,116 @@ export const QueryGetAmountResponse = {
   },
 };
 
+function createBaseQueryGetLastProcessedRequest(): QueryGetLastProcessedRequest {
+  return {};
+}
+
+export const QueryGetLastProcessedRequest = {
+  encode(_: QueryGetLastProcessedRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetLastProcessedRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetLastProcessedRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetLastProcessedRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetLastProcessedRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetLastProcessedRequest>, I>>(base?: I): QueryGetLastProcessedRequest {
+    return QueryGetLastProcessedRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetLastProcessedRequest>, I>>(_: I): QueryGetLastProcessedRequest {
+    const message = createBaseQueryGetLastProcessedRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetLastProcessedResponse(): QueryGetLastProcessedResponse {
+  return { transactionId: "" };
+}
+
+export const QueryGetLastProcessedResponse = {
+  encode(message: QueryGetLastProcessedResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.transactionId !== "") {
+      writer.uint32(10).string(message.transactionId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetLastProcessedResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetLastProcessedResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.transactionId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetLastProcessedResponse {
+    return { transactionId: isSet(object.transactionId) ? String(object.transactionId) : "" };
+  },
+
+  toJSON(message: QueryGetLastProcessedResponse): unknown {
+    const obj: any = {};
+    if (message.transactionId !== "") {
+      obj.transactionId = message.transactionId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetLastProcessedResponse>, I>>(base?: I): QueryGetLastProcessedResponse {
+    return QueryGetLastProcessedResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetLastProcessedResponse>, I>>(
+    object: I,
+  ): QueryGetLastProcessedResponse {
+    const message = createBaseQueryGetLastProcessedResponse();
+    message.transactionId = object.transactionId ?? "";
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse>;
   /** Queries a list of GetAmount items. */
   GetAmount(request: QueryGetAmountRequest): Promise<QueryGetAmountResponse>;
+  /** Queries a list of GetLastProcessed items. */
+  GetLastProcessed(request: QueryGetLastProcessedRequest): Promise<QueryGetLastProcessedResponse>;
 }
 
 export const QueryServiceName = "sigmoidtest.sigmoidtest.Query";
@@ -256,6 +367,7 @@ export class QueryClientImpl implements Query {
     this.rpc = rpc;
     this.Params = this.Params.bind(this);
     this.GetAmount = this.GetAmount.bind(this);
+    this.GetLastProcessed = this.GetLastProcessed.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -267,6 +379,12 @@ export class QueryClientImpl implements Query {
     const data = QueryGetAmountRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "GetAmount", data);
     return promise.then((data) => QueryGetAmountResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetLastProcessed(request: QueryGetLastProcessedRequest): Promise<QueryGetLastProcessedResponse> {
+    const data = QueryGetLastProcessedRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetLastProcessed", data);
+    return promise.then((data) => QueryGetLastProcessedResponse.decode(_m0.Reader.create(data)));
   }
 }
 

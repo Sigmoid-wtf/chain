@@ -41,6 +41,37 @@ paths:
           type: string
       tags:
         - Query
+  /sigmoid-test/sigmoidtest/get_last_processed:
+    get:
+      operationId: Query_GetLastProcessed
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              transactionId:
+                type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /sigmoid-test/sigmoidtest/params:
     get:
       operationId: Query_Params
@@ -103,6 +134,11 @@ definitions:
       amount:
         type: string
         format: uint64
+  QueryGetLastProcessedResponse:
+    type: object
+    properties:
+      transactionId:
+        type: string
   QueryParamsResponse:
     type: object
     properties:

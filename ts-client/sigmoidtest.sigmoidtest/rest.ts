@@ -27,6 +27,10 @@ export interface QueryGetAmountResponse {
   amount?: string;
 }
 
+export interface QueryGetLastProcessedResponse {
+  transactionId?: string;
+}
+
 export interface QueryParamsResponse {
   params?: object;
 }
@@ -169,6 +173,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryGetAmount = (senderAddress: string, params: RequestParams = {}) =>
     this.request<{ amount?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
       path: `/sigmoid-test/sigmoidtest/get_amount/${senderAddress}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryGetLastProcessed
+   * @request GET:/sigmoid-test/sigmoidtest/get_last_processed
+   */
+  queryGetLastProcessed = (params: RequestParams = {}) =>
+    this.request<{ transactionId?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+      path: `/sigmoid-test/sigmoidtest/get_last_processed`,
       method: "GET",
       ...params,
     });

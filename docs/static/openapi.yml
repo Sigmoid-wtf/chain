@@ -19300,6 +19300,38 @@ paths:
           type: string
       tags:
         - Query
+  /sigmoid-test/sigmoidtest/get_last_processed:
+    get:
+      summary: Queries a list of GetLastProcessed items.
+      operationId: SigmoidtestSigmoidtestQuery_GetLastProcessed
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              transactionId:
+                type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /sigmoid-test/sigmoidtest/params:
     get:
       summary: Parameters queries the parameters of the module.
@@ -27180,6 +27212,11 @@ definitions:
       amount:
         type: string
         format: uint64
+  sigmoidtest.sigmoidtest.QueryGetLastProcessedResponse:
+    type: object
+    properties:
+      transactionId:
+        type: string
   sigmoidtest.sigmoidtest.QueryParamsResponse:
     type: object
     properties:

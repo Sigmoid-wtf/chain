@@ -24,6 +24,12 @@ service Query {
     option (google.api.http).get = "/sigmoid-test/sigmoidtest/get_amount/{senderAddress}";
   
   }
+  
+  // Queries a list of GetLastProcessed items.
+  rpc GetLastProcessed (QueryGetLastProcessedRequest) returns (QueryGetLastProcessedResponse) {
+    option (google.api.http).get = "/sigmoid-test/sigmoidtest/get_last_processed";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -41,5 +47,11 @@ message QueryGetAmountRequest {
 
 message QueryGetAmountResponse {
   uint64 amount = 1;
+}
+
+message QueryGetLastProcessedRequest {}
+
+message QueryGetLastProcessedResponse {
+  string transactionId = 1;
 }
 
