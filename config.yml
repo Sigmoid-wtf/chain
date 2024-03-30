@@ -2,7 +2,7 @@ version: 1
 accounts:
 - name: alice
   coins:
-  - 20000token
+  - 20000tokeny
   - 200000000stake
 - name: bob
   coins:
