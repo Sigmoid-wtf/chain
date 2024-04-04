@@ -18,7 +18,7 @@ func (k msgServer) ApproveRequest(goCtx context.Context, msg *types.MsgApproveRe
 		return nil, sdkerrors.ErrKeyNotFound
 	}
 
-	coin := sdk.NewCoin("token", math.NewInt(int64(request.Amount)))
+	coin := sdk.NewCoin("sigTAO", math.NewInt(int64(request.Amount)))
 	coins := sdk.NewCoins(coin)
 	err := k.Keeper.bankKeeper.MintCoins(ctx, "mint", coins)
 	if err != nil {
