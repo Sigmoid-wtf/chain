@@ -20,11 +20,12 @@ func (k msgServer) ApproveRequest(goCtx context.Context, msg *types.MsgApproveRe
 
 	coin := sdk.NewCoin("token", math.NewInt(int64(request.Amount)))
 	coins := sdk.NewCoins(coin)
-	err := k.Keeper.bankKeeper.MintCoins(ctx, types.ModuleName, coins)
+	err := k.Keeper.bankKeeper.MintCoins(ctx, "mint", coins)
 	if err != nil {
 		return nil, sdkerrors.ErrInvalidCoins
 	}
-	err = k.Keeper.bankKeeper.SendCoinsFromModuleToAccount(ctx, types.ModuleName, sdk.AccAddress(request.MintAddress), coins)
+	address := sdk.MustAccAddressFromBech32(request.MintAddress)
+	err = k.Keeper.bankKeeper.SendCoinsFromModuleToAccount(ctx, "mint", address, coins)
 	if err != nil {
 		return nil, sdkerrors.ErrInvalidCoins
 	}

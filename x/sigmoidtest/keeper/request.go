@@ -12,14 +12,14 @@ func (k Keeper) SetLastProcessedTransaction(ctx sdk.Context, tx string) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LastProcessedKey))
 
-	store.Set([]byte{}, []byte(tx))
+	store.Set([]byte("key"), []byte(tx))
 }
 
 func (k Keeper) GetLastProcessedTransaction(ctx sdk.Context) string {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LastProcessedKey))
 
-	val := store.Get([]byte{})
+	val := store.Get([]byte("key"))
 	return string(val)
 }
 
