@@ -8,11 +8,11 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
-func (k Keeper) SetLastProcessedTransaction(ctx sdk.Context, tx *string) {
+func (k Keeper) SetLastProcessedTransaction(ctx sdk.Context, tx string) {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LastProcessedKey))
 
-	store.Set([]byte{}, []byte(*tx))
+	store.Set([]byte{}, []byte(tx))
 }
 
 func (k Keeper) GetLastProcessedTransaction(ctx sdk.Context) string {

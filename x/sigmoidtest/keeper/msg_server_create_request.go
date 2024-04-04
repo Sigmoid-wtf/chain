@@ -6,6 +6,7 @@ import (
 	"sigmoid-test/x/sigmoidtest/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 func (k msgServer) CreateRequest(goCtx context.Context, msg *types.MsgCreateRequest) (*types.MsgCreateRequestResponse, error) {
@@ -17,6 +18,11 @@ func (k msgServer) CreateRequest(goCtx context.Context, msg *types.MsgCreateRequ
 		MintAddress:   string(address),
 		Amount:        msg.Amount,
 		Status:        0,
+	}
+
+	_, found := k.Keeper.GetRequest(ctx, &msg.SenderAddress)
+	if found {
+		return nil, sdkerrors.ErrInvalidAddress
 	}
 
 	k.Keeper.AppendRequest(ctx, request)
