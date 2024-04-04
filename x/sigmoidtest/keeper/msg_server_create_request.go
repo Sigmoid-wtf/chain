@@ -11,10 +11,11 @@ import (
 func (k msgServer) CreateRequest(goCtx context.Context, msg *types.MsgCreateRequest) (*types.MsgCreateRequestResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
+	address := sdk.MustAccAddressFromBech32(msg.Creator)
 	request := &types.Request{
 		SenderAddress: msg.SenderAddress,
-		MintAddress:   msg.Creator,
-		Amount:        int32(msg.Amount),
+		MintAddress:   string(address),
+		Amount:        msg.Amount,
 		Status:        0,
 	}
 

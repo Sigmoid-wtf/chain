@@ -106,14 +106,14 @@ func (x *fastReflection_Request) Range(f func(protoreflect.FieldDescriptor, prot
 			return
 		}
 	}
-	if x.Status != int32(0) {
-		value := protoreflect.ValueOfInt32(x.Status)
+	if x.Status != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Status)
 		if !f(fd_Request_status, value) {
 			return
 		}
 	}
-	if x.Amount != int32(0) {
-		value := protoreflect.ValueOfInt32(x.Amount)
+	if x.Amount != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Amount)
 		if !f(fd_Request_amount, value) {
 			return
 		}
@@ -138,9 +138,9 @@ func (x *fastReflection_Request) Has(fd protoreflect.FieldDescriptor) bool {
 	case "sigmoidtest.sigmoidtest.Request.mintAddress":
 		return x.MintAddress != ""
 	case "sigmoidtest.sigmoidtest.Request.status":
-		return x.Status != int32(0)
+		return x.Status != uint64(0)
 	case "sigmoidtest.sigmoidtest.Request.amount":
-		return x.Amount != int32(0)
+		return x.Amount != uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoidtest.sigmoidtest.Request"))
@@ -162,9 +162,9 @@ func (x *fastReflection_Request) Clear(fd protoreflect.FieldDescriptor) {
 	case "sigmoidtest.sigmoidtest.Request.mintAddress":
 		x.MintAddress = ""
 	case "sigmoidtest.sigmoidtest.Request.status":
-		x.Status = int32(0)
+		x.Status = uint64(0)
 	case "sigmoidtest.sigmoidtest.Request.amount":
-		x.Amount = int32(0)
+		x.Amount = uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoidtest.sigmoidtest.Request"))
@@ -189,10 +189,10 @@ func (x *fastReflection_Request) Get(descriptor protoreflect.FieldDescriptor) pr
 		return protoreflect.ValueOfString(value)
 	case "sigmoidtest.sigmoidtest.Request.status":
 		value := x.Status
-		return protoreflect.ValueOfInt32(value)
+		return protoreflect.ValueOfUint64(value)
 	case "sigmoidtest.sigmoidtest.Request.amount":
 		value := x.Amount
-		return protoreflect.ValueOfInt32(value)
+		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoidtest.sigmoidtest.Request"))
@@ -218,9 +218,9 @@ func (x *fastReflection_Request) Set(fd protoreflect.FieldDescriptor, value prot
 	case "sigmoidtest.sigmoidtest.Request.mintAddress":
 		x.MintAddress = value.Interface().(string)
 	case "sigmoidtest.sigmoidtest.Request.status":
-		x.Status = int32(value.Int())
+		x.Status = value.Uint()
 	case "sigmoidtest.sigmoidtest.Request.amount":
-		x.Amount = int32(value.Int())
+		x.Amount = value.Uint()
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoidtest.sigmoidtest.Request"))
@@ -267,9 +267,9 @@ func (x *fastReflection_Request) NewField(fd protoreflect.FieldDescriptor) proto
 	case "sigmoidtest.sigmoidtest.Request.mintAddress":
 		return protoreflect.ValueOfString("")
 	case "sigmoidtest.sigmoidtest.Request.status":
-		return protoreflect.ValueOfInt32(int32(0))
+		return protoreflect.ValueOfUint64(uint64(0))
 	case "sigmoidtest.sigmoidtest.Request.amount":
-		return protoreflect.ValueOfInt32(int32(0))
+		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoidtest.sigmoidtest.Request"))
@@ -533,7 +533,7 @@ func (x *fastReflection_Request) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					x.Status |= int32(b&0x7F) << shift
+					x.Status |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
@@ -552,7 +552,7 @@ func (x *fastReflection_Request) ProtoMethods() *protoiface.Methods {
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					x.Amount |= int32(b&0x7F) << shift
+					x.Amount |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
@@ -612,8 +612,8 @@ type Request struct {
 
 	SenderAddress string `protobuf:"bytes,1,opt,name=senderAddress,proto3" json:"senderAddress,omitempty"`
 	MintAddress   string `protobuf:"bytes,2,opt,name=mintAddress,proto3" json:"mintAddress,omitempty"`
-	Status        int32  `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty"`
-	Amount        int32  `protobuf:"varint,4,opt,name=amount,proto3" json:"amount,omitempty"`
+	Status        uint64 `protobuf:"varint,3,opt,name=status,proto3" json:"status,omitempty"`
+	Amount        uint64 `protobuf:"varint,4,opt,name=amount,proto3" json:"amount,omitempty"`
 }
 
 func (x *Request) Reset() {
@@ -650,14 +650,14 @@ func (x *Request) GetMintAddress() string {
 	return ""
 }
 
-func (x *Request) GetStatus() int32 {
+func (x *Request) GetStatus() uint64 {
 	if x != nil {
 		return x.Status
 	}
 	return 0
 }
 
-func (x *Request) GetAmount() int32 {
+func (x *Request) GetAmount() uint64 {
 	if x != nil {
 		return x.Amount
 	}
@@ -677,8 +677,8 @@ var file_sigmoidtest_sigmoidtest_request_proto_rawDesc = []byte{
 	0x73, 0x73, 0x12, 0x20, 0x0a, 0x0b, 0x6d, 0x69, 0x6e, 0x74, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73,
 	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x6d, 0x69, 0x6e, 0x74, 0x41, 0x64, 0x64,
 	0x72, 0x65, 0x73, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x03,
-	0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x16, 0x0a, 0x06,
-	0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x05, 0x52, 0x06, 0x61, 0x6d,
+	0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x16, 0x0a, 0x06,
+	0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x61, 0x6d,
 	0x6f, 0x75, 0x6e, 0x74, 0x42, 0xd2, 0x01, 0x0a, 0x1b, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x69, 0x67,
 	0x6d, 0x6f, 0x69, 0x64, 0x74, 0x65, 0x73, 0x74, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
 	0x74, 0x65, 0x73, 0x74, 0x42, 0x0c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x50, 0x72, 0x6f,
