@@ -11,8 +11,7 @@ import (
 func (k msgServer) ProcessTransaction(goCtx context.Context, msg *types.MsgProcessTransaction) (*types.MsgProcessTransactionResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Handling the message
-	_ = ctx
+	k.Keeper.SetLastProcessedTransaction(ctx, msg.TransactionId)
 
 	return &types.MsgProcessTransactionResponse{}, nil
 }
