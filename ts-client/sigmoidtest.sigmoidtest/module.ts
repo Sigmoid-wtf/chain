@@ -6,37 +6,39 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { QueryGetLastProcessedRequest } from "./types/sigmoidtest/sigmoidtest/query";
-import { GenesisState } from "./types/sigmoidtest/sigmoidtest/genesis";
-import { QueryParamsResponse } from "./types/sigmoidtest/sigmoidtest/query";
+import { Request } from "./types/sigmoidtest/sigmoidtest/request";
+import { MsgApproveRequestResponse } from "./types/sigmoidtest/sigmoidtest/tx";
+import { QueryGetAmountRequest } from "./types/sigmoidtest/sigmoidtest/query";
 import { QueryGetAmountResponse } from "./types/sigmoidtest/sigmoidtest/query";
 import { QueryGetLastProcessedResponse } from "./types/sigmoidtest/sigmoidtest/query";
-import { Request } from "./types/sigmoidtest/sigmoidtest/request";
 import { MsgCreateRequest } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgCreateRequestResponse } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgUpdateParams } from "./types/sigmoidtest/sigmoidtest/tx";
 import { MsgUpdateParamsResponse } from "./types/sigmoidtest/sigmoidtest/tx";
+import { GenesisState } from "./types/sigmoidtest/sigmoidtest/genesis";
+import { QueryParamsResponse } from "./types/sigmoidtest/sigmoidtest/query";
 import { Params } from "./types/sigmoidtest/sigmoidtest/params";
+import { MsgCreateRequestResponse } from "./types/sigmoidtest/sigmoidtest/tx";
 import { QueryParamsRequest } from "./types/sigmoidtest/sigmoidtest/query";
-import { QueryGetAmountRequest } from "./types/sigmoidtest/sigmoidtest/query";
+import { QueryGetLastProcessedRequest } from "./types/sigmoidtest/sigmoidtest/query";
+import { MsgUpdateParams } from "./types/sigmoidtest/sigmoidtest/tx";
+import { MsgApproveRequest } from "./types/sigmoidtest/sigmoidtest/tx";
 
 
-export { QueryGetLastProcessedRequest, GenesisState, QueryParamsResponse, QueryGetAmountResponse, QueryGetLastProcessedResponse, Request, MsgCreateRequest, MsgCreateRequestResponse, MsgUpdateParams, MsgUpdateParamsResponse, Params, QueryParamsRequest, QueryGetAmountRequest };
+export { Request, MsgApproveRequestResponse, QueryGetAmountRequest, QueryGetAmountResponse, QueryGetLastProcessedResponse, MsgCreateRequest, MsgUpdateParamsResponse, GenesisState, QueryParamsResponse, Params, MsgCreateRequestResponse, QueryParamsRequest, QueryGetLastProcessedRequest, MsgUpdateParams, MsgApproveRequest };
 
-type sendQueryGetLastProcessedRequestParams = {
-  value: QueryGetLastProcessedRequest,
+type sendRequestParams = {
+  value: Request,
   fee?: StdFee,
   memo?: string
 };
 
-type sendGenesisStateParams = {
-  value: GenesisState,
+type sendMsgApproveRequestResponseParams = {
+  value: MsgApproveRequestResponse,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryParamsResponseParams = {
-  value: QueryParamsResponse,
+type sendQueryGetAmountRequestParams = {
+  value: QueryGetAmountRequest,
   fee?: StdFee,
   memo?: string
 };
@@ -53,26 +55,8 @@ type sendQueryGetLastProcessedResponseParams = {
   memo?: string
 };
 
-type sendRequestParams = {
-  value: Request,
-  fee?: StdFee,
-  memo?: string
-};
-
 type sendMsgCreateRequestParams = {
   value: MsgCreateRequest,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgCreateRequestResponseParams = {
-  value: MsgCreateRequestResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgUpdateParamsParams = {
-  value: MsgUpdateParams,
   fee?: StdFee,
   memo?: string
 };
@@ -83,8 +67,26 @@ type sendMsgUpdateParamsResponseParams = {
   memo?: string
 };
 
+type sendGenesisStateParams = {
+  value: GenesisState,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryParamsResponseParams = {
+  value: QueryParamsResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
 type sendParamsParams = {
   value: Params,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateRequestResponseParams = {
+  value: MsgCreateRequestResponse,
   fee?: StdFee,
   memo?: string
 };
@@ -95,23 +97,35 @@ type sendQueryParamsRequestParams = {
   memo?: string
 };
 
-type sendQueryGetAmountRequestParams = {
-  value: QueryGetAmountRequest,
+type sendQueryGetLastProcessedRequestParams = {
+  value: QueryGetLastProcessedRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateParamsParams = {
+  value: MsgUpdateParams,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgApproveRequestParams = {
+  value: MsgApproveRequest,
   fee?: StdFee,
   memo?: string
 };
 
 
-type queryGetLastProcessedRequestParams = {
-  value: QueryGetLastProcessedRequest,
+type requestParams = {
+  value: Request,
 };
 
-type genesisStateParams = {
-  value: GenesisState,
+type msgApproveRequestResponseParams = {
+  value: MsgApproveRequestResponse,
 };
 
-type queryParamsResponseParams = {
-  value: QueryParamsResponse,
+type queryGetAmountRequestParams = {
+  value: QueryGetAmountRequest,
 };
 
 type queryGetAmountResponseParams = {
@@ -122,36 +136,44 @@ type queryGetLastProcessedResponseParams = {
   value: QueryGetLastProcessedResponse,
 };
 
-type requestParams = {
-  value: Request,
-};
-
 type msgCreateRequestParams = {
   value: MsgCreateRequest,
-};
-
-type msgCreateRequestResponseParams = {
-  value: MsgCreateRequestResponse,
-};
-
-type msgUpdateParamsParams = {
-  value: MsgUpdateParams,
 };
 
 type msgUpdateParamsResponseParams = {
   value: MsgUpdateParamsResponse,
 };
 
+type genesisStateParams = {
+  value: GenesisState,
+};
+
+type queryParamsResponseParams = {
+  value: QueryParamsResponse,
+};
+
 type paramsParams = {
   value: Params,
+};
+
+type msgCreateRequestResponseParams = {
+  value: MsgCreateRequestResponse,
 };
 
 type queryParamsRequestParams = {
   value: QueryParamsRequest,
 };
 
-type queryGetAmountRequestParams = {
-  value: QueryGetAmountRequest,
+type queryGetLastProcessedRequestParams = {
+  value: QueryGetLastProcessedRequest,
+};
+
+type msgUpdateParamsParams = {
+  value: MsgUpdateParams,
+};
+
+type msgApproveRequestParams = {
+  value: MsgApproveRequest,
 };
 
 
@@ -184,45 +206,45 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
-		async sendQueryGetLastProcessedRequest({ value, fee, memo }: sendQueryGetLastProcessedRequestParams): Promise<DeliverTxResponse> {
+		async sendRequest({ value, fee, memo }: sendRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryGetLastProcessedRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetLastProcessedRequest({ value: QueryGetLastProcessedRequest.fromPartial(value) })
+				let msg = this.request({ value: Request.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetLastProcessedRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+		async sendMsgApproveRequestResponse({ value, fee, memo }: sendMsgApproveRequestResponseParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgApproveRequestResponse: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				let msg = this.msgApproveRequestResponse({ value: MsgApproveRequestResponse.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgApproveRequestResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
+		async sendQueryGetAmountRequest({ value, fee, memo }: sendQueryGetAmountRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryGetAmountRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
+				let msg = this.queryGetAmountRequest({ value: QueryGetAmountRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryGetAmountRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -254,20 +276,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendRequest({ value, fee, memo }: sendRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.request({ value: Request.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
 		async sendMsgCreateRequest({ value, fee, memo }: sendMsgCreateRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendMsgCreateRequest: Unable to sign Tx. Signer is not present.')
@@ -279,34 +287,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
 				throw new Error('TxClient:sendMsgCreateRequest: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgCreateRequestResponse({ value, fee, memo }: sendMsgCreateRequestResponseParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgCreateRequestResponse: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgCreateRequestResponse({ value: MsgCreateRequestResponse.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgCreateRequestResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -324,6 +304,34 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.')
@@ -335,6 +343,20 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
 				throw new Error('TxClient:sendParams: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateRequestResponse({ value, fee, memo }: sendMsgCreateRequestResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateRequestResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgCreateRequestResponse({ value: MsgCreateRequestResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateRequestResponse: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -352,42 +374,70 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryGetAmountRequest({ value, fee, memo }: sendQueryGetAmountRequestParams): Promise<DeliverTxResponse> {
+		async sendQueryGetLastProcessedRequest({ value, fee, memo }: sendQueryGetLastProcessedRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryGetAmountRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryGetLastProcessedRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryGetAmountRequest({ value: QueryGetAmountRequest.fromPartial(value) })
+				let msg = this.queryGetLastProcessedRequest({ value: QueryGetLastProcessedRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryGetAmountRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryGetLastProcessedRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgApproveRequest({ value, fee, memo }: sendMsgApproveRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgApproveRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgApproveRequest({ value: MsgApproveRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgApproveRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
 		
-		queryGetLastProcessedRequest({ value }: queryGetLastProcessedRequestParams): EncodeObject {
+		request({ value }: requestParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryGetLastProcessedRequest", value: QueryGetLastProcessedRequest.fromPartial( value ) }  
+				return { typeUrl: "/sigmoidtest.sigmoidtest.Request", value: Request.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGetLastProcessedRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:Request: Could not create message: ' + e.message)
 			}
 		},
 		
-		genesisState({ value }: genesisStateParams): EncodeObject {
+		msgApproveRequestResponse({ value }: msgApproveRequestResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.GenesisState", value: GenesisState.fromPartial( value ) }  
+				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgApproveRequestResponse", value: MsgApproveRequestResponse.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgApproveRequestResponse: Could not create message: ' + e.message)
 			}
 		},
 		
-		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
+		queryGetAmountRequest({ value }: queryGetAmountRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
+				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryGetAmountRequest", value: QueryGetAmountRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryGetAmountRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -407,35 +457,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		request({ value }: requestParams): EncodeObject {
-			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.Request", value: Request.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:Request: Could not create message: ' + e.message)
-			}
-		},
-		
 		msgCreateRequest({ value }: msgCreateRequestParams): EncodeObject {
 			try {
 				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgCreateRequest", value: MsgCreateRequest.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgCreateRequest: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgCreateRequestResponse({ value }: msgCreateRequestResponseParams): EncodeObject {
-			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgCreateRequestResponse", value: MsgCreateRequestResponse.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgCreateRequestResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
-			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -447,11 +473,35 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		genesisState({ value }: genesisStateParams): EncodeObject {
+			try {
+				return { typeUrl: "/sigmoidtest.sigmoidtest.GenesisState", value: GenesisState.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
+			}
+		},
+		
 		params({ value }: paramsParams): EncodeObject {
 			try {
 				return { typeUrl: "/sigmoidtest.sigmoidtest.Params", value: Params.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:Params: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateRequestResponse({ value }: msgCreateRequestResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgCreateRequestResponse", value: MsgCreateRequestResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateRequestResponse: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -463,11 +513,27 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryGetAmountRequest({ value }: queryGetAmountRequestParams): EncodeObject {
+		queryGetLastProcessedRequest({ value }: queryGetLastProcessedRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryGetAmountRequest", value: QueryGetAmountRequest.fromPartial( value ) }  
+				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryGetLastProcessedRequest", value: QueryGetLastProcessedRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryGetAmountRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryGetLastProcessedRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
+			try {
+				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgApproveRequest({ value }: msgApproveRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgApproveRequest", value: MsgApproveRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgApproveRequest: Could not create message: ' + e.message)
 			}
 		},
 		

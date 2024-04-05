@@ -148,5 +148,7 @@ definitions:
     type: object
   MsgCreateRequestResponse:
     type: object
+  MsgProcessTransactionResponse:
+    type: object
   MsgUpdateParamsResponse:
     type: object

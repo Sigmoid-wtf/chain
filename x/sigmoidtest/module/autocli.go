@@ -54,6 +54,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a approve-request tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "senderAddress"}, {ProtoField: "transactionId"}},
 				},
+				{
+					RpcMethod:      "ProcessTransaction",
+					Use:            "process-transaction [transaction-id]",
+					Short:          "Send a process-transaction tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "transactionId"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

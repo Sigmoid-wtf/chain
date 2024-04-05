@@ -38,6 +38,14 @@ export interface MsgApproveRequest {
 export interface MsgApproveRequestResponse {
 }
 
+export interface MsgProcessTransaction {
+  creator: string;
+  transactionId: string;
+}
+
+export interface MsgProcessTransactionResponse {
+}
+
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return { authority: "", params: undefined };
 }
@@ -421,6 +429,123 @@ export const MsgApproveRequestResponse = {
   },
 };
 
+function createBaseMsgProcessTransaction(): MsgProcessTransaction {
+  return { creator: "", transactionId: "" };
+}
+
+export const MsgProcessTransaction = {
+  encode(message: MsgProcessTransaction, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.transactionId !== "") {
+      writer.uint32(18).string(message.transactionId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgProcessTransaction {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgProcessTransaction();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.transactionId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgProcessTransaction {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      transactionId: isSet(object.transactionId) ? String(object.transactionId) : "",
+    };
+  },
+
+  toJSON(message: MsgProcessTransaction): unknown {
+    const obj: any = {};
+    if (message.creator !== "") {
+      obj.creator = message.creator;
+    }
+    if (message.transactionId !== "") {
+      obj.transactionId = message.transactionId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgProcessTransaction>, I>>(base?: I): MsgProcessTransaction {
+    return MsgProcessTransaction.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgProcessTransaction>, I>>(object: I): MsgProcessTransaction {
+    const message = createBaseMsgProcessTransaction();
+    message.creator = object.creator ?? "";
+    message.transactionId = object.transactionId ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgProcessTransactionResponse(): MsgProcessTransactionResponse {
+  return {};
+}
+
+export const MsgProcessTransactionResponse = {
+  encode(_: MsgProcessTransactionResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgProcessTransactionResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgProcessTransactionResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgProcessTransactionResponse {
+    return {};
+  },
+
+  toJSON(_: MsgProcessTransactionResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgProcessTransactionResponse>, I>>(base?: I): MsgProcessTransactionResponse {
+    return MsgProcessTransactionResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgProcessTransactionResponse>, I>>(_: I): MsgProcessTransactionResponse {
+    const message = createBaseMsgProcessTransactionResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -430,6 +555,7 @@ export interface Msg {
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse>;
   CreateRequest(request: MsgCreateRequest): Promise<MsgCreateRequestResponse>;
   ApproveRequest(request: MsgApproveRequest): Promise<MsgApproveRequestResponse>;
+  ProcessTransaction(request: MsgProcessTransaction): Promise<MsgProcessTransactionResponse>;
 }
 
 export const MsgServiceName = "sigmoidtest.sigmoidtest.Msg";
@@ -442,6 +568,7 @@ export class MsgClientImpl implements Msg {
     this.UpdateParams = this.UpdateParams.bind(this);
     this.CreateRequest = this.CreateRequest.bind(this);
     this.ApproveRequest = this.ApproveRequest.bind(this);
+    this.ProcessTransaction = this.ProcessTransaction.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -459,6 +586,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgApproveRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "ApproveRequest", data);
     return promise.then((data) => MsgApproveRequestResponse.decode(_m0.Reader.create(data)));
+  }
+
+  ProcessTransaction(request: MsgProcessTransaction): Promise<MsgProcessTransactionResponse> {
+    const data = MsgProcessTransaction.encode(request).finish();
+    const promise = this.rpc.request(this.service, "ProcessTransaction", data);
+    return promise.then((data) => MsgProcessTransactionResponse.decode(_m0.Reader.create(data)));
   }
 }
 
