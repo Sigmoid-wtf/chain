@@ -17,6 +17,10 @@ var (
 	LastProcessedKey   = "last_processed/"
 )
 
+func RequestsByMintAddressKey(addr string) string {
+	return "mint_requests/" + addr
+}
+
 func KeyPrefix(p string) []byte {
 	return []byte(p)
 }

@@ -33,5 +33,11 @@ func (k msgServer) ApproveRequest(goCtx context.Context, msg *types.MsgApproveRe
 	k.Keeper.SetLastProcessedTransaction(ctx, msg.TransactionId)
 	k.Keeper.RemoveRequest(ctx, &msg.SenderAddress)
 
+	// storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	// mintStore := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RequestsByMintAddressKey(request.MintAddress)))
+
+	// appendedValue := k.cdc.MustMarshal(&request)
+	// mintStore.Set([]byte(request.SenderAddress), appendedValue)
+
 	return &types.MsgApproveRequestResponse{}, nil
 }
