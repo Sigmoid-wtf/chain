@@ -49,3 +49,5 @@ curl https://get.ignite.com/username/sigmoid-test@latest! | sudo bash
 - [Ignite CLI docs](https://docs.ignite.com)
 - [Cosmos SDK docs](https://docs.cosmos.network)
 - [Developer Chat](https://discord.gg/ignite)
+
+## Fast commands
