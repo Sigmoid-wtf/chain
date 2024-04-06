@@ -1,6 +1,8 @@
 /* eslint-disable */
 import Long from "long";
 import _m0 from "protobufjs/minimal";
+import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagination";
+import { FrontStakeRequest } from "./front_stake_request";
 import { Params } from "./params";
 
 export const protobufPackage = "sigmoidtest.sigmoidtest";
@@ -28,6 +30,16 @@ export interface QueryGetLastProcessedRequest {
 
 export interface QueryGetLastProcessedResponse {
   transactionId: string;
+}
+
+export interface QueryGetFrontStakeRequestRequest {
+  creator: string;
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryGetFrontStakeRequestResponse {
+  frontStakeRequest: FrontStakeRequest | undefined;
+  pagination: PageResponse | undefined;
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -348,6 +360,170 @@ export const QueryGetLastProcessedResponse = {
   },
 };
 
+function createBaseQueryGetFrontStakeRequestRequest(): QueryGetFrontStakeRequestRequest {
+  return { creator: "", pagination: undefined };
+}
+
+export const QueryGetFrontStakeRequestRequest = {
+  encode(message: QueryGetFrontStakeRequestRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontStakeRequestRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetFrontStakeRequestRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetFrontStakeRequestRequest {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetFrontStakeRequestRequest): unknown {
+    const obj: any = {};
+    if (message.creator !== "") {
+      obj.creator = message.creator;
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageRequest.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetFrontStakeRequestRequest>, I>>(
+    base?: I,
+  ): QueryGetFrontStakeRequestRequest {
+    return QueryGetFrontStakeRequestRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetFrontStakeRequestRequest>, I>>(
+    object: I,
+  ): QueryGetFrontStakeRequestRequest {
+    const message = createBaseQueryGetFrontStakeRequestRequest();
+    message.creator = object.creator ?? "";
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetFrontStakeRequestResponse(): QueryGetFrontStakeRequestResponse {
+  return { frontStakeRequest: undefined, pagination: undefined };
+}
+
+export const QueryGetFrontStakeRequestResponse = {
+  encode(message: QueryGetFrontStakeRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.frontStakeRequest !== undefined) {
+      FrontStakeRequest.encode(message.frontStakeRequest, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontStakeRequestResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetFrontStakeRequestResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.frontStakeRequest = FrontStakeRequest.decode(reader, reader.uint32());
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetFrontStakeRequestResponse {
+    return {
+      frontStakeRequest: isSet(object.frontStakeRequest)
+        ? FrontStakeRequest.fromJSON(object.frontStakeRequest)
+        : undefined,
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryGetFrontStakeRequestResponse): unknown {
+    const obj: any = {};
+    if (message.frontStakeRequest !== undefined) {
+      obj.frontStakeRequest = FrontStakeRequest.toJSON(message.frontStakeRequest);
+    }
+    if (message.pagination !== undefined) {
+      obj.pagination = PageResponse.toJSON(message.pagination);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetFrontStakeRequestResponse>, I>>(
+    base?: I,
+  ): QueryGetFrontStakeRequestResponse {
+    return QueryGetFrontStakeRequestResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetFrontStakeRequestResponse>, I>>(
+    object: I,
+  ): QueryGetFrontStakeRequestResponse {
+    const message = createBaseQueryGetFrontStakeRequestResponse();
+    message.frontStakeRequest = (object.frontStakeRequest !== undefined && object.frontStakeRequest !== null)
+      ? FrontStakeRequest.fromPartial(object.frontStakeRequest)
+      : undefined;
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -356,6 +532,8 @@ export interface Query {
   GetAmount(request: QueryGetAmountRequest): Promise<QueryGetAmountResponse>;
   /** Queries a list of GetLastProcessed items. */
   GetLastProcessed(request: QueryGetLastProcessedRequest): Promise<QueryGetLastProcessedResponse>;
+  /** Queries a list of GetFrontStakeRequest items. */
+  GetFrontStakeRequest(request: QueryGetFrontStakeRequestRequest): Promise<QueryGetFrontStakeRequestResponse>;
 }
 
 export const QueryServiceName = "sigmoidtest.sigmoidtest.Query";
@@ -368,6 +546,7 @@ export class QueryClientImpl implements Query {
     this.Params = this.Params.bind(this);
     this.GetAmount = this.GetAmount.bind(this);
     this.GetLastProcessed = this.GetLastProcessed.bind(this);
+    this.GetFrontStakeRequest = this.GetFrontStakeRequest.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -385,6 +564,12 @@ export class QueryClientImpl implements Query {
     const data = QueryGetLastProcessedRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "GetLastProcessed", data);
     return promise.then((data) => QueryGetLastProcessedResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetFrontStakeRequest(request: QueryGetFrontStakeRequestRequest): Promise<QueryGetFrontStakeRequestResponse> {
+    const data = QueryGetFrontStakeRequestRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetFrontStakeRequest", data);
+    return promise.then((data) => QueryGetFrontStakeRequestResponse.decode(_m0.Reader.create(data)));
   }
 }
 

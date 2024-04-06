@@ -31,6 +31,13 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{},
 				},
 
+				{
+					RpcMethod:      "GetFrontStakeRequest",
+					Use:            "get-front-stake-request [creator]",
+					Short:          "Query get-front-stake-request",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "creator"}},
+				},
+
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

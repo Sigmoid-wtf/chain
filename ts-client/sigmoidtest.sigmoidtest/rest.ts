@@ -20,11 +20,49 @@ export interface Status {
   details?: { "@type"?: string }[];
 }
 
+export interface FrontStakeRequest {
+  sender?: string;
+  mint?: string;
+
+  /** @format uint64 */
+  status?: string;
+
+  /** @format uint64 */
+  amount?: string;
+  transactionId?: string;
+}
+
+export interface PageRequest {
+  /** @format byte */
+  key?: string;
+
+  /** @format uint64 */
+  offset?: string;
+
+  /** @format uint64 */
+  limit?: string;
+  count_total?: boolean;
+  reverse?: boolean;
+}
+
+export interface PageResponse {
+  /** @format byte */
+  next_key?: string;
+
+  /** @format uint64 */
+  total?: string;
+}
+
 export type Params = object;
 
 export interface QueryGetAmountResponse {
   /** @format uint64 */
   amount?: string;
+}
+
+export interface QueryGetFrontStakeRequestResponse {
+  frontStakeRequest?: { sender?: string; mint?: string; status?: string; amount?: string; transactionId?: string };
+  pagination?: { next_key?: string; total?: string };
 }
 
 export interface QueryGetLastProcessedResponse {
@@ -178,6 +216,43 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
     this.request<{ amount?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
       path: `/sigmoid-test/sigmoidtest/get_amount/${senderAddress}`,
       method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryGetFrontStakeRequest
+   * @request GET:/sigmoid-test/sigmoidtest/get_front_stake_request/{creator}
+   */
+  queryGetFrontStakeRequest = (
+    creator: string,
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<
+      {
+        frontStakeRequest?: {
+          sender?: string;
+          mint?: string;
+          status?: string;
+          amount?: string;
+          transactionId?: string;
+        };
+        pagination?: { next_key?: string; total?: string };
+      },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/sigmoid-test/sigmoidtest/get_front_stake_request/${creator}`,
+      method: "GET",
+      query: query,
       ...params,
     });
 

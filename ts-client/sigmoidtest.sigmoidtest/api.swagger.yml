@@ -41,6 +41,87 @@ paths:
           type: string
       tags:
         - Query
+  /sigmoid-test/sigmoidtest/get_front_stake_request/{creator}:
+    get:
+      operationId: Query_GetFrontStakeRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              frontStakeRequest:
+                type: object
+                properties:
+                  sender:
+                    type: string
+                  mint:
+                    type: string
+                  status:
+                    type: string
+                    format: uint64
+                  amount:
+                    type: string
+                    format: uint64
+                  transactionId:
+                    type: string
+              pagination:
+                type: object
+                properties:
+                  next_key:
+                    type: string
+                    format: byte
+                  total:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: creator
+          in: path
+          required: true
+          type: string
+        - name: pagination.key
+          in: query
+          required: false
+          type: string
+          format: byte
+        - name: pagination.offset
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.limit
+          in: query
+          required: false
+          type: string
+          format: uint64
+        - name: pagination.count_total
+          in: query
+          required: false
+          type: boolean
+        - name: pagination.reverse
+          in: query
+          required: false
+          type: boolean
+      tags:
+        - Query
   /sigmoid-test/sigmoidtest/get_last_processed:
     get:
       operationId: Query_GetLastProcessed
@@ -126,6 +207,46 @@ definitions:
             '@type':
               type: string
           additionalProperties: {}
+  FrontStakeRequest:
+    type: object
+    properties:
+      sender:
+        type: string
+      mint:
+        type: string
+      status:
+        type: string
+        format: uint64
+      amount:
+        type: string
+        format: uint64
+      transactionId:
+        type: string
+  PageRequest:
+    type: object
+    properties:
+      key:
+        type: string
+        format: byte
+      offset:
+        type: string
+        format: uint64
+      limit:
+        type: string
+        format: uint64
+      count_total:
+        type: boolean
+      reverse:
+        type: boolean
+  PageResponse:
+    type: object
+    properties:
+      next_key:
+        type: string
+        format: byte
+      total:
+        type: string
+        format: uint64
   Params:
     type: object
   QueryGetAmountResponse:
@@ -134,6 +255,33 @@ definitions:
       amount:
         type: string
         format: uint64
+  QueryGetFrontStakeRequestResponse:
+    type: object
+    properties:
+      frontStakeRequest:
+        type: object
+        properties:
+          sender:
+            type: string
+          mint:
+            type: string
+          status:
+            type: string
+            format: uint64
+          amount:
+            type: string
+            format: uint64
+          transactionId:
+            type: string
+      pagination:
+        type: object
+        properties:
+          next_key:
+            type: string
+            format: byte
+          total:
+            type: string
+            format: uint64
   QueryGetLastProcessedResponse:
     type: object
     properties:
