@@ -1,8 +1,8 @@
 import { useAddressContext } from "../def-hooks/addressContext";
 import { IgntCard, IgntClipboard, IgntQRCode, IgntTabs } from "@ignt/react-library";
 import IgntSend from "./IgntSend";
-import IgntStack from "./IgntStack";
-import IgntUnstack from "./IgntUnstack";
+import IgntStack from "./IgntStake";
+import IgntUnstack from "./IgntUnstake";
 interface IgntTransferProps {
   className?: string;
 }
@@ -35,10 +35,10 @@ export default function IgntTransfer(props: IgntTransferProps) {
           </IgntCard>
         )}
       </div>
-      <div className="" title="Stack">
+      <div className="" title="Stake">
         {address && <IgntStack />}
       </div>
-      <div className="" title="Unstack">
+      <div className="" title="Unstake">
         {address && <IgntUnstack />}
       </div>
     </IgntTabs>
