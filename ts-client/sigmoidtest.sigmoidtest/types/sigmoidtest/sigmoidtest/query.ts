@@ -38,7 +38,7 @@ export interface QueryGetFrontStakeRequestRequest {
 }
 
 export interface QueryGetFrontStakeRequestResponse {
-  frontStakeRequest: FrontStakeRequest | undefined;
+  frontStakeRequest: FrontStakeRequest[];
   pagination: PageResponse | undefined;
 }
 
@@ -441,13 +441,13 @@ export const QueryGetFrontStakeRequestRequest = {
 };
 
 function createBaseQueryGetFrontStakeRequestResponse(): QueryGetFrontStakeRequestResponse {
-  return { frontStakeRequest: undefined, pagination: undefined };
+  return { frontStakeRequest: [], pagination: undefined };
 }
 
 export const QueryGetFrontStakeRequestResponse = {
   encode(message: QueryGetFrontStakeRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.frontStakeRequest !== undefined) {
-      FrontStakeRequest.encode(message.frontStakeRequest, writer.uint32(10).fork()).ldelim();
+    for (const v of message.frontStakeRequest) {
+      FrontStakeRequest.encode(v!, writer.uint32(10).fork()).ldelim();
     }
     if (message.pagination !== undefined) {
       PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
@@ -467,7 +467,7 @@ export const QueryGetFrontStakeRequestResponse = {
             break;
           }
 
-          message.frontStakeRequest = FrontStakeRequest.decode(reader, reader.uint32());
+          message.frontStakeRequest.push(FrontStakeRequest.decode(reader, reader.uint32()));
           continue;
         case 2:
           if (tag !== 18) {
@@ -487,17 +487,17 @@ export const QueryGetFrontStakeRequestResponse = {
 
   fromJSON(object: any): QueryGetFrontStakeRequestResponse {
     return {
-      frontStakeRequest: isSet(object.frontStakeRequest)
-        ? FrontStakeRequest.fromJSON(object.frontStakeRequest)
-        : undefined,
+      frontStakeRequest: Array.isArray(object?.frontStakeRequest)
+        ? object.frontStakeRequest.map((e: any) => FrontStakeRequest.fromJSON(e))
+        : [],
       pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
     };
   },
 
   toJSON(message: QueryGetFrontStakeRequestResponse): unknown {
     const obj: any = {};
-    if (message.frontStakeRequest !== undefined) {
-      obj.frontStakeRequest = FrontStakeRequest.toJSON(message.frontStakeRequest);
+    if (message.frontStakeRequest?.length) {
+      obj.frontStakeRequest = message.frontStakeRequest.map((e) => FrontStakeRequest.toJSON(e));
     }
     if (message.pagination !== undefined) {
       obj.pagination = PageResponse.toJSON(message.pagination);
@@ -514,9 +514,7 @@ export const QueryGetFrontStakeRequestResponse = {
     object: I,
   ): QueryGetFrontStakeRequestResponse {
     const message = createBaseQueryGetFrontStakeRequestResponse();
-    message.frontStakeRequest = (object.frontStakeRequest !== undefined && object.frontStakeRequest !== null)
-      ? FrontStakeRequest.fromPartial(object.frontStakeRequest)
-      : undefined;
+    message.frontStakeRequest = object.frontStakeRequest?.map((e) => FrontStakeRequest.fromPartial(e)) || [];
     message.pagination = (object.pagination !== undefined && object.pagination !== null)
       ? PageResponse.fromPartial(object.pagination)
       : undefined;

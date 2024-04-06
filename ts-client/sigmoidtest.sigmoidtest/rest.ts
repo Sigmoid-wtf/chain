@@ -61,7 +61,7 @@ export interface QueryGetAmountResponse {
 }
 
 export interface QueryGetFrontStakeRequestResponse {
-  frontStakeRequest?: { sender?: string; mint?: string; status?: string; amount?: string; transactionId?: string };
+  frontStakeRequest?: { sender?: string; mint?: string; status?: string; amount?: string; transactionId?: string }[];
   pagination?: { next_key?: string; total?: string };
 }
 
@@ -245,7 +245,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
           status?: string;
           amount?: string;
           transactionId?: string;
-        };
+        }[];
         pagination?: { next_key?: string; total?: string };
       },
       { code?: number; message?: string; details?: { "@type"?: string }[] }

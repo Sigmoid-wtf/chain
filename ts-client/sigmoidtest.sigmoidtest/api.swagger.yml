@@ -51,20 +51,22 @@ paths:
             type: object
             properties:
               frontStakeRequest:
-                type: object
-                properties:
-                  sender:
-                    type: string
-                  mint:
-                    type: string
-                  status:
-                    type: string
-                    format: uint64
-                  amount:
-                    type: string
-                    format: uint64
-                  transactionId:
-                    type: string
+                type: array
+                items:
+                  type: object
+                  properties:
+                    sender:
+                      type: string
+                    mint:
+                      type: string
+                    status:
+                      type: string
+                      format: uint64
+                    amount:
+                      type: string
+                      format: uint64
+                    transactionId:
+                      type: string
               pagination:
                 type: object
                 properties:
@@ -259,20 +261,22 @@ definitions:
     type: object
     properties:
       frontStakeRequest:
-        type: object
-        properties:
-          sender:
-            type: string
-          mint:
-            type: string
-          status:
-            type: string
-            format: uint64
-          amount:
-            type: string
-            format: uint64
-          transactionId:
-            type: string
+        type: array
+        items:
+          type: object
+          properties:
+            sender:
+              type: string
+            mint:
+              type: string
+            status:
+              type: string
+              format: uint64
+            amount:
+              type: string
+              format: uint64
+            transactionId:
+              type: string
       pagination:
         type: object
         properties:
