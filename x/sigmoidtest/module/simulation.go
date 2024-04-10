@@ -39,6 +39,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgCreateUnstakeRequest int = 100
 
+	opWeightMsgApproveUnstakeRequest = "op_weight_msg_approve_unstake_request"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgApproveUnstakeRequest int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -111,6 +115,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		sigmoidtestsimulation.SimulateMsgCreateUnstakeRequest(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgApproveUnstakeRequest int
+	simState.AppParams.GetOrGenerate(opWeightMsgApproveUnstakeRequest, &weightMsgApproveUnstakeRequest, nil,
+		func(_ *rand.Rand) {
+			weightMsgApproveUnstakeRequest = defaultWeightMsgApproveUnstakeRequest
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgApproveUnstakeRequest,
+		sigmoidtestsimulation.SimulateMsgApproveUnstakeRequest(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -148,6 +163,14 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgCreateUnstakeRequest,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				sigmoidtestsimulation.SimulateMsgCreateUnstakeRequest(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgApproveUnstakeRequest,
+			defaultWeightMsgApproveUnstakeRequest,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				sigmoidtestsimulation.SimulateMsgApproveUnstakeRequest(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),

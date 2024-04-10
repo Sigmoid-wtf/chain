@@ -19409,6 +19409,47 @@ paths:
                 type: string
       tags:
         - Msg
+  /sigmoidtest.sigmoidtest.Msg/ApproveUnstakeRequest:
+    post:
+      operationId: SigmoidtestSigmoidtestMsg_ApproveUnstakeRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              unstakeAddress:
+                type: string
+              transactionId:
+                type: string
+      tags:
+        - Msg
   /sigmoidtest.sigmoidtest.Msg/CreateRequest:
     post:
       operationId: SigmoidtestSigmoidtestMsg_CreateRequest
@@ -27356,6 +27397,17 @@ definitions:
       transactionId:
         type: string
   sigmoidtest.sigmoidtest.MsgApproveRequestResponse:
+    type: object
+  sigmoidtest.sigmoidtest.MsgApproveUnstakeRequest:
+    type: object
+    properties:
+      creator:
+        type: string
+      unstakeAddress:
+        type: string
+      transactionId:
+        type: string
+  sigmoidtest.sigmoidtest.MsgApproveUnstakeRequestResponse:
     type: object
   sigmoidtest.sigmoidtest.MsgCreateRequest:
     type: object

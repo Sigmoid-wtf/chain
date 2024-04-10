@@ -55,6 +55,15 @@ export interface MsgCreateUnstakeRequest {
 export interface MsgCreateUnstakeRequestResponse {
 }
 
+export interface MsgApproveUnstakeRequest {
+  creator: string;
+  unstakeAddress: string;
+  transactionId: string;
+}
+
+export interface MsgApproveUnstakeRequestResponse {
+}
+
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return { authority: "", params: undefined };
 }
@@ -687,6 +696,142 @@ export const MsgCreateUnstakeRequestResponse = {
   },
 };
 
+function createBaseMsgApproveUnstakeRequest(): MsgApproveUnstakeRequest {
+  return { creator: "", unstakeAddress: "", transactionId: "" };
+}
+
+export const MsgApproveUnstakeRequest = {
+  encode(message: MsgApproveUnstakeRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.unstakeAddress !== "") {
+      writer.uint32(18).string(message.unstakeAddress);
+    }
+    if (message.transactionId !== "") {
+      writer.uint32(26).string(message.transactionId);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgApproveUnstakeRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgApproveUnstakeRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.unstakeAddress = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.transactionId = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgApproveUnstakeRequest {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      unstakeAddress: isSet(object.unstakeAddress) ? String(object.unstakeAddress) : "",
+      transactionId: isSet(object.transactionId) ? String(object.transactionId) : "",
+    };
+  },
+
+  toJSON(message: MsgApproveUnstakeRequest): unknown {
+    const obj: any = {};
+    if (message.creator !== "") {
+      obj.creator = message.creator;
+    }
+    if (message.unstakeAddress !== "") {
+      obj.unstakeAddress = message.unstakeAddress;
+    }
+    if (message.transactionId !== "") {
+      obj.transactionId = message.transactionId;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgApproveUnstakeRequest>, I>>(base?: I): MsgApproveUnstakeRequest {
+    return MsgApproveUnstakeRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgApproveUnstakeRequest>, I>>(object: I): MsgApproveUnstakeRequest {
+    const message = createBaseMsgApproveUnstakeRequest();
+    message.creator = object.creator ?? "";
+    message.unstakeAddress = object.unstakeAddress ?? "";
+    message.transactionId = object.transactionId ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgApproveUnstakeRequestResponse(): MsgApproveUnstakeRequestResponse {
+  return {};
+}
+
+export const MsgApproveUnstakeRequestResponse = {
+  encode(_: MsgApproveUnstakeRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgApproveUnstakeRequestResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgApproveUnstakeRequestResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgApproveUnstakeRequestResponse {
+    return {};
+  },
+
+  toJSON(_: MsgApproveUnstakeRequestResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgApproveUnstakeRequestResponse>, I>>(
+    base?: I,
+  ): MsgApproveUnstakeRequestResponse {
+    return MsgApproveUnstakeRequestResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgApproveUnstakeRequestResponse>, I>>(
+    _: I,
+  ): MsgApproveUnstakeRequestResponse {
+    const message = createBaseMsgApproveUnstakeRequestResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -698,6 +843,7 @@ export interface Msg {
   ApproveRequest(request: MsgApproveRequest): Promise<MsgApproveRequestResponse>;
   ProcessTransaction(request: MsgProcessTransaction): Promise<MsgProcessTransactionResponse>;
   CreateUnstakeRequest(request: MsgCreateUnstakeRequest): Promise<MsgCreateUnstakeRequestResponse>;
+  ApproveUnstakeRequest(request: MsgApproveUnstakeRequest): Promise<MsgApproveUnstakeRequestResponse>;
 }
 
 export const MsgServiceName = "sigmoidtest.sigmoidtest.Msg";
@@ -712,6 +858,7 @@ export class MsgClientImpl implements Msg {
     this.ApproveRequest = this.ApproveRequest.bind(this);
     this.ProcessTransaction = this.ProcessTransaction.bind(this);
     this.CreateUnstakeRequest = this.CreateUnstakeRequest.bind(this);
+    this.ApproveUnstakeRequest = this.ApproveUnstakeRequest.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -741,6 +888,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgCreateUnstakeRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "CreateUnstakeRequest", data);
     return promise.then((data) => MsgCreateUnstakeRequestResponse.decode(_m0.Reader.create(data)));
+  }
+
+  ApproveUnstakeRequest(request: MsgApproveUnstakeRequest): Promise<MsgApproveUnstakeRequestResponse> {
+    const data = MsgApproveUnstakeRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "ApproveUnstakeRequest", data);
+    return promise.then((data) => MsgApproveUnstakeRequestResponse.decode(_m0.Reader.create(data)));
   }
 }
 

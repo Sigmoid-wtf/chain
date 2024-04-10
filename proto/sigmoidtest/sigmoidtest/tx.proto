@@ -16,11 +16,12 @@ service Msg {
   
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams         (MsgUpdateParams        ) returns (MsgUpdateParamsResponse        );
-  rpc CreateRequest        (MsgCreateRequest       ) returns (MsgCreateRequestResponse       );
-  rpc ApproveRequest       (MsgApproveRequest      ) returns (MsgApproveRequestResponse      );
-  rpc ProcessTransaction   (MsgProcessTransaction  ) returns (MsgProcessTransactionResponse  );
-  rpc CreateUnstakeRequest (MsgCreateUnstakeRequest) returns (MsgCreateUnstakeRequestResponse);
+  rpc UpdateParams          (MsgUpdateParams         ) returns (MsgUpdateParamsResponse         );
+  rpc CreateRequest         (MsgCreateRequest        ) returns (MsgCreateRequestResponse        );
+  rpc ApproveRequest        (MsgApproveRequest       ) returns (MsgApproveRequestResponse       );
+  rpc ProcessTransaction    (MsgProcessTransaction   ) returns (MsgProcessTransactionResponse   );
+  rpc CreateUnstakeRequest  (MsgCreateUnstakeRequest ) returns (MsgCreateUnstakeRequestResponse );
+  rpc ApproveUnstakeRequest (MsgApproveUnstakeRequest) returns (MsgApproveUnstakeRequestResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -74,4 +75,13 @@ message MsgCreateUnstakeRequest {
 }
 
 message MsgCreateUnstakeRequestResponse {}
+
+message MsgApproveUnstakeRequest {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator        = 1;
+  string unstakeAddress = 2;
+  string transactionId  = 3;
+}
+
+message MsgApproveUnstakeRequestResponse {}
 
