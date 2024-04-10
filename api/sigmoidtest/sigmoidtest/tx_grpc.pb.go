@@ -19,10 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName       = "/sigmoidtest.sigmoidtest.Msg/UpdateParams"
-	Msg_CreateRequest_FullMethodName      = "/sigmoidtest.sigmoidtest.Msg/CreateRequest"
-	Msg_ApproveRequest_FullMethodName     = "/sigmoidtest.sigmoidtest.Msg/ApproveRequest"
-	Msg_ProcessTransaction_FullMethodName = "/sigmoidtest.sigmoidtest.Msg/ProcessTransaction"
+	Msg_UpdateParams_FullMethodName         = "/sigmoidtest.sigmoidtest.Msg/UpdateParams"
+	Msg_CreateRequest_FullMethodName        = "/sigmoidtest.sigmoidtest.Msg/CreateRequest"
+	Msg_ApproveRequest_FullMethodName       = "/sigmoidtest.sigmoidtest.Msg/ApproveRequest"
+	Msg_ProcessTransaction_FullMethodName   = "/sigmoidtest.sigmoidtest.Msg/ProcessTransaction"
+	Msg_CreateUnstakeRequest_FullMethodName = "/sigmoidtest.sigmoidtest.Msg/CreateUnstakeRequest"
 )
 
 // MsgClient is the client API for Msg service.
@@ -35,6 +36,7 @@ type MsgClient interface {
 	CreateRequest(ctx context.Context, in *MsgCreateRequest, opts ...grpc.CallOption) (*MsgCreateRequestResponse, error)
 	ApproveRequest(ctx context.Context, in *MsgApproveRequest, opts ...grpc.CallOption) (*MsgApproveRequestResponse, error)
 	ProcessTransaction(ctx context.Context, in *MsgProcessTransaction, opts ...grpc.CallOption) (*MsgProcessTransactionResponse, error)
+	CreateUnstakeRequest(ctx context.Context, in *MsgCreateUnstakeRequest, opts ...grpc.CallOption) (*MsgCreateUnstakeRequestResponse, error)
 }
 
 type msgClient struct {
@@ -81,6 +83,15 @@ func (c *msgClient) ProcessTransaction(ctx context.Context, in *MsgProcessTransa
 	return out, nil
 }
 
+func (c *msgClient) CreateUnstakeRequest(ctx context.Context, in *MsgCreateUnstakeRequest, opts ...grpc.CallOption) (*MsgCreateUnstakeRequestResponse, error) {
+	out := new(MsgCreateUnstakeRequestResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateUnstakeRequest_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -91,6 +102,7 @@ type MsgServer interface {
 	CreateRequest(context.Context, *MsgCreateRequest) (*MsgCreateRequestResponse, error)
 	ApproveRequest(context.Context, *MsgApproveRequest) (*MsgApproveRequestResponse, error)
 	ProcessTransaction(context.Context, *MsgProcessTransaction) (*MsgProcessTransactionResponse, error)
+	CreateUnstakeRequest(context.Context, *MsgCreateUnstakeRequest) (*MsgCreateUnstakeRequestResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -109,6 +121,9 @@ func (UnimplementedMsgServer) ApproveRequest(context.Context, *MsgApproveRequest
 }
 func (UnimplementedMsgServer) ProcessTransaction(context.Context, *MsgProcessTransaction) (*MsgProcessTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ProcessTransaction not implemented")
+}
+func (UnimplementedMsgServer) CreateUnstakeRequest(context.Context, *MsgCreateUnstakeRequest) (*MsgCreateUnstakeRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUnstakeRequest not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -195,6 +210,24 @@ func _Msg_ProcessTransaction_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateUnstakeRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateUnstakeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateUnstakeRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateUnstakeRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateUnstakeRequest(ctx, req.(*MsgCreateUnstakeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -217,6 +250,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ProcessTransaction",
 			Handler:    _Msg_ProcessTransaction_Handler,
+		},
+		{
+			MethodName: "CreateUnstakeRequest",
+			Handler:    _Msg_CreateUnstakeRequest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -126,8 +126,6 @@ definitions:
             '@type':
               type: string
           additionalProperties: {}
-  Params:
-    type: object
   QueryGetAmountResponse:
     type: object
     properties:
@@ -144,11 +142,17 @@ definitions:
     properties:
       params:
         type: object
+  sigmoidtest.Params:
+    type: object
   MsgApproveRequestResponse:
     type: object
   MsgCreateRequestResponse:
     type: object
+  MsgCreateUnstakeRequestResponse:
+    type: object
   MsgProcessTransactionResponse:
     type: object
   MsgUpdateParamsResponse:
+    type: object
+  Params:
     type: object

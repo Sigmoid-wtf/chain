@@ -60,6 +60,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a process-transaction tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "transactionId"}},
 				},
+				{
+					RpcMethod:      "CreateUnstakeRequest",
+					Use:            "create-unstake-request [unstake-address] [amount]",
+					Short:          "Send a create-unstake-request tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "unstakeAddress"}, {ProtoField: "amount"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

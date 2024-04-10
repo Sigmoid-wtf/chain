@@ -19262,6 +19262,112 @@ paths:
               parameters.
       tags:
         - Msg
+  /sigmoid-test/sigmoidtest/get_amount/{senderAddress}:
+    get:
+      summary: Queries a list of GetAmount items.
+      operationId: SigmoidtestSigmoidtestQuery_GetAmount
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              amount:
+                type: string
+                format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: senderAddress
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /sigmoid-test/sigmoidtest/get_last_processed:
+    get:
+      summary: Queries a list of GetLastProcessed items.
+      operationId: SigmoidtestSigmoidtestQuery_GetLastProcessed
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              transactionId:
+                type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /sigmoid-test/sigmoidtest/params:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: SigmoidtestSigmoidtestQuery_Params
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /sigmoidtest.sigmoidtest.Msg/ApproveRequest:
     post:
       operationId: SigmoidtestSigmoidtestMsg_ApproveRequest
@@ -19339,6 +19445,48 @@ paths:
               creator:
                 type: string
               senderAddress:
+                type: string
+              amount:
+                type: string
+                format: uint64
+      tags:
+        - Msg
+  /sigmoidtest.sigmoidtest.Msg/CreateUnstakeRequest:
+    post:
+      operationId: SigmoidtestSigmoidtestMsg_CreateUnstakeRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              unstakeAddress:
                 type: string
               amount:
                 type: string
@@ -27177,6 +27325,27 @@ definitions:
     description: |-
       Version defines the versioning scheme used to negotiate the IBC verison in
       the connection handshake.
+  sigmoidtest.sigmoidtest.Params:
+    type: object
+    description: Params defines the parameters for the module.
+  sigmoidtest.sigmoidtest.QueryGetAmountResponse:
+    type: object
+    properties:
+      amount:
+        type: string
+        format: uint64
+  sigmoidtest.sigmoidtest.QueryGetLastProcessedResponse:
+    type: object
+    properties:
+      transactionId:
+        type: string
+  sigmoidtest.sigmoidtest.QueryParamsResponse:
+    type: object
+    properties:
+      params:
+        description: params holds all the parameters of this module.
+        type: object
+    description: QueryParamsResponse is response type for the Query/Params RPC method.
   sigmoidtest.sigmoidtest.MsgApproveRequest:
     type: object
     properties:
@@ -27199,6 +27368,18 @@ definitions:
         type: string
         format: uint64
   sigmoidtest.sigmoidtest.MsgCreateRequestResponse:
+    type: object
+  sigmoidtest.sigmoidtest.MsgCreateUnstakeRequest:
+    type: object
+    properties:
+      creator:
+        type: string
+      unstakeAddress:
+        type: string
+      amount:
+        type: string
+        format: uint64
+  sigmoidtest.sigmoidtest.MsgCreateUnstakeRequestResponse:
     type: object
   sigmoidtest.sigmoidtest.MsgProcessTransaction:
     type: object
@@ -27226,6 +27407,3 @@ definitions:
     description: |-
       MsgUpdateParamsResponse defines the response structure for executing a
       MsgUpdateParams message.
-  sigmoidtest.sigmoidtest.Params:
-    type: object
-    description: Params defines the parameters for the module.

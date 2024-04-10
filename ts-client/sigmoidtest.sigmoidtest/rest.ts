@@ -20,8 +20,6 @@ export interface Status {
   details?: { "@type"?: string }[];
 }
 
-export type Params = object;
-
 export interface QueryGetAmountResponse {
   /** @format uint64 */
   amount?: string;
@@ -35,13 +33,19 @@ export interface QueryParamsResponse {
   params?: object;
 }
 
+export type SigmoidtestParams = object;
+
 export type MsgApproveRequestResponse = object;
 
 export type MsgCreateRequestResponse = object;
 
+export type MsgCreateUnstakeRequestResponse = object;
+
 export type MsgProcessTransactionResponse = object;
 
 export type MsgUpdateParamsResponse = object;
+
+export type Params = object;
 
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 
