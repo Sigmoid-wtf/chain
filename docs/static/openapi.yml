@@ -19262,10 +19262,10 @@ paths:
               parameters.
       tags:
         - Msg
-  /sigmoid-test/sigmoidtest/get_amount/{senderAddress}:
+  /sigmoid/sigmoid/get_amount/{senderAddress}:
     get:
       summary: Queries a list of GetAmount items.
-      operationId: SigmoidtestSigmoidtestQuery_GetAmount
+      operationId: SigmoidSigmoidQuery_GetAmount
       responses:
         '200':
           description: A successful response.
@@ -19300,10 +19300,10 @@ paths:
           type: string
       tags:
         - Query
-  /sigmoid-test/sigmoidtest/get_last_processed:
+  /sigmoid/sigmoid/get_last_processed:
     get:
       summary: Queries a list of GetLastProcessed items.
-      operationId: SigmoidtestSigmoidtestQuery_GetLastProcessed
+      operationId: SigmoidSigmoidQuery_GetLastProcessed
       responses:
         '200':
           description: A successful response.
@@ -19332,10 +19332,10 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /sigmoid-test/sigmoidtest/params:
+  /sigmoid/sigmoid/params:
     get:
       summary: Parameters queries the parameters of the module.
-      operationId: SigmoidtestSigmoidtestQuery_Params
+      operationId: SigmoidSigmoidQuery_Params
       responses:
         '200':
           description: A successful response.
@@ -19368,9 +19368,9 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /sigmoidtest.sigmoidtest.Msg/ApproveRequest:
+  /sigmoid.sigmoid.Msg/ApproveRequest:
     post:
-      operationId: SigmoidtestSigmoidtestMsg_ApproveRequest
+      operationId: SigmoidSigmoidMsg_ApproveRequest
       responses:
         '200':
           description: A successful response.
@@ -19409,9 +19409,9 @@ paths:
                 type: string
       tags:
         - Msg
-  /sigmoidtest.sigmoidtest.Msg/ApproveUnstakeRequest:
+  /sigmoid.sigmoid.Msg/ApproveUnstakeRequest:
     post:
-      operationId: SigmoidtestSigmoidtestMsg_ApproveUnstakeRequest
+      operationId: SigmoidSigmoidMsg_ApproveUnstakeRequest
       responses:
         '200':
           description: A successful response.
@@ -19450,9 +19450,9 @@ paths:
                 type: string
       tags:
         - Msg
-  /sigmoidtest.sigmoidtest.Msg/CreateRequest:
+  /sigmoid.sigmoid.Msg/CreateRequest:
     post:
-      operationId: SigmoidtestSigmoidtestMsg_CreateRequest
+      operationId: SigmoidSigmoidMsg_CreateRequest
       responses:
         '200':
           description: A successful response.
@@ -19492,9 +19492,9 @@ paths:
                 format: uint64
       tags:
         - Msg
-  /sigmoidtest.sigmoidtest.Msg/CreateUnstakeRequest:
+  /sigmoid.sigmoid.Msg/CreateUnstakeRequest:
     post:
-      operationId: SigmoidtestSigmoidtestMsg_CreateUnstakeRequest
+      operationId: SigmoidSigmoidMsg_CreateUnstakeRequest
       responses:
         '200':
           description: A successful response.
@@ -19534,9 +19534,9 @@ paths:
                 format: uint64
       tags:
         - Msg
-  /sigmoidtest.sigmoidtest.Msg/ProcessTransaction:
+  /sigmoid.sigmoid.Msg/ProcessTransaction:
     post:
-      operationId: SigmoidtestSigmoidtestMsg_ProcessTransaction
+      operationId: SigmoidSigmoidMsg_ProcessTransaction
       responses:
         '200':
           description: A successful response.
@@ -19573,12 +19573,12 @@ paths:
                 type: string
       tags:
         - Msg
-  /sigmoidtest.sigmoidtest.Msg/UpdateParams:
+  /sigmoid.sigmoid.Msg/UpdateParams:
     post:
       summary: |-
         UpdateParams defines a (governance) operation for updating the module
         parameters. The authority defaults to the x/gov module account.
-      operationId: SigmoidtestSigmoidtestMsg_UpdateParams
+      operationId: SigmoidSigmoidMsg_UpdateParams
       responses:
         '200':
           description: A successful response.
@@ -27366,28 +27366,28 @@ definitions:
     description: |-
       Version defines the versioning scheme used to negotiate the IBC verison in
       the connection handshake.
-  sigmoidtest.sigmoidtest.Params:
+  sigmoid.sigmoid.Params:
     type: object
     description: Params defines the parameters for the module.
-  sigmoidtest.sigmoidtest.QueryGetAmountResponse:
+  sigmoid.sigmoid.QueryGetAmountResponse:
     type: object
     properties:
       amount:
         type: string
         format: uint64
-  sigmoidtest.sigmoidtest.QueryGetLastProcessedResponse:
+  sigmoid.sigmoid.QueryGetLastProcessedResponse:
     type: object
     properties:
       transactionId:
         type: string
-  sigmoidtest.sigmoidtest.QueryParamsResponse:
+  sigmoid.sigmoid.QueryParamsResponse:
     type: object
     properties:
       params:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  sigmoidtest.sigmoidtest.MsgApproveRequest:
+  sigmoid.sigmoid.MsgApproveRequest:
     type: object
     properties:
       creator:
@@ -27396,9 +27396,9 @@ definitions:
         type: string
       transactionId:
         type: string
-  sigmoidtest.sigmoidtest.MsgApproveRequestResponse:
+  sigmoid.sigmoid.MsgApproveRequestResponse:
     type: object
-  sigmoidtest.sigmoidtest.MsgApproveUnstakeRequest:
+  sigmoid.sigmoid.MsgApproveUnstakeRequest:
     type: object
     properties:
       creator:
@@ -27407,9 +27407,9 @@ definitions:
         type: string
       transactionId:
         type: string
-  sigmoidtest.sigmoidtest.MsgApproveUnstakeRequestResponse:
+  sigmoid.sigmoid.MsgApproveUnstakeRequestResponse:
     type: object
-  sigmoidtest.sigmoidtest.MsgCreateRequest:
+  sigmoid.sigmoid.MsgCreateRequest:
     type: object
     properties:
       creator:
@@ -27419,9 +27419,9 @@ definitions:
       amount:
         type: string
         format: uint64
-  sigmoidtest.sigmoidtest.MsgCreateRequestResponse:
+  sigmoid.sigmoid.MsgCreateRequestResponse:
     type: object
-  sigmoidtest.sigmoidtest.MsgCreateUnstakeRequest:
+  sigmoid.sigmoid.MsgCreateUnstakeRequest:
     type: object
     properties:
       creator:
@@ -27431,18 +27431,18 @@ definitions:
       amount:
         type: string
         format: uint64
-  sigmoidtest.sigmoidtest.MsgCreateUnstakeRequestResponse:
+  sigmoid.sigmoid.MsgCreateUnstakeRequestResponse:
     type: object
-  sigmoidtest.sigmoidtest.MsgProcessTransaction:
+  sigmoid.sigmoid.MsgProcessTransaction:
     type: object
     properties:
       creator:
         type: string
       transactionId:
         type: string
-  sigmoidtest.sigmoidtest.MsgProcessTransactionResponse:
+  sigmoid.sigmoid.MsgProcessTransactionResponse:
     type: object
-  sigmoidtest.sigmoidtest.MsgUpdateParams:
+  sigmoid.sigmoid.MsgUpdateParams:
     type: object
     properties:
       authority:
@@ -27454,7 +27454,7 @@ definitions:
         description: 'NOTE: All parameters must be supplied.'
         type: object
     description: MsgUpdateParams is the Msg/UpdateParams request type.
-  sigmoidtest.sigmoidtest.MsgUpdateParamsResponse:
+  sigmoid.sigmoid.MsgUpdateParamsResponse:
     type: object
     description: |-
       MsgUpdateParamsResponse defines the response structure for executing a

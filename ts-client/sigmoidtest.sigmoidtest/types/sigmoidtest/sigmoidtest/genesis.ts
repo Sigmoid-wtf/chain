@@ -2,9 +2,9 @@
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
 
-export const protobufPackage = "sigmoidtest.sigmoidtest";
+export const protobufPackage = "sigmoid.sigmoid";
 
-/** GenesisState defines the sigmoidtest module's genesis state. */
+/** GenesisState defines the sigmoid module's genesis state. */
 export interface GenesisState {
   /** params defines all the parameters of the module. */
   params: Params | undefined;

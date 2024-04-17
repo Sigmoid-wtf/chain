@@ -53,9 +53,9 @@ import (
 	ibcexported "github.com/cosmos/ibc-go/v8/modules/core/exported"
 	"google.golang.org/protobuf/types/known/durationpb"
 
-	sigmoidtestmodulev1 "sigmoid-test/api/sigmoidtest/sigmoidtest/module"
-	_ "sigmoid-test/x/sigmoidtest/module" // import for side-effects
-	sigmoidtestmoduletypes "sigmoid-test/x/sigmoidtest/types"
+	sigmoidmodulev1 "sigmoid/api/sigmoid/sigmoid/module"
+	_ "sigmoid/x/sigmoid/module" // import for side-effects
+	sigmoidmoduletypes "sigmoid/x/sigmoid/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -94,7 +94,7 @@ var (
 		consensustypes.ModuleName,
 		circuittypes.ModuleName,
 		// chain modules
-		sigmoidtestmoduletypes.ModuleName,
+		sigmoidmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/initGenesis
 	}
 
@@ -119,7 +119,7 @@ var (
 		icatypes.ModuleName,
 		ibcfeetypes.ModuleName,
 		// chain modules
-		sigmoidtestmoduletypes.ModuleName,
+		sigmoidmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	}
 
@@ -138,7 +138,7 @@ var (
 		icatypes.ModuleName,
 		ibcfeetypes.ModuleName,
 		// chain modules
-		sigmoidtestmoduletypes.ModuleName,
+		sigmoidmoduletypes.ModuleName,
 		// this line is used by starport scaffolding # stargate/app/endBlockers
 	}
 
@@ -295,8 +295,8 @@ var (
 				Config: appconfig.WrapAny(&circuitmodulev1.Module{}),
 			},
 			{
-				Name:   sigmoidtestmoduletypes.ModuleName,
-				Config: appconfig.WrapAny(&sigmoidtestmodulev1.Module{}),
+				Name:   sigmoidmoduletypes.ModuleName,
+				Config: appconfig.WrapAny(&sigmoidmodulev1.Module{}),
 			},
 			// this line is used by starport scaffolding # stargate/app/moduleConfig
 		},

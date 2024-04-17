@@ -3,7 +3,7 @@ import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
 
-export const protobufPackage = "sigmoidtest.sigmoidtest";
+export const protobufPackage = "sigmoid.sigmoid";
 
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
 export interface QueryParamsRequest {
@@ -358,7 +358,7 @@ export interface Query {
   GetLastProcessed(request: QueryGetLastProcessedRequest): Promise<QueryGetLastProcessedResponse>;
 }
 
-export const QueryServiceName = "sigmoidtest.sigmoidtest.Query";
+export const QueryServiceName = "sigmoid.sigmoid.Query";
 export class QueryClientImpl implements Query {
   private readonly rpc: Rpc;
   private readonly service: string;

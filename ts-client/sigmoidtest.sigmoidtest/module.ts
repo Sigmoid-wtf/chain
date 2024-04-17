@@ -6,25 +6,25 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
-import { MsgCreateRequestResponse } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgCreateUnstakeRequestResponse } from "./types/sigmoidtest/sigmoidtest/tx";
-import { GenesisState } from "./types/sigmoidtest/sigmoidtest/genesis";
-import { QueryGetAmountRequest } from "./types/sigmoidtest/sigmoidtest/query";
-import { QueryGetAmountResponse } from "./types/sigmoidtest/sigmoidtest/query";
-import { Params } from "./types/sigmoidtest/sigmoidtest/params";
-import { QueryParamsRequest } from "./types/sigmoidtest/sigmoidtest/query";
-import { MsgCreateUnstakeRequest } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgProcessTransactionResponse } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgProcessTransaction } from "./types/sigmoidtest/sigmoidtest/tx";
-import { Request } from "./types/sigmoidtest/sigmoidtest/request";
-import { QueryGetLastProcessedRequest } from "./types/sigmoidtest/sigmoidtest/query";
-import { QueryGetLastProcessedResponse } from "./types/sigmoidtest/sigmoidtest/query";
-import { MsgApproveRequest } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgCreateRequest } from "./types/sigmoidtest/sigmoidtest/tx";
-import { QueryParamsResponse } from "./types/sigmoidtest/sigmoidtest/query";
-import { MsgApproveRequestResponse } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgUpdateParams } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgUpdateParamsResponse } from "./types/sigmoidtest/sigmoidtest/tx";
+import { MsgCreateRequestResponse } from "./types/sigmoid/sigmoid/tx";
+import { MsgCreateUnstakeRequestResponse } from "./types/sigmoid/sigmoid/tx";
+import { GenesisState } from "./types/sigmoid/sigmoid/genesis";
+import { QueryGetAmountRequest } from "./types/sigmoid/sigmoid/query";
+import { QueryGetAmountResponse } from "./types/sigmoid/sigmoid/query";
+import { Params } from "./types/sigmoid/sigmoid/params";
+import { QueryParamsRequest } from "./types/sigmoid/sigmoid/query";
+import { MsgCreateUnstakeRequest } from "./types/sigmoid/sigmoid/tx";
+import { MsgProcessTransactionResponse } from "./types/sigmoid/sigmoid/tx";
+import { MsgProcessTransaction } from "./types/sigmoid/sigmoid/tx";
+import { Request } from "./types/sigmoid/sigmoid/request";
+import { QueryGetLastProcessedRequest } from "./types/sigmoid/sigmoid/query";
+import { QueryGetLastProcessedResponse } from "./types/sigmoid/sigmoid/query";
+import { MsgApproveRequest } from "./types/sigmoid/sigmoid/tx";
+import { MsgCreateRequest } from "./types/sigmoid/sigmoid/tx";
+import { QueryParamsResponse } from "./types/sigmoid/sigmoid/query";
+import { MsgApproveRequestResponse } from "./types/sigmoid/sigmoid/tx";
+import { MsgUpdateParams } from "./types/sigmoid/sigmoid/tx";
+import { MsgUpdateParamsResponse } from "./types/sigmoid/sigmoid/tx";
 
 
 export { MsgCreateRequestResponse, MsgCreateUnstakeRequestResponse, GenesisState, QueryGetAmountRequest, QueryGetAmountResponse, Params, QueryParamsRequest, MsgCreateUnstakeRequest, MsgProcessTransactionResponse, MsgProcessTransaction, Request, QueryGetLastProcessedRequest, QueryGetLastProcessedResponse, MsgApproveRequest, MsgCreateRequest, QueryParamsResponse, MsgApproveRequestResponse, MsgUpdateParams, MsgUpdateParamsResponse };
@@ -519,7 +519,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		msgCreateRequestResponse({ value }: msgCreateRequestResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgCreateRequestResponse", value: MsgCreateRequestResponse.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.MsgCreateRequestResponse", value: MsgCreateRequestResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgCreateRequestResponse: Could not create message: ' + e.message)
 			}
@@ -527,7 +527,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		msgCreateUnstakeRequestResponse({ value }: msgCreateUnstakeRequestResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgCreateUnstakeRequestResponse", value: MsgCreateUnstakeRequestResponse.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.MsgCreateUnstakeRequestResponse", value: MsgCreateUnstakeRequestResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgCreateUnstakeRequestResponse: Could not create message: ' + e.message)
 			}
@@ -535,7 +535,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		genesisState({ value }: genesisStateParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.GenesisState", value: GenesisState.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.GenesisState", value: GenesisState.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
 			}
@@ -543,7 +543,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		queryGetAmountRequest({ value }: queryGetAmountRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryGetAmountRequest", value: QueryGetAmountRequest.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.QueryGetAmountRequest", value: QueryGetAmountRequest.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:QueryGetAmountRequest: Could not create message: ' + e.message)
 			}
@@ -551,7 +551,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		queryGetAmountResponse({ value }: queryGetAmountResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryGetAmountResponse", value: QueryGetAmountResponse.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.QueryGetAmountResponse", value: QueryGetAmountResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:QueryGetAmountResponse: Could not create message: ' + e.message)
 			}
@@ -559,7 +559,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		params({ value }: paramsParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.Params", value: Params.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.Params", value: Params.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:Params: Could not create message: ' + e.message)
 			}
@@ -567,7 +567,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.QueryParamsRequest", value: QueryParamsRequest.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message)
 			}
@@ -575,7 +575,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		msgCreateUnstakeRequest({ value }: msgCreateUnstakeRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgCreateUnstakeRequest", value: MsgCreateUnstakeRequest.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.MsgCreateUnstakeRequest", value: MsgCreateUnstakeRequest.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgCreateUnstakeRequest: Could not create message: ' + e.message)
 			}
@@ -583,7 +583,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		msgProcessTransactionResponse({ value }: msgProcessTransactionResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgProcessTransactionResponse", value: MsgProcessTransactionResponse.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.MsgProcessTransactionResponse", value: MsgProcessTransactionResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgProcessTransactionResponse: Could not create message: ' + e.message)
 			}
@@ -591,7 +591,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		msgProcessTransaction({ value }: msgProcessTransactionParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgProcessTransaction", value: MsgProcessTransaction.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.MsgProcessTransaction", value: MsgProcessTransaction.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgProcessTransaction: Could not create message: ' + e.message)
 			}
@@ -599,7 +599,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		request({ value }: requestParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.Request", value: Request.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.Request", value: Request.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:Request: Could not create message: ' + e.message)
 			}
@@ -607,7 +607,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		queryGetLastProcessedRequest({ value }: queryGetLastProcessedRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryGetLastProcessedRequest", value: QueryGetLastProcessedRequest.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.QueryGetLastProcessedRequest", value: QueryGetLastProcessedRequest.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:QueryGetLastProcessedRequest: Could not create message: ' + e.message)
 			}
@@ -615,7 +615,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		queryGetLastProcessedResponse({ value }: queryGetLastProcessedResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryGetLastProcessedResponse", value: QueryGetLastProcessedResponse.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.QueryGetLastProcessedResponse", value: QueryGetLastProcessedResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:QueryGetLastProcessedResponse: Could not create message: ' + e.message)
 			}
@@ -623,7 +623,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		msgApproveRequest({ value }: msgApproveRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgApproveRequest", value: MsgApproveRequest.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.MsgApproveRequest", value: MsgApproveRequest.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgApproveRequest: Could not create message: ' + e.message)
 			}
@@ -631,7 +631,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		msgCreateRequest({ value }: msgCreateRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgCreateRequest", value: MsgCreateRequest.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.MsgCreateRequest", value: MsgCreateRequest.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgCreateRequest: Could not create message: ' + e.message)
 			}
@@ -639,7 +639,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.QueryParamsResponse", value: QueryParamsResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message)
 			}
@@ -647,7 +647,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		msgApproveRequestResponse({ value }: msgApproveRequestResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgApproveRequestResponse", value: MsgApproveRequestResponse.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.MsgApproveRequestResponse", value: MsgApproveRequestResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgApproveRequestResponse: Could not create message: ' + e.message)
 			}
@@ -655,7 +655,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.MsgUpdateParams", value: MsgUpdateParams.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message)
 			}
@@ -663,7 +663,7 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 		
 		msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject {
 			try {
-				return { typeUrl: "/sigmoidtest.sigmoidtest.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
+				return { typeUrl: "/sigmoid.sigmoid.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message)
 			}
@@ -714,7 +714,7 @@ class SDKModule {
 const IgntModule = (test: IgniteClient) => {
 	return {
 		module: {
-			SigmoidtestSigmoidtest: new SDKModule(test)
+			SigmoidSigmoid: new SDKModule(test)
 		},
 		registry: msgTypes
   }

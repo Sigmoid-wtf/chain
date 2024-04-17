@@ -2,7 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "sigmoidtest.sigmoidtest";
+export const protobufPackage = "sigmoid.sigmoid";
 
 export interface Request {
   senderAddress: string;

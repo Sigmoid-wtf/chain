@@ -168,7 +168,7 @@ export class HttpClient<SecurityDataType = unknown> {
 }
 
 /**
- * @title HTTP API Console sigmoidtest.sigmoidtest
+ * @title HTTP API Console sigmoid.sigmoid
  */
 export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDataType> {
   /**
@@ -176,11 +176,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    *
    * @tags Query
    * @name QueryGetAmount
-   * @request GET:/sigmoid-test/sigmoidtest/get_amount/{senderAddress}
+   * @request GET:/sigmoid/sigmoid/get_amount/{senderAddress}
    */
   queryGetAmount = (senderAddress: string, params: RequestParams = {}) =>
     this.request<{ amount?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
-      path: `/sigmoid-test/sigmoidtest/get_amount/${senderAddress}`,
+      path: `/sigmoid/sigmoid/get_amount/${senderAddress}`,
       method: "GET",
       ...params,
     });
@@ -190,11 +190,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    *
    * @tags Query
    * @name QueryGetLastProcessed
-   * @request GET:/sigmoid-test/sigmoidtest/get_last_processed
+   * @request GET:/sigmoid/sigmoid/get_last_processed
    */
   queryGetLastProcessed = (params: RequestParams = {}) =>
     this.request<{ transactionId?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
-      path: `/sigmoid-test/sigmoidtest/get_last_processed`,
+      path: `/sigmoid/sigmoid/get_last_processed`,
       method: "GET",
       ...params,
     });
@@ -204,11 +204,11 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    *
    * @tags Query
    * @name QueryParams
-   * @request GET:/sigmoid-test/sigmoidtest/params
+   * @request GET:/sigmoid/sigmoid/params
    */
   queryParams = (params: RequestParams = {}) =>
     this.request<{ params?: object }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
-      path: `/sigmoid-test/sigmoidtest/params`,
+      path: `/sigmoid/sigmoid/params`,
       method: "GET",
       ...params,
     });

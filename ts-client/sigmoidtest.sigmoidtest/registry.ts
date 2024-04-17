@@ -1,44 +1,44 @@
 import { GeneratedType } from "@cosmjs/proto-signing";
-import { MsgCreateRequestResponse } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgCreateUnstakeRequestResponse } from "./types/sigmoidtest/sigmoidtest/tx";
-import { GenesisState } from "./types/sigmoidtest/sigmoidtest/genesis";
-import { QueryGetAmountRequest } from "./types/sigmoidtest/sigmoidtest/query";
-import { QueryGetAmountResponse } from "./types/sigmoidtest/sigmoidtest/query";
-import { Params } from "./types/sigmoidtest/sigmoidtest/params";
-import { QueryParamsRequest } from "./types/sigmoidtest/sigmoidtest/query";
-import { MsgCreateUnstakeRequest } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgProcessTransactionResponse } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgProcessTransaction } from "./types/sigmoidtest/sigmoidtest/tx";
-import { Request } from "./types/sigmoidtest/sigmoidtest/request";
-import { QueryGetLastProcessedRequest } from "./types/sigmoidtest/sigmoidtest/query";
-import { QueryGetLastProcessedResponse } from "./types/sigmoidtest/sigmoidtest/query";
-import { MsgApproveRequest } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgCreateRequest } from "./types/sigmoidtest/sigmoidtest/tx";
-import { QueryParamsResponse } from "./types/sigmoidtest/sigmoidtest/query";
-import { MsgApproveRequestResponse } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgUpdateParams } from "./types/sigmoidtest/sigmoidtest/tx";
-import { MsgUpdateParamsResponse } from "./types/sigmoidtest/sigmoidtest/tx";
+import { MsgCreateRequestResponse } from "./types/sigmoid/sigmoid/tx";
+import { MsgCreateUnstakeRequestResponse } from "./types/sigmoid/sigmoid/tx";
+import { GenesisState } from "./types/sigmoid/sigmoid/genesis";
+import { QueryGetAmountRequest } from "./types/sigmoid/sigmoid/query";
+import { QueryGetAmountResponse } from "./types/sigmoid/sigmoid/query";
+import { Params } from "./types/sigmoid/sigmoid/params";
+import { QueryParamsRequest } from "./types/sigmoid/sigmoid/query";
+import { MsgCreateUnstakeRequest } from "./types/sigmoid/sigmoid/tx";
+import { MsgProcessTransactionResponse } from "./types/sigmoid/sigmoid/tx";
+import { MsgProcessTransaction } from "./types/sigmoid/sigmoid/tx";
+import { Request } from "./types/sigmoid/sigmoid/request";
+import { QueryGetLastProcessedRequest } from "./types/sigmoid/sigmoid/query";
+import { QueryGetLastProcessedResponse } from "./types/sigmoid/sigmoid/query";
+import { MsgApproveRequest } from "./types/sigmoid/sigmoid/tx";
+import { MsgCreateRequest } from "./types/sigmoid/sigmoid/tx";
+import { QueryParamsResponse } from "./types/sigmoid/sigmoid/query";
+import { MsgApproveRequestResponse } from "./types/sigmoid/sigmoid/tx";
+import { MsgUpdateParams } from "./types/sigmoid/sigmoid/tx";
+import { MsgUpdateParamsResponse } from "./types/sigmoid/sigmoid/tx";
 
 const msgTypes: Array<[string, GeneratedType]>  = [
-    ["/sigmoidtest.sigmoidtest.MsgCreateRequestResponse", MsgCreateRequestResponse],
-    ["/sigmoidtest.sigmoidtest.MsgCreateUnstakeRequestResponse", MsgCreateUnstakeRequestResponse],
-    ["/sigmoidtest.sigmoidtest.GenesisState", GenesisState],
-    ["/sigmoidtest.sigmoidtest.QueryGetAmountRequest", QueryGetAmountRequest],
-    ["/sigmoidtest.sigmoidtest.QueryGetAmountResponse", QueryGetAmountResponse],
-    ["/sigmoidtest.sigmoidtest.Params", Params],
-    ["/sigmoidtest.sigmoidtest.QueryParamsRequest", QueryParamsRequest],
-    ["/sigmoidtest.sigmoidtest.MsgCreateUnstakeRequest", MsgCreateUnstakeRequest],
-    ["/sigmoidtest.sigmoidtest.MsgProcessTransactionResponse", MsgProcessTransactionResponse],
-    ["/sigmoidtest.sigmoidtest.MsgProcessTransaction", MsgProcessTransaction],
-    ["/sigmoidtest.sigmoidtest.Request", Request],
-    ["/sigmoidtest.sigmoidtest.QueryGetLastProcessedRequest", QueryGetLastProcessedRequest],
-    ["/sigmoidtest.sigmoidtest.QueryGetLastProcessedResponse", QueryGetLastProcessedResponse],
-    ["/sigmoidtest.sigmoidtest.MsgApproveRequest", MsgApproveRequest],
-    ["/sigmoidtest.sigmoidtest.MsgCreateRequest", MsgCreateRequest],
-    ["/sigmoidtest.sigmoidtest.QueryParamsResponse", QueryParamsResponse],
-    ["/sigmoidtest.sigmoidtest.MsgApproveRequestResponse", MsgApproveRequestResponse],
-    ["/sigmoidtest.sigmoidtest.MsgUpdateParams", MsgUpdateParams],
-    ["/sigmoidtest.sigmoidtest.MsgUpdateParamsResponse", MsgUpdateParamsResponse],
+    ["/sigmoid.sigmoid.MsgCreateRequestResponse", MsgCreateRequestResponse],
+    ["/sigmoid.sigmoid.MsgCreateUnstakeRequestResponse", MsgCreateUnstakeRequestResponse],
+    ["/sigmoid.sigmoid.GenesisState", GenesisState],
+    ["/sigmoid.sigmoid.QueryGetAmountRequest", QueryGetAmountRequest],
+    ["/sigmoid.sigmoid.QueryGetAmountResponse", QueryGetAmountResponse],
+    ["/sigmoid.sigmoid.Params", Params],
+    ["/sigmoid.sigmoid.QueryParamsRequest", QueryParamsRequest],
+    ["/sigmoid.sigmoid.MsgCreateUnstakeRequest", MsgCreateUnstakeRequest],
+    ["/sigmoid.sigmoid.MsgProcessTransactionResponse", MsgProcessTransactionResponse],
+    ["/sigmoid.sigmoid.MsgProcessTransaction", MsgProcessTransaction],
+    ["/sigmoid.sigmoid.Request", Request],
+    ["/sigmoid.sigmoid.QueryGetLastProcessedRequest", QueryGetLastProcessedRequest],
+    ["/sigmoid.sigmoid.QueryGetLastProcessedResponse", QueryGetLastProcessedResponse],
+    ["/sigmoid.sigmoid.MsgApproveRequest", MsgApproveRequest],
+    ["/sigmoid.sigmoid.MsgCreateRequest", MsgCreateRequest],
+    ["/sigmoid.sigmoid.QueryParamsResponse", QueryParamsResponse],
+    ["/sigmoid.sigmoid.MsgApproveRequestResponse", MsgApproveRequestResponse],
+    ["/sigmoid.sigmoid.MsgUpdateParams", MsgUpdateParams],
+    ["/sigmoid.sigmoid.MsgUpdateParamsResponse", MsgUpdateParamsResponse],
     
 ];
 

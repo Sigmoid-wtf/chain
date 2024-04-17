@@ -3,7 +3,7 @@ import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
 
-export const protobufPackage = "sigmoidtest.sigmoidtest";
+export const protobufPackage = "sigmoid.sigmoid";
 
 /** MsgUpdateParams is the Msg/UpdateParams request type. */
 export interface MsgUpdateParams {
@@ -846,7 +846,7 @@ export interface Msg {
   ApproveUnstakeRequest(request: MsgApproveUnstakeRequest): Promise<MsgApproveUnstakeRequestResponse>;
 }
 
-export const MsgServiceName = "sigmoidtest.sigmoidtest.Msg";
+export const MsgServiceName = "sigmoid.sigmoid.Msg";
 export class MsgClientImpl implements Msg {
   private readonly rpc: Rpc;
   private readonly service: string;

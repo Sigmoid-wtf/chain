@@ -7,7 +7,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/testutil/network"
 	"github.com/stretchr/testify/require"
 
-	"sigmoid-test/app"
+	"sigmoid/app"
 )
 
 type (

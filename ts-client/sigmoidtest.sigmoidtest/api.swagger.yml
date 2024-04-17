@@ -1,10 +1,10 @@
 swagger: '2.0'
 info:
-  title: HTTP API Console sigmoidtest.sigmoidtest
+  title: HTTP API Console sigmoid.sigmoid
   name: ''
   description: ''
 paths:
-  /sigmoid-test/sigmoidtest/get_amount/{senderAddress}:
+  /sigmoid/sigmoid/get_amount/{senderAddress}:
     get:
       operationId: Query_GetAmount
       responses:
@@ -41,7 +41,7 @@ paths:
           type: string
       tags:
         - Query
-  /sigmoid-test/sigmoidtest/get_last_processed:
+  /sigmoid/sigmoid/get_last_processed:
     get:
       operationId: Query_GetLastProcessed
       responses:
@@ -72,7 +72,7 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /sigmoid-test/sigmoidtest/params:
+  /sigmoid/sigmoid/params:
     get:
       operationId: Query_Params
       responses:

@@ -31,11 +31,11 @@ import (
 	"github.com/spf13/viper"
 	"github.com/stretchr/testify/require"
 
-	"sigmoid-test/app"
+	"sigmoid/app"
 )
 
 const (
-	SimAppChainID = "sigmoid-test-simapp"
+	SimAppChainID = "sigmoid-simapp"
 )
 
 var FlagEnableStreamingValue bool

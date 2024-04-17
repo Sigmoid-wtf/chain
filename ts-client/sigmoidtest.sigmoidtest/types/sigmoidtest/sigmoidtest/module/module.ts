@@ -1,7 +1,7 @@
 /* eslint-disable */
 import _m0 from "protobufjs/minimal";
 
-export const protobufPackage = "sigmoidtest.sigmoidtest.module";
+export const protobufPackage = "sigmoid.sigmoid.module";
 
 /** Module is the config object for the module. */
 export interface Module {

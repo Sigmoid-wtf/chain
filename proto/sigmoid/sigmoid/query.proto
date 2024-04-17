@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package sigmoid.sigmoid;
+
+import "amino/amino.proto";
+import "gogoproto/gogo.proto";
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "sigmoid/sigmoid/params.proto";
+
+option go_package = "sigmoid/x/sigmoid/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  
+  // Parameters queries the parameters of the module.
+  rpc Params (QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/params";
+  
+  }
+  
+  // Queries a list of GetAmount items.
+  rpc GetAmount (QueryGetAmountRequest) returns (QueryGetAmountResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/get_amount/{senderAddress}";
+  
+  }
+  
+  // Queries a list of GetLastProcessed items.
+  rpc GetLastProcessed (QueryGetLastProcessedRequest) returns (QueryGetLastProcessedResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/get_last_processed";
+  
+  }
+}
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+message QueryGetAmountRequest {
+  string senderAddress = 1;
+}
+
+message QueryGetAmountResponse {
+  uint64 amount = 1;
+}
+
+message QueryGetLastProcessedRequest {}
+
+message QueryGetLastProcessedResponse {
+  string transactionId = 1;
+}
+

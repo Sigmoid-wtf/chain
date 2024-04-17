@@ -1,4 +1,4 @@
-module sigmoid-test
+module sigmoid
 
 go 1.21
 

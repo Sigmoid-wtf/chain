@@ -1,0 +1,87 @@
+syntax = "proto3";
+
+package sigmoid.sigmoid;
+
+import "amino/amino.proto";
+import "cosmos/msg/v1/msg.proto";
+import "cosmos_proto/cosmos.proto";
+import "gogoproto/gogo.proto";
+import "sigmoid/sigmoid/params.proto";
+
+option go_package = "sigmoid/x/sigmoid/types";
+
+// Msg defines the Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+  
+  // UpdateParams defines a (governance) operation for updating the module
+  // parameters. The authority defaults to the x/gov module account.
+  rpc UpdateParams          (MsgUpdateParams         ) returns (MsgUpdateParamsResponse         );
+  rpc CreateRequest         (MsgCreateRequest        ) returns (MsgCreateRequestResponse        );
+  rpc ApproveRequest        (MsgApproveRequest       ) returns (MsgApproveRequestResponse       );
+  rpc ProcessTransaction    (MsgProcessTransaction   ) returns (MsgProcessTransactionResponse   );
+  rpc CreateUnstakeRequest  (MsgCreateUnstakeRequest ) returns (MsgCreateUnstakeRequestResponse );
+  rpc ApproveUnstakeRequest (MsgApproveUnstakeRequest) returns (MsgApproveUnstakeRequestResponse);
+}
+// MsgUpdateParams is the Msg/UpdateParams request type.
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) =                                 "authority";
+  option           (amino.name) = "sigmoid/x/sigmoid/MsgUpdateParams";
+  
+  // authority is the address that controls the module (defaults to x/gov unless overwritten).
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the module parameters to update.
+  
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [(gogoproto.nullable) = false, (amino.dont_omitempty) = true];
+}
+
+// MsgUpdateParamsResponse defines the response structure for executing a
+// MsgUpdateParams message.
+message MsgUpdateParamsResponse {}
+
+message MsgCreateRequest {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator       = 1;
+  string senderAddress = 2;
+  uint64 amount        = 3;
+}
+
+message MsgCreateRequestResponse {}
+
+message MsgApproveRequest {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator       = 1;
+  string senderAddress = 2;
+  string transactionId = 3;
+}
+
+message MsgApproveRequestResponse {}
+
+message MsgProcessTransaction {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator       = 1;
+  string transactionId = 2;
+}
+
+message MsgProcessTransactionResponse {}
+
+message MsgCreateUnstakeRequest {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator        = 1;
+  string unstakeAddress = 2;
+  uint64 amount         = 3;
+}
+
+message MsgCreateUnstakeRequestResponse {}
+
+message MsgApproveUnstakeRequest {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator        = 1;
+  string unstakeAddress = 2;
+  string transactionId  = 3;
+}
+
+message MsgApproveUnstakeRequestResponse {}
+

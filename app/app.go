@@ -75,15 +75,15 @@ import (
 	ibctransferkeeper "github.com/cosmos/ibc-go/v8/modules/apps/transfer/keeper"
 	ibckeeper "github.com/cosmos/ibc-go/v8/modules/core/keeper"
 
-	sigmoidtestmodulekeeper "sigmoid-test/x/sigmoidtest/keeper"
+	sigmoidmodulekeeper "sigmoid/x/sigmoid/keeper"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
-	"sigmoid-test/docs"
+	"sigmoid/docs"
 )
 
 const (
 	AccountAddressPrefix = "cosmos"
-	Name                 = "sigmoid-test"
+	Name                 = "sigmoid"
 )
 
 var (
@@ -140,7 +140,7 @@ type App struct {
 	ScopedICAControllerKeeper capabilitykeeper.ScopedKeeper
 	ScopedICAHostKeeper       capabilitykeeper.ScopedKeeper
 
-	SigmoidtestKeeper sigmoidtestmodulekeeper.Keeper
+	SigmoidKeeper sigmoidmodulekeeper.Keeper
 	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
 
 	// simulation manager
@@ -279,7 +279,7 @@ func New(
 		&app.NFTKeeper,
 		&app.GroupKeeper,
 		&app.CircuitBreakerKeeper,
-		&app.SigmoidtestKeeper,
+		&app.SigmoidKeeper,
 		// this line is used by starport scaffolding # stargate/app/keeperDefinition
 	); err != nil {
 		panic(err)
