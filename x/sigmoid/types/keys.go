@@ -14,6 +14,7 @@ const (
 var (
 	ParamsKey          = []byte("p_sigmoid")
 	PendingRequestsKey = "requests/"
+	UnstakeRequestsKey = "unstake/"
 	LastProcessedKey   = "last_processed/"
 )
 

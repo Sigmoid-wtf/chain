@@ -50,3 +50,29 @@ func (k Keeper) RemoveRequest(ctx sdk.Context, senderAddress *string) {
 
 	store.Delete([]byte(*senderAddress))
 }
+
+func (k Keeper) GetUnstakeRequest(ctx sdk.Context, address *string) (value types.MsgCreateUnstakeRequest, found bool) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.UnstakeRequestsKey))
+
+	bin := store.Get([]byte(*address))
+	if bin == nil {
+		return value, false
+	}
+	k.cdc.MustUnmarshal(bin, &value)
+	return value, true
+}
+
+func (k Keeper) AppendUnstakeRequest(ctx sdk.Context, request *types.MsgCreateUnstakeRequest) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.UnstakeRequestsKey))
+
+	store.Set([]byte(request.UnstakeAddress), k.cdc.MustMarshal(request))
+}
+
+func (k Keeper) RemoveUnstakeRequest(ctx sdk.Context, address *string) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.UnstakeRequestsKey))
+
+	store.Delete([]byte(*address))
+}
