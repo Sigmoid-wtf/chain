@@ -6,26 +6,44 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
+import { GenesisState } from "./types/cosmos/feegrant/v1beta1/genesis";
+import { QueryAllowanceRequest } from "./types/cosmos/feegrant/v1beta1/query";
+import { MsgRevokeAllowance } from "./types/cosmos/feegrant/v1beta1/tx";
 import { AllowedMsgAllowance } from "./types/cosmos/feegrant/v1beta1/feegrant";
 import { Grant } from "./types/cosmos/feegrant/v1beta1/feegrant";
-import { QueryAllowancesResponse } from "./types/cosmos/feegrant/v1beta1/query";
-import { QueryAllowancesByGranterRequest } from "./types/cosmos/feegrant/v1beta1/query";
+import { QueryAllowancesRequest } from "./types/cosmos/feegrant/v1beta1/query";
 import { QueryAllowancesByGranterResponse } from "./types/cosmos/feegrant/v1beta1/query";
-import { GenesisState } from "./types/cosmos/feegrant/v1beta1/genesis";
-import { PeriodicAllowance } from "./types/cosmos/feegrant/v1beta1/feegrant";
-import { MsgPruneAllowances } from "./types/cosmos/feegrant/v1beta1/tx";
-import { MsgGrantAllowance } from "./types/cosmos/feegrant/v1beta1/tx";
 import { MsgGrantAllowanceResponse } from "./types/cosmos/feegrant/v1beta1/tx";
 import { MsgRevokeAllowanceResponse } from "./types/cosmos/feegrant/v1beta1/tx";
 import { BasicAllowance } from "./types/cosmos/feegrant/v1beta1/feegrant";
-import { MsgRevokeAllowance } from "./types/cosmos/feegrant/v1beta1/tx";
-import { QueryAllowancesRequest } from "./types/cosmos/feegrant/v1beta1/query";
-import { MsgPruneAllowancesResponse } from "./types/cosmos/feegrant/v1beta1/tx";
-import { QueryAllowanceRequest } from "./types/cosmos/feegrant/v1beta1/query";
+import { MsgGrantAllowance } from "./types/cosmos/feegrant/v1beta1/tx";
+import { QueryAllowancesByGranterRequest } from "./types/cosmos/feegrant/v1beta1/query";
+import { PeriodicAllowance } from "./types/cosmos/feegrant/v1beta1/feegrant";
 import { QueryAllowanceResponse } from "./types/cosmos/feegrant/v1beta1/query";
+import { QueryAllowancesResponse } from "./types/cosmos/feegrant/v1beta1/query";
+import { MsgPruneAllowances } from "./types/cosmos/feegrant/v1beta1/tx";
+import { MsgPruneAllowancesResponse } from "./types/cosmos/feegrant/v1beta1/tx";
 
 
-export { AllowedMsgAllowance, Grant, QueryAllowancesResponse, QueryAllowancesByGranterRequest, QueryAllowancesByGranterResponse, GenesisState, PeriodicAllowance, MsgPruneAllowances, MsgGrantAllowance, MsgGrantAllowanceResponse, MsgRevokeAllowanceResponse, BasicAllowance, MsgRevokeAllowance, QueryAllowancesRequest, MsgPruneAllowancesResponse, QueryAllowanceRequest, QueryAllowanceResponse };
+export { GenesisState, QueryAllowanceRequest, MsgRevokeAllowance, AllowedMsgAllowance, Grant, QueryAllowancesRequest, QueryAllowancesByGranterResponse, MsgGrantAllowanceResponse, MsgRevokeAllowanceResponse, BasicAllowance, MsgGrantAllowance, QueryAllowancesByGranterRequest, PeriodicAllowance, QueryAllowanceResponse, QueryAllowancesResponse, MsgPruneAllowances, MsgPruneAllowancesResponse };
+
+type sendGenesisStateParams = {
+  value: GenesisState,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendQueryAllowanceRequestParams = {
+  value: QueryAllowanceRequest,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgRevokeAllowanceParams = {
+  value: MsgRevokeAllowance,
+  fee?: StdFee,
+  memo?: string
+};
 
 type sendAllowedMsgAllowanceParams = {
   value: AllowedMsgAllowance,
@@ -39,44 +57,14 @@ type sendGrantParams = {
   memo?: string
 };
 
-type sendQueryAllowancesResponseParams = {
-  value: QueryAllowancesResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryAllowancesByGranterRequestParams = {
-  value: QueryAllowancesByGranterRequest,
+type sendQueryAllowancesRequestParams = {
+  value: QueryAllowancesRequest,
   fee?: StdFee,
   memo?: string
 };
 
 type sendQueryAllowancesByGranterResponseParams = {
   value: QueryAllowancesByGranterResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendGenesisStateParams = {
-  value: GenesisState,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendPeriodicAllowanceParams = {
-  value: PeriodicAllowance,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgPruneAllowancesParams = {
-  value: MsgPruneAllowances,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendMsgGrantAllowanceParams = {
-  value: MsgGrantAllowance,
   fee?: StdFee,
   memo?: string
 };
@@ -99,26 +87,20 @@ type sendBasicAllowanceParams = {
   memo?: string
 };
 
-type sendMsgRevokeAllowanceParams = {
-  value: MsgRevokeAllowance,
+type sendMsgGrantAllowanceParams = {
+  value: MsgGrantAllowance,
   fee?: StdFee,
   memo?: string
 };
 
-type sendQueryAllowancesRequestParams = {
-  value: QueryAllowancesRequest,
+type sendQueryAllowancesByGranterRequestParams = {
+  value: QueryAllowancesByGranterRequest,
   fee?: StdFee,
   memo?: string
 };
 
-type sendMsgPruneAllowancesResponseParams = {
-  value: MsgPruneAllowancesResponse,
-  fee?: StdFee,
-  memo?: string
-};
-
-type sendQueryAllowanceRequestParams = {
-  value: QueryAllowanceRequest,
+type sendPeriodicAllowanceParams = {
+  value: PeriodicAllowance,
   fee?: StdFee,
   memo?: string
 };
@@ -129,6 +111,36 @@ type sendQueryAllowanceResponseParams = {
   memo?: string
 };
 
+type sendQueryAllowancesResponseParams = {
+  value: QueryAllowancesResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgPruneAllowancesParams = {
+  value: MsgPruneAllowances,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgPruneAllowancesResponseParams = {
+  value: MsgPruneAllowancesResponse,
+  fee?: StdFee,
+  memo?: string
+};
+
+
+type genesisStateParams = {
+  value: GenesisState,
+};
+
+type queryAllowanceRequestParams = {
+  value: QueryAllowanceRequest,
+};
+
+type msgRevokeAllowanceParams = {
+  value: MsgRevokeAllowance,
+};
 
 type allowedMsgAllowanceParams = {
   value: AllowedMsgAllowance,
@@ -138,32 +150,12 @@ type grantParams = {
   value: Grant,
 };
 
-type queryAllowancesResponseParams = {
-  value: QueryAllowancesResponse,
-};
-
-type queryAllowancesByGranterRequestParams = {
-  value: QueryAllowancesByGranterRequest,
+type queryAllowancesRequestParams = {
+  value: QueryAllowancesRequest,
 };
 
 type queryAllowancesByGranterResponseParams = {
   value: QueryAllowancesByGranterResponse,
-};
-
-type genesisStateParams = {
-  value: GenesisState,
-};
-
-type periodicAllowanceParams = {
-  value: PeriodicAllowance,
-};
-
-type msgPruneAllowancesParams = {
-  value: MsgPruneAllowances,
-};
-
-type msgGrantAllowanceParams = {
-  value: MsgGrantAllowance,
 };
 
 type msgGrantAllowanceResponseParams = {
@@ -178,24 +170,32 @@ type basicAllowanceParams = {
   value: BasicAllowance,
 };
 
-type msgRevokeAllowanceParams = {
-  value: MsgRevokeAllowance,
+type msgGrantAllowanceParams = {
+  value: MsgGrantAllowance,
 };
 
-type queryAllowancesRequestParams = {
-  value: QueryAllowancesRequest,
+type queryAllowancesByGranterRequestParams = {
+  value: QueryAllowancesByGranterRequest,
 };
 
-type msgPruneAllowancesResponseParams = {
-  value: MsgPruneAllowancesResponse,
-};
-
-type queryAllowanceRequestParams = {
-  value: QueryAllowanceRequest,
+type periodicAllowanceParams = {
+  value: PeriodicAllowance,
 };
 
 type queryAllowanceResponseParams = {
   value: QueryAllowanceResponse,
+};
+
+type queryAllowancesResponseParams = {
+  value: QueryAllowancesResponse,
+};
+
+type msgPruneAllowancesParams = {
+  value: MsgPruneAllowances,
+};
+
+type msgPruneAllowancesResponseParams = {
+  value: MsgPruneAllowancesResponse,
 };
 
 
@@ -228,6 +228,48 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
+		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendQueryAllowanceRequest({ value, fee, memo }: sendQueryAllowanceRequestParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryAllowanceRequest: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryAllowanceRequest({ value: QueryAllowanceRequest.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryAllowanceRequest: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgRevokeAllowance({ value, fee, memo }: sendMsgRevokeAllowanceParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgRevokeAllowance: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgRevokeAllowance({ value: MsgRevokeAllowance.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgRevokeAllowance: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		async sendAllowedMsgAllowance({ value, fee, memo }: sendAllowedMsgAllowanceParams): Promise<DeliverTxResponse> {
 			if (!signer) {
 					throw new Error('TxClient:sendAllowedMsgAllowance: Unable to sign Tx. Signer is not present.')
@@ -256,31 +298,17 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendQueryAllowancesResponse({ value, fee, memo }: sendQueryAllowancesResponseParams): Promise<DeliverTxResponse> {
+		async sendQueryAllowancesRequest({ value, fee, memo }: sendQueryAllowancesRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryAllowancesResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryAllowancesRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAllowancesResponse({ value: QueryAllowancesResponse.fromPartial(value) })
+				let msg = this.queryAllowancesRequest({ value: QueryAllowancesRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAllowancesResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryAllowancesByGranterRequest({ value, fee, memo }: sendQueryAllowancesByGranterRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryAllowancesByGranterRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAllowancesByGranterRequest({ value: QueryAllowancesByGranterRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAllowancesByGranterRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryAllowancesRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -295,62 +323,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
 				throw new Error('TxClient:sendQueryAllowancesByGranterResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.genesisState({ value: GenesisState.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendPeriodicAllowance({ value, fee, memo }: sendPeriodicAllowanceParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendPeriodicAllowance: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.periodicAllowance({ value: PeriodicAllowance.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendPeriodicAllowance: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgPruneAllowances({ value, fee, memo }: sendMsgPruneAllowancesParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgPruneAllowances: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgPruneAllowances({ value: MsgPruneAllowances.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgPruneAllowances: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendMsgGrantAllowance({ value, fee, memo }: sendMsgGrantAllowanceParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendMsgGrantAllowance: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgGrantAllowance({ value: MsgGrantAllowance.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendMsgGrantAllowance: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -396,59 +368,45 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		async sendMsgRevokeAllowance({ value, fee, memo }: sendMsgRevokeAllowanceParams): Promise<DeliverTxResponse> {
+		async sendMsgGrantAllowance({ value, fee, memo }: sendMsgGrantAllowanceParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgRevokeAllowance: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendMsgGrantAllowance: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgRevokeAllowance({ value: MsgRevokeAllowance.fromPartial(value) })
+				let msg = this.msgGrantAllowance({ value: MsgGrantAllowance.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgRevokeAllowance: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendMsgGrantAllowance: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendQueryAllowancesRequest({ value, fee, memo }: sendQueryAllowancesRequestParams): Promise<DeliverTxResponse> {
+		async sendQueryAllowancesByGranterRequest({ value, fee, memo }: sendQueryAllowancesByGranterRequestParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendQueryAllowancesRequest: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendQueryAllowancesByGranterRequest: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAllowancesRequest({ value: QueryAllowancesRequest.fromPartial(value) })
+				let msg = this.queryAllowancesByGranterRequest({ value: QueryAllowancesByGranterRequest.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAllowancesRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendQueryAllowancesByGranterRequest: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
-		async sendMsgPruneAllowancesResponse({ value, fee, memo }: sendMsgPruneAllowancesResponseParams): Promise<DeliverTxResponse> {
+		async sendPeriodicAllowance({ value, fee, memo }: sendPeriodicAllowanceParams): Promise<DeliverTxResponse> {
 			if (!signer) {
-					throw new Error('TxClient:sendMsgPruneAllowancesResponse: Unable to sign Tx. Signer is not present.')
+					throw new Error('TxClient:sendPeriodicAllowance: Unable to sign Tx. Signer is not present.')
 			}
 			try {			
 				const { address } = (await signer.getAccounts())[0]; 
 				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.msgPruneAllowancesResponse({ value: MsgPruneAllowancesResponse.fromPartial(value) })
+				let msg = this.periodicAllowance({ value: PeriodicAllowance.fromPartial(value) })
 				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
 			} catch (e: any) {
-				throw new Error('TxClient:sendMsgPruneAllowancesResponse: Could not broadcast Tx: '+ e.message)
-			}
-		},
-		
-		async sendQueryAllowanceRequest({ value, fee, memo }: sendQueryAllowanceRequestParams): Promise<DeliverTxResponse> {
-			if (!signer) {
-					throw new Error('TxClient:sendQueryAllowanceRequest: Unable to sign Tx. Signer is not present.')
-			}
-			try {			
-				const { address } = (await signer.getAccounts())[0]; 
-				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
-				let msg = this.queryAllowanceRequest({ value: QueryAllowanceRequest.fromPartial(value) })
-				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
-			} catch (e: any) {
-				throw new Error('TxClient:sendQueryAllowanceRequest: Could not broadcast Tx: '+ e.message)
+				throw new Error('TxClient:sendPeriodicAllowance: Could not broadcast Tx: '+ e.message)
 			}
 		},
 		
@@ -466,6 +424,72 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendQueryAllowancesResponse({ value, fee, memo }: sendQueryAllowancesResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendQueryAllowancesResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.queryAllowancesResponse({ value: QueryAllowancesResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendQueryAllowancesResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgPruneAllowances({ value, fee, memo }: sendMsgPruneAllowancesParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgPruneAllowances: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgPruneAllowances({ value: MsgPruneAllowances.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgPruneAllowances: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgPruneAllowancesResponse({ value, fee, memo }: sendMsgPruneAllowancesResponseParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgPruneAllowancesResponse: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry});
+				let msg = this.msgPruneAllowancesResponse({ value: MsgPruneAllowancesResponse.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgPruneAllowancesResponse: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		
+		genesisState({ value }: genesisStateParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.feegrant.v1beta1.GenesisState", value: GenesisState.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryAllowanceRequest({ value }: queryAllowanceRequestParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowanceRequest", value: QueryAllowanceRequest.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryAllowanceRequest: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgRevokeAllowance({ value }: msgRevokeAllowanceParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance", value: MsgRevokeAllowance.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgRevokeAllowance: Could not create message: ' + e.message)
+			}
+		},
 		
 		allowedMsgAllowance({ value }: allowedMsgAllowanceParams): EncodeObject {
 			try {
@@ -483,19 +507,11 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		queryAllowancesResponse({ value }: queryAllowancesResponseParams): EncodeObject {
+		queryAllowancesRequest({ value }: queryAllowancesRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowancesResponse", value: QueryAllowancesResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowancesRequest", value: QueryAllowancesRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryAllowancesResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryAllowancesByGranterRequest({ value }: queryAllowancesByGranterRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowancesByGranterRequest", value: QueryAllowancesByGranterRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryAllowancesByGranterRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryAllowancesRequest: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -504,38 +520,6 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return { typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowancesByGranterResponse", value: QueryAllowancesByGranterResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:QueryAllowancesByGranterResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		genesisState({ value }: genesisStateParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.feegrant.v1beta1.GenesisState", value: GenesisState.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:GenesisState: Could not create message: ' + e.message)
-			}
-		},
-		
-		periodicAllowance({ value }: periodicAllowanceParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.feegrant.v1beta1.PeriodicAllowance", value: PeriodicAllowance.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:PeriodicAllowance: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgPruneAllowances({ value }: msgPruneAllowancesParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowances", value: MsgPruneAllowances.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgPruneAllowances: Could not create message: ' + e.message)
-			}
-		},
-		
-		msgGrantAllowance({ value }: msgGrantAllowanceParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.feegrant.v1beta1.MsgGrantAllowance", value: MsgGrantAllowance.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:MsgGrantAllowance: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -563,35 +547,27 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
-		msgRevokeAllowance({ value }: msgRevokeAllowanceParams): EncodeObject {
+		msgGrantAllowance({ value }: msgGrantAllowanceParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.feegrant.v1beta1.MsgRevokeAllowance", value: MsgRevokeAllowance.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.feegrant.v1beta1.MsgGrantAllowance", value: MsgGrantAllowance.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgRevokeAllowance: Could not create message: ' + e.message)
+				throw new Error('TxClient:MsgGrantAllowance: Could not create message: ' + e.message)
 			}
 		},
 		
-		queryAllowancesRequest({ value }: queryAllowancesRequestParams): EncodeObject {
+		queryAllowancesByGranterRequest({ value }: queryAllowancesByGranterRequestParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowancesRequest", value: QueryAllowancesRequest.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowancesByGranterRequest", value: QueryAllowancesByGranterRequest.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:QueryAllowancesRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:QueryAllowancesByGranterRequest: Could not create message: ' + e.message)
 			}
 		},
 		
-		msgPruneAllowancesResponse({ value }: msgPruneAllowancesResponseParams): EncodeObject {
+		periodicAllowance({ value }: periodicAllowanceParams): EncodeObject {
 			try {
-				return { typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowancesResponse", value: MsgPruneAllowancesResponse.fromPartial( value ) }  
+				return { typeUrl: "/cosmos.feegrant.v1beta1.PeriodicAllowance", value: PeriodicAllowance.fromPartial( value ) }  
 			} catch (e: any) {
-				throw new Error('TxClient:MsgPruneAllowancesResponse: Could not create message: ' + e.message)
-			}
-		},
-		
-		queryAllowanceRequest({ value }: queryAllowanceRequestParams): EncodeObject {
-			try {
-				return { typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowanceRequest", value: QueryAllowanceRequest.fromPartial( value ) }  
-			} catch (e: any) {
-				throw new Error('TxClient:QueryAllowanceRequest: Could not create message: ' + e.message)
+				throw new Error('TxClient:PeriodicAllowance: Could not create message: ' + e.message)
 			}
 		},
 		
@@ -600,6 +576,30 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return { typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowanceResponse", value: QueryAllowanceResponse.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:QueryAllowanceResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		queryAllowancesResponse({ value }: queryAllowancesResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.feegrant.v1beta1.QueryAllowancesResponse", value: QueryAllowancesResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:QueryAllowancesResponse: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgPruneAllowances({ value }: msgPruneAllowancesParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowances", value: MsgPruneAllowances.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgPruneAllowances: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgPruneAllowancesResponse({ value }: msgPruneAllowancesResponseParams): EncodeObject {
+			try {
+				return { typeUrl: "/cosmos.feegrant.v1beta1.MsgPruneAllowancesResponse", value: MsgPruneAllowancesResponse.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgPruneAllowancesResponse: Could not create message: ' + e.message)
 			}
 		},
 		

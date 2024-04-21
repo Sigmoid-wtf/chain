@@ -30,6 +30,12 @@ service Query {
     option (google.api.http).get = "/sigmoid/sigmoid/get_last_processed";
   
   }
+  
+  // Queries a list of GetPendingUnstakeRequest items.
+  rpc GetPendingUnstakeRequest (QueryGetPendingUnstakeRequestRequest) returns (QueryGetPendingUnstakeRequestResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/get_pending_unstake_request";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -53,5 +59,12 @@ message QueryGetLastProcessedRequest {}
 
 message QueryGetLastProcessedResponse {
   string transactionId = 1;
+}
+
+message QueryGetPendingUnstakeRequestRequest {}
+
+message QueryGetPendingUnstakeRequestResponse {
+  string unstakeAddress = 1;
+  uint64 amount         = 2;
 }
 

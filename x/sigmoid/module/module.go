@@ -188,7 +188,7 @@ type ModuleOutputs struct {
 	depinject.Out
 
 	SigmoidKeeper keeper.Keeper
-	Module            appmodule.AppModule
+	Module        appmodule.AppModule
 }
 
 func ProvideModule(in ModuleInputs) ModuleOutputs {
