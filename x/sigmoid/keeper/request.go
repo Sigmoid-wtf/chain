@@ -67,7 +67,7 @@ func (k Keeper) AppendUnstakeRequest(ctx sdk.Context, request *types.MsgCreateUn
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.UnstakeRequestsKey))
 
-	store.Set([]byte(request.UnstakeAddress), k.cdc.MustMarshal(request))
+	store.Set([]byte(request.Creator), k.cdc.MustMarshal(request))
 }
 
 func (k Keeper) RemoveUnstakeRequest(ctx sdk.Context, address *string) {

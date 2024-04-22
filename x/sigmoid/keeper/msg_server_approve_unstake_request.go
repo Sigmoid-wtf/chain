@@ -13,21 +13,18 @@ import (
 func (k msgServer) ApproveUnstakeRequest(goCtx context.Context, msg *types.MsgApproveUnstakeRequest) (*types.MsgApproveUnstakeRequestResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	if msg.Creator != msg.UnstakeAddress {
-		return nil, sdkerrors.ErrInvalidAddress
-	}
-	value, found := k.GetUnstakeRequest(ctx, &msg.UnstakeAddress)
+	value, found := k.GetUnstakeRequest(ctx, &msg.Creator)
 	if !found {
 		return nil, sdkerrors.ErrInvalidAddress
 	}
 
-	address := sdk.MustAccAddressFromBech32(msg.UnstakeAddress)
+	address := sdk.MustAccAddressFromBech32(msg.Creator)
 	coin := sdk.NewCoin("sigTAO", math.NewInt(int64(value.Amount)))
 	coins := sdk.NewCoins(coin)
 	k.Keeper.bankKeeper.SendCoinsFromAccountToModule(ctx, address, "gov", coins)
 	k.Keeper.bankKeeper.BurnCoins(ctx, "gov", coins)
 
-	k.RemoveUnstakeRequest(ctx, &msg.UnstakeAddress)
+	k.RemoveUnstakeRequest(ctx, &msg.Creator)
 
 	return &types.MsgApproveUnstakeRequestResponse{}, nil
 }
