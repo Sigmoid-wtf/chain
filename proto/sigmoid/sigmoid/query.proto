@@ -44,6 +44,12 @@ service Query {
     option (google.api.http).get = "/sigmoid/sigmoid/get_front_pending_stake_request/{address}";
   
   }
+  
+  // Queries a list of GetFrontPendingUnstakeRequest items.
+  rpc GetFrontPendingUnstakeRequest (QueryGetFrontPendingUnstakeRequestRequest) returns (QueryGetFrontPendingUnstakeRequestResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/get_front_pending_unstake_request/{address}";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -80,6 +86,14 @@ message QueryGetFrontPendingStakeRequestRequest {
 }
 
 message QueryGetFrontPendingStakeRequestResponse {
+  Request request = 1;
+}
+
+message QueryGetFrontPendingUnstakeRequestRequest {
+  string address = 1;
+}
+
+message QueryGetFrontPendingUnstakeRequestResponse {
   Request request = 1;
 }
 

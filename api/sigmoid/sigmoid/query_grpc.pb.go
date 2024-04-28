@@ -20,11 +20,12 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Query_Params_FullMethodName                      = "/sigmoid.sigmoid.Query/Params"
-	Query_GetAmount_FullMethodName                   = "/sigmoid.sigmoid.Query/GetAmount"
-	Query_GetLastProcessed_FullMethodName            = "/sigmoid.sigmoid.Query/GetLastProcessed"
-	Query_GetPendingUnstakeRequest_FullMethodName    = "/sigmoid.sigmoid.Query/GetPendingUnstakeRequest"
-	Query_GetFrontPendingStakeRequest_FullMethodName = "/sigmoid.sigmoid.Query/GetFrontPendingStakeRequest"
+	Query_Params_FullMethodName                        = "/sigmoid.sigmoid.Query/Params"
+	Query_GetAmount_FullMethodName                     = "/sigmoid.sigmoid.Query/GetAmount"
+	Query_GetLastProcessed_FullMethodName              = "/sigmoid.sigmoid.Query/GetLastProcessed"
+	Query_GetPendingUnstakeRequest_FullMethodName      = "/sigmoid.sigmoid.Query/GetPendingUnstakeRequest"
+	Query_GetFrontPendingStakeRequest_FullMethodName   = "/sigmoid.sigmoid.Query/GetFrontPendingStakeRequest"
+	Query_GetFrontPendingUnstakeRequest_FullMethodName = "/sigmoid.sigmoid.Query/GetFrontPendingUnstakeRequest"
 )
 
 // QueryClient is the client API for Query service.
@@ -41,6 +42,8 @@ type QueryClient interface {
 	GetPendingUnstakeRequest(ctx context.Context, in *QueryGetPendingUnstakeRequestRequest, opts ...grpc.CallOption) (*QueryGetPendingUnstakeRequestResponse, error)
 	// Queries a list of GetFrontPendingStakeRequest items.
 	GetFrontPendingStakeRequest(ctx context.Context, in *QueryGetFrontPendingStakeRequestRequest, opts ...grpc.CallOption) (*QueryGetFrontPendingStakeRequestResponse, error)
+	// Queries a list of GetFrontPendingUnstakeRequest items.
+	GetFrontPendingUnstakeRequest(ctx context.Context, in *QueryGetFrontPendingUnstakeRequestRequest, opts ...grpc.CallOption) (*QueryGetFrontPendingUnstakeRequestResponse, error)
 }
 
 type queryClient struct {
@@ -96,6 +99,15 @@ func (c *queryClient) GetFrontPendingStakeRequest(ctx context.Context, in *Query
 	return out, nil
 }
 
+func (c *queryClient) GetFrontPendingUnstakeRequest(ctx context.Context, in *QueryGetFrontPendingUnstakeRequestRequest, opts ...grpc.CallOption) (*QueryGetFrontPendingUnstakeRequestResponse, error) {
+	out := new(QueryGetFrontPendingUnstakeRequestResponse)
+	err := c.cc.Invoke(ctx, Query_GetFrontPendingUnstakeRequest_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -110,6 +122,8 @@ type QueryServer interface {
 	GetPendingUnstakeRequest(context.Context, *QueryGetPendingUnstakeRequestRequest) (*QueryGetPendingUnstakeRequestResponse, error)
 	// Queries a list of GetFrontPendingStakeRequest items.
 	GetFrontPendingStakeRequest(context.Context, *QueryGetFrontPendingStakeRequestRequest) (*QueryGetFrontPendingStakeRequestResponse, error)
+	// Queries a list of GetFrontPendingUnstakeRequest items.
+	GetFrontPendingUnstakeRequest(context.Context, *QueryGetFrontPendingUnstakeRequestRequest) (*QueryGetFrontPendingUnstakeRequestResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -131,6 +145,9 @@ func (UnimplementedQueryServer) GetPendingUnstakeRequest(context.Context, *Query
 }
 func (UnimplementedQueryServer) GetFrontPendingStakeRequest(context.Context, *QueryGetFrontPendingStakeRequestRequest) (*QueryGetFrontPendingStakeRequestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetFrontPendingStakeRequest not implemented")
+}
+func (UnimplementedQueryServer) GetFrontPendingUnstakeRequest(context.Context, *QueryGetFrontPendingUnstakeRequestRequest) (*QueryGetFrontPendingUnstakeRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFrontPendingUnstakeRequest not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -235,6 +252,24 @@ func _Query_GetFrontPendingStakeRequest_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_GetFrontPendingUnstakeRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetFrontPendingUnstakeRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetFrontPendingUnstakeRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_GetFrontPendingUnstakeRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetFrontPendingUnstakeRequest(ctx, req.(*QueryGetFrontPendingUnstakeRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -261,6 +296,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetFrontPendingStakeRequest",
 			Handler:    _Query_GetFrontPendingStakeRequest_Handler,
+		},
+		{
+			MethodName: "GetFrontPendingUnstakeRequest",
+			Handler:    _Query_GetFrontPendingUnstakeRequest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
