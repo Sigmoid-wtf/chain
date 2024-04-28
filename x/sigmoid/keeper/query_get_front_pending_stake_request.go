@@ -6,6 +6,7 @@ import (
 	"sigmoid/x/sigmoid/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )
@@ -17,8 +18,17 @@ func (k Keeper) GetFrontPendingStakeRequest(goCtx context.Context, req *types.Qu
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Process the query
-	_ = ctx
+	senderAddress, found := k.GetRequestInReversedStore(ctx, req.Address)
+	if !found {
+		return nil, sdkerrors.ErrInvalidAddress
+	}
 
-	return &types.QueryGetFrontPendingStakeRequestResponse{}, nil
+	request, found := k.GetRequest(ctx, &senderAddress)
+	if !found {
+		return nil, sdkerrors.ErrInvalidAddress
+	}
+
+	return &types.QueryGetFrontPendingStakeRequestResponse{
+		Request: &request,
+	}, nil
 }
