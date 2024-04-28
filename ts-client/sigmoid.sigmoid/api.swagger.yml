@@ -41,6 +41,53 @@ paths:
           type: string
       tags:
         - Query
+  /sigmoid/sigmoid/get_front_pending_stake_request/{address}:
+    get:
+      operationId: Query_GetFrontPendingStakeRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              request:
+                type: object
+                properties:
+                  senderAddress:
+                    type: string
+                  mintAddress:
+                    type: string
+                  status:
+                    type: string
+                    format: uint64
+                  amount:
+                    type: string
+                    format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: address
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
   /sigmoid/sigmoid/get_last_processed:
     get:
       operationId: Query_GetLastProcessed
@@ -183,6 +230,22 @@ definitions:
       amount:
         type: string
         format: uint64
+  QueryGetFrontPendingStakeRequestResponse:
+    type: object
+    properties:
+      request:
+        type: object
+        properties:
+          senderAddress:
+            type: string
+          mintAddress:
+            type: string
+          status:
+            type: string
+            format: uint64
+          amount:
+            type: string
+            format: uint64
   QueryGetLastProcessedResponse:
     type: object
     properties:
@@ -206,6 +269,19 @@ definitions:
     properties:
       params:
         type: object
+  Request:
+    type: object
+    properties:
+      senderAddress:
+        type: string
+      mintAddress:
+        type: string
+      status:
+        type: string
+        format: uint64
+      amount:
+        type: string
+        format: uint64
   MsgApproveRequestResponse:
     type: object
   MsgApproveUnstakeRequestResponse:

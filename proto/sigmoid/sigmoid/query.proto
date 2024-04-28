@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "sigmoid/sigmoid/params.proto";
 import "sigmoid/sigmoid/tx.proto";
+import "sigmoid/sigmoid/request.proto";
 
 option go_package = "sigmoid/x/sigmoid/types";
 
@@ -35,6 +36,12 @@ service Query {
   // Queries a list of GetPendingUnstakeRequest items.
   rpc GetPendingUnstakeRequest (QueryGetPendingUnstakeRequestRequest) returns (QueryGetPendingUnstakeRequestResponse) {
     option (google.api.http).get = "/sigmoid/sigmoid/get_pending_unstake_request";
+  
+  }
+  
+  // Queries a list of GetFrontPendingStakeRequest items.
+  rpc GetFrontPendingStakeRequest (QueryGetFrontPendingStakeRequestRequest) returns (QueryGetFrontPendingStakeRequestResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/get_front_pending_stake_request/{address}";
   
   }
 }
@@ -66,5 +73,13 @@ message QueryGetPendingUnstakeRequestRequest {}
 
 message QueryGetPendingUnstakeRequestResponse {
   MsgCreateUnstakeRequest request = 1;
+}
+
+message QueryGetFrontPendingStakeRequestRequest {
+  string address = 1;
+}
+
+message QueryGetFrontPendingStakeRequestResponse {
+  Request request = 1;
 }
 

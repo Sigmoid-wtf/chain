@@ -2,6 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
+import { Request } from "./request";
 import { MsgCreateUnstakeRequest } from "./tx";
 
 export const protobufPackage = "sigmoid.sigmoid";
@@ -36,6 +37,14 @@ export interface QueryGetPendingUnstakeRequestRequest {
 
 export interface QueryGetPendingUnstakeRequestResponse {
   request: MsgCreateUnstakeRequest | undefined;
+}
+
+export interface QueryGetFrontPendingStakeRequestRequest {
+  address: string;
+}
+
+export interface QueryGetFrontPendingStakeRequestResponse {
+  request: Request | undefined;
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -466,6 +475,130 @@ export const QueryGetPendingUnstakeRequestResponse = {
   },
 };
 
+function createBaseQueryGetFrontPendingStakeRequestRequest(): QueryGetFrontPendingStakeRequestRequest {
+  return { address: "" };
+}
+
+export const QueryGetFrontPendingStakeRequestRequest = {
+  encode(message: QueryGetFrontPendingStakeRequestRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontPendingStakeRequestRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetFrontPendingStakeRequestRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.address = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetFrontPendingStakeRequestRequest {
+    return { address: isSet(object.address) ? String(object.address) : "" };
+  },
+
+  toJSON(message: QueryGetFrontPendingStakeRequestRequest): unknown {
+    const obj: any = {};
+    if (message.address !== "") {
+      obj.address = message.address;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetFrontPendingStakeRequestRequest>, I>>(
+    base?: I,
+  ): QueryGetFrontPendingStakeRequestRequest {
+    return QueryGetFrontPendingStakeRequestRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetFrontPendingStakeRequestRequest>, I>>(
+    object: I,
+  ): QueryGetFrontPendingStakeRequestRequest {
+    const message = createBaseQueryGetFrontPendingStakeRequestRequest();
+    message.address = object.address ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetFrontPendingStakeRequestResponse(): QueryGetFrontPendingStakeRequestResponse {
+  return { request: undefined };
+}
+
+export const QueryGetFrontPendingStakeRequestResponse = {
+  encode(message: QueryGetFrontPendingStakeRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.request !== undefined) {
+      Request.encode(message.request, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontPendingStakeRequestResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetFrontPendingStakeRequestResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.request = Request.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetFrontPendingStakeRequestResponse {
+    return { request: isSet(object.request) ? Request.fromJSON(object.request) : undefined };
+  },
+
+  toJSON(message: QueryGetFrontPendingStakeRequestResponse): unknown {
+    const obj: any = {};
+    if (message.request !== undefined) {
+      obj.request = Request.toJSON(message.request);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetFrontPendingStakeRequestResponse>, I>>(
+    base?: I,
+  ): QueryGetFrontPendingStakeRequestResponse {
+    return QueryGetFrontPendingStakeRequestResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetFrontPendingStakeRequestResponse>, I>>(
+    object: I,
+  ): QueryGetFrontPendingStakeRequestResponse {
+    const message = createBaseQueryGetFrontPendingStakeRequestResponse();
+    message.request = (object.request !== undefined && object.request !== null)
+      ? Request.fromPartial(object.request)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -478,6 +611,10 @@ export interface Query {
   GetPendingUnstakeRequest(
     request: QueryGetPendingUnstakeRequestRequest,
   ): Promise<QueryGetPendingUnstakeRequestResponse>;
+  /** Queries a list of GetFrontPendingStakeRequest items. */
+  GetFrontPendingStakeRequest(
+    request: QueryGetFrontPendingStakeRequestRequest,
+  ): Promise<QueryGetFrontPendingStakeRequestResponse>;
 }
 
 export const QueryServiceName = "sigmoid.sigmoid.Query";
@@ -491,6 +628,7 @@ export class QueryClientImpl implements Query {
     this.GetAmount = this.GetAmount.bind(this);
     this.GetLastProcessed = this.GetLastProcessed.bind(this);
     this.GetPendingUnstakeRequest = this.GetPendingUnstakeRequest.bind(this);
+    this.GetFrontPendingStakeRequest = this.GetFrontPendingStakeRequest.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -516,6 +654,14 @@ export class QueryClientImpl implements Query {
     const data = QueryGetPendingUnstakeRequestRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "GetPendingUnstakeRequest", data);
     return promise.then((data) => QueryGetPendingUnstakeRequestResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetFrontPendingStakeRequest(
+    request: QueryGetFrontPendingStakeRequestRequest,
+  ): Promise<QueryGetFrontPendingStakeRequestResponse> {
+    const data = QueryGetFrontPendingStakeRequestRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetFrontPendingStakeRequest", data);
+    return promise.then((data) => QueryGetFrontPendingStakeRequestResponse.decode(_m0.Reader.create(data)));
   }
 }
 

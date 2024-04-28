@@ -35,6 +35,10 @@ export interface QueryGetAmountResponse {
   amount?: string;
 }
 
+export interface QueryGetFrontPendingStakeRequestResponse {
+  request?: { senderAddress?: string; mintAddress?: string; status?: string; amount?: string };
+}
+
 export interface QueryGetLastProcessedResponse {
   transactionId?: string;
 }
@@ -45,6 +49,17 @@ export interface QueryGetPendingUnstakeRequestResponse {
 
 export interface QueryParamsResponse {
   params?: object;
+}
+
+export interface Request {
+  senderAddress?: string;
+  mintAddress?: string;
+
+  /** @format uint64 */
+  status?: string;
+
+  /** @format uint64 */
+  amount?: string;
 }
 
 export type MsgApproveRequestResponse = object;
@@ -193,6 +208,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryGetAmount = (senderAddress: string, params: RequestParams = {}) =>
     this.request<{ amount?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
       path: `/sigmoid/sigmoid/get_amount/${senderAddress}`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryGetFrontPendingStakeRequest
+   * @request GET:/sigmoid/sigmoid/get_front_pending_stake_request/{address}
+   */
+  queryGetFrontPendingStakeRequest = (address: string, params: RequestParams = {}) =>
+    this.request<
+      { request?: { senderAddress?: string; mintAddress?: string; status?: string; amount?: string } },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/sigmoid/sigmoid/get_front_pending_stake_request/${address}`,
       method: "GET",
       ...params,
     });
