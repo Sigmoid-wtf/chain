@@ -12,10 +12,11 @@ const (
 )
 
 var (
-	ParamsKey          = []byte("p_sigmoid")
-	PendingRequestsKey = "requests/"
-	UnstakeRequestsKey = "unstake/"
-	LastProcessedKey   = "last_processed/"
+	ParamsKey                 = []byte("p_sigmoid")
+	PendingRequestsKey        = "requests/"
+	UnstakeRequestsKey        = "unstake/"
+	LastProcessedKey          = "last_processed/"
+	RegisteredSenderAddresses = "registered_sender_addresses/"
 )
 
 func KeyPrefix(p string) []byte {

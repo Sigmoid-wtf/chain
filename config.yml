@@ -9,7 +9,7 @@ accounts:
   - 10000token
   - 100000000stake
 - name: frank
-  coins: [10000token, 100000000stake]
+  coins: [1000000000sigTAO]
   mnemonic: struggle since inmate safe logic kite tag web win stay security wonder
 faucet:
   name: bob
