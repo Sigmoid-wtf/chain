@@ -2,6 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
+import { MsgCreateUnstakeRequest } from "./tx";
 
 export const protobufPackage = "sigmoid.sigmoid";
 
@@ -34,8 +35,7 @@ export interface QueryGetPendingUnstakeRequestRequest {
 }
 
 export interface QueryGetPendingUnstakeRequestResponse {
-  unstakeAddress: string;
-  amount: number;
+  request: MsgCreateUnstakeRequest | undefined;
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -404,16 +404,13 @@ export const QueryGetPendingUnstakeRequestRequest = {
 };
 
 function createBaseQueryGetPendingUnstakeRequestResponse(): QueryGetPendingUnstakeRequestResponse {
-  return { unstakeAddress: "", amount: 0 };
+  return { request: undefined };
 }
 
 export const QueryGetPendingUnstakeRequestResponse = {
   encode(message: QueryGetPendingUnstakeRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
-    if (message.unstakeAddress !== "") {
-      writer.uint32(10).string(message.unstakeAddress);
-    }
-    if (message.amount !== 0) {
-      writer.uint32(16).uint64(message.amount);
+    if (message.request !== undefined) {
+      MsgCreateUnstakeRequest.encode(message.request, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
@@ -430,14 +427,7 @@ export const QueryGetPendingUnstakeRequestResponse = {
             break;
           }
 
-          message.unstakeAddress = reader.string();
-          continue;
-        case 2:
-          if (tag !== 16) {
-            break;
-          }
-
-          message.amount = longToNumber(reader.uint64() as Long);
+          message.request = MsgCreateUnstakeRequest.decode(reader, reader.uint32());
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -449,19 +439,13 @@ export const QueryGetPendingUnstakeRequestResponse = {
   },
 
   fromJSON(object: any): QueryGetPendingUnstakeRequestResponse {
-    return {
-      unstakeAddress: isSet(object.unstakeAddress) ? String(object.unstakeAddress) : "",
-      amount: isSet(object.amount) ? Number(object.amount) : 0,
-    };
+    return { request: isSet(object.request) ? MsgCreateUnstakeRequest.fromJSON(object.request) : undefined };
   },
 
   toJSON(message: QueryGetPendingUnstakeRequestResponse): unknown {
     const obj: any = {};
-    if (message.unstakeAddress !== "") {
-      obj.unstakeAddress = message.unstakeAddress;
-    }
-    if (message.amount !== 0) {
-      obj.amount = Math.round(message.amount);
+    if (message.request !== undefined) {
+      obj.request = MsgCreateUnstakeRequest.toJSON(message.request);
     }
     return obj;
   },
@@ -475,8 +459,9 @@ export const QueryGetPendingUnstakeRequestResponse = {
     object: I,
   ): QueryGetPendingUnstakeRequestResponse {
     const message = createBaseQueryGetPendingUnstakeRequestResponse();
-    message.unstakeAddress = object.unstakeAddress ?? "";
-    message.amount = object.amount ?? 0;
+    message.request = (object.request !== undefined && object.request !== null)
+      ? MsgCreateUnstakeRequest.fromPartial(object.request)
+      : undefined;
     return message;
   },
 };

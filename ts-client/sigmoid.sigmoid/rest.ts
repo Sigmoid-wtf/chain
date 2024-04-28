@@ -20,6 +20,14 @@ export interface Status {
   details?: { "@type"?: string }[];
 }
 
+export interface MsgCreateUnstakeRequest {
+  creator?: string;
+  unstakeAddress?: string;
+
+  /** @format uint64 */
+  amount?: string;
+}
+
 export type Params = object;
 
 export interface QueryGetAmountResponse {
@@ -32,10 +40,7 @@ export interface QueryGetLastProcessedResponse {
 }
 
 export interface QueryGetPendingUnstakeRequestResponse {
-  unstakeAddress?: string;
-
-  /** @format uint64 */
-  amount?: string;
+  request?: { creator?: string; unstakeAddress?: string; amount?: string };
 }
 
 export interface QueryParamsResponse {
@@ -215,7 +220,7 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
    */
   queryGetPendingUnstakeRequest = (params: RequestParams = {}) =>
     this.request<
-      { unstakeAddress?: string; amount?: string },
+      { request?: { creator?: string; unstakeAddress?: string; amount?: string } },
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
       path: `/sigmoid/sigmoid/get_pending_unstake_request`,

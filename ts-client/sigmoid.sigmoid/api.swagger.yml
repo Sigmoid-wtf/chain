@@ -81,11 +81,16 @@ paths:
           schema:
             type: object
             properties:
-              unstakeAddress:
-                type: string
-              amount:
-                type: string
-                format: uint64
+              request:
+                type: object
+                properties:
+                  creator:
+                    type: string
+                  unstakeAddress:
+                    type: string
+                  amount:
+                    type: string
+                    format: uint64
         default:
           description: An unexpected error response.
           schema:
@@ -160,6 +165,16 @@ definitions:
             '@type':
               type: string
           additionalProperties: {}
+  MsgCreateUnstakeRequest:
+    type: object
+    properties:
+      creator:
+        type: string
+      unstakeAddress:
+        type: string
+      amount:
+        type: string
+        format: uint64
   Params:
     type: object
   QueryGetAmountResponse:
@@ -176,11 +191,16 @@ definitions:
   QueryGetPendingUnstakeRequestResponse:
     type: object
     properties:
-      unstakeAddress:
-        type: string
-      amount:
-        type: string
-        format: uint64
+      request:
+        type: object
+        properties:
+          creator:
+            type: string
+          unstakeAddress:
+            type: string
+          amount:
+            type: string
+            format: uint64
   QueryParamsResponse:
     type: object
     properties:
