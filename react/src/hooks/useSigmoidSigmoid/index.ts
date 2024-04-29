@@ -33,6 +33,22 @@ export default function useSigmoidSigmoid() {
     }, options);
   }
   
-  return {QueryParams,QueryGetAmount,QueryGetLastProcessed,QueryGetPendingUnstakeRequest,
+  const QueryGetFrontPendingStakeRequest = (address: string,  options: any) => {
+    const key = { type: 'QueryGetFrontPendingStakeRequest',  address };    
+    return useQuery([key], () => {
+      const { address } = key
+      return  client.SigmoidSigmoid.query.queryGetFrontPendingStakeRequest(address).then( res => res.data );
+    }, options);
+  }
+  
+  const QueryGetFrontPendingUnstakeRequest = (address: string,  options: any) => {
+    const key = { type: 'QueryGetFrontPendingUnstakeRequest',  address };    
+    return useQuery([key], () => {
+      const { address } = key
+      return  client.SigmoidSigmoid.query.queryGetFrontPendingUnstakeRequest(address).then( res => res.data );
+    }, options);
+  }
+  
+  return {QueryParams,QueryGetAmount,QueryGetLastProcessed,QueryGetPendingUnstakeRequest,QueryGetFrontPendingStakeRequest,QueryGetFrontPendingUnstakeRequest,
   }
 }
