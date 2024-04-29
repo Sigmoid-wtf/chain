@@ -2,6 +2,7 @@ import { useAddressContext } from "../def-hooks/addressContext";
 import { IgntCard, IgntClipboard, IgntQRCode, IgntTabs } from "@ignt/react-library";
 import IgntSend from "./IgntSend";
 import IgntUnstack from "./IgntUnstake";
+import IgntStack from "./IgntStake";
 interface IgntTransferProps {
   className?: string;
 }
@@ -15,24 +16,11 @@ export default function IgntTransfer(props: IgntTransferProps) {
       activeLinkClasses={["text-black"]}
       className={props.className ?? ""}
     >
-      <div className="" title="Send">
-        {address && <IgntSend />}
+      <div className="" title="Stake">
+        {address && <IgntStack />}
       </div>
-      <div className="" title="Receive">
-        {address && (
-          <IgntCard
-            header={
-              <div className="flex bg-gray-100 align-center items-center justify-center w-full py-10">
-                <IgntQRCode value={address} color="#000" width={112} />
-              </div>
-            }
-          >
-            <div className="p-5 break-all">{address}</div>
-            <div className="p-5 pt-0 text-right">
-              <IgntClipboard text={address} />
-            </div>
-          </IgntCard>
-        )}
+      <div className="" title="Unstake">
+        {address && <IgntUnstack />}
       </div>
     </IgntTabs>
   );
