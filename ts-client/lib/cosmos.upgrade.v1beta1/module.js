@@ -3,25 +3,25 @@ import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry } from "@cosmjs/proto-signing";
 import { msgTypes } from './registry';
 import { Api } from "./rest";
-import { SoftwareUpgradeProposal } from "./types/cosmos/upgrade/v1beta1/upgrade";
-import { QueryCurrentPlanResponse } from "./types/cosmos/upgrade/v1beta1/query";
+import { ModuleVersion } from "./types/cosmos/upgrade/v1beta1/upgrade";
+import { QueryUpgradedConsensusStateResponse } from "./types/cosmos/upgrade/v1beta1/query";
+import { QueryAuthorityResponse } from "./types/cosmos/upgrade/v1beta1/query";
+import { QueryUpgradedConsensusStateRequest } from "./types/cosmos/upgrade/v1beta1/query";
 import { QueryAuthorityRequest } from "./types/cosmos/upgrade/v1beta1/query";
-import { QueryCurrentPlanRequest } from "./types/cosmos/upgrade/v1beta1/query";
+import { QueryCurrentPlanResponse } from "./types/cosmos/upgrade/v1beta1/query";
 import { QueryAppliedPlanRequest } from "./types/cosmos/upgrade/v1beta1/query";
 import { QueryAppliedPlanResponse } from "./types/cosmos/upgrade/v1beta1/query";
-import { QueryModuleVersionsRequest } from "./types/cosmos/upgrade/v1beta1/query";
+import { SoftwareUpgradeProposal } from "./types/cosmos/upgrade/v1beta1/upgrade";
+import { CancelSoftwareUpgradeProposal } from "./types/cosmos/upgrade/v1beta1/upgrade";
+import { QueryCurrentPlanRequest } from "./types/cosmos/upgrade/v1beta1/query";
+import { QueryModuleVersionsResponse } from "./types/cosmos/upgrade/v1beta1/query";
+import { MsgCancelUpgrade } from "./types/cosmos/upgrade/v1beta1/tx";
 import { MsgCancelUpgradeResponse } from "./types/cosmos/upgrade/v1beta1/tx";
 import { Plan } from "./types/cosmos/upgrade/v1beta1/upgrade";
-import { QueryUpgradedConsensusStateResponse } from "./types/cosmos/upgrade/v1beta1/query";
-import { QueryModuleVersionsResponse } from "./types/cosmos/upgrade/v1beta1/query";
-import { QueryAuthorityResponse } from "./types/cosmos/upgrade/v1beta1/query";
-import { MsgSoftwareUpgradeResponse } from "./types/cosmos/upgrade/v1beta1/tx";
-import { MsgCancelUpgrade } from "./types/cosmos/upgrade/v1beta1/tx";
-import { CancelSoftwareUpgradeProposal } from "./types/cosmos/upgrade/v1beta1/upgrade";
-import { QueryUpgradedConsensusStateRequest } from "./types/cosmos/upgrade/v1beta1/query";
-import { ModuleVersion } from "./types/cosmos/upgrade/v1beta1/upgrade";
+import { QueryModuleVersionsRequest } from "./types/cosmos/upgrade/v1beta1/query";
 import { MsgSoftwareUpgrade } from "./types/cosmos/upgrade/v1beta1/tx";
-export { SoftwareUpgradeProposal, QueryCurrentPlanResponse, QueryAuthorityRequest, QueryCurrentPlanRequest, QueryAppliedPlanRequest, QueryAppliedPlanResponse, QueryModuleVersionsRequest, MsgCancelUpgradeResponse, Plan, QueryUpgradedConsensusStateResponse, QueryModuleVersionsResponse, QueryAuthorityResponse, MsgSoftwareUpgradeResponse, MsgCancelUpgrade, CancelSoftwareUpgradeProposal, QueryUpgradedConsensusStateRequest, ModuleVersion, MsgSoftwareUpgrade };
+import { MsgSoftwareUpgradeResponse } from "./types/cosmos/upgrade/v1beta1/tx";
+export { ModuleVersion, QueryUpgradedConsensusStateResponse, QueryAuthorityResponse, QueryUpgradedConsensusStateRequest, QueryAuthorityRequest, QueryCurrentPlanResponse, QueryAppliedPlanRequest, QueryAppliedPlanResponse, SoftwareUpgradeProposal, CancelSoftwareUpgradeProposal, QueryCurrentPlanRequest, QueryModuleVersionsResponse, MsgCancelUpgrade, MsgCancelUpgradeResponse, Plan, QueryModuleVersionsRequest, MsgSoftwareUpgrade, MsgSoftwareUpgradeResponse };
 export const registry = new Registry(msgTypes);
 function getStructure(template) {
     const structure = { fields: [] };
@@ -37,32 +37,60 @@ const defaultFee = {
 };
 export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26657", prefix: "cosmos" }) => {
     return {
-        async sendSoftwareUpgradeProposal({ value, fee, memo }) {
+        async sendModuleVersion({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendSoftwareUpgradeProposal: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendModuleVersion: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.softwareUpgradeProposal({ value: SoftwareUpgradeProposal.fromPartial(value) });
+                let msg = this.moduleVersion({ value: ModuleVersion.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendSoftwareUpgradeProposal: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendModuleVersion: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryCurrentPlanResponse({ value, fee, memo }) {
+        async sendQueryUpgradedConsensusStateResponse({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryCurrentPlanResponse: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryUpgradedConsensusStateResponse: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryCurrentPlanResponse({ value: QueryCurrentPlanResponse.fromPartial(value) });
+                let msg = this.queryUpgradedConsensusStateResponse({ value: QueryUpgradedConsensusStateResponse.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryCurrentPlanResponse: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryUpgradedConsensusStateResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryAuthorityResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryAuthorityResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryAuthorityResponse({ value: QueryAuthorityResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryAuthorityResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryUpgradedConsensusStateRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryUpgradedConsensusStateRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryUpgradedConsensusStateRequest({ value: QueryUpgradedConsensusStateRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryUpgradedConsensusStateRequest: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendQueryAuthorityRequest({ value, fee, memo }) {
@@ -79,18 +107,18 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendQueryAuthorityRequest: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryCurrentPlanRequest({ value, fee, memo }) {
+        async sendQueryCurrentPlanResponse({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryCurrentPlanRequest: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryCurrentPlanResponse: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryCurrentPlanRequest({ value: QueryCurrentPlanRequest.fromPartial(value) });
+                let msg = this.queryCurrentPlanResponse({ value: QueryCurrentPlanResponse.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryCurrentPlanRequest: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryCurrentPlanResponse: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendQueryAppliedPlanRequest({ value, fee, memo }) {
@@ -121,18 +149,74 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendQueryAppliedPlanResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryModuleVersionsRequest({ value, fee, memo }) {
+        async sendSoftwareUpgradeProposal({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryModuleVersionsRequest: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendSoftwareUpgradeProposal: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryModuleVersionsRequest({ value: QueryModuleVersionsRequest.fromPartial(value) });
+                let msg = this.softwareUpgradeProposal({ value: SoftwareUpgradeProposal.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryModuleVersionsRequest: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendSoftwareUpgradeProposal: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendCancelSoftwareUpgradeProposal({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendCancelSoftwareUpgradeProposal: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.cancelSoftwareUpgradeProposal({ value: CancelSoftwareUpgradeProposal.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendCancelSoftwareUpgradeProposal: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryCurrentPlanRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryCurrentPlanRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryCurrentPlanRequest({ value: QueryCurrentPlanRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryCurrentPlanRequest: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryModuleVersionsResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryModuleVersionsResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryModuleVersionsResponse({ value: QueryModuleVersionsResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryModuleVersionsResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgCancelUpgrade({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgCancelUpgrade: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgCancelUpgrade({ value: MsgCancelUpgrade.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgCancelUpgrade: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendMsgCancelUpgradeResponse({ value, fee, memo }) {
@@ -163,116 +247,18 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendPlan: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryUpgradedConsensusStateResponse({ value, fee, memo }) {
+        async sendQueryModuleVersionsRequest({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryUpgradedConsensusStateResponse: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryModuleVersionsRequest: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryUpgradedConsensusStateResponse({ value: QueryUpgradedConsensusStateResponse.fromPartial(value) });
+                let msg = this.queryModuleVersionsRequest({ value: QueryModuleVersionsRequest.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryUpgradedConsensusStateResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryModuleVersionsResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryModuleVersionsResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryModuleVersionsResponse({ value: QueryModuleVersionsResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryModuleVersionsResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryAuthorityResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryAuthorityResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryAuthorityResponse({ value: QueryAuthorityResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryAuthorityResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgSoftwareUpgradeResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgSoftwareUpgradeResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgSoftwareUpgradeResponse({ value: MsgSoftwareUpgradeResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgSoftwareUpgradeResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgCancelUpgrade({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgCancelUpgrade: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgCancelUpgrade({ value: MsgCancelUpgrade.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgCancelUpgrade: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendCancelSoftwareUpgradeProposal({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendCancelSoftwareUpgradeProposal: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.cancelSoftwareUpgradeProposal({ value: CancelSoftwareUpgradeProposal.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendCancelSoftwareUpgradeProposal: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryUpgradedConsensusStateRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryUpgradedConsensusStateRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryUpgradedConsensusStateRequest({ value: QueryUpgradedConsensusStateRequest.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryUpgradedConsensusStateRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendModuleVersion({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendModuleVersion: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.moduleVersion({ value: ModuleVersion.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendModuleVersion: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryModuleVersionsRequest: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendMsgSoftwareUpgrade({ value, fee, memo }) {
@@ -289,20 +275,50 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendMsgSoftwareUpgrade: Could not broadcast Tx: ' + e.message);
             }
         },
-        softwareUpgradeProposal({ value }) {
+        async sendMsgSoftwareUpgradeResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgSoftwareUpgradeResponse: Unable to sign Tx. Signer is not present.');
+            }
             try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal", value: SoftwareUpgradeProposal.fromPartial(value) };
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgSoftwareUpgradeResponse({ value: MsgSoftwareUpgradeResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:SoftwareUpgradeProposal: Could not create message: ' + e.message);
+                throw new Error('TxClient:sendMsgSoftwareUpgradeResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        queryCurrentPlanResponse({ value }) {
+        moduleVersion({ value }) {
             try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryCurrentPlanResponse", value: QueryCurrentPlanResponse.fromPartial(value) };
+                return { typeUrl: "/cosmos.upgrade.v1beta1.ModuleVersion", value: ModuleVersion.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryCurrentPlanResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:ModuleVersion: Could not create message: ' + e.message);
+            }
+        },
+        queryUpgradedConsensusStateResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponse", value: QueryUpgradedConsensusStateResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryUpgradedConsensusStateResponse: Could not create message: ' + e.message);
+            }
+        },
+        queryAuthorityResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryAuthorityResponse", value: QueryAuthorityResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryAuthorityResponse: Could not create message: ' + e.message);
+            }
+        },
+        queryUpgradedConsensusStateRequest({ value }) {
+            try {
+                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequest", value: QueryUpgradedConsensusStateRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryUpgradedConsensusStateRequest: Could not create message: ' + e.message);
             }
         },
         queryAuthorityRequest({ value }) {
@@ -313,12 +329,12 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:QueryAuthorityRequest: Could not create message: ' + e.message);
             }
         },
-        queryCurrentPlanRequest({ value }) {
+        queryCurrentPlanResponse({ value }) {
             try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryCurrentPlanRequest", value: QueryCurrentPlanRequest.fromPartial(value) };
+                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryCurrentPlanResponse", value: QueryCurrentPlanResponse.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryCurrentPlanRequest: Could not create message: ' + e.message);
+                throw new Error('TxClient:QueryCurrentPlanResponse: Could not create message: ' + e.message);
             }
         },
         queryAppliedPlanRequest({ value }) {
@@ -337,12 +353,44 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:QueryAppliedPlanResponse: Could not create message: ' + e.message);
             }
         },
-        queryModuleVersionsRequest({ value }) {
+        softwareUpgradeProposal({ value }) {
             try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryModuleVersionsRequest", value: QueryModuleVersionsRequest.fromPartial(value) };
+                return { typeUrl: "/cosmos.upgrade.v1beta1.SoftwareUpgradeProposal", value: SoftwareUpgradeProposal.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryModuleVersionsRequest: Could not create message: ' + e.message);
+                throw new Error('TxClient:SoftwareUpgradeProposal: Could not create message: ' + e.message);
+            }
+        },
+        cancelSoftwareUpgradeProposal({ value }) {
+            try {
+                return { typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal", value: CancelSoftwareUpgradeProposal.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:CancelSoftwareUpgradeProposal: Could not create message: ' + e.message);
+            }
+        },
+        queryCurrentPlanRequest({ value }) {
+            try {
+                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryCurrentPlanRequest", value: QueryCurrentPlanRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryCurrentPlanRequest: Could not create message: ' + e.message);
+            }
+        },
+        queryModuleVersionsResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryModuleVersionsResponse", value: QueryModuleVersionsResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryModuleVersionsResponse: Could not create message: ' + e.message);
+            }
+        },
+        msgCancelUpgrade({ value }) {
+            try {
+                return { typeUrl: "/cosmos.upgrade.v1beta1.MsgCancelUpgrade", value: MsgCancelUpgrade.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgCancelUpgrade: Could not create message: ' + e.message);
             }
         },
         msgCancelUpgradeResponse({ value }) {
@@ -361,68 +409,12 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:Plan: Could not create message: ' + e.message);
             }
         },
-        queryUpgradedConsensusStateResponse({ value }) {
+        queryModuleVersionsRequest({ value }) {
             try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponse", value: QueryUpgradedConsensusStateResponse.fromPartial(value) };
+                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryModuleVersionsRequest", value: QueryModuleVersionsRequest.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryUpgradedConsensusStateResponse: Could not create message: ' + e.message);
-            }
-        },
-        queryModuleVersionsResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryModuleVersionsResponse", value: QueryModuleVersionsResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryModuleVersionsResponse: Could not create message: ' + e.message);
-            }
-        },
-        queryAuthorityResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryAuthorityResponse", value: QueryAuthorityResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryAuthorityResponse: Could not create message: ' + e.message);
-            }
-        },
-        msgSoftwareUpgradeResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse", value: MsgSoftwareUpgradeResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgSoftwareUpgradeResponse: Could not create message: ' + e.message);
-            }
-        },
-        msgCancelUpgrade({ value }) {
-            try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.MsgCancelUpgrade", value: MsgCancelUpgrade.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgCancelUpgrade: Could not create message: ' + e.message);
-            }
-        },
-        cancelSoftwareUpgradeProposal({ value }) {
-            try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.CancelSoftwareUpgradeProposal", value: CancelSoftwareUpgradeProposal.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:CancelSoftwareUpgradeProposal: Could not create message: ' + e.message);
-            }
-        },
-        queryUpgradedConsensusStateRequest({ value }) {
-            try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateRequest", value: QueryUpgradedConsensusStateRequest.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryUpgradedConsensusStateRequest: Could not create message: ' + e.message);
-            }
-        },
-        moduleVersion({ value }) {
-            try {
-                return { typeUrl: "/cosmos.upgrade.v1beta1.ModuleVersion", value: ModuleVersion.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:ModuleVersion: Could not create message: ' + e.message);
+                throw new Error('TxClient:QueryModuleVersionsRequest: Could not create message: ' + e.message);
             }
         },
         msgSoftwareUpgrade({ value }) {
@@ -431,6 +423,14 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
             }
             catch (e) {
                 throw new Error('TxClient:MsgSoftwareUpgrade: Could not create message: ' + e.message);
+            }
+        },
+        msgSoftwareUpgradeResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.upgrade.v1beta1.MsgSoftwareUpgradeResponse", value: MsgSoftwareUpgradeResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgSoftwareUpgradeResponse: Could not create message: ' + e.message);
             }
         },
     };

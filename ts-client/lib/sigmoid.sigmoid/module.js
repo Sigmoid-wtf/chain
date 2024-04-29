@@ -3,30 +3,34 @@ import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry } from "@cosmjs/proto-signing";
 import { msgTypes } from './registry';
 import { Api } from "./rest";
-import { MsgCreateUnstakeRequestResponse } from "./types/sigmoid/sigmoid/tx";
-import { QueryGetAmountResponse } from "./types/sigmoid/sigmoid/query";
-import { Request } from "./types/sigmoid/sigmoid/request";
-import { MsgUpdateParams } from "./types/sigmoid/sigmoid/tx";
-import { MsgApproveUnstakeRequestResponse } from "./types/sigmoid/sigmoid/tx";
-import { MsgProcessTransactionResponse } from "./types/sigmoid/sigmoid/tx";
-import { QueryGetLastProcessedResponse } from "./types/sigmoid/sigmoid/query";
-import { QueryParamsResponse } from "./types/sigmoid/sigmoid/query";
 import { GenesisState } from "./types/sigmoid/sigmoid/genesis";
-import { Params } from "./types/sigmoid/sigmoid/params";
-import { MsgCreateUnstakeRequest } from "./types/sigmoid/sigmoid/tx";
-import { MsgCreateRequestResponse } from "./types/sigmoid/sigmoid/tx";
-import { MsgApproveRequestResponse } from "./types/sigmoid/sigmoid/tx";
-import { QueryGetLastProcessedRequest } from "./types/sigmoid/sigmoid/query";
-import { QueryParamsRequest } from "./types/sigmoid/sigmoid/query";
-import { QueryGetPendingUnstakeRequestRequest } from "./types/sigmoid/sigmoid/query";
-import { MsgApproveRequest } from "./types/sigmoid/sigmoid/tx";
-import { MsgUpdateParamsResponse } from "./types/sigmoid/sigmoid/tx";
+import { MsgApproveUnstakeRequestResponse } from "./types/sigmoid/sigmoid/tx";
 import { MsgCreateRequest } from "./types/sigmoid/sigmoid/tx";
-import { MsgApproveUnstakeRequest } from "./types/sigmoid/sigmoid/tx";
-import { QueryGetAmountRequest } from "./types/sigmoid/sigmoid/query";
-import { MsgProcessTransaction } from "./types/sigmoid/sigmoid/tx";
+import { MsgUpdateParams } from "./types/sigmoid/sigmoid/tx";
+import { Params } from "./types/sigmoid/sigmoid/params";
+import { QueryParamsRequest } from "./types/sigmoid/sigmoid/query";
+import { QueryGetLastProcessedResponse } from "./types/sigmoid/sigmoid/query";
 import { QueryGetPendingUnstakeRequestResponse } from "./types/sigmoid/sigmoid/query";
-export { MsgCreateUnstakeRequestResponse, QueryGetAmountResponse, Request, MsgUpdateParams, MsgApproveUnstakeRequestResponse, MsgProcessTransactionResponse, QueryGetLastProcessedResponse, QueryParamsResponse, GenesisState, Params, MsgCreateUnstakeRequest, MsgCreateRequestResponse, MsgApproveRequestResponse, QueryGetLastProcessedRequest, QueryParamsRequest, QueryGetPendingUnstakeRequestRequest, MsgApproveRequest, MsgUpdateParamsResponse, MsgCreateRequest, MsgApproveUnstakeRequest, QueryGetAmountRequest, MsgProcessTransaction, QueryGetPendingUnstakeRequestResponse };
+import { QueryGetFrontPendingStakeRequestRequest } from "./types/sigmoid/sigmoid/query";
+import { QueryGetFrontPendingUnstakeRequestResponse } from "./types/sigmoid/sigmoid/query";
+import { MsgProcessTransaction } from "./types/sigmoid/sigmoid/tx";
+import { MsgProcessTransactionResponse } from "./types/sigmoid/sigmoid/tx";
+import { QueryGetAmountResponse } from "./types/sigmoid/sigmoid/query";
+import { QueryGetLastProcessedRequest } from "./types/sigmoid/sigmoid/query";
+import { Request } from "./types/sigmoid/sigmoid/request";
+import { QueryParamsResponse } from "./types/sigmoid/sigmoid/query";
+import { QueryGetPendingUnstakeRequestRequest } from "./types/sigmoid/sigmoid/query";
+import { MsgUpdateParamsResponse } from "./types/sigmoid/sigmoid/tx";
+import { QueryGetFrontPendingStakeRequestResponse } from "./types/sigmoid/sigmoid/query";
+import { QueryGetAmountRequest } from "./types/sigmoid/sigmoid/query";
+import { MsgApproveRequest } from "./types/sigmoid/sigmoid/tx";
+import { MsgApproveRequestResponse } from "./types/sigmoid/sigmoid/tx";
+import { MsgCreateUnstakeRequest } from "./types/sigmoid/sigmoid/tx";
+import { QueryGetFrontPendingUnstakeRequestRequest } from "./types/sigmoid/sigmoid/query";
+import { MsgCreateRequestResponse } from "./types/sigmoid/sigmoid/tx";
+import { MsgCreateUnstakeRequestResponse } from "./types/sigmoid/sigmoid/tx";
+import { MsgApproveUnstakeRequest } from "./types/sigmoid/sigmoid/tx";
+export { GenesisState, MsgApproveUnstakeRequestResponse, MsgCreateRequest, MsgUpdateParams, Params, QueryParamsRequest, QueryGetLastProcessedResponse, QueryGetPendingUnstakeRequestResponse, QueryGetFrontPendingStakeRequestRequest, QueryGetFrontPendingUnstakeRequestResponse, MsgProcessTransaction, MsgProcessTransactionResponse, QueryGetAmountResponse, QueryGetLastProcessedRequest, Request, QueryParamsResponse, QueryGetPendingUnstakeRequestRequest, MsgUpdateParamsResponse, QueryGetFrontPendingStakeRequestResponse, QueryGetAmountRequest, MsgApproveRequest, MsgApproveRequestResponse, MsgCreateUnstakeRequest, QueryGetFrontPendingUnstakeRequestRequest, MsgCreateRequestResponse, MsgCreateUnstakeRequestResponse, MsgApproveUnstakeRequest };
 export const registry = new Registry(msgTypes);
 function getStructure(template) {
     const structure = { fields: [] };
@@ -42,60 +46,18 @@ const defaultFee = {
 };
 export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26657", prefix: "cosmos" }) => {
     return {
-        async sendMsgCreateUnstakeRequestResponse({ value, fee, memo }) {
+        async sendGenesisState({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendMsgCreateUnstakeRequestResponse: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgCreateUnstakeRequestResponse({ value: MsgCreateUnstakeRequestResponse.fromPartial(value) });
+                let msg = this.genesisState({ value: GenesisState.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendMsgCreateUnstakeRequestResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryGetAmountResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryGetAmountResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryGetAmountResponse({ value: QueryGetAmountResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryGetAmountResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.request({ value: Request.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgUpdateParams({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendMsgApproveUnstakeRequestResponse({ value, fee, memo }) {
@@ -112,60 +74,32 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendMsgApproveUnstakeRequestResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendMsgProcessTransactionResponse({ value, fee, memo }) {
+        async sendMsgCreateRequest({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendMsgProcessTransactionResponse: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendMsgCreateRequest: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgProcessTransactionResponse({ value: MsgProcessTransactionResponse.fromPartial(value) });
+                let msg = this.msgCreateRequest({ value: MsgCreateRequest.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendMsgProcessTransactionResponse: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendMsgCreateRequest: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryGetLastProcessedResponse({ value, fee, memo }) {
+        async sendMsgUpdateParams({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryGetLastProcessedResponse: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryGetLastProcessedResponse({ value: QueryGetLastProcessedResponse.fromPartial(value) });
+                let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryGetLastProcessedResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryParamsResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendGenesisState({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.genesisState({ value: GenesisState.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendParams({ value, fee, memo }) {
@@ -182,62 +116,6 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendParams: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendMsgCreateUnstakeRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgCreateUnstakeRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgCreateUnstakeRequest({ value: MsgCreateUnstakeRequest.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgCreateUnstakeRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgCreateRequestResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgCreateRequestResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgCreateRequestResponse({ value: MsgCreateRequestResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgCreateRequestResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgApproveRequestResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgApproveRequestResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgApproveRequestResponse({ value: MsgApproveRequestResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgApproveRequestResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryGetLastProcessedRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryGetLastProcessedRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryGetLastProcessedRequest({ value: QueryGetLastProcessedRequest.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryGetLastProcessedRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
         async sendQueryParamsRequest({ value, fee, memo }) {
             if (!signer) {
                 throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.');
@@ -252,102 +130,18 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryGetPendingUnstakeRequestRequest({ value, fee, memo }) {
+        async sendQueryGetLastProcessedResponse({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryGetPendingUnstakeRequestRequest: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryGetLastProcessedResponse: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryGetPendingUnstakeRequestRequest({ value: QueryGetPendingUnstakeRequestRequest.fromPartial(value) });
+                let msg = this.queryGetLastProcessedResponse({ value: QueryGetLastProcessedResponse.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryGetPendingUnstakeRequestRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgApproveRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgApproveRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgApproveRequest({ value: MsgApproveRequest.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgApproveRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgUpdateParamsResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgCreateRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgCreateRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgCreateRequest({ value: MsgCreateRequest.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgCreateRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgApproveUnstakeRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgApproveUnstakeRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgApproveUnstakeRequest({ value: MsgApproveUnstakeRequest.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgApproveUnstakeRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryGetAmountRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryGetAmountRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryGetAmountRequest({ value: QueryGetAmountRequest.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryGetAmountRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgProcessTransaction({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgProcessTransaction: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgProcessTransaction({ value: MsgProcessTransaction.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgProcessTransaction: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryGetLastProcessedResponse: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendQueryGetPendingUnstakeRequestResponse({ value, fee, memo }) {
@@ -364,68 +158,270 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendQueryGetPendingUnstakeRequestResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        msgCreateUnstakeRequestResponse({ value }) {
+        async sendQueryGetFrontPendingStakeRequestRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryGetFrontPendingStakeRequestRequest: Unable to sign Tx. Signer is not present.');
+            }
             try {
-                return { typeUrl: "/sigmoid.sigmoid.MsgCreateUnstakeRequestResponse", value: MsgCreateUnstakeRequestResponse.fromPartial(value) };
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryGetFrontPendingStakeRequestRequest({ value: QueryGetFrontPendingStakeRequestRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:MsgCreateUnstakeRequestResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:sendQueryGetFrontPendingStakeRequestRequest: Could not broadcast Tx: ' + e.message);
             }
         },
-        queryGetAmountResponse({ value }) {
+        async sendQueryGetFrontPendingUnstakeRequestResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryGetFrontPendingUnstakeRequestResponse: Unable to sign Tx. Signer is not present.');
+            }
             try {
-                return { typeUrl: "/sigmoid.sigmoid.QueryGetAmountResponse", value: QueryGetAmountResponse.fromPartial(value) };
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryGetFrontPendingUnstakeRequestResponse({ value: QueryGetFrontPendingUnstakeRequestResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:QueryGetAmountResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:sendQueryGetFrontPendingUnstakeRequestResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        request({ value }) {
+        async sendMsgProcessTransaction({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgProcessTransaction: Unable to sign Tx. Signer is not present.');
+            }
             try {
-                return { typeUrl: "/sigmoid.sigmoid.Request", value: Request.fromPartial(value) };
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgProcessTransaction({ value: MsgProcessTransaction.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:Request: Could not create message: ' + e.message);
+                throw new Error('TxClient:sendMsgProcessTransaction: Could not broadcast Tx: ' + e.message);
             }
         },
-        msgUpdateParams({ value }) {
+        async sendMsgProcessTransactionResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgProcessTransactionResponse: Unable to sign Tx. Signer is not present.');
+            }
             try {
-                return { typeUrl: "/sigmoid.sigmoid.MsgUpdateParams", value: MsgUpdateParams.fromPartial(value) };
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgProcessTransactionResponse({ value: MsgProcessTransactionResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message);
+                throw new Error('TxClient:sendMsgProcessTransactionResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        msgApproveUnstakeRequestResponse({ value }) {
+        async sendQueryGetAmountResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryGetAmountResponse: Unable to sign Tx. Signer is not present.');
+            }
             try {
-                return { typeUrl: "/sigmoid.sigmoid.MsgApproveUnstakeRequestResponse", value: MsgApproveUnstakeRequestResponse.fromPartial(value) };
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryGetAmountResponse({ value: QueryGetAmountResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:MsgApproveUnstakeRequestResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:sendQueryGetAmountResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        msgProcessTransactionResponse({ value }) {
+        async sendQueryGetLastProcessedRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryGetLastProcessedRequest: Unable to sign Tx. Signer is not present.');
+            }
             try {
-                return { typeUrl: "/sigmoid.sigmoid.MsgProcessTransactionResponse", value: MsgProcessTransactionResponse.fromPartial(value) };
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryGetLastProcessedRequest({ value: QueryGetLastProcessedRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:MsgProcessTransactionResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:sendQueryGetLastProcessedRequest: Could not broadcast Tx: ' + e.message);
             }
         },
-        queryGetLastProcessedResponse({ value }) {
+        async sendRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendRequest: Unable to sign Tx. Signer is not present.');
+            }
             try {
-                return { typeUrl: "/sigmoid.sigmoid.QueryGetLastProcessedResponse", value: QueryGetLastProcessedResponse.fromPartial(value) };
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.request({ value: Request.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:QueryGetLastProcessedResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:sendRequest: Could not broadcast Tx: ' + e.message);
             }
         },
-        queryParamsResponse({ value }) {
+        async sendQueryParamsResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryParamsResponse: Unable to sign Tx. Signer is not present.');
+            }
             try {
-                return { typeUrl: "/sigmoid.sigmoid.QueryParamsResponse", value: QueryParamsResponse.fromPartial(value) };
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryParamsResponse({ value: QueryParamsResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:sendQueryParamsResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryGetPendingUnstakeRequestRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryGetPendingUnstakeRequestRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryGetPendingUnstakeRequestRequest({ value: QueryGetPendingUnstakeRequestRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryGetPendingUnstakeRequestRequest: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgUpdateParamsResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryGetFrontPendingStakeRequestResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryGetFrontPendingStakeRequestResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryGetFrontPendingStakeRequestResponse({ value: QueryGetFrontPendingStakeRequestResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryGetFrontPendingStakeRequestResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryGetAmountRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryGetAmountRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryGetAmountRequest({ value: QueryGetAmountRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryGetAmountRequest: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgApproveRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgApproveRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgApproveRequest({ value: MsgApproveRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgApproveRequest: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgApproveRequestResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgApproveRequestResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgApproveRequestResponse({ value: MsgApproveRequestResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgApproveRequestResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgCreateUnstakeRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgCreateUnstakeRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgCreateUnstakeRequest({ value: MsgCreateUnstakeRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgCreateUnstakeRequest: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryGetFrontPendingUnstakeRequestRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryGetFrontPendingUnstakeRequestRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryGetFrontPendingUnstakeRequestRequest({ value: QueryGetFrontPendingUnstakeRequestRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryGetFrontPendingUnstakeRequestRequest: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgCreateRequestResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgCreateRequestResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgCreateRequestResponse({ value: MsgCreateRequestResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgCreateRequestResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgCreateUnstakeRequestResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgCreateUnstakeRequestResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgCreateUnstakeRequestResponse({ value: MsgCreateUnstakeRequestResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgCreateUnstakeRequestResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgApproveUnstakeRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgApproveUnstakeRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgApproveUnstakeRequest({ value: MsgApproveUnstakeRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgApproveUnstakeRequest: Could not broadcast Tx: ' + e.message);
             }
         },
         genesisState({ value }) {
@@ -436,76 +432,12 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:GenesisState: Could not create message: ' + e.message);
             }
         },
-        params({ value }) {
+        msgApproveUnstakeRequestResponse({ value }) {
             try {
-                return { typeUrl: "/sigmoid.sigmoid.Params", value: Params.fromPartial(value) };
+                return { typeUrl: "/sigmoid.sigmoid.MsgApproveUnstakeRequestResponse", value: MsgApproveUnstakeRequestResponse.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:Params: Could not create message: ' + e.message);
-            }
-        },
-        msgCreateUnstakeRequest({ value }) {
-            try {
-                return { typeUrl: "/sigmoid.sigmoid.MsgCreateUnstakeRequest", value: MsgCreateUnstakeRequest.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgCreateUnstakeRequest: Could not create message: ' + e.message);
-            }
-        },
-        msgCreateRequestResponse({ value }) {
-            try {
-                return { typeUrl: "/sigmoid.sigmoid.MsgCreateRequestResponse", value: MsgCreateRequestResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgCreateRequestResponse: Could not create message: ' + e.message);
-            }
-        },
-        msgApproveRequestResponse({ value }) {
-            try {
-                return { typeUrl: "/sigmoid.sigmoid.MsgApproveRequestResponse", value: MsgApproveRequestResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgApproveRequestResponse: Could not create message: ' + e.message);
-            }
-        },
-        queryGetLastProcessedRequest({ value }) {
-            try {
-                return { typeUrl: "/sigmoid.sigmoid.QueryGetLastProcessedRequest", value: QueryGetLastProcessedRequest.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryGetLastProcessedRequest: Could not create message: ' + e.message);
-            }
-        },
-        queryParamsRequest({ value }) {
-            try {
-                return { typeUrl: "/sigmoid.sigmoid.QueryParamsRequest", value: QueryParamsRequest.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message);
-            }
-        },
-        queryGetPendingUnstakeRequestRequest({ value }) {
-            try {
-                return { typeUrl: "/sigmoid.sigmoid.QueryGetPendingUnstakeRequestRequest", value: QueryGetPendingUnstakeRequestRequest.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryGetPendingUnstakeRequestRequest: Could not create message: ' + e.message);
-            }
-        },
-        msgApproveRequest({ value }) {
-            try {
-                return { typeUrl: "/sigmoid.sigmoid.MsgApproveRequest", value: MsgApproveRequest.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgApproveRequest: Could not create message: ' + e.message);
-            }
-        },
-        msgUpdateParamsResponse({ value }) {
-            try {
-                return { typeUrl: "/sigmoid.sigmoid.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:MsgApproveUnstakeRequestResponse: Could not create message: ' + e.message);
             }
         },
         msgCreateRequest({ value }) {
@@ -516,20 +448,60 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:MsgCreateRequest: Could not create message: ' + e.message);
             }
         },
-        msgApproveUnstakeRequest({ value }) {
+        msgUpdateParams({ value }) {
             try {
-                return { typeUrl: "/sigmoid.sigmoid.MsgApproveUnstakeRequest", value: MsgApproveUnstakeRequest.fromPartial(value) };
+                return { typeUrl: "/sigmoid.sigmoid.MsgUpdateParams", value: MsgUpdateParams.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:MsgApproveUnstakeRequest: Could not create message: ' + e.message);
+                throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message);
             }
         },
-        queryGetAmountRequest({ value }) {
+        params({ value }) {
             try {
-                return { typeUrl: "/sigmoid.sigmoid.QueryGetAmountRequest", value: QueryGetAmountRequest.fromPartial(value) };
+                return { typeUrl: "/sigmoid.sigmoid.Params", value: Params.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryGetAmountRequest: Could not create message: ' + e.message);
+                throw new Error('TxClient:Params: Could not create message: ' + e.message);
+            }
+        },
+        queryParamsRequest({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryParamsRequest", value: QueryParamsRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message);
+            }
+        },
+        queryGetLastProcessedResponse({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryGetLastProcessedResponse", value: QueryGetLastProcessedResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryGetLastProcessedResponse: Could not create message: ' + e.message);
+            }
+        },
+        queryGetPendingUnstakeRequestResponse({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryGetPendingUnstakeRequestResponse", value: QueryGetPendingUnstakeRequestResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryGetPendingUnstakeRequestResponse: Could not create message: ' + e.message);
+            }
+        },
+        queryGetFrontPendingStakeRequestRequest({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryGetFrontPendingStakeRequestRequest", value: QueryGetFrontPendingStakeRequestRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryGetFrontPendingStakeRequestRequest: Could not create message: ' + e.message);
+            }
+        },
+        queryGetFrontPendingUnstakeRequestResponse({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryGetFrontPendingUnstakeRequestResponse", value: QueryGetFrontPendingUnstakeRequestResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryGetFrontPendingUnstakeRequestResponse: Could not create message: ' + e.message);
             }
         },
         msgProcessTransaction({ value }) {
@@ -540,12 +512,132 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:MsgProcessTransaction: Could not create message: ' + e.message);
             }
         },
-        queryGetPendingUnstakeRequestResponse({ value }) {
+        msgProcessTransactionResponse({ value }) {
             try {
-                return { typeUrl: "/sigmoid.sigmoid.QueryGetPendingUnstakeRequestResponse", value: QueryGetPendingUnstakeRequestResponse.fromPartial(value) };
+                return { typeUrl: "/sigmoid.sigmoid.MsgProcessTransactionResponse", value: MsgProcessTransactionResponse.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryGetPendingUnstakeRequestResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:MsgProcessTransactionResponse: Could not create message: ' + e.message);
+            }
+        },
+        queryGetAmountResponse({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryGetAmountResponse", value: QueryGetAmountResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryGetAmountResponse: Could not create message: ' + e.message);
+            }
+        },
+        queryGetLastProcessedRequest({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryGetLastProcessedRequest", value: QueryGetLastProcessedRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryGetLastProcessedRequest: Could not create message: ' + e.message);
+            }
+        },
+        request({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.Request", value: Request.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:Request: Could not create message: ' + e.message);
+            }
+        },
+        queryParamsResponse({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryParamsResponse", value: QueryParamsResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryParamsResponse: Could not create message: ' + e.message);
+            }
+        },
+        queryGetPendingUnstakeRequestRequest({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryGetPendingUnstakeRequestRequest", value: QueryGetPendingUnstakeRequestRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryGetPendingUnstakeRequestRequest: Could not create message: ' + e.message);
+            }
+        },
+        msgUpdateParamsResponse({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message);
+            }
+        },
+        queryGetFrontPendingStakeRequestResponse({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryGetFrontPendingStakeRequestResponse", value: QueryGetFrontPendingStakeRequestResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryGetFrontPendingStakeRequestResponse: Could not create message: ' + e.message);
+            }
+        },
+        queryGetAmountRequest({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryGetAmountRequest", value: QueryGetAmountRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryGetAmountRequest: Could not create message: ' + e.message);
+            }
+        },
+        msgApproveRequest({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.MsgApproveRequest", value: MsgApproveRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgApproveRequest: Could not create message: ' + e.message);
+            }
+        },
+        msgApproveRequestResponse({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.MsgApproveRequestResponse", value: MsgApproveRequestResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgApproveRequestResponse: Could not create message: ' + e.message);
+            }
+        },
+        msgCreateUnstakeRequest({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.MsgCreateUnstakeRequest", value: MsgCreateUnstakeRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgCreateUnstakeRequest: Could not create message: ' + e.message);
+            }
+        },
+        queryGetFrontPendingUnstakeRequestRequest({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.QueryGetFrontPendingUnstakeRequestRequest", value: QueryGetFrontPendingUnstakeRequestRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryGetFrontPendingUnstakeRequestRequest: Could not create message: ' + e.message);
+            }
+        },
+        msgCreateRequestResponse({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.MsgCreateRequestResponse", value: MsgCreateRequestResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgCreateRequestResponse: Could not create message: ' + e.message);
+            }
+        },
+        msgCreateUnstakeRequestResponse({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.MsgCreateUnstakeRequestResponse", value: MsgCreateUnstakeRequestResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgCreateUnstakeRequestResponse: Could not create message: ' + e.message);
+            }
+        },
+        msgApproveUnstakeRequest({ value }) {
+            try {
+                return { typeUrl: "/sigmoid.sigmoid.MsgApproveUnstakeRequest", value: MsgApproveUnstakeRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgApproveUnstakeRequest: Could not create message: ' + e.message);
             }
         },
     };

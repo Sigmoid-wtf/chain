@@ -2,91 +2,66 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner, Registry } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { ConsensusStateWithHeight } from "./types/ibc/core/client/v1/client";
-import { Height } from "./types/ibc/core/client/v1/client";
-import { QueryClientStatesRequest } from "./types/ibc/core/client/v1/query";
-import { QueryConsensusStateHeightsRequest } from "./types/ibc/core/client/v1/query";
-import { QueryClientStatusResponse } from "./types/ibc/core/client/v1/query";
-import { MsgSubmitMisbehaviour } from "./types/ibc/core/client/v1/tx";
-import { MsgSubmitMisbehaviourResponse } from "./types/ibc/core/client/v1/tx";
-import { ClientUpdateProposal } from "./types/ibc/core/client/v1/client";
-import { GenesisMetadata } from "./types/ibc/core/client/v1/genesis";
+import { ClientConsensusStates } from "./types/ibc/core/client/v1/client";
+import { MsgUpdateParamsResponse } from "./types/ibc/core/client/v1/tx";
+import { QueryConsensusStateResponse } from "./types/ibc/core/client/v1/query";
+import { QueryClientStateRequest } from "./types/ibc/core/client/v1/query";
 import { QueryConsensusStatesRequest } from "./types/ibc/core/client/v1/query";
-import { QueryClientParamsRequest } from "./types/ibc/core/client/v1/query";
-import { QueryClientParamsResponse } from "./types/ibc/core/client/v1/query";
-import { QueryUpgradedClientStateRequest } from "./types/ibc/core/client/v1/query";
-import { MsgUpdateClientResponse } from "./types/ibc/core/client/v1/tx";
+import { QueryClientStatusRequest } from "./types/ibc/core/client/v1/query";
+import { Params } from "./types/ibc/core/client/v1/client";
+import { MsgCreateClientResponse } from "./types/ibc/core/client/v1/tx";
+import { MsgUpgradeClientResponse } from "./types/ibc/core/client/v1/tx";
+import { QueryConsensusStateHeightsRequest } from "./types/ibc/core/client/v1/query";
+import { ConsensusStateWithHeight } from "./types/ibc/core/client/v1/client";
+import { UpgradeProposal } from "./types/ibc/core/client/v1/client";
+import { MsgUpdateClient } from "./types/ibc/core/client/v1/tx";
+import { MsgIBCSoftwareUpgrade } from "./types/ibc/core/client/v1/tx";
 import { MsgIBCSoftwareUpgradeResponse } from "./types/ibc/core/client/v1/tx";
-import { GenesisState } from "./types/ibc/core/client/v1/genesis";
+import { IdentifiedGenesisMetadata } from "./types/ibc/core/client/v1/genesis";
+import { QueryUpgradedConsensusStateResponse } from "./types/ibc/core/client/v1/query";
+import { MsgRecoverClient } from "./types/ibc/core/client/v1/tx";
+import { MsgRecoverClientResponse } from "./types/ibc/core/client/v1/tx";
+import { MsgUpdateParams } from "./types/ibc/core/client/v1/tx";
+import { QueryConsensusStateRequest } from "./types/ibc/core/client/v1/query";
+import { ClientUpdateProposal } from "./types/ibc/core/client/v1/client";
+import { MsgUpdateClientResponse } from "./types/ibc/core/client/v1/tx";
+import { QueryConsensusStatesResponse } from "./types/ibc/core/client/v1/query";
+import { QueryConsensusStateHeightsResponse } from "./types/ibc/core/client/v1/query";
+import { QueryClientStatusResponse } from "./types/ibc/core/client/v1/query";
 import { QueryUpgradedClientStateResponse } from "./types/ibc/core/client/v1/query";
 import { QueryUpgradedConsensusStateRequest } from "./types/ibc/core/client/v1/query";
-import { QueryUpgradedConsensusStateResponse } from "./types/ibc/core/client/v1/query";
-import { MsgUpdateClient } from "./types/ibc/core/client/v1/tx";
-import { MsgUpdateParamsResponse } from "./types/ibc/core/client/v1/tx";
-import { ClientConsensusStates } from "./types/ibc/core/client/v1/client";
-import { Params } from "./types/ibc/core/client/v1/client";
-import { QueryConsensusStateRequest } from "./types/ibc/core/client/v1/query";
-import { QueryClientStatusRequest } from "./types/ibc/core/client/v1/query";
-import { MsgRecoverClientResponse } from "./types/ibc/core/client/v1/tx";
-import { QueryClientStatesResponse } from "./types/ibc/core/client/v1/query";
-import { QueryClientStateResponse } from "./types/ibc/core/client/v1/query";
-import { QueryConsensusStateResponse } from "./types/ibc/core/client/v1/query";
-import { QueryConsensusStatesResponse } from "./types/ibc/core/client/v1/query";
-import { MsgCreateClient } from "./types/ibc/core/client/v1/tx";
-import { MsgUpgradeClientResponse } from "./types/ibc/core/client/v1/tx";
-import { MsgIBCSoftwareUpgrade } from "./types/ibc/core/client/v1/tx";
-import { IdentifiedGenesisMetadata } from "./types/ibc/core/client/v1/genesis";
-import { UpgradeProposal } from "./types/ibc/core/client/v1/client";
-import { MsgUpgradeClient } from "./types/ibc/core/client/v1/tx";
-import { QueryClientStateRequest } from "./types/ibc/core/client/v1/query";
-import { QueryConsensusStateHeightsResponse } from "./types/ibc/core/client/v1/query";
-import { MsgCreateClientResponse } from "./types/ibc/core/client/v1/tx";
-import { MsgRecoverClient } from "./types/ibc/core/client/v1/tx";
-import { MsgUpdateParams } from "./types/ibc/core/client/v1/tx";
 import { IdentifiedClientState } from "./types/ibc/core/client/v1/client";
-export { ConsensusStateWithHeight, Height, QueryClientStatesRequest, QueryConsensusStateHeightsRequest, QueryClientStatusResponse, MsgSubmitMisbehaviour, MsgSubmitMisbehaviourResponse, ClientUpdateProposal, GenesisMetadata, QueryConsensusStatesRequest, QueryClientParamsRequest, QueryClientParamsResponse, QueryUpgradedClientStateRequest, MsgUpdateClientResponse, MsgIBCSoftwareUpgradeResponse, GenesisState, QueryUpgradedClientStateResponse, QueryUpgradedConsensusStateRequest, QueryUpgradedConsensusStateResponse, MsgUpdateClient, MsgUpdateParamsResponse, ClientConsensusStates, Params, QueryConsensusStateRequest, QueryClientStatusRequest, MsgRecoverClientResponse, QueryClientStatesResponse, QueryClientStateResponse, QueryConsensusStateResponse, QueryConsensusStatesResponse, MsgCreateClient, MsgUpgradeClientResponse, MsgIBCSoftwareUpgrade, IdentifiedGenesisMetadata, UpgradeProposal, MsgUpgradeClient, QueryClientStateRequest, QueryConsensusStateHeightsResponse, MsgCreateClientResponse, MsgRecoverClient, MsgUpdateParams, IdentifiedClientState };
-type sendConsensusStateWithHeightParams = {
-    value: ConsensusStateWithHeight;
+import { MsgSubmitMisbehaviour } from "./types/ibc/core/client/v1/tx";
+import { QueryClientStateResponse } from "./types/ibc/core/client/v1/query";
+import { QueryClientStatesRequest } from "./types/ibc/core/client/v1/query";
+import { QueryClientParamsRequest } from "./types/ibc/core/client/v1/query";
+import { QueryClientParamsResponse } from "./types/ibc/core/client/v1/query";
+import { MsgCreateClient } from "./types/ibc/core/client/v1/tx";
+import { MsgUpgradeClient } from "./types/ibc/core/client/v1/tx";
+import { GenesisState } from "./types/ibc/core/client/v1/genesis";
+import { QueryUpgradedClientStateRequest } from "./types/ibc/core/client/v1/query";
+import { Height } from "./types/ibc/core/client/v1/client";
+import { MsgSubmitMisbehaviourResponse } from "./types/ibc/core/client/v1/tx";
+import { QueryClientStatesResponse } from "./types/ibc/core/client/v1/query";
+import { GenesisMetadata } from "./types/ibc/core/client/v1/genesis";
+export { ClientConsensusStates, MsgUpdateParamsResponse, QueryConsensusStateResponse, QueryClientStateRequest, QueryConsensusStatesRequest, QueryClientStatusRequest, Params, MsgCreateClientResponse, MsgUpgradeClientResponse, QueryConsensusStateHeightsRequest, ConsensusStateWithHeight, UpgradeProposal, MsgUpdateClient, MsgIBCSoftwareUpgrade, MsgIBCSoftwareUpgradeResponse, IdentifiedGenesisMetadata, QueryUpgradedConsensusStateResponse, MsgRecoverClient, MsgRecoverClientResponse, MsgUpdateParams, QueryConsensusStateRequest, ClientUpdateProposal, MsgUpdateClientResponse, QueryConsensusStatesResponse, QueryConsensusStateHeightsResponse, QueryClientStatusResponse, QueryUpgradedClientStateResponse, QueryUpgradedConsensusStateRequest, IdentifiedClientState, MsgSubmitMisbehaviour, QueryClientStateResponse, QueryClientStatesRequest, QueryClientParamsRequest, QueryClientParamsResponse, MsgCreateClient, MsgUpgradeClient, GenesisState, QueryUpgradedClientStateRequest, Height, MsgSubmitMisbehaviourResponse, QueryClientStatesResponse, GenesisMetadata };
+type sendClientConsensusStatesParams = {
+    value: ClientConsensusStates;
     fee?: StdFee;
     memo?: string;
 };
-type sendHeightParams = {
-    value: Height;
+type sendMsgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryClientStatesRequestParams = {
-    value: QueryClientStatesRequest;
+type sendQueryConsensusStateResponseParams = {
+    value: QueryConsensusStateResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryConsensusStateHeightsRequestParams = {
-    value: QueryConsensusStateHeightsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryClientStatusResponseParams = {
-    value: QueryClientStatusResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgSubmitMisbehaviourParams = {
-    value: MsgSubmitMisbehaviour;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgSubmitMisbehaviourResponseParams = {
-    value: MsgSubmitMisbehaviourResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendClientUpdateProposalParams = {
-    value: ClientUpdateProposal;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGenesisMetadataParams = {
-    value: GenesisMetadata;
+type sendQueryClientStateRequestParams = {
+    value: QueryClientStateRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -95,23 +70,48 @@ type sendQueryConsensusStatesRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryClientParamsRequestParams = {
-    value: QueryClientParamsRequest;
+type sendQueryClientStatusRequestParams = {
+    value: QueryClientStatusRequest;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryClientParamsResponseParams = {
-    value: QueryClientParamsResponse;
+type sendParamsParams = {
+    value: Params;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryUpgradedClientStateRequestParams = {
-    value: QueryUpgradedClientStateRequest;
+type sendMsgCreateClientResponseParams = {
+    value: MsgCreateClientResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateClientResponseParams = {
-    value: MsgUpdateClientResponse;
+type sendMsgUpgradeClientResponseParams = {
+    value: MsgUpgradeClientResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryConsensusStateHeightsRequestParams = {
+    value: QueryConsensusStateHeightsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendConsensusStateWithHeightParams = {
+    value: ConsensusStateWithHeight;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendUpgradeProposalParams = {
+    value: UpgradeProposal;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateClientParams = {
+    value: MsgUpdateClient;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgIBCSoftwareUpgradeParams = {
+    value: MsgIBCSoftwareUpgrade;
     fee?: StdFee;
     memo?: string;
 };
@@ -120,8 +120,58 @@ type sendMsgIBCSoftwareUpgradeResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendGenesisStateParams = {
-    value: GenesisState;
+type sendIdentifiedGenesisMetadataParams = {
+    value: IdentifiedGenesisMetadata;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryUpgradedConsensusStateResponseParams = {
+    value: QueryUpgradedConsensusStateResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgRecoverClientParams = {
+    value: MsgRecoverClient;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgRecoverClientResponseParams = {
+    value: MsgRecoverClientResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateParamsParams = {
+    value: MsgUpdateParams;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryConsensusStateRequestParams = {
+    value: QueryConsensusStateRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendClientUpdateProposalParams = {
+    value: ClientUpdateProposal;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateClientResponseParams = {
+    value: MsgUpdateClientResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryConsensusStatesResponseParams = {
+    value: QueryConsensusStatesResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryConsensusStateHeightsResponseParams = {
+    value: QueryConsensusStateHeightsResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryClientStatusResponseParams = {
+    value: QueryClientStatusResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -135,48 +185,13 @@ type sendQueryUpgradedConsensusStateRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryUpgradedConsensusStateResponseParams = {
-    value: QueryUpgradedConsensusStateResponse;
+type sendIdentifiedClientStateParams = {
+    value: IdentifiedClientState;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateClientParams = {
-    value: MsgUpdateClient;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendClientConsensusStatesParams = {
-    value: ClientConsensusStates;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendParamsParams = {
-    value: Params;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryConsensusStateRequestParams = {
-    value: QueryConsensusStateRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryClientStatusRequestParams = {
-    value: QueryClientStatusRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgRecoverClientResponseParams = {
-    value: MsgRecoverClientResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryClientStatesResponseParams = {
-    value: QueryClientStatesResponse;
+type sendMsgSubmitMisbehaviourParams = {
+    value: MsgSubmitMisbehaviour;
     fee?: StdFee;
     memo?: string;
 };
@@ -185,13 +200,18 @@ type sendQueryClientStateResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryConsensusStateResponseParams = {
-    value: QueryConsensusStateResponse;
+type sendQueryClientStatesRequestParams = {
+    value: QueryClientStatesRequest;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryConsensusStatesResponseParams = {
-    value: QueryConsensusStatesResponse;
+type sendQueryClientParamsRequestParams = {
+    value: QueryClientParamsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryClientParamsResponseParams = {
+    value: QueryClientParamsResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -200,108 +220,118 @@ type sendMsgCreateClientParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpgradeClientResponseParams = {
-    value: MsgUpgradeClientResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgIBCSoftwareUpgradeParams = {
-    value: MsgIBCSoftwareUpgrade;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendIdentifiedGenesisMetadataParams = {
-    value: IdentifiedGenesisMetadata;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendUpgradeProposalParams = {
-    value: UpgradeProposal;
-    fee?: StdFee;
-    memo?: string;
-};
 type sendMsgUpgradeClientParams = {
     value: MsgUpgradeClient;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryClientStateRequestParams = {
-    value: QueryClientStateRequest;
+type sendGenesisStateParams = {
+    value: GenesisState;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryConsensusStateHeightsResponseParams = {
-    value: QueryConsensusStateHeightsResponse;
+type sendQueryUpgradedClientStateRequestParams = {
+    value: QueryUpgradedClientStateRequest;
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgCreateClientResponseParams = {
-    value: MsgCreateClientResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgRecoverClientParams = {
-    value: MsgRecoverClient;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgUpdateParamsParams = {
-    value: MsgUpdateParams;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendIdentifiedClientStateParams = {
-    value: IdentifiedClientState;
-    fee?: StdFee;
-    memo?: string;
-};
-type consensusStateWithHeightParams = {
-    value: ConsensusStateWithHeight;
-};
-type heightParams = {
+type sendHeightParams = {
     value: Height;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryClientStatesRequestParams = {
-    value: QueryClientStatesRequest;
-};
-type queryConsensusStateHeightsRequestParams = {
-    value: QueryConsensusStateHeightsRequest;
-};
-type queryClientStatusResponseParams = {
-    value: QueryClientStatusResponse;
-};
-type msgSubmitMisbehaviourParams = {
-    value: MsgSubmitMisbehaviour;
-};
-type msgSubmitMisbehaviourResponseParams = {
+type sendMsgSubmitMisbehaviourResponseParams = {
     value: MsgSubmitMisbehaviourResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type clientUpdateProposalParams = {
-    value: ClientUpdateProposal;
+type sendQueryClientStatesResponseParams = {
+    value: QueryClientStatesResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type genesisMetadataParams = {
+type sendGenesisMetadataParams = {
     value: GenesisMetadata;
+    fee?: StdFee;
+    memo?: string;
+};
+type clientConsensusStatesParams = {
+    value: ClientConsensusStates;
+};
+type msgUpdateParamsResponseParams = {
+    value: MsgUpdateParamsResponse;
+};
+type queryConsensusStateResponseParams = {
+    value: QueryConsensusStateResponse;
+};
+type queryClientStateRequestParams = {
+    value: QueryClientStateRequest;
 };
 type queryConsensusStatesRequestParams = {
     value: QueryConsensusStatesRequest;
 };
-type queryClientParamsRequestParams = {
-    value: QueryClientParamsRequest;
+type queryClientStatusRequestParams = {
+    value: QueryClientStatusRequest;
 };
-type queryClientParamsResponseParams = {
-    value: QueryClientParamsResponse;
+type paramsParams = {
+    value: Params;
 };
-type queryUpgradedClientStateRequestParams = {
-    value: QueryUpgradedClientStateRequest;
+type msgCreateClientResponseParams = {
+    value: MsgCreateClientResponse;
 };
-type msgUpdateClientResponseParams = {
-    value: MsgUpdateClientResponse;
+type msgUpgradeClientResponseParams = {
+    value: MsgUpgradeClientResponse;
+};
+type queryConsensusStateHeightsRequestParams = {
+    value: QueryConsensusStateHeightsRequest;
+};
+type consensusStateWithHeightParams = {
+    value: ConsensusStateWithHeight;
+};
+type upgradeProposalParams = {
+    value: UpgradeProposal;
+};
+type msgUpdateClientParams = {
+    value: MsgUpdateClient;
+};
+type msgIbcsoftwareUpgradeParams = {
+    value: MsgIBCSoftwareUpgrade;
 };
 type msgIbcsoftwareUpgradeResponseParams = {
     value: MsgIBCSoftwareUpgradeResponse;
 };
-type genesisStateParams = {
-    value: GenesisState;
+type identifiedGenesisMetadataParams = {
+    value: IdentifiedGenesisMetadata;
+};
+type queryUpgradedConsensusStateResponseParams = {
+    value: QueryUpgradedConsensusStateResponse;
+};
+type msgRecoverClientParams = {
+    value: MsgRecoverClient;
+};
+type msgRecoverClientResponseParams = {
+    value: MsgRecoverClientResponse;
+};
+type msgUpdateParamsParams = {
+    value: MsgUpdateParams;
+};
+type queryConsensusStateRequestParams = {
+    value: QueryConsensusStateRequest;
+};
+type clientUpdateProposalParams = {
+    value: ClientUpdateProposal;
+};
+type msgUpdateClientResponseParams = {
+    value: MsgUpdateClientResponse;
+};
+type queryConsensusStatesResponseParams = {
+    value: QueryConsensusStatesResponse;
+};
+type queryConsensusStateHeightsResponseParams = {
+    value: QueryConsensusStateHeightsResponse;
+};
+type queryClientStatusResponseParams = {
+    value: QueryClientStatusResponse;
 };
 type queryUpgradedClientStateResponseParams = {
     value: QueryUpgradedClientStateResponse;
@@ -309,77 +339,47 @@ type queryUpgradedClientStateResponseParams = {
 type queryUpgradedConsensusStateRequestParams = {
     value: QueryUpgradedConsensusStateRequest;
 };
-type queryUpgradedConsensusStateResponseParams = {
-    value: QueryUpgradedConsensusStateResponse;
+type identifiedClientStateParams = {
+    value: IdentifiedClientState;
 };
-type msgUpdateClientParams = {
-    value: MsgUpdateClient;
-};
-type msgUpdateParamsResponseParams = {
-    value: MsgUpdateParamsResponse;
-};
-type clientConsensusStatesParams = {
-    value: ClientConsensusStates;
-};
-type paramsParams = {
-    value: Params;
-};
-type queryConsensusStateRequestParams = {
-    value: QueryConsensusStateRequest;
-};
-type queryClientStatusRequestParams = {
-    value: QueryClientStatusRequest;
-};
-type msgRecoverClientResponseParams = {
-    value: MsgRecoverClientResponse;
-};
-type queryClientStatesResponseParams = {
-    value: QueryClientStatesResponse;
+type msgSubmitMisbehaviourParams = {
+    value: MsgSubmitMisbehaviour;
 };
 type queryClientStateResponseParams = {
     value: QueryClientStateResponse;
 };
-type queryConsensusStateResponseParams = {
-    value: QueryConsensusStateResponse;
+type queryClientStatesRequestParams = {
+    value: QueryClientStatesRequest;
 };
-type queryConsensusStatesResponseParams = {
-    value: QueryConsensusStatesResponse;
+type queryClientParamsRequestParams = {
+    value: QueryClientParamsRequest;
+};
+type queryClientParamsResponseParams = {
+    value: QueryClientParamsResponse;
 };
 type msgCreateClientParams = {
     value: MsgCreateClient;
 };
-type msgUpgradeClientResponseParams = {
-    value: MsgUpgradeClientResponse;
-};
-type msgIbcsoftwareUpgradeParams = {
-    value: MsgIBCSoftwareUpgrade;
-};
-type identifiedGenesisMetadataParams = {
-    value: IdentifiedGenesisMetadata;
-};
-type upgradeProposalParams = {
-    value: UpgradeProposal;
-};
 type msgUpgradeClientParams = {
     value: MsgUpgradeClient;
 };
-type queryClientStateRequestParams = {
-    value: QueryClientStateRequest;
+type genesisStateParams = {
+    value: GenesisState;
 };
-type queryConsensusStateHeightsResponseParams = {
-    value: QueryConsensusStateHeightsResponse;
+type queryUpgradedClientStateRequestParams = {
+    value: QueryUpgradedClientStateRequest;
 };
-type msgCreateClientResponseParams = {
-    value: MsgCreateClientResponse;
+type heightParams = {
+    value: Height;
 };
-type msgRecoverClientParams = {
-    value: MsgRecoverClient;
+type msgSubmitMisbehaviourResponseParams = {
+    value: MsgSubmitMisbehaviourResponse;
 };
-type msgUpdateParamsParams = {
-    value: MsgUpdateParams;
+type queryClientStatesResponseParams = {
+    value: QueryClientStatesResponse;
 };
-type identifiedClientStateParams = {
-    value: IdentifiedClientState;
+type genesisMetadataParams = {
+    value: GenesisMetadata;
 };
 export declare const registry: Registry;
 interface TxClientOptions {
@@ -388,90 +388,90 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendConsensusStateWithHeight({ value, fee, memo }: sendConsensusStateWithHeightParams): Promise<DeliverTxResponse>;
-    sendHeight({ value, fee, memo }: sendHeightParams): Promise<DeliverTxResponse>;
-    sendQueryClientStatesRequest({ value, fee, memo }: sendQueryClientStatesRequestParams): Promise<DeliverTxResponse>;
-    sendQueryConsensusStateHeightsRequest({ value, fee, memo }: sendQueryConsensusStateHeightsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryClientStatusResponse({ value, fee, memo }: sendQueryClientStatusResponseParams): Promise<DeliverTxResponse>;
-    sendMsgSubmitMisbehaviour({ value, fee, memo }: sendMsgSubmitMisbehaviourParams): Promise<DeliverTxResponse>;
-    sendMsgSubmitMisbehaviourResponse({ value, fee, memo }: sendMsgSubmitMisbehaviourResponseParams): Promise<DeliverTxResponse>;
-    sendClientUpdateProposal({ value, fee, memo }: sendClientUpdateProposalParams): Promise<DeliverTxResponse>;
-    sendGenesisMetadata({ value, fee, memo }: sendGenesisMetadataParams): Promise<DeliverTxResponse>;
+    sendClientConsensusStates({ value, fee, memo }: sendClientConsensusStatesParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryConsensusStateResponse({ value, fee, memo }: sendQueryConsensusStateResponseParams): Promise<DeliverTxResponse>;
+    sendQueryClientStateRequest({ value, fee, memo }: sendQueryClientStateRequestParams): Promise<DeliverTxResponse>;
     sendQueryConsensusStatesRequest({ value, fee, memo }: sendQueryConsensusStatesRequestParams): Promise<DeliverTxResponse>;
-    sendQueryClientParamsRequest({ value, fee, memo }: sendQueryClientParamsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryClientParamsResponse({ value, fee, memo }: sendQueryClientParamsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryUpgradedClientStateRequest({ value, fee, memo }: sendQueryUpgradedClientStateRequestParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateClientResponse({ value, fee, memo }: sendMsgUpdateClientResponseParams): Promise<DeliverTxResponse>;
+    sendQueryClientStatusRequest({ value, fee, memo }: sendQueryClientStatusRequestParams): Promise<DeliverTxResponse>;
+    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
+    sendMsgCreateClientResponse({ value, fee, memo }: sendMsgCreateClientResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpgradeClientResponse({ value, fee, memo }: sendMsgUpgradeClientResponseParams): Promise<DeliverTxResponse>;
+    sendQueryConsensusStateHeightsRequest({ value, fee, memo }: sendQueryConsensusStateHeightsRequestParams): Promise<DeliverTxResponse>;
+    sendConsensusStateWithHeight({ value, fee, memo }: sendConsensusStateWithHeightParams): Promise<DeliverTxResponse>;
+    sendUpgradeProposal({ value, fee, memo }: sendUpgradeProposalParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateClient({ value, fee, memo }: sendMsgUpdateClientParams): Promise<DeliverTxResponse>;
+    sendMsgIBCSoftwareUpgrade({ value, fee, memo }: sendMsgIBCSoftwareUpgradeParams): Promise<DeliverTxResponse>;
     sendMsgIBCSoftwareUpgradeResponse({ value, fee, memo }: sendMsgIBCSoftwareUpgradeResponseParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendIdentifiedGenesisMetadata({ value, fee, memo }: sendIdentifiedGenesisMetadataParams): Promise<DeliverTxResponse>;
+    sendQueryUpgradedConsensusStateResponse({ value, fee, memo }: sendQueryUpgradedConsensusStateResponseParams): Promise<DeliverTxResponse>;
+    sendMsgRecoverClient({ value, fee, memo }: sendMsgRecoverClientParams): Promise<DeliverTxResponse>;
+    sendMsgRecoverClientResponse({ value, fee, memo }: sendMsgRecoverClientResponseParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
+    sendQueryConsensusStateRequest({ value, fee, memo }: sendQueryConsensusStateRequestParams): Promise<DeliverTxResponse>;
+    sendClientUpdateProposal({ value, fee, memo }: sendClientUpdateProposalParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateClientResponse({ value, fee, memo }: sendMsgUpdateClientResponseParams): Promise<DeliverTxResponse>;
+    sendQueryConsensusStatesResponse({ value, fee, memo }: sendQueryConsensusStatesResponseParams): Promise<DeliverTxResponse>;
+    sendQueryConsensusStateHeightsResponse({ value, fee, memo }: sendQueryConsensusStateHeightsResponseParams): Promise<DeliverTxResponse>;
+    sendQueryClientStatusResponse({ value, fee, memo }: sendQueryClientStatusResponseParams): Promise<DeliverTxResponse>;
     sendQueryUpgradedClientStateResponse({ value, fee, memo }: sendQueryUpgradedClientStateResponseParams): Promise<DeliverTxResponse>;
     sendQueryUpgradedConsensusStateRequest({ value, fee, memo }: sendQueryUpgradedConsensusStateRequestParams): Promise<DeliverTxResponse>;
-    sendQueryUpgradedConsensusStateResponse({ value, fee, memo }: sendQueryUpgradedConsensusStateResponseParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateClient({ value, fee, memo }: sendMsgUpdateClientParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendClientConsensusStates({ value, fee, memo }: sendClientConsensusStatesParams): Promise<DeliverTxResponse>;
-    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
-    sendQueryConsensusStateRequest({ value, fee, memo }: sendQueryConsensusStateRequestParams): Promise<DeliverTxResponse>;
-    sendQueryClientStatusRequest({ value, fee, memo }: sendQueryClientStatusRequestParams): Promise<DeliverTxResponse>;
-    sendMsgRecoverClientResponse({ value, fee, memo }: sendMsgRecoverClientResponseParams): Promise<DeliverTxResponse>;
-    sendQueryClientStatesResponse({ value, fee, memo }: sendQueryClientStatesResponseParams): Promise<DeliverTxResponse>;
-    sendQueryClientStateResponse({ value, fee, memo }: sendQueryClientStateResponseParams): Promise<DeliverTxResponse>;
-    sendQueryConsensusStateResponse({ value, fee, memo }: sendQueryConsensusStateResponseParams): Promise<DeliverTxResponse>;
-    sendQueryConsensusStatesResponse({ value, fee, memo }: sendQueryConsensusStatesResponseParams): Promise<DeliverTxResponse>;
-    sendMsgCreateClient({ value, fee, memo }: sendMsgCreateClientParams): Promise<DeliverTxResponse>;
-    sendMsgUpgradeClientResponse({ value, fee, memo }: sendMsgUpgradeClientResponseParams): Promise<DeliverTxResponse>;
-    sendMsgIBCSoftwareUpgrade({ value, fee, memo }: sendMsgIBCSoftwareUpgradeParams): Promise<DeliverTxResponse>;
-    sendIdentifiedGenesisMetadata({ value, fee, memo }: sendIdentifiedGenesisMetadataParams): Promise<DeliverTxResponse>;
-    sendUpgradeProposal({ value, fee, memo }: sendUpgradeProposalParams): Promise<DeliverTxResponse>;
-    sendMsgUpgradeClient({ value, fee, memo }: sendMsgUpgradeClientParams): Promise<DeliverTxResponse>;
-    sendQueryClientStateRequest({ value, fee, memo }: sendQueryClientStateRequestParams): Promise<DeliverTxResponse>;
-    sendQueryConsensusStateHeightsResponse({ value, fee, memo }: sendQueryConsensusStateHeightsResponseParams): Promise<DeliverTxResponse>;
-    sendMsgCreateClientResponse({ value, fee, memo }: sendMsgCreateClientResponseParams): Promise<DeliverTxResponse>;
-    sendMsgRecoverClient({ value, fee, memo }: sendMsgRecoverClientParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
     sendIdentifiedClientState({ value, fee, memo }: sendIdentifiedClientStateParams): Promise<DeliverTxResponse>;
-    consensusStateWithHeight({ value }: consensusStateWithHeightParams): EncodeObject;
-    height({ value }: heightParams): EncodeObject;
-    queryClientStatesRequest({ value }: queryClientStatesRequestParams): EncodeObject;
-    queryConsensusStateHeightsRequest({ value }: queryConsensusStateHeightsRequestParams): EncodeObject;
-    queryClientStatusResponse({ value }: queryClientStatusResponseParams): EncodeObject;
-    msgSubmitMisbehaviour({ value }: msgSubmitMisbehaviourParams): EncodeObject;
-    msgSubmitMisbehaviourResponse({ value }: msgSubmitMisbehaviourResponseParams): EncodeObject;
-    clientUpdateProposal({ value }: clientUpdateProposalParams): EncodeObject;
-    genesisMetadata({ value }: genesisMetadataParams): EncodeObject;
+    sendMsgSubmitMisbehaviour({ value, fee, memo }: sendMsgSubmitMisbehaviourParams): Promise<DeliverTxResponse>;
+    sendQueryClientStateResponse({ value, fee, memo }: sendQueryClientStateResponseParams): Promise<DeliverTxResponse>;
+    sendQueryClientStatesRequest({ value, fee, memo }: sendQueryClientStatesRequestParams): Promise<DeliverTxResponse>;
+    sendQueryClientParamsRequest({ value, fee, memo }: sendQueryClientParamsRequestParams): Promise<DeliverTxResponse>;
+    sendQueryClientParamsResponse({ value, fee, memo }: sendQueryClientParamsResponseParams): Promise<DeliverTxResponse>;
+    sendMsgCreateClient({ value, fee, memo }: sendMsgCreateClientParams): Promise<DeliverTxResponse>;
+    sendMsgUpgradeClient({ value, fee, memo }: sendMsgUpgradeClientParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendQueryUpgradedClientStateRequest({ value, fee, memo }: sendQueryUpgradedClientStateRequestParams): Promise<DeliverTxResponse>;
+    sendHeight({ value, fee, memo }: sendHeightParams): Promise<DeliverTxResponse>;
+    sendMsgSubmitMisbehaviourResponse({ value, fee, memo }: sendMsgSubmitMisbehaviourResponseParams): Promise<DeliverTxResponse>;
+    sendQueryClientStatesResponse({ value, fee, memo }: sendQueryClientStatesResponseParams): Promise<DeliverTxResponse>;
+    sendGenesisMetadata({ value, fee, memo }: sendGenesisMetadataParams): Promise<DeliverTxResponse>;
+    clientConsensusStates({ value }: clientConsensusStatesParams): EncodeObject;
+    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
+    queryConsensusStateResponse({ value }: queryConsensusStateResponseParams): EncodeObject;
+    queryClientStateRequest({ value }: queryClientStateRequestParams): EncodeObject;
     queryConsensusStatesRequest({ value }: queryConsensusStatesRequestParams): EncodeObject;
-    queryClientParamsRequest({ value }: queryClientParamsRequestParams): EncodeObject;
-    queryClientParamsResponse({ value }: queryClientParamsResponseParams): EncodeObject;
-    queryUpgradedClientStateRequest({ value }: queryUpgradedClientStateRequestParams): EncodeObject;
-    msgUpdateClientResponse({ value }: msgUpdateClientResponseParams): EncodeObject;
+    queryClientStatusRequest({ value }: queryClientStatusRequestParams): EncodeObject;
+    params({ value }: paramsParams): EncodeObject;
+    msgCreateClientResponse({ value }: msgCreateClientResponseParams): EncodeObject;
+    msgUpgradeClientResponse({ value }: msgUpgradeClientResponseParams): EncodeObject;
+    queryConsensusStateHeightsRequest({ value }: queryConsensusStateHeightsRequestParams): EncodeObject;
+    consensusStateWithHeight({ value }: consensusStateWithHeightParams): EncodeObject;
+    upgradeProposal({ value }: upgradeProposalParams): EncodeObject;
+    msgUpdateClient({ value }: msgUpdateClientParams): EncodeObject;
+    msgIbcsoftwareUpgrade({ value }: msgIbcsoftwareUpgradeParams): EncodeObject;
     msgIbcsoftwareUpgradeResponse({ value }: msgIbcsoftwareUpgradeResponseParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
+    identifiedGenesisMetadata({ value }: identifiedGenesisMetadataParams): EncodeObject;
+    queryUpgradedConsensusStateResponse({ value }: queryUpgradedConsensusStateResponseParams): EncodeObject;
+    msgRecoverClient({ value }: msgRecoverClientParams): EncodeObject;
+    msgRecoverClientResponse({ value }: msgRecoverClientResponseParams): EncodeObject;
+    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
+    queryConsensusStateRequest({ value }: queryConsensusStateRequestParams): EncodeObject;
+    clientUpdateProposal({ value }: clientUpdateProposalParams): EncodeObject;
+    msgUpdateClientResponse({ value }: msgUpdateClientResponseParams): EncodeObject;
+    queryConsensusStatesResponse({ value }: queryConsensusStatesResponseParams): EncodeObject;
+    queryConsensusStateHeightsResponse({ value }: queryConsensusStateHeightsResponseParams): EncodeObject;
+    queryClientStatusResponse({ value }: queryClientStatusResponseParams): EncodeObject;
     queryUpgradedClientStateResponse({ value }: queryUpgradedClientStateResponseParams): EncodeObject;
     queryUpgradedConsensusStateRequest({ value }: queryUpgradedConsensusStateRequestParams): EncodeObject;
-    queryUpgradedConsensusStateResponse({ value }: queryUpgradedConsensusStateResponseParams): EncodeObject;
-    msgUpdateClient({ value }: msgUpdateClientParams): EncodeObject;
-    msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    clientConsensusStates({ value }: clientConsensusStatesParams): EncodeObject;
-    params({ value }: paramsParams): EncodeObject;
-    queryConsensusStateRequest({ value }: queryConsensusStateRequestParams): EncodeObject;
-    queryClientStatusRequest({ value }: queryClientStatusRequestParams): EncodeObject;
-    msgRecoverClientResponse({ value }: msgRecoverClientResponseParams): EncodeObject;
-    queryClientStatesResponse({ value }: queryClientStatesResponseParams): EncodeObject;
-    queryClientStateResponse({ value }: queryClientStateResponseParams): EncodeObject;
-    queryConsensusStateResponse({ value }: queryConsensusStateResponseParams): EncodeObject;
-    queryConsensusStatesResponse({ value }: queryConsensusStatesResponseParams): EncodeObject;
-    msgCreateClient({ value }: msgCreateClientParams): EncodeObject;
-    msgUpgradeClientResponse({ value }: msgUpgradeClientResponseParams): EncodeObject;
-    msgIbcsoftwareUpgrade({ value }: msgIbcsoftwareUpgradeParams): EncodeObject;
-    identifiedGenesisMetadata({ value }: identifiedGenesisMetadataParams): EncodeObject;
-    upgradeProposal({ value }: upgradeProposalParams): EncodeObject;
-    msgUpgradeClient({ value }: msgUpgradeClientParams): EncodeObject;
-    queryClientStateRequest({ value }: queryClientStateRequestParams): EncodeObject;
-    queryConsensusStateHeightsResponse({ value }: queryConsensusStateHeightsResponseParams): EncodeObject;
-    msgCreateClientResponse({ value }: msgCreateClientResponseParams): EncodeObject;
-    msgRecoverClient({ value }: msgRecoverClientParams): EncodeObject;
-    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
     identifiedClientState({ value }: identifiedClientStateParams): EncodeObject;
+    msgSubmitMisbehaviour({ value }: msgSubmitMisbehaviourParams): EncodeObject;
+    queryClientStateResponse({ value }: queryClientStateResponseParams): EncodeObject;
+    queryClientStatesRequest({ value }: queryClientStatesRequestParams): EncodeObject;
+    queryClientParamsRequest({ value }: queryClientParamsRequestParams): EncodeObject;
+    queryClientParamsResponse({ value }: queryClientParamsResponseParams): EncodeObject;
+    msgCreateClient({ value }: msgCreateClientParams): EncodeObject;
+    msgUpgradeClient({ value }: msgUpgradeClientParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
+    queryUpgradedClientStateRequest({ value }: queryUpgradedClientStateRequestParams): EncodeObject;
+    height({ value }: heightParams): EncodeObject;
+    msgSubmitMisbehaviourResponse({ value }: msgSubmitMisbehaviourResponseParams): EncodeObject;
+    queryClientStatesResponse({ value }: queryClientStatesResponseParams): EncodeObject;
+    genesisMetadata({ value }: genesisMetadataParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

@@ -187,16 +187,17 @@ export default function IgntUnstack(props: IgntUnstackProps) {
     balances.assets = balances.assets.filter((value) => value.denom === "sigTAO");
   }
 
-  const { QueryGetPendingUnstakeRequest } = useSigmoidSigmoid();
-  const data = QueryGetPendingUnstakeRequest({});
+  const { QueryGetFrontPendingUnstakeRequest } = useSigmoidSigmoid();
+  const data = QueryGetFrontPendingUnstakeRequest(address, {});
+  console.log("UNSTAKES");
   console.log(data);
 
   return (
     <div className={props.className ?? ""}>
       <div className="pt-8">
-        {data.data !== undefined && data.data.request !== undefined && data.data.request?.unstakeAddress !== "" ? (
+        {data.data !== undefined && data.data.request !== undefined && data.data.request?.mintAddress !== "" ? (
           <div>
-            <div className="text-left text-black opacity-75 text-md font-normal">You have active unstake</div>
+            <div className="text-left text-black opacity-75 text-md font-normal">You have active unstake request</div>
             <table className="table-auto w-full">
               <tbody>
                 <tr>
@@ -224,7 +225,7 @@ export default function IgntUnstack(props: IgntUnstackProps) {
                           <IgntDenom denom={"sigTAO"} />
                         </span>
                       </div>
-                      <div className="opacity-60">{"to: " + data.data.request?.unstakeAddress}</div>
+                      <div className="opacity-60">{"to: " + data.data.request?.mintAddress}</div>
                     </div>
                   </td>
                 </tr>

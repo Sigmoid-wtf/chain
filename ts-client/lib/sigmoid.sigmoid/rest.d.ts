@@ -20,6 +20,22 @@ export interface QueryGetAmountResponse {
     /** @format uint64 */
     amount?: string;
 }
+export interface QueryGetFrontPendingStakeRequestResponse {
+    request?: {
+        senderAddress?: string;
+        mintAddress?: string;
+        status?: string;
+        amount?: string;
+    };
+}
+export interface QueryGetFrontPendingUnstakeRequestResponse {
+    request?: {
+        senderAddress?: string;
+        mintAddress?: string;
+        status?: string;
+        amount?: string;
+    };
+}
 export interface QueryGetLastProcessedResponse {
     transactionId?: string;
 }
@@ -32,6 +48,14 @@ export interface QueryGetPendingUnstakeRequestResponse {
 }
 export interface QueryParamsResponse {
     params?: object;
+}
+export interface Request {
+    senderAddress?: string;
+    mintAddress?: string;
+    /** @format uint64 */
+    status?: string;
+    /** @format uint64 */
+    amount?: string;
 }
 export type MsgApproveRequestResponse = object;
 export type MsgApproveUnstakeRequestResponse = object;
@@ -91,6 +115,36 @@ export declare class Api<SecurityDataType extends unknown> extends HttpClient<Se
      */
     queryGetAmount: (senderAddress: string, params?: RequestParams) => Promise<AxiosResponse<{
         amount?: string;
+    }>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryGetFrontPendingStakeRequest
+     * @request GET:/sigmoid/sigmoid/get_front_pending_stake_request/{address}
+     */
+    queryGetFrontPendingStakeRequest: (address: string, params?: RequestParams) => Promise<AxiosResponse<{
+        request?: {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: string;
+            amount?: string;
+        };
+    }>>;
+    /**
+     * No description
+     *
+     * @tags Query
+     * @name QueryGetFrontPendingUnstakeRequest
+     * @request GET:/sigmoid/sigmoid/get_front_pending_unstake_request/{address}
+     */
+    queryGetFrontPendingUnstakeRequest: (address: string, params?: RequestParams) => Promise<AxiosResponse<{
+        request?: {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: string;
+            amount?: string;
+        };
     }>>;
     /**
      * No description

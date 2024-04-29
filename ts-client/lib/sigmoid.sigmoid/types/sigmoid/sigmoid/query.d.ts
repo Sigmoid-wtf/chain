@@ -1,5 +1,6 @@
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
+import { Request } from "./request";
 import { MsgCreateUnstakeRequest } from "./tx";
 export declare const protobufPackage = "sigmoid.sigmoid";
 /** QueryParamsRequest is request type for the Query/Params RPC method. */
@@ -25,6 +26,18 @@ export interface QueryGetPendingUnstakeRequestRequest {
 }
 export interface QueryGetPendingUnstakeRequestResponse {
     request: MsgCreateUnstakeRequest | undefined;
+}
+export interface QueryGetFrontPendingStakeRequestRequest {
+    address: string;
+}
+export interface QueryGetFrontPendingStakeRequestResponse {
+    request: Request | undefined;
+}
+export interface QueryGetFrontPendingUnstakeRequestRequest {
+    address: string;
+}
+export interface QueryGetFrontPendingUnstakeRequestResponse {
+    request: Request | undefined;
 }
 export declare const QueryParamsRequest: {
     encode(_: QueryParamsRequest, writer?: _m0.Writer): _m0.Writer;
@@ -154,6 +167,130 @@ export declare const QueryGetPendingUnstakeRequestResponse: {
         } & { [K_2 in Exclude<keyof I_1["request"], keyof MsgCreateUnstakeRequest>]: never; };
     } & { [K_3 in Exclude<keyof I_1, "request">]: never; }>(object: I_1): QueryGetPendingUnstakeRequestResponse;
 };
+export declare const QueryGetFrontPendingStakeRequestRequest: {
+    encode(message: QueryGetFrontPendingStakeRequestRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontPendingStakeRequestRequest;
+    fromJSON(object: any): QueryGetFrontPendingStakeRequestRequest;
+    toJSON(message: QueryGetFrontPendingStakeRequestRequest): unknown;
+    create<I extends {
+        address?: string;
+    } & {
+        address?: string;
+    } & { [K in Exclude<keyof I, "address">]: never; }>(base?: I): QueryGetFrontPendingStakeRequestRequest;
+    fromPartial<I_1 extends {
+        address?: string;
+    } & {
+        address?: string;
+    } & { [K_1 in Exclude<keyof I_1, "address">]: never; }>(object: I_1): QueryGetFrontPendingStakeRequestRequest;
+};
+export declare const QueryGetFrontPendingStakeRequestResponse: {
+    encode(message: QueryGetFrontPendingStakeRequestResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontPendingStakeRequestResponse;
+    fromJSON(object: any): QueryGetFrontPendingStakeRequestResponse;
+    toJSON(message: QueryGetFrontPendingStakeRequestResponse): unknown;
+    create<I extends {
+        request?: {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        };
+    } & {
+        request?: {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        } & {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        } & { [K in Exclude<keyof I["request"], keyof Request>]: never; };
+    } & { [K_1 in Exclude<keyof I, "request">]: never; }>(base?: I): QueryGetFrontPendingStakeRequestResponse;
+    fromPartial<I_1 extends {
+        request?: {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        };
+    } & {
+        request?: {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        } & {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        } & { [K_2 in Exclude<keyof I_1["request"], keyof Request>]: never; };
+    } & { [K_3 in Exclude<keyof I_1, "request">]: never; }>(object: I_1): QueryGetFrontPendingStakeRequestResponse;
+};
+export declare const QueryGetFrontPendingUnstakeRequestRequest: {
+    encode(message: QueryGetFrontPendingUnstakeRequestRequest, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontPendingUnstakeRequestRequest;
+    fromJSON(object: any): QueryGetFrontPendingUnstakeRequestRequest;
+    toJSON(message: QueryGetFrontPendingUnstakeRequestRequest): unknown;
+    create<I extends {
+        address?: string;
+    } & {
+        address?: string;
+    } & { [K in Exclude<keyof I, "address">]: never; }>(base?: I): QueryGetFrontPendingUnstakeRequestRequest;
+    fromPartial<I_1 extends {
+        address?: string;
+    } & {
+        address?: string;
+    } & { [K_1 in Exclude<keyof I_1, "address">]: never; }>(object: I_1): QueryGetFrontPendingUnstakeRequestRequest;
+};
+export declare const QueryGetFrontPendingUnstakeRequestResponse: {
+    encode(message: QueryGetFrontPendingUnstakeRequestResponse, writer?: _m0.Writer): _m0.Writer;
+    decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontPendingUnstakeRequestResponse;
+    fromJSON(object: any): QueryGetFrontPendingUnstakeRequestResponse;
+    toJSON(message: QueryGetFrontPendingUnstakeRequestResponse): unknown;
+    create<I extends {
+        request?: {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        };
+    } & {
+        request?: {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        } & {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        } & { [K in Exclude<keyof I["request"], keyof Request>]: never; };
+    } & { [K_1 in Exclude<keyof I, "request">]: never; }>(base?: I): QueryGetFrontPendingUnstakeRequestResponse;
+    fromPartial<I_1 extends {
+        request?: {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        };
+    } & {
+        request?: {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        } & {
+            senderAddress?: string;
+            mintAddress?: string;
+            status?: number;
+            amount?: number;
+        } & { [K_2 in Exclude<keyof I_1["request"], keyof Request>]: never; };
+    } & { [K_3 in Exclude<keyof I_1, "request">]: never; }>(object: I_1): QueryGetFrontPendingUnstakeRequestResponse;
+};
 /** Query defines the gRPC querier service. */
 export interface Query {
     /** Parameters queries the parameters of the module. */
@@ -164,6 +301,10 @@ export interface Query {
     GetLastProcessed(request: QueryGetLastProcessedRequest): Promise<QueryGetLastProcessedResponse>;
     /** Queries a list of GetPendingUnstakeRequest items. */
     GetPendingUnstakeRequest(request: QueryGetPendingUnstakeRequestRequest): Promise<QueryGetPendingUnstakeRequestResponse>;
+    /** Queries a list of GetFrontPendingStakeRequest items. */
+    GetFrontPendingStakeRequest(request: QueryGetFrontPendingStakeRequestRequest): Promise<QueryGetFrontPendingStakeRequestResponse>;
+    /** Queries a list of GetFrontPendingUnstakeRequest items. */
+    GetFrontPendingUnstakeRequest(request: QueryGetFrontPendingUnstakeRequestRequest): Promise<QueryGetFrontPendingUnstakeRequestResponse>;
 }
 export declare const QueryServiceName = "sigmoid.sigmoid.Query";
 export declare class QueryClientImpl implements Query {
@@ -176,6 +317,8 @@ export declare class QueryClientImpl implements Query {
     GetAmount(request: QueryGetAmountRequest): Promise<QueryGetAmountResponse>;
     GetLastProcessed(request: QueryGetLastProcessedRequest): Promise<QueryGetLastProcessedResponse>;
     GetPendingUnstakeRequest(request: QueryGetPendingUnstakeRequestRequest): Promise<QueryGetPendingUnstakeRequestResponse>;
+    GetFrontPendingStakeRequest(request: QueryGetFrontPendingStakeRequestRequest): Promise<QueryGetFrontPendingStakeRequestResponse>;
+    GetFrontPendingUnstakeRequest(request: QueryGetFrontPendingUnstakeRequestRequest): Promise<QueryGetFrontPendingUnstakeRequestResponse>;
 }
 interface Rpc {
     request(service: string, method: string, data: Uint8Array): Promise<Uint8Array>;

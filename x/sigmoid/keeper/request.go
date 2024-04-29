@@ -53,10 +53,10 @@ func (k Keeper) GetRequestInReversedStore(ctx sdk.Context, senderAddress string)
 
 	bin := registeredSenderAddressesStore.Get([]byte(senderAddress))
 	if bin == nil {
-		return value, false
+		return "", false
 	}
 
-	return string(value), true
+	return string(bin), true
 }
 
 func (k Keeper) RemoveRequest(ctx sdk.Context, senderAddress *string) {
