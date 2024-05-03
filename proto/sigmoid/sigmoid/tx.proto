@@ -16,16 +16,17 @@ service Msg {
   
   // UpdateParams defines a (governance) operation for updating the module
   // parameters. The authority defaults to the x/gov module account.
-  rpc UpdateParams          (MsgUpdateParams         ) returns (MsgUpdateParamsResponse         );
-  rpc CreateRequest         (MsgCreateRequest        ) returns (MsgCreateRequestResponse        );
-  rpc ApproveRequest        (MsgApproveRequest       ) returns (MsgApproveRequestResponse       );
-  rpc ProcessTransaction    (MsgProcessTransaction   ) returns (MsgProcessTransactionResponse   );
-  rpc CreateUnstakeRequest  (MsgCreateUnstakeRequest ) returns (MsgCreateUnstakeRequestResponse );
-  rpc ApproveUnstakeRequest (MsgApproveUnstakeRequest) returns (MsgApproveUnstakeRequestResponse);
+  rpc UpdateParams               (MsgUpdateParams              ) returns (MsgUpdateParamsResponse              );
+  rpc CreateRequest              (MsgCreateRequest             ) returns (MsgCreateRequestResponse             );
+  rpc ApproveRequest             (MsgApproveRequest            ) returns (MsgApproveRequestResponse            );
+  rpc ProcessTransaction         (MsgProcessTransaction        ) returns (MsgProcessTransactionResponse        );
+  rpc CreateUnstakeRequest       (MsgCreateUnstakeRequest      ) returns (MsgCreateUnstakeRequestResponse      );
+  rpc ApproveUnstakeRequest      (MsgApproveUnstakeRequest     ) returns (MsgApproveUnstakeRequestResponse     );
+  rpc SetRaoCurrentStakedBalance (MsgSetRaoCurrentStakedBalance) returns (MsgSetRaoCurrentStakedBalanceResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
-  option (cosmos.msg.v1.signer) =                                 "authority";
+  option (cosmos.msg.v1.signer) =                         "authority";
   option           (amino.name) = "sigmoid/x/sigmoid/MsgUpdateParams";
   
   // authority is the address that controls the module (defaults to x/gov unless overwritten).
@@ -84,4 +85,12 @@ message MsgApproveUnstakeRequest {
 }
 
 message MsgApproveUnstakeRequestResponse {}
+
+message MsgSetRaoCurrentStakedBalance {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator                 = 1;
+  string raoCurrentStakedBalance = 2;
+}
+
+message MsgSetRaoCurrentStakedBalanceResponse {}
 

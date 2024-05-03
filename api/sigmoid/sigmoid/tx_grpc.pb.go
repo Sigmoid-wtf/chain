@@ -19,12 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName          = "/sigmoid.sigmoid.Msg/UpdateParams"
-	Msg_CreateRequest_FullMethodName         = "/sigmoid.sigmoid.Msg/CreateRequest"
-	Msg_ApproveRequest_FullMethodName        = "/sigmoid.sigmoid.Msg/ApproveRequest"
-	Msg_ProcessTransaction_FullMethodName    = "/sigmoid.sigmoid.Msg/ProcessTransaction"
-	Msg_CreateUnstakeRequest_FullMethodName  = "/sigmoid.sigmoid.Msg/CreateUnstakeRequest"
-	Msg_ApproveUnstakeRequest_FullMethodName = "/sigmoid.sigmoid.Msg/ApproveUnstakeRequest"
+	Msg_UpdateParams_FullMethodName               = "/sigmoid.sigmoid.Msg/UpdateParams"
+	Msg_CreateRequest_FullMethodName              = "/sigmoid.sigmoid.Msg/CreateRequest"
+	Msg_ApproveRequest_FullMethodName             = "/sigmoid.sigmoid.Msg/ApproveRequest"
+	Msg_ProcessTransaction_FullMethodName         = "/sigmoid.sigmoid.Msg/ProcessTransaction"
+	Msg_CreateUnstakeRequest_FullMethodName       = "/sigmoid.sigmoid.Msg/CreateUnstakeRequest"
+	Msg_ApproveUnstakeRequest_FullMethodName      = "/sigmoid.sigmoid.Msg/ApproveUnstakeRequest"
+	Msg_SetRaoCurrentStakedBalance_FullMethodName = "/sigmoid.sigmoid.Msg/SetRaoCurrentStakedBalance"
 )
 
 // MsgClient is the client API for Msg service.
@@ -39,6 +40,7 @@ type MsgClient interface {
 	ProcessTransaction(ctx context.Context, in *MsgProcessTransaction, opts ...grpc.CallOption) (*MsgProcessTransactionResponse, error)
 	CreateUnstakeRequest(ctx context.Context, in *MsgCreateUnstakeRequest, opts ...grpc.CallOption) (*MsgCreateUnstakeRequestResponse, error)
 	ApproveUnstakeRequest(ctx context.Context, in *MsgApproveUnstakeRequest, opts ...grpc.CallOption) (*MsgApproveUnstakeRequestResponse, error)
+	SetRaoCurrentStakedBalance(ctx context.Context, in *MsgSetRaoCurrentStakedBalance, opts ...grpc.CallOption) (*MsgSetRaoCurrentStakedBalanceResponse, error)
 }
 
 type msgClient struct {
@@ -103,6 +105,15 @@ func (c *msgClient) ApproveUnstakeRequest(ctx context.Context, in *MsgApproveUns
 	return out, nil
 }
 
+func (c *msgClient) SetRaoCurrentStakedBalance(ctx context.Context, in *MsgSetRaoCurrentStakedBalance, opts ...grpc.CallOption) (*MsgSetRaoCurrentStakedBalanceResponse, error) {
+	out := new(MsgSetRaoCurrentStakedBalanceResponse)
+	err := c.cc.Invoke(ctx, Msg_SetRaoCurrentStakedBalance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -115,6 +126,7 @@ type MsgServer interface {
 	ProcessTransaction(context.Context, *MsgProcessTransaction) (*MsgProcessTransactionResponse, error)
 	CreateUnstakeRequest(context.Context, *MsgCreateUnstakeRequest) (*MsgCreateUnstakeRequestResponse, error)
 	ApproveUnstakeRequest(context.Context, *MsgApproveUnstakeRequest) (*MsgApproveUnstakeRequestResponse, error)
+	SetRaoCurrentStakedBalance(context.Context, *MsgSetRaoCurrentStakedBalance) (*MsgSetRaoCurrentStakedBalanceResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -139,6 +151,9 @@ func (UnimplementedMsgServer) CreateUnstakeRequest(context.Context, *MsgCreateUn
 }
 func (UnimplementedMsgServer) ApproveUnstakeRequest(context.Context, *MsgApproveUnstakeRequest) (*MsgApproveUnstakeRequestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ApproveUnstakeRequest not implemented")
+}
+func (UnimplementedMsgServer) SetRaoCurrentStakedBalance(context.Context, *MsgSetRaoCurrentStakedBalance) (*MsgSetRaoCurrentStakedBalanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetRaoCurrentStakedBalance not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -261,6 +276,24 @@ func _Msg_ApproveUnstakeRequest_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_SetRaoCurrentStakedBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgSetRaoCurrentStakedBalance)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).SetRaoCurrentStakedBalance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_SetRaoCurrentStakedBalance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).SetRaoCurrentStakedBalance(ctx, req.(*MsgSetRaoCurrentStakedBalance))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -291,6 +324,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ApproveUnstakeRequest",
 			Handler:    _Msg_ApproveUnstakeRequest_Handler,
+		},
+		{
+			MethodName: "SetRaoCurrentStakedBalance",
+			Handler:    _Msg_SetRaoCurrentStakedBalance_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

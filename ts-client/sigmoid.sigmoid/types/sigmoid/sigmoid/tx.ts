@@ -64,6 +64,14 @@ export interface MsgApproveUnstakeRequest {
 export interface MsgApproveUnstakeRequestResponse {
 }
 
+export interface MsgSetRaoCurrentStakedBalance {
+  creator: string;
+  raoCurrentStakedBalance: string;
+}
+
+export interface MsgSetRaoCurrentStakedBalanceResponse {
+}
+
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return { authority: "", params: undefined };
 }
@@ -832,6 +840,129 @@ export const MsgApproveUnstakeRequestResponse = {
   },
 };
 
+function createBaseMsgSetRaoCurrentStakedBalance(): MsgSetRaoCurrentStakedBalance {
+  return { creator: "", raoCurrentStakedBalance: "" };
+}
+
+export const MsgSetRaoCurrentStakedBalance = {
+  encode(message: MsgSetRaoCurrentStakedBalance, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.raoCurrentStakedBalance !== "") {
+      writer.uint32(18).string(message.raoCurrentStakedBalance);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSetRaoCurrentStakedBalance {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgSetRaoCurrentStakedBalance();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.raoCurrentStakedBalance = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgSetRaoCurrentStakedBalance {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      raoCurrentStakedBalance: isSet(object.raoCurrentStakedBalance) ? String(object.raoCurrentStakedBalance) : "",
+    };
+  },
+
+  toJSON(message: MsgSetRaoCurrentStakedBalance): unknown {
+    const obj: any = {};
+    if (message.creator !== "") {
+      obj.creator = message.creator;
+    }
+    if (message.raoCurrentStakedBalance !== "") {
+      obj.raoCurrentStakedBalance = message.raoCurrentStakedBalance;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgSetRaoCurrentStakedBalance>, I>>(base?: I): MsgSetRaoCurrentStakedBalance {
+    return MsgSetRaoCurrentStakedBalance.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgSetRaoCurrentStakedBalance>, I>>(
+    object: I,
+  ): MsgSetRaoCurrentStakedBalance {
+    const message = createBaseMsgSetRaoCurrentStakedBalance();
+    message.creator = object.creator ?? "";
+    message.raoCurrentStakedBalance = object.raoCurrentStakedBalance ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgSetRaoCurrentStakedBalanceResponse(): MsgSetRaoCurrentStakedBalanceResponse {
+  return {};
+}
+
+export const MsgSetRaoCurrentStakedBalanceResponse = {
+  encode(_: MsgSetRaoCurrentStakedBalanceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSetRaoCurrentStakedBalanceResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgSetRaoCurrentStakedBalanceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgSetRaoCurrentStakedBalanceResponse {
+    return {};
+  },
+
+  toJSON(_: MsgSetRaoCurrentStakedBalanceResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgSetRaoCurrentStakedBalanceResponse>, I>>(
+    base?: I,
+  ): MsgSetRaoCurrentStakedBalanceResponse {
+    return MsgSetRaoCurrentStakedBalanceResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgSetRaoCurrentStakedBalanceResponse>, I>>(
+    _: I,
+  ): MsgSetRaoCurrentStakedBalanceResponse {
+    const message = createBaseMsgSetRaoCurrentStakedBalanceResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -844,6 +975,7 @@ export interface Msg {
   ProcessTransaction(request: MsgProcessTransaction): Promise<MsgProcessTransactionResponse>;
   CreateUnstakeRequest(request: MsgCreateUnstakeRequest): Promise<MsgCreateUnstakeRequestResponse>;
   ApproveUnstakeRequest(request: MsgApproveUnstakeRequest): Promise<MsgApproveUnstakeRequestResponse>;
+  SetRaoCurrentStakedBalance(request: MsgSetRaoCurrentStakedBalance): Promise<MsgSetRaoCurrentStakedBalanceResponse>;
 }
 
 export const MsgServiceName = "sigmoid.sigmoid.Msg";
@@ -859,6 +991,7 @@ export class MsgClientImpl implements Msg {
     this.ProcessTransaction = this.ProcessTransaction.bind(this);
     this.CreateUnstakeRequest = this.CreateUnstakeRequest.bind(this);
     this.ApproveUnstakeRequest = this.ApproveUnstakeRequest.bind(this);
+    this.SetRaoCurrentStakedBalance = this.SetRaoCurrentStakedBalance.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -894,6 +1027,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgApproveUnstakeRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "ApproveUnstakeRequest", data);
     return promise.then((data) => MsgApproveUnstakeRequestResponse.decode(_m0.Reader.create(data)));
+  }
+
+  SetRaoCurrentStakedBalance(request: MsgSetRaoCurrentStakedBalance): Promise<MsgSetRaoCurrentStakedBalanceResponse> {
+    const data = MsgSetRaoCurrentStakedBalance.encode(request).finish();
+    const promise = this.rpc.request(this.service, "SetRaoCurrentStakedBalance", data);
+    return promise.then((data) => MsgSetRaoCurrentStakedBalanceResponse.decode(_m0.Reader.create(data)));
   }
 }
 

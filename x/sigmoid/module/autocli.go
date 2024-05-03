@@ -79,6 +79,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a approve-unstake-request tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "unstakeAddress"}, {ProtoField: "transactionId"}},
 				},
+				{
+					RpcMethod:      "SetRaoCurrentStakedBalance",
+					Use:            "set-rao-current-staked-balance [rao-current-staked-balance]",
+					Short:          "Send a set-rao-current-staked-balance tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "raoCurrentStakedBalance"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

@@ -43,6 +43,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgApproveUnstakeRequest int = 100
 
+	opWeightMsgSetRaoCurrentStakedBalance = "op_weight_msg_set_rao_current_staked_balance"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgSetRaoCurrentStakedBalance int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -126,6 +130,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		sigmoidsimulation.SimulateMsgApproveUnstakeRequest(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgSetRaoCurrentStakedBalance int
+	simState.AppParams.GetOrGenerate(opWeightMsgSetRaoCurrentStakedBalance, &weightMsgSetRaoCurrentStakedBalance, nil,
+		func(_ *rand.Rand) {
+			weightMsgSetRaoCurrentStakedBalance = defaultWeightMsgSetRaoCurrentStakedBalance
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgSetRaoCurrentStakedBalance,
+		sigmoidsimulation.SimulateMsgSetRaoCurrentStakedBalance(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -171,6 +186,14 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgApproveUnstakeRequest,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				sigmoidsimulation.SimulateMsgApproveUnstakeRequest(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgSetRaoCurrentStakedBalance,
+			defaultWeightMsgSetRaoCurrentStakedBalance,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				sigmoidsimulation.SimulateMsgSetRaoCurrentStakedBalance(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),
