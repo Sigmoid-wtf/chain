@@ -43,6 +43,11 @@ export interface QueryGetPendingUnstakeRequestResponse {
   request?: { creator?: string; unstakeAddress?: string; amount?: string };
 }
 
+export interface QueryGetRaoStakedBalanceResponse {
+  /** @format uint64 */
+  raoStakedBalance?: string;
+}
+
 export interface QueryParamsResponse {
   params?: object;
 }
@@ -226,6 +231,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
       { code?: number; message?: string; details?: { "@type"?: string }[] }
     >({
       path: `/sigmoid/sigmoid/get_pending_unstake_request`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryGetRaoStakedBalance
+   * @request GET:/sigmoid/sigmoid/get_rao_staked_balance
+   */
+  queryGetRaoStakedBalance = (params: RequestParams = {}) =>
+    this.request<{ raoStakedBalance?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+      path: `/sigmoid/sigmoid/get_rao_staked_balance`,
       method: "GET",
       ...params,
     });

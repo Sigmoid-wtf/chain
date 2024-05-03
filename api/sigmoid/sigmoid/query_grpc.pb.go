@@ -23,6 +23,7 @@ const (
 	Query_GetAmount_FullMethodName                = "/sigmoid.sigmoid.Query/GetAmount"
 	Query_GetLastProcessed_FullMethodName         = "/sigmoid.sigmoid.Query/GetLastProcessed"
 	Query_GetPendingUnstakeRequest_FullMethodName = "/sigmoid.sigmoid.Query/GetPendingUnstakeRequest"
+	Query_GetRaoStakedBalance_FullMethodName      = "/sigmoid.sigmoid.Query/GetRaoStakedBalance"
 )
 
 // QueryClient is the client API for Query service.
@@ -37,6 +38,8 @@ type QueryClient interface {
 	GetLastProcessed(ctx context.Context, in *QueryGetLastProcessedRequest, opts ...grpc.CallOption) (*QueryGetLastProcessedResponse, error)
 	// Queries a list of GetPendingUnstakeRequest items.
 	GetPendingUnstakeRequest(ctx context.Context, in *QueryGetPendingUnstakeRequestRequest, opts ...grpc.CallOption) (*QueryGetPendingUnstakeRequestResponse, error)
+	// Queries a list of GetRaoStakedBalance items.
+	GetRaoStakedBalance(ctx context.Context, in *QueryGetRaoStakedBalanceRequest, opts ...grpc.CallOption) (*QueryGetRaoStakedBalanceResponse, error)
 }
 
 type queryClient struct {
@@ -83,6 +86,15 @@ func (c *queryClient) GetPendingUnstakeRequest(ctx context.Context, in *QueryGet
 	return out, nil
 }
 
+func (c *queryClient) GetRaoStakedBalance(ctx context.Context, in *QueryGetRaoStakedBalanceRequest, opts ...grpc.CallOption) (*QueryGetRaoStakedBalanceResponse, error) {
+	out := new(QueryGetRaoStakedBalanceResponse)
+	err := c.cc.Invoke(ctx, Query_GetRaoStakedBalance_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -95,6 +107,8 @@ type QueryServer interface {
 	GetLastProcessed(context.Context, *QueryGetLastProcessedRequest) (*QueryGetLastProcessedResponse, error)
 	// Queries a list of GetPendingUnstakeRequest items.
 	GetPendingUnstakeRequest(context.Context, *QueryGetPendingUnstakeRequestRequest) (*QueryGetPendingUnstakeRequestResponse, error)
+	// Queries a list of GetRaoStakedBalance items.
+	GetRaoStakedBalance(context.Context, *QueryGetRaoStakedBalanceRequest) (*QueryGetRaoStakedBalanceResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -113,6 +127,9 @@ func (UnimplementedQueryServer) GetLastProcessed(context.Context, *QueryGetLastP
 }
 func (UnimplementedQueryServer) GetPendingUnstakeRequest(context.Context, *QueryGetPendingUnstakeRequestRequest) (*QueryGetPendingUnstakeRequestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPendingUnstakeRequest not implemented")
+}
+func (UnimplementedQueryServer) GetRaoStakedBalance(context.Context, *QueryGetRaoStakedBalanceRequest) (*QueryGetRaoStakedBalanceResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRaoStakedBalance not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -199,6 +216,24 @@ func _Query_GetPendingUnstakeRequest_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_GetRaoStakedBalance_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetRaoStakedBalanceRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetRaoStakedBalance(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_GetRaoStakedBalance_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetRaoStakedBalance(ctx, req.(*QueryGetRaoStakedBalanceRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -221,6 +256,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPendingUnstakeRequest",
 			Handler:    _Query_GetPendingUnstakeRequest_Handler,
+		},
+		{
+			MethodName: "GetRaoStakedBalance",
+			Handler:    _Query_GetRaoStakedBalance_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -37,6 +37,12 @@ service Query {
     option (google.api.http).get = "/sigmoid/sigmoid/get_pending_unstake_request";
   
   }
+  
+  // Queries a list of GetRaoStakedBalance items.
+  rpc GetRaoStakedBalance (QueryGetRaoStakedBalanceRequest) returns (QueryGetRaoStakedBalanceResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/get_rao_staked_balance";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -66,5 +72,11 @@ message QueryGetPendingUnstakeRequestRequest {}
 
 message QueryGetPendingUnstakeRequestResponse {
   MsgCreateUnstakeRequest request = 1;
+}
+
+message QueryGetRaoStakedBalanceRequest {}
+
+message QueryGetRaoStakedBalanceResponse {
+  uint64 raoStakedBalance = 1;
 }
 

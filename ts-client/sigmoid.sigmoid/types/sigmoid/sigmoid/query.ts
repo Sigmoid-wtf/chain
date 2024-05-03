@@ -38,6 +38,13 @@ export interface QueryGetPendingUnstakeRequestResponse {
   request: MsgCreateUnstakeRequest | undefined;
 }
 
+export interface QueryGetRaoStakedBalanceRequest {
+}
+
+export interface QueryGetRaoStakedBalanceResponse {
+  raoStakedBalance: number;
+}
+
 function createBaseQueryParamsRequest(): QueryParamsRequest {
   return {};
 }
@@ -466,6 +473,110 @@ export const QueryGetPendingUnstakeRequestResponse = {
   },
 };
 
+function createBaseQueryGetRaoStakedBalanceRequest(): QueryGetRaoStakedBalanceRequest {
+  return {};
+}
+
+export const QueryGetRaoStakedBalanceRequest = {
+  encode(_: QueryGetRaoStakedBalanceRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetRaoStakedBalanceRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetRaoStakedBalanceRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetRaoStakedBalanceRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetRaoStakedBalanceRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetRaoStakedBalanceRequest>, I>>(base?: I): QueryGetRaoStakedBalanceRequest {
+    return QueryGetRaoStakedBalanceRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetRaoStakedBalanceRequest>, I>>(_: I): QueryGetRaoStakedBalanceRequest {
+    const message = createBaseQueryGetRaoStakedBalanceRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetRaoStakedBalanceResponse(): QueryGetRaoStakedBalanceResponse {
+  return { raoStakedBalance: 0 };
+}
+
+export const QueryGetRaoStakedBalanceResponse = {
+  encode(message: QueryGetRaoStakedBalanceResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.raoStakedBalance !== 0) {
+      writer.uint32(8).uint64(message.raoStakedBalance);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetRaoStakedBalanceResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetRaoStakedBalanceResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.raoStakedBalance = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetRaoStakedBalanceResponse {
+    return { raoStakedBalance: isSet(object.raoStakedBalance) ? Number(object.raoStakedBalance) : 0 };
+  },
+
+  toJSON(message: QueryGetRaoStakedBalanceResponse): unknown {
+    const obj: any = {};
+    if (message.raoStakedBalance !== 0) {
+      obj.raoStakedBalance = Math.round(message.raoStakedBalance);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetRaoStakedBalanceResponse>, I>>(
+    base?: I,
+  ): QueryGetRaoStakedBalanceResponse {
+    return QueryGetRaoStakedBalanceResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetRaoStakedBalanceResponse>, I>>(
+    object: I,
+  ): QueryGetRaoStakedBalanceResponse {
+    const message = createBaseQueryGetRaoStakedBalanceResponse();
+    message.raoStakedBalance = object.raoStakedBalance ?? 0;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -478,6 +589,8 @@ export interface Query {
   GetPendingUnstakeRequest(
     request: QueryGetPendingUnstakeRequestRequest,
   ): Promise<QueryGetPendingUnstakeRequestResponse>;
+  /** Queries a list of GetRaoStakedBalance items. */
+  GetRaoStakedBalance(request: QueryGetRaoStakedBalanceRequest): Promise<QueryGetRaoStakedBalanceResponse>;
 }
 
 export const QueryServiceName = "sigmoid.sigmoid.Query";
@@ -491,6 +604,7 @@ export class QueryClientImpl implements Query {
     this.GetAmount = this.GetAmount.bind(this);
     this.GetLastProcessed = this.GetLastProcessed.bind(this);
     this.GetPendingUnstakeRequest = this.GetPendingUnstakeRequest.bind(this);
+    this.GetRaoStakedBalance = this.GetRaoStakedBalance.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -516,6 +630,12 @@ export class QueryClientImpl implements Query {
     const data = QueryGetPendingUnstakeRequestRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "GetPendingUnstakeRequest", data);
     return promise.then((data) => QueryGetPendingUnstakeRequestResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetRaoStakedBalance(request: QueryGetRaoStakedBalanceRequest): Promise<QueryGetRaoStakedBalanceResponse> {
+    const data = QueryGetRaoStakedBalanceRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetRaoStakedBalance", data);
+    return promise.then((data) => QueryGetRaoStakedBalanceResponse.decode(_m0.Reader.create(data)));
   }
 }
 
