@@ -8,7 +8,7 @@ import (
 
 var _ sdk.Msg = &MsgSetRaoCurrentStakedBalance{}
 
-func NewMsgSetRaoCurrentStakedBalance(creator string, raoCurrentStakedBalance string) *MsgSetRaoCurrentStakedBalance {
+func NewMsgSetRaoCurrentStakedBalance(creator string, raoCurrentStakedBalance uint64) *MsgSetRaoCurrentStakedBalance {
 	return &MsgSetRaoCurrentStakedBalance{
 		Creator:                 creator,
 		RaoCurrentStakedBalance: raoCurrentStakedBalance,

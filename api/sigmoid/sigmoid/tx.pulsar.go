@@ -5379,8 +5379,8 @@ func (x *fastReflection_MsgSetRaoCurrentStakedBalance) Range(f func(protoreflect
 			return
 		}
 	}
-	if x.RaoCurrentStakedBalance != "" {
-		value := protoreflect.ValueOfString(x.RaoCurrentStakedBalance)
+	if x.RaoCurrentStakedBalance != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.RaoCurrentStakedBalance)
 		if !f(fd_MsgSetRaoCurrentStakedBalance_raoCurrentStakedBalance, value) {
 			return
 		}
@@ -5403,7 +5403,7 @@ func (x *fastReflection_MsgSetRaoCurrentStakedBalance) Has(fd protoreflect.Field
 	case "sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance.creator":
 		return x.Creator != ""
 	case "sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance.raoCurrentStakedBalance":
-		return x.RaoCurrentStakedBalance != ""
+		return x.RaoCurrentStakedBalance != uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance"))
@@ -5423,7 +5423,7 @@ func (x *fastReflection_MsgSetRaoCurrentStakedBalance) Clear(fd protoreflect.Fie
 	case "sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance.creator":
 		x.Creator = ""
 	case "sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance.raoCurrentStakedBalance":
-		x.RaoCurrentStakedBalance = ""
+		x.RaoCurrentStakedBalance = uint64(0)
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance"))
@@ -5445,7 +5445,7 @@ func (x *fastReflection_MsgSetRaoCurrentStakedBalance) Get(descriptor protorefle
 		return protoreflect.ValueOfString(value)
 	case "sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance.raoCurrentStakedBalance":
 		value := x.RaoCurrentStakedBalance
-		return protoreflect.ValueOfString(value)
+		return protoreflect.ValueOfUint64(value)
 	default:
 		if descriptor.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance"))
@@ -5469,7 +5469,7 @@ func (x *fastReflection_MsgSetRaoCurrentStakedBalance) Set(fd protoreflect.Field
 	case "sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance.creator":
 		x.Creator = value.Interface().(string)
 	case "sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance.raoCurrentStakedBalance":
-		x.RaoCurrentStakedBalance = value.Interface().(string)
+		x.RaoCurrentStakedBalance = value.Uint()
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance"))
@@ -5510,7 +5510,7 @@ func (x *fastReflection_MsgSetRaoCurrentStakedBalance) NewField(fd protoreflect.
 	case "sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance.creator":
 		return protoreflect.ValueOfString("")
 	case "sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance.raoCurrentStakedBalance":
-		return protoreflect.ValueOfString("")
+		return protoreflect.ValueOfUint64(uint64(0))
 	default:
 		if fd.IsExtension() {
 			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance"))
@@ -5584,9 +5584,8 @@ func (x *fastReflection_MsgSetRaoCurrentStakedBalance) ProtoMethods() *protoifac
 		if l > 0 {
 			n += 1 + l + runtime.Sov(uint64(l))
 		}
-		l = len(x.RaoCurrentStakedBalance)
-		if l > 0 {
-			n += 1 + l + runtime.Sov(uint64(l))
+		if x.RaoCurrentStakedBalance != 0 {
+			n += 1 + runtime.Sov(uint64(x.RaoCurrentStakedBalance))
 		}
 		if x.unknownFields != nil {
 			n += len(x.unknownFields)
@@ -5617,12 +5616,10 @@ func (x *fastReflection_MsgSetRaoCurrentStakedBalance) ProtoMethods() *protoifac
 			i -= len(x.unknownFields)
 			copy(dAtA[i:], x.unknownFields)
 		}
-		if len(x.RaoCurrentStakedBalance) > 0 {
-			i -= len(x.RaoCurrentStakedBalance)
-			copy(dAtA[i:], x.RaoCurrentStakedBalance)
-			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.RaoCurrentStakedBalance)))
+		if x.RaoCurrentStakedBalance != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.RaoCurrentStakedBalance))
 			i--
-			dAtA[i] = 0x12
+			dAtA[i] = 0x10
 		}
 		if len(x.Creator) > 0 {
 			i -= len(x.Creator)
@@ -5713,10 +5710,10 @@ func (x *fastReflection_MsgSetRaoCurrentStakedBalance) ProtoMethods() *protoifac
 				x.Creator = string(dAtA[iNdEx:postIndex])
 				iNdEx = postIndex
 			case 2:
-				if wireType != 2 {
+				if wireType != 0 {
 					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field RaoCurrentStakedBalance", wireType)
 				}
-				var stringLen uint64
+				x.RaoCurrentStakedBalance = 0
 				for shift := uint(0); ; shift += 7 {
 					if shift >= 64 {
 						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
@@ -5726,24 +5723,11 @@ func (x *fastReflection_MsgSetRaoCurrentStakedBalance) ProtoMethods() *protoifac
 					}
 					b := dAtA[iNdEx]
 					iNdEx++
-					stringLen |= uint64(b&0x7F) << shift
+					x.RaoCurrentStakedBalance |= uint64(b&0x7F) << shift
 					if b < 0x80 {
 						break
 					}
 				}
-				intStringLen := int(stringLen)
-				if intStringLen < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				postIndex := iNdEx + intStringLen
-				if postIndex < 0 {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
-				}
-				if postIndex > l {
-					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
-				}
-				x.RaoCurrentStakedBalance = string(dAtA[iNdEx:postIndex])
-				iNdEx = postIndex
 			default:
 				iNdEx = preIndex
 				skippy, err := runtime.Skip(dAtA[iNdEx:])
@@ -6605,7 +6589,7 @@ type MsgSetRaoCurrentStakedBalance struct {
 	unknownFields protoimpl.UnknownFields
 
 	Creator                 string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
-	RaoCurrentStakedBalance string `protobuf:"bytes,2,opt,name=raoCurrentStakedBalance,proto3" json:"raoCurrentStakedBalance,omitempty"`
+	RaoCurrentStakedBalance uint64 `protobuf:"varint,2,opt,name=raoCurrentStakedBalance,proto3" json:"raoCurrentStakedBalance,omitempty"`
 }
 
 func (x *MsgSetRaoCurrentStakedBalance) Reset() {
@@ -6635,11 +6619,11 @@ func (x *MsgSetRaoCurrentStakedBalance) GetCreator() string {
 	return ""
 }
 
-func (x *MsgSetRaoCurrentStakedBalance) GetRaoCurrentStakedBalance() string {
+func (x *MsgSetRaoCurrentStakedBalance) GetRaoCurrentStakedBalance() uint64 {
 	if x != nil {
 		return x.RaoCurrentStakedBalance
 	}
-	return ""
+	return 0
 }
 
 type MsgSetRaoCurrentStakedBalanceResponse struct {
@@ -6750,7 +6734,7 @@ var file_sigmoid_sigmoid_tx_proto_rawDesc = []byte{
 	0x61, 0x6e, 0x63, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x38,
 	0x0a, 0x17, 0x72, 0x61, 0x6f, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x53, 0x74, 0x61, 0x6b,
-	0x65, 0x64, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x65, 0x64, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52,
 	0x17, 0x72, 0x61, 0x6f, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x53, 0x74, 0x61, 0x6b, 0x65,
 	0x64, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63,
 	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x27, 0x0a, 0x25, 0x4d, 0x73, 0x67, 0x53, 0x65, 0x74,

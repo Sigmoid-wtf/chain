@@ -89,7 +89,7 @@ message MsgApproveUnstakeRequestResponse {}
 message MsgSetRaoCurrentStakedBalance {
   option (cosmos.msg.v1.signer) = "creator";
   string creator                 = 1;
-  string raoCurrentStakedBalance = 2;
+  uint64 raoCurrentStakedBalance = 2;
 }
 
 message MsgSetRaoCurrentStakedBalanceResponse {}

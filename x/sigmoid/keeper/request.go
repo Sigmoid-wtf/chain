@@ -2,6 +2,7 @@ package keeper
 
 import (
 	"sigmoid/x/sigmoid/types"
+	"strconv"
 
 	"cosmossdk.io/store/prefix"
 	"github.com/cosmos/cosmos-sdk/runtime"
@@ -75,4 +76,49 @@ func (k Keeper) RemoveUnstakeRequest(ctx sdk.Context, address *string) {
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.UnstakeRequestsKey))
 
 	store.Delete([]byte(*address))
+}
+
+func (k Keeper) setRaoCurrentStakedBalance(ctx sdk.Context, rao uint64) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RaoCurrentStakedBalance))
+
+	store.Set([]byte("key"), []byte(strconv.FormatUint(rao, 10)))
+}
+
+func (k Keeper) getRaoCurrentStakedBalance(ctx sdk.Context) uint64 {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RaoCurrentStakedBalance))
+
+	rao, _ := strconv.ParseUint(string(store.Get([]byte("key"))), 10, 64)
+	return rao
+}
+
+func (k Keeper) setRaoStakedBalance(ctx sdk.Context, rao uint64) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RaoStakedBalance))
+
+	store.Set([]byte("key"), []byte(strconv.FormatUint(rao, 10)))
+}
+
+func (k Keeper) getRaoStakedBalance(ctx sdk.Context) uint64 {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RaoStakedBalance))
+
+	rao, _ := strconv.ParseUint(string(store.Get([]byte("key"))), 10, 64)
+	return rao
+}
+
+func (k Keeper) setSigRaoCount(ctx sdk.Context, sigRao uint64) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.SigRaoCount))
+
+	store.Set([]byte("key"), []byte(strconv.FormatUint(sigRao, 10)))
+}
+
+func (k Keeper) getSigRaoCount(ctx sdk.Context) uint64 {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.SigRaoCount))
+
+	sigRao, _ := strconv.ParseUint(string(store.Get([]byte("key"))), 10, 64)
+	return sigRao
 }

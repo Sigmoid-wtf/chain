@@ -19716,6 +19716,7 @@ paths:
                 type: string
               raoCurrentStakedBalance:
                 type: string
+                format: uint64
       tags:
         - Msg
   /sigmoid.sigmoid.Msg/UpdateParams:
@@ -27619,6 +27620,7 @@ definitions:
         type: string
       raoCurrentStakedBalance:
         type: string
+        format: uint64
   sigmoid.sigmoid.MsgSetRaoCurrentStakedBalanceResponse:
     type: object
   sigmoid.sigmoid.MsgUpdateParams:
