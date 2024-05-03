@@ -143,6 +143,38 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
+  /sigmoid/sigmoid/get_sigtao_rate_d:
+    get:
+      operationId: Query_GetSigtaoRateD
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              sigtaoRateD:
+                type: string
+                format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
   /sigmoid/sigmoid/params:
     get:
       operationId: Query_Params
@@ -237,6 +269,12 @@ definitions:
     type: object
     properties:
       raoStakedBalance:
+        type: string
+        format: uint64
+  QueryGetSigtaoRateDResponse:
+    type: object
+    properties:
+      sigtaoRateD:
         type: string
         format: uint64
   QueryParamsResponse:

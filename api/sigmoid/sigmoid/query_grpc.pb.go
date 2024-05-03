@@ -24,6 +24,7 @@ const (
 	Query_GetLastProcessed_FullMethodName         = "/sigmoid.sigmoid.Query/GetLastProcessed"
 	Query_GetPendingUnstakeRequest_FullMethodName = "/sigmoid.sigmoid.Query/GetPendingUnstakeRequest"
 	Query_GetRaoStakedBalance_FullMethodName      = "/sigmoid.sigmoid.Query/GetRaoStakedBalance"
+	Query_GetSigtaoRateD_FullMethodName           = "/sigmoid.sigmoid.Query/GetSigtaoRateD"
 )
 
 // QueryClient is the client API for Query service.
@@ -40,6 +41,8 @@ type QueryClient interface {
 	GetPendingUnstakeRequest(ctx context.Context, in *QueryGetPendingUnstakeRequestRequest, opts ...grpc.CallOption) (*QueryGetPendingUnstakeRequestResponse, error)
 	// Queries a list of GetRaoStakedBalance items.
 	GetRaoStakedBalance(ctx context.Context, in *QueryGetRaoStakedBalanceRequest, opts ...grpc.CallOption) (*QueryGetRaoStakedBalanceResponse, error)
+	// Queries a list of GetSigtaoRateD items.
+	GetSigtaoRateD(ctx context.Context, in *QueryGetSigtaoRateDRequest, opts ...grpc.CallOption) (*QueryGetSigtaoRateDResponse, error)
 }
 
 type queryClient struct {
@@ -95,6 +98,15 @@ func (c *queryClient) GetRaoStakedBalance(ctx context.Context, in *QueryGetRaoSt
 	return out, nil
 }
 
+func (c *queryClient) GetSigtaoRateD(ctx context.Context, in *QueryGetSigtaoRateDRequest, opts ...grpc.CallOption) (*QueryGetSigtaoRateDResponse, error) {
+	out := new(QueryGetSigtaoRateDResponse)
+	err := c.cc.Invoke(ctx, Query_GetSigtaoRateD_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 // All implementations must embed UnimplementedQueryServer
 // for forward compatibility
@@ -109,6 +121,8 @@ type QueryServer interface {
 	GetPendingUnstakeRequest(context.Context, *QueryGetPendingUnstakeRequestRequest) (*QueryGetPendingUnstakeRequestResponse, error)
 	// Queries a list of GetRaoStakedBalance items.
 	GetRaoStakedBalance(context.Context, *QueryGetRaoStakedBalanceRequest) (*QueryGetRaoStakedBalanceResponse, error)
+	// Queries a list of GetSigtaoRateD items.
+	GetSigtaoRateD(context.Context, *QueryGetSigtaoRateDRequest) (*QueryGetSigtaoRateDResponse, error)
 	mustEmbedUnimplementedQueryServer()
 }
 
@@ -130,6 +144,9 @@ func (UnimplementedQueryServer) GetPendingUnstakeRequest(context.Context, *Query
 }
 func (UnimplementedQueryServer) GetRaoStakedBalance(context.Context, *QueryGetRaoStakedBalanceRequest) (*QueryGetRaoStakedBalanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetRaoStakedBalance not implemented")
+}
+func (UnimplementedQueryServer) GetSigtaoRateD(context.Context, *QueryGetSigtaoRateDRequest) (*QueryGetSigtaoRateDResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSigtaoRateD not implemented")
 }
 func (UnimplementedQueryServer) mustEmbedUnimplementedQueryServer() {}
 
@@ -234,6 +251,24 @@ func _Query_GetRaoStakedBalance_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_GetSigtaoRateD_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetSigtaoRateDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetSigtaoRateD(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Query_GetSigtaoRateD_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetSigtaoRateD(ctx, req.(*QueryGetSigtaoRateDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Query_ServiceDesc is the grpc.ServiceDesc for Query service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -260,6 +295,10 @@ var Query_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetRaoStakedBalance",
 			Handler:    _Query_GetRaoStakedBalance_Handler,
+		},
+		{
+			MethodName: "GetSigtaoRateD",
+			Handler:    _Query_GetSigtaoRateD_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

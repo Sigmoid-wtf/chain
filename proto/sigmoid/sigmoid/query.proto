@@ -43,6 +43,12 @@ service Query {
     option (google.api.http).get = "/sigmoid/sigmoid/get_rao_staked_balance";
   
   }
+  
+  // Queries a list of GetSigtaoRateD items.
+  rpc GetSigtaoRateD (QueryGetSigtaoRateDRequest) returns (QueryGetSigtaoRateDResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/get_sigtao_rate_d";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -78,5 +84,11 @@ message QueryGetRaoStakedBalanceRequest {}
 
 message QueryGetRaoStakedBalanceResponse {
   uint64 raoStakedBalance = 1;
+}
+
+message QueryGetSigtaoRateDRequest {}
+
+message QueryGetSigtaoRateDResponse {
+  uint64 sigtaoRateD = 1;
 }
 

@@ -48,6 +48,11 @@ export interface QueryGetRaoStakedBalanceResponse {
   raoStakedBalance?: string;
 }
 
+export interface QueryGetSigtaoRateDResponse {
+  /** @format uint64 */
+  sigtaoRateD?: string;
+}
+
 export interface QueryParamsResponse {
   params?: object;
 }
@@ -245,6 +250,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryGetRaoStakedBalance = (params: RequestParams = {}) =>
     this.request<{ raoStakedBalance?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
       path: `/sigmoid/sigmoid/get_rao_staked_balance`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryGetSigtaoRateD
+   * @request GET:/sigmoid/sigmoid/get_sigtao_rate_d
+   */
+  queryGetSigtaoRateD = (params: RequestParams = {}) =>
+    this.request<{ sigtaoRateD?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+      path: `/sigmoid/sigmoid/get_sigtao_rate_d`,
       method: "GET",
       ...params,
     });

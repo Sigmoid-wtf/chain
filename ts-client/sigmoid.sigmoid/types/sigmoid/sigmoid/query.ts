@@ -45,6 +45,13 @@ export interface QueryGetRaoStakedBalanceResponse {
   raoStakedBalance: number;
 }
 
+export interface QueryGetSigtaoRateDRequest {
+}
+
+export interface QueryGetSigtaoRateDResponse {
+  sigtaoRateD: number;
+}
+
 function createBaseQueryParamsRequest(): QueryParamsRequest {
   return {};
 }
@@ -577,6 +584,106 @@ export const QueryGetRaoStakedBalanceResponse = {
   },
 };
 
+function createBaseQueryGetSigtaoRateDRequest(): QueryGetSigtaoRateDRequest {
+  return {};
+}
+
+export const QueryGetSigtaoRateDRequest = {
+  encode(_: QueryGetSigtaoRateDRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetSigtaoRateDRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetSigtaoRateDRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetSigtaoRateDRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetSigtaoRateDRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetSigtaoRateDRequest>, I>>(base?: I): QueryGetSigtaoRateDRequest {
+    return QueryGetSigtaoRateDRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetSigtaoRateDRequest>, I>>(_: I): QueryGetSigtaoRateDRequest {
+    const message = createBaseQueryGetSigtaoRateDRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetSigtaoRateDResponse(): QueryGetSigtaoRateDResponse {
+  return { sigtaoRateD: 0 };
+}
+
+export const QueryGetSigtaoRateDResponse = {
+  encode(message: QueryGetSigtaoRateDResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.sigtaoRateD !== 0) {
+      writer.uint32(8).uint64(message.sigtaoRateD);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetSigtaoRateDResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetSigtaoRateDResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 8) {
+            break;
+          }
+
+          message.sigtaoRateD = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetSigtaoRateDResponse {
+    return { sigtaoRateD: isSet(object.sigtaoRateD) ? Number(object.sigtaoRateD) : 0 };
+  },
+
+  toJSON(message: QueryGetSigtaoRateDResponse): unknown {
+    const obj: any = {};
+    if (message.sigtaoRateD !== 0) {
+      obj.sigtaoRateD = Math.round(message.sigtaoRateD);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetSigtaoRateDResponse>, I>>(base?: I): QueryGetSigtaoRateDResponse {
+    return QueryGetSigtaoRateDResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetSigtaoRateDResponse>, I>>(object: I): QueryGetSigtaoRateDResponse {
+    const message = createBaseQueryGetSigtaoRateDResponse();
+    message.sigtaoRateD = object.sigtaoRateD ?? 0;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -591,6 +698,8 @@ export interface Query {
   ): Promise<QueryGetPendingUnstakeRequestResponse>;
   /** Queries a list of GetRaoStakedBalance items. */
   GetRaoStakedBalance(request: QueryGetRaoStakedBalanceRequest): Promise<QueryGetRaoStakedBalanceResponse>;
+  /** Queries a list of GetSigtaoRateD items. */
+  GetSigtaoRateD(request: QueryGetSigtaoRateDRequest): Promise<QueryGetSigtaoRateDResponse>;
 }
 
 export const QueryServiceName = "sigmoid.sigmoid.Query";
@@ -605,6 +714,7 @@ export class QueryClientImpl implements Query {
     this.GetLastProcessed = this.GetLastProcessed.bind(this);
     this.GetPendingUnstakeRequest = this.GetPendingUnstakeRequest.bind(this);
     this.GetRaoStakedBalance = this.GetRaoStakedBalance.bind(this);
+    this.GetSigtaoRateD = this.GetSigtaoRateD.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -636,6 +746,12 @@ export class QueryClientImpl implements Query {
     const data = QueryGetRaoStakedBalanceRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "GetRaoStakedBalance", data);
     return promise.then((data) => QueryGetRaoStakedBalanceResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetSigtaoRateD(request: QueryGetSigtaoRateDRequest): Promise<QueryGetSigtaoRateDResponse> {
+    const data = QueryGetSigtaoRateDRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetSigtaoRateD", data);
+    return promise.then((data) => QueryGetSigtaoRateDResponse.decode(_m0.Reader.create(data)));
   }
 }
 
