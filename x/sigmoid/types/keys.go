@@ -16,6 +16,7 @@ var (
 	ParamsKey               = []byte("p_sigmoid")
 	PendingRequestsKey      = "requests/"
 	RaoCurrentStakedBalance = "rao_current_staked_balance/"
+	RaoStakedBalance        = "rao_staked_balance/"
 	SigRaoCount             = "sigrao_count/"
 	UnstakeRequestsKey      = "unstake/"
 )
