@@ -20,7 +20,8 @@ func (k msgServer) ApproveRequest(goCtx context.Context, msg *types.MsgApproveRe
 
 	k.Keeper.setRaoStakedBalance(ctx, k.Keeper.getRaoStakedBalance(ctx)+request.Amount)
 
-	coin := sdk.NewCoin("sigTAO", math.NewIntFromUint64(request.Amount))
+	sigRaoCount := request.Amount * 1000000000 / k.Keeper.getSigTaoRateD(ctx)
+	coin := sdk.NewCoin("sigRAO", math.NewIntFromUint64(sigRaoCount))
 	coins := sdk.NewCoins(coin)
 	err := k.Keeper.bankKeeper.MintCoins(ctx, "mint", coins)
 	if err != nil {

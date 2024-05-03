@@ -17,8 +17,5 @@ func (k Keeper) GetSigtaoRateD(goCtx context.Context, req *types.QueryGetSigtaoR
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Process the query
-	_ = ctx
-
-	return &types.QueryGetSigtaoRateDResponse{}, nil
+	return &types.QueryGetSigtaoRateDResponse{SigtaoRateD: k.getSigTaoRateD(ctx)}, nil
 }

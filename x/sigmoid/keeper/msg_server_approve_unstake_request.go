@@ -21,7 +21,7 @@ func (k msgServer) ApproveUnstakeRequest(goCtx context.Context, msg *types.MsgAp
 	k.Keeper.setRaoStakedBalance(ctx, k.Keeper.getRaoStakedBalance(ctx)-value.Amount)
 
 	address := sdk.MustAccAddressFromBech32(msg.Creator)
-	coin := sdk.NewCoin("sigTAO", math.NewIntFromUint64(value.Amount))
+	coin := sdk.NewCoin("sigRAO", math.NewIntFromUint64(value.Amount))
 	coins := sdk.NewCoins(coin)
 	k.Keeper.bankKeeper.SendCoinsFromAccountToModule(ctx, address, "gov", coins)
 	k.Keeper.bankKeeper.BurnCoins(ctx, "gov", coins)

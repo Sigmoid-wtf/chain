@@ -122,3 +122,11 @@ func (k Keeper) getSigRaoCount(ctx sdk.Context) uint64 {
 	sigRao, _ := strconv.ParseUint(string(store.Get([]byte("key"))), 10, 64)
 	return sigRao
 }
+
+func (k Keeper) getSigTaoRateD(ctx sdk.Context) uint64 {
+	raoStakedBalance := k.getRaoStakedBalance(ctx)
+	raoCurrentStakedBalance := k.getRaoCurrentStakedBalance(ctx)
+	sigRaoCount := k.getSigRaoCount(ctx)
+
+	return (raoStakedBalance + raoCurrentStakedBalance*9) * 1000000000 / 10 / sigRaoCount
+}
