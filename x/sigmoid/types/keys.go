@@ -12,10 +12,12 @@ const (
 )
 
 var (
-	ParamsKey          = []byte("p_sigmoid")
-	PendingRequestsKey = "requests/"
-	UnstakeRequestsKey = "unstake/"
-	LastProcessedKey   = "last_processed/"
+	LastProcessedKey        = "last_processed/"
+	ParamsKey               = []byte("p_sigmoid")
+	PendingRequestsKey      = "requests/"
+	RaoCurrentStakedBalance = "rao_current_staked_balance/"
+	SigRaoCount             = "sigrao_count/"
+	UnstakeRequestsKey      = "unstake/"
 )
 
 func KeyPrefix(p string) []byte {
