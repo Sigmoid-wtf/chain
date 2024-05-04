@@ -89,8 +89,11 @@ func (k Keeper) getRaoCurrentStakedBalance(ctx sdk.Context) uint64 {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RaoCurrentStakedBalance))
 
-	rao, _ := strconv.ParseUint(string(store.Get([]byte("key"))), 10, 64)
-	return rao
+	if store.Has([]byte("key")) {
+		rao, _ := strconv.ParseUint(string(store.Get([]byte("key"))), 10, 64)
+		return rao
+	}
+	return 0
 }
 
 func (k Keeper) setRaoStakedBalance(ctx sdk.Context, rao uint64) {
@@ -104,8 +107,11 @@ func (k Keeper) getRaoStakedBalance(ctx sdk.Context) uint64 {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RaoStakedBalance))
 
-	rao, _ := strconv.ParseUint(string(store.Get([]byte("key"))), 10, 64)
-	return rao
+	if store.Has([]byte("key")) {
+		rao, _ := strconv.ParseUint(string(store.Get([]byte("key"))), 10, 64)
+		return rao
+	}
+	return 0
 }
 
 func (k Keeper) setSigRaoCount(ctx sdk.Context, sigRao uint64) {
@@ -119,8 +125,11 @@ func (k Keeper) getSigRaoCount(ctx sdk.Context) uint64 {
 	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
 	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.SigRaoCount))
 
-	sigRao, _ := strconv.ParseUint(string(store.Get([]byte("key"))), 10, 64)
-	return sigRao
+	if store.Has([]byte("key")) {
+		sigRao, _ := strconv.ParseUint(string(store.Get([]byte("key"))), 10, 64)
+		return sigRao
+	}
+	return 0
 }
 
 func (k Keeper) getSigTaoRateD(ctx sdk.Context) uint64 {
@@ -128,5 +137,8 @@ func (k Keeper) getSigTaoRateD(ctx sdk.Context) uint64 {
 	raoCurrentStakedBalance := k.getRaoCurrentStakedBalance(ctx)
 	sigRaoCount := k.getSigRaoCount(ctx)
 
-	return (raoStakedBalance + raoCurrentStakedBalance*9) * 1000000000 / 10 / sigRaoCount
+	if sigRaoCount != 0 {
+		return (raoStakedBalance + raoCurrentStakedBalance*9) * 1000000000 / 10 / sigRaoCount
+	}
+	return 1000000000
 }

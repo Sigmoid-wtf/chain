@@ -25,6 +25,7 @@ func (k msgServer) ApproveUnstakeRequest(goCtx context.Context, msg *types.MsgAp
 	coins := sdk.NewCoins(coin)
 	k.Keeper.bankKeeper.SendCoinsFromAccountToModule(ctx, address, "gov", coins)
 	k.Keeper.bankKeeper.BurnCoins(ctx, "gov", coins)
+	k.Keeper.setSigRaoCount(ctx, k.Keeper.getSigRaoCount(ctx)+value.Amount)
 
 	k.RemoveUnstakeRequest(ctx, &msg.Creator)
 

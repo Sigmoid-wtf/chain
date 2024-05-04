@@ -32,6 +32,7 @@ func (k msgServer) ApproveRequest(goCtx context.Context, msg *types.MsgApproveRe
 	if err != nil {
 		return nil, sdkerrors.ErrInvalidCoins
 	}
+	k.Keeper.setSigRaoCount(ctx, k.Keeper.getSigRaoCount(ctx)+sigRaoCount)
 
 	k.Keeper.SetLastProcessedTransaction(ctx, msg.TransactionId)
 	k.Keeper.RemoveRequest(ctx, &msg.SenderAddress)
