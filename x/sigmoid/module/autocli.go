@@ -53,9 +53,9 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 				},
 
 				{
-					RpcMethod: "GetPendingBridgeRequest",
-					Use: "get-pending-bridge-request",
-					Short: "Query get-pending-bridge-request",
+					RpcMethod:      "GetPendingBridgeRequest",
+					Use:            "get-pending-bridge-request",
+					Short:          "Query get-pending-bridge-request",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{},
 				},
 
@@ -111,6 +111,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Use:            "create-bridge-request [erc-20-address] [amount]",
 					Short:          "Send a create-bridge-request tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "erc20Address"}, {ProtoField: "amount"}},
+				},
+				{
+					RpcMethod:      "ApproveBridgeRequest",
+					Use:            "approve-bridge-request [address]",
+					Short:          "Send a approve-bridge-request tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "address"}},
 				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},

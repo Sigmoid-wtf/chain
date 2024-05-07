@@ -20,6 +20,14 @@ export interface Status {
   details?: { "@type"?: string }[];
 }
 
+export interface MsgCreateBridgeRequest {
+  creator?: string;
+  erc20Address?: string;
+
+  /** @format uint64 */
+  amount?: string;
+}
+
 export interface MsgCreateUnstakeRequest {
   creator?: string;
   unstakeAddress?: string;
@@ -39,6 +47,10 @@ export interface QueryGetLastProcessedResponse {
   transactionId?: string;
 }
 
+export interface QueryGetPendingBridgeRequestResponse {
+  request?: { creator?: string; erc20Address?: string; amount?: string };
+}
+
 export interface QueryGetPendingUnstakeRequestResponse {
   request?: { creator?: string; unstakeAddress?: string; amount?: string };
 }
@@ -56,6 +68,8 @@ export interface QueryGetSigtaoRateDResponse {
 export interface QueryParamsResponse {
   params?: object;
 }
+
+export type MsgApproveBridgeRequestResponse = object;
 
 export type MsgApproveRequestResponse = object;
 
@@ -221,6 +235,23 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryGetLastProcessed = (params: RequestParams = {}) =>
     this.request<{ transactionId?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
       path: `/sigmoid/sigmoid/get_last_processed`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryGetPendingBridgeRequest
+   * @request GET:/sigmoid/sigmoid/get_pending_bridge_request
+   */
+  queryGetPendingBridgeRequest = (params: RequestParams = {}) =>
+    this.request<
+      { request?: { creator?: string; erc20Address?: string; amount?: string } },
+      { code?: number; message?: string; details?: { "@type"?: string }[] }
+    >({
+      path: `/sigmoid/sigmoid/get_pending_bridge_request`,
       method: "GET",
       ...params,
     });

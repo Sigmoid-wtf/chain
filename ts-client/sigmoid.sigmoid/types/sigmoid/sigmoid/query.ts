@@ -2,7 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
-import { MsgCreateUnstakeRequest } from "./tx";
+import { MsgCreateBridgeRequest, MsgCreateUnstakeRequest } from "./tx";
 
 export const protobufPackage = "sigmoid.sigmoid";
 
@@ -50,6 +50,13 @@ export interface QueryGetSigtaoRateDRequest {
 
 export interface QueryGetSigtaoRateDResponse {
   sigtaoRateD: number;
+}
+
+export interface QueryGetPendingBridgeRequestRequest {
+}
+
+export interface QueryGetPendingBridgeRequestResponse {
+  request: MsgCreateBridgeRequest | undefined;
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -684,6 +691,116 @@ export const QueryGetSigtaoRateDResponse = {
   },
 };
 
+function createBaseQueryGetPendingBridgeRequestRequest(): QueryGetPendingBridgeRequestRequest {
+  return {};
+}
+
+export const QueryGetPendingBridgeRequestRequest = {
+  encode(_: QueryGetPendingBridgeRequestRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPendingBridgeRequestRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetPendingBridgeRequestRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetPendingBridgeRequestRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetPendingBridgeRequestRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetPendingBridgeRequestRequest>, I>>(
+    base?: I,
+  ): QueryGetPendingBridgeRequestRequest {
+    return QueryGetPendingBridgeRequestRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetPendingBridgeRequestRequest>, I>>(
+    _: I,
+  ): QueryGetPendingBridgeRequestRequest {
+    const message = createBaseQueryGetPendingBridgeRequestRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetPendingBridgeRequestResponse(): QueryGetPendingBridgeRequestResponse {
+  return { request: undefined };
+}
+
+export const QueryGetPendingBridgeRequestResponse = {
+  encode(message: QueryGetPendingBridgeRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.request !== undefined) {
+      MsgCreateBridgeRequest.encode(message.request, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetPendingBridgeRequestResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetPendingBridgeRequestResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.request = MsgCreateBridgeRequest.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetPendingBridgeRequestResponse {
+    return { request: isSet(object.request) ? MsgCreateBridgeRequest.fromJSON(object.request) : undefined };
+  },
+
+  toJSON(message: QueryGetPendingBridgeRequestResponse): unknown {
+    const obj: any = {};
+    if (message.request !== undefined) {
+      obj.request = MsgCreateBridgeRequest.toJSON(message.request);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetPendingBridgeRequestResponse>, I>>(
+    base?: I,
+  ): QueryGetPendingBridgeRequestResponse {
+    return QueryGetPendingBridgeRequestResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetPendingBridgeRequestResponse>, I>>(
+    object: I,
+  ): QueryGetPendingBridgeRequestResponse {
+    const message = createBaseQueryGetPendingBridgeRequestResponse();
+    message.request = (object.request !== undefined && object.request !== null)
+      ? MsgCreateBridgeRequest.fromPartial(object.request)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -700,6 +817,8 @@ export interface Query {
   GetRaoStakedBalance(request: QueryGetRaoStakedBalanceRequest): Promise<QueryGetRaoStakedBalanceResponse>;
   /** Queries a list of GetSigtaoRateD items. */
   GetSigtaoRateD(request: QueryGetSigtaoRateDRequest): Promise<QueryGetSigtaoRateDResponse>;
+  /** Queries a list of GetPendingBridgeRequest items. */
+  GetPendingBridgeRequest(request: QueryGetPendingBridgeRequestRequest): Promise<QueryGetPendingBridgeRequestResponse>;
 }
 
 export const QueryServiceName = "sigmoid.sigmoid.Query";
@@ -715,6 +834,7 @@ export class QueryClientImpl implements Query {
     this.GetPendingUnstakeRequest = this.GetPendingUnstakeRequest.bind(this);
     this.GetRaoStakedBalance = this.GetRaoStakedBalance.bind(this);
     this.GetSigtaoRateD = this.GetSigtaoRateD.bind(this);
+    this.GetPendingBridgeRequest = this.GetPendingBridgeRequest.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -752,6 +872,12 @@ export class QueryClientImpl implements Query {
     const data = QueryGetSigtaoRateDRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "GetSigtaoRateD", data);
     return promise.then((data) => QueryGetSigtaoRateDResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetPendingBridgeRequest(request: QueryGetPendingBridgeRequestRequest): Promise<QueryGetPendingBridgeRequestResponse> {
+    const data = QueryGetPendingBridgeRequestRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetPendingBridgeRequest", data);
+    return promise.then((data) => QueryGetPendingBridgeRequestResponse.decode(_m0.Reader.create(data)));
   }
 }
 

@@ -7007,6 +7007,846 @@ func (x *fastReflection_MsgCreateBridgeRequestResponse) ProtoMethods() *protoifa
 	}
 }
 
+var (
+	md_MsgApproveBridgeRequest         protoreflect.MessageDescriptor
+	fd_MsgApproveBridgeRequest_creator protoreflect.FieldDescriptor
+	fd_MsgApproveBridgeRequest_address protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_sigmoid_sigmoid_tx_proto_init()
+	md_MsgApproveBridgeRequest = File_sigmoid_sigmoid_tx_proto.Messages().ByName("MsgApproveBridgeRequest")
+	fd_MsgApproveBridgeRequest_creator = md_MsgApproveBridgeRequest.Fields().ByName("creator")
+	fd_MsgApproveBridgeRequest_address = md_MsgApproveBridgeRequest.Fields().ByName("address")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgApproveBridgeRequest)(nil)
+
+type fastReflection_MsgApproveBridgeRequest MsgApproveBridgeRequest
+
+func (x *MsgApproveBridgeRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgApproveBridgeRequest)(x)
+}
+
+func (x *MsgApproveBridgeRequest) slowProtoReflect() protoreflect.Message {
+	mi := &file_sigmoid_sigmoid_tx_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgApproveBridgeRequest_messageType fastReflection_MsgApproveBridgeRequest_messageType
+var _ protoreflect.MessageType = fastReflection_MsgApproveBridgeRequest_messageType{}
+
+type fastReflection_MsgApproveBridgeRequest_messageType struct{}
+
+func (x fastReflection_MsgApproveBridgeRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgApproveBridgeRequest)(nil)
+}
+func (x fastReflection_MsgApproveBridgeRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgApproveBridgeRequest)
+}
+func (x fastReflection_MsgApproveBridgeRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgApproveBridgeRequest
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgApproveBridgeRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgApproveBridgeRequest
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgApproveBridgeRequest) Type() protoreflect.MessageType {
+	return _fastReflection_MsgApproveBridgeRequest_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgApproveBridgeRequest) New() protoreflect.Message {
+	return new(fastReflection_MsgApproveBridgeRequest)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgApproveBridgeRequest) Interface() protoreflect.ProtoMessage {
+	return (*MsgApproveBridgeRequest)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgApproveBridgeRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Creator != "" {
+		value := protoreflect.ValueOfString(x.Creator)
+		if !f(fd_MsgApproveBridgeRequest_creator, value) {
+			return
+		}
+	}
+	if x.Address != "" {
+		value := protoreflect.ValueOfString(x.Address)
+		if !f(fd_MsgApproveBridgeRequest_address, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgApproveBridgeRequest) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.creator":
+		return x.Creator != ""
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.address":
+		return x.Address != ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveBridgeRequest) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.creator":
+		x.Creator = ""
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.address":
+		x.Address = ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgApproveBridgeRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.creator":
+		value := x.Creator
+		return protoreflect.ValueOfString(value)
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.address":
+		value := x.Address
+		return protoreflect.ValueOfString(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequest does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveBridgeRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.creator":
+		x.Creator = value.Interface().(string)
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.address":
+		x.Address = value.Interface().(string)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveBridgeRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.creator":
+		panic(fmt.Errorf("field creator of message sigmoid.sigmoid.MsgApproveBridgeRequest is not mutable"))
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.address":
+		panic(fmt.Errorf("field address of message sigmoid.sigmoid.MsgApproveBridgeRequest is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgApproveBridgeRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.creator":
+		return protoreflect.ValueOfString("")
+	case "sigmoid.sigmoid.MsgApproveBridgeRequest.address":
+		return protoreflect.ValueOfString("")
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgApproveBridgeRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in sigmoid.sigmoid.MsgApproveBridgeRequest", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgApproveBridgeRequest) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveBridgeRequest) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgApproveBridgeRequest) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgApproveBridgeRequest) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgApproveBridgeRequest)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Creator)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Address)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgApproveBridgeRequest)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.Address) > 0 {
+			i -= len(x.Address)
+			copy(dAtA[i:], x.Address)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Address)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.Creator) > 0 {
+			i -= len(x.Creator)
+			copy(dAtA[i:], x.Creator)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgApproveBridgeRequest)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgApproveBridgeRequest: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgApproveBridgeRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Creator = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Address = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgApproveBridgeRequestResponse protoreflect.MessageDescriptor
+)
+
+func init() {
+	file_sigmoid_sigmoid_tx_proto_init()
+	md_MsgApproveBridgeRequestResponse = File_sigmoid_sigmoid_tx_proto.Messages().ByName("MsgApproveBridgeRequestResponse")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgApproveBridgeRequestResponse)(nil)
+
+type fastReflection_MsgApproveBridgeRequestResponse MsgApproveBridgeRequestResponse
+
+func (x *MsgApproveBridgeRequestResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgApproveBridgeRequestResponse)(x)
+}
+
+func (x *MsgApproveBridgeRequestResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_sigmoid_sigmoid_tx_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgApproveBridgeRequestResponse_messageType fastReflection_MsgApproveBridgeRequestResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgApproveBridgeRequestResponse_messageType{}
+
+type fastReflection_MsgApproveBridgeRequestResponse_messageType struct{}
+
+func (x fastReflection_MsgApproveBridgeRequestResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgApproveBridgeRequestResponse)(nil)
+}
+func (x fastReflection_MsgApproveBridgeRequestResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgApproveBridgeRequestResponse)
+}
+func (x fastReflection_MsgApproveBridgeRequestResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgApproveBridgeRequestResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgApproveBridgeRequestResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgApproveBridgeRequestResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgApproveBridgeRequestResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgApproveBridgeRequestResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequestResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequestResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequestResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequestResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequestResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgApproveBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgApproveBridgeRequestResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in sigmoid.sigmoid.MsgApproveBridgeRequestResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgApproveBridgeRequestResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgApproveBridgeRequestResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgApproveBridgeRequestResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgApproveBridgeRequestResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgApproveBridgeRequestResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgApproveBridgeRequestResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
 // Code generated by protoc-gen-go. DO NOT EDIT.
 // versions:
 // 	protoc-gen-go v1.27.0
@@ -7617,6 +8457,75 @@ func (*MsgCreateBridgeRequestResponse) Descriptor() ([]byte, []int) {
 	return file_sigmoid_sigmoid_tx_proto_rawDescGZIP(), []int{15}
 }
 
+type MsgApproveBridgeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Creator string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Address string `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
+}
+
+func (x *MsgApproveBridgeRequest) Reset() {
+	*x = MsgApproveBridgeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sigmoid_sigmoid_tx_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgApproveBridgeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgApproveBridgeRequest) ProtoMessage() {}
+
+// Deprecated: Use MsgApproveBridgeRequest.ProtoReflect.Descriptor instead.
+func (*MsgApproveBridgeRequest) Descriptor() ([]byte, []int) {
+	return file_sigmoid_sigmoid_tx_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *MsgApproveBridgeRequest) GetCreator() string {
+	if x != nil {
+		return x.Creator
+	}
+	return ""
+}
+
+func (x *MsgApproveBridgeRequest) GetAddress() string {
+	if x != nil {
+		return x.Address
+	}
+	return ""
+}
+
+type MsgApproveBridgeRequestResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *MsgApproveBridgeRequestResponse) Reset() {
+	*x = MsgApproveBridgeRequestResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sigmoid_sigmoid_tx_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgApproveBridgeRequestResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgApproveBridgeRequestResponse) ProtoMessage() {}
+
+// Deprecated: Use MsgApproveBridgeRequestResponse.ProtoReflect.Descriptor instead.
+func (*MsgApproveBridgeRequestResponse) Descriptor() ([]byte, []int) {
+	return file_sigmoid_sigmoid_tx_proto_rawDescGZIP(), []int{17}
+}
+
 var File_sigmoid_sigmoid_tx_proto protoreflect.FileDescriptor
 
 var file_sigmoid_sigmoid_tx_proto_rawDesc = []byte{
@@ -7714,8 +8623,16 @@ var file_sigmoid_sigmoid_tx_proto_rawDesc = []byte{
 	0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x3a,
 	0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x20, 0x0a,
 	0x1e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x72, 0x69, 0x64, 0x67, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x5b, 0x0a, 0x17, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x42, 0x72, 0x69,
+	0x64, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72,
+	0x65, 0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x6f, 0x72, 0x12, 0x18, 0x0a, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x3a, 0x0c,
+	0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x21, 0x0a, 0x1f,
+	0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x42, 0x72, 0x69, 0x64, 0x67, 0x65,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32,
-	0xfa, 0x06, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x5a, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0xee, 0x07, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x5a, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74,
 	0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x20, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69,
 	0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64,
 	0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x28, 0x2e, 0x73, 0x69, 0x67, 0x6d,
@@ -7770,18 +8687,25 @@ var file_sigmoid_sigmoid_tx_proto_rawDesc = []byte{
 	0x75, 0x65, 0x73, 0x74, 0x1a, 0x2f, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73,
 	0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
 	0x42, 0x72, 0x69, 0x64, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0x9d, 0x01, 0x0a,
-	0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67,
-	0x6d, 0x6f, 0x69, 0x64, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
-	0x20, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70,
-	0x69, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69,
-	0x64, 0xa2, 0x02, 0x03, 0x53, 0x53, 0x58, 0xaa, 0x02, 0x0f, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69,
-	0x64, 0x2e, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0xca, 0x02, 0x0f, 0x53, 0x69, 0x67, 0x6d,
-	0x6f, 0x69, 0x64, 0x5c, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0xe2, 0x02, 0x1b, 0x53, 0x69,
-	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x47, 0x50,
-	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10, 0x53, 0x69, 0x67, 0x6d,
-	0x6f, 0x69, 0x64, 0x3a, 0x3a, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x72, 0x0a, 0x14, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65,
+	0x42, 0x72, 0x69, 0x64, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x28, 0x2e,
+	0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e,
+	0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x42, 0x72, 0x69, 0x64, 0x67, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x30, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69,
+	0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70,
+	0x72, 0x6f, 0x76, 0x65, 0x42, 0x72, 0x69, 0x64, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01,
+	0x42, 0x9d, 0x01, 0x0a, 0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
+	0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74,
+	0x6f, 0x50, 0x01, 0x5a, 0x20, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69,
+	0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69,
+	0x67, 0x6d, 0x6f, 0x69, 0x64, 0xa2, 0x02, 0x03, 0x53, 0x53, 0x58, 0xaa, 0x02, 0x0f, 0x53, 0x69,
+	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0xca, 0x02, 0x0f,
+	0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0xe2,
+	0x02, 0x1b, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69,
+	0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10,
+	0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x3a, 0x3a, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -7796,7 +8720,7 @@ func file_sigmoid_sigmoid_tx_proto_rawDescGZIP() []byte {
 	return file_sigmoid_sigmoid_tx_proto_rawDescData
 }
 
-var file_sigmoid_sigmoid_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_sigmoid_sigmoid_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
 var file_sigmoid_sigmoid_tx_proto_goTypes = []interface{}{
 	(*MsgUpdateParams)(nil),                       // 0: sigmoid.sigmoid.MsgUpdateParams
 	(*MsgUpdateParamsResponse)(nil),               // 1: sigmoid.sigmoid.MsgUpdateParamsResponse
@@ -7814,10 +8738,12 @@ var file_sigmoid_sigmoid_tx_proto_goTypes = []interface{}{
 	(*MsgSetRaoCurrentStakedBalanceResponse)(nil), // 13: sigmoid.sigmoid.MsgSetRaoCurrentStakedBalanceResponse
 	(*MsgCreateBridgeRequest)(nil),                // 14: sigmoid.sigmoid.MsgCreateBridgeRequest
 	(*MsgCreateBridgeRequestResponse)(nil),        // 15: sigmoid.sigmoid.MsgCreateBridgeRequestResponse
-	(*Params)(nil),                                // 16: sigmoid.sigmoid.Params
+	(*MsgApproveBridgeRequest)(nil),               // 16: sigmoid.sigmoid.MsgApproveBridgeRequest
+	(*MsgApproveBridgeRequestResponse)(nil),       // 17: sigmoid.sigmoid.MsgApproveBridgeRequestResponse
+	(*Params)(nil),                                // 18: sigmoid.sigmoid.Params
 }
 var file_sigmoid_sigmoid_tx_proto_depIdxs = []int32{
-	16, // 0: sigmoid.sigmoid.MsgUpdateParams.params:type_name -> sigmoid.sigmoid.Params
+	18, // 0: sigmoid.sigmoid.MsgUpdateParams.params:type_name -> sigmoid.sigmoid.Params
 	0,  // 1: sigmoid.sigmoid.Msg.UpdateParams:input_type -> sigmoid.sigmoid.MsgUpdateParams
 	2,  // 2: sigmoid.sigmoid.Msg.CreateRequest:input_type -> sigmoid.sigmoid.MsgCreateRequest
 	4,  // 3: sigmoid.sigmoid.Msg.ApproveRequest:input_type -> sigmoid.sigmoid.MsgApproveRequest
@@ -7826,16 +8752,18 @@ var file_sigmoid_sigmoid_tx_proto_depIdxs = []int32{
 	10, // 6: sigmoid.sigmoid.Msg.ApproveUnstakeRequest:input_type -> sigmoid.sigmoid.MsgApproveUnstakeRequest
 	12, // 7: sigmoid.sigmoid.Msg.SetRaoCurrentStakedBalance:input_type -> sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance
 	14, // 8: sigmoid.sigmoid.Msg.CreateBridgeRequest:input_type -> sigmoid.sigmoid.MsgCreateBridgeRequest
-	1,  // 9: sigmoid.sigmoid.Msg.UpdateParams:output_type -> sigmoid.sigmoid.MsgUpdateParamsResponse
-	3,  // 10: sigmoid.sigmoid.Msg.CreateRequest:output_type -> sigmoid.sigmoid.MsgCreateRequestResponse
-	5,  // 11: sigmoid.sigmoid.Msg.ApproveRequest:output_type -> sigmoid.sigmoid.MsgApproveRequestResponse
-	7,  // 12: sigmoid.sigmoid.Msg.ProcessTransaction:output_type -> sigmoid.sigmoid.MsgProcessTransactionResponse
-	9,  // 13: sigmoid.sigmoid.Msg.CreateUnstakeRequest:output_type -> sigmoid.sigmoid.MsgCreateUnstakeRequestResponse
-	11, // 14: sigmoid.sigmoid.Msg.ApproveUnstakeRequest:output_type -> sigmoid.sigmoid.MsgApproveUnstakeRequestResponse
-	13, // 15: sigmoid.sigmoid.Msg.SetRaoCurrentStakedBalance:output_type -> sigmoid.sigmoid.MsgSetRaoCurrentStakedBalanceResponse
-	15, // 16: sigmoid.sigmoid.Msg.CreateBridgeRequest:output_type -> sigmoid.sigmoid.MsgCreateBridgeRequestResponse
-	9,  // [9:17] is the sub-list for method output_type
-	1,  // [1:9] is the sub-list for method input_type
+	16, // 9: sigmoid.sigmoid.Msg.ApproveBridgeRequest:input_type -> sigmoid.sigmoid.MsgApproveBridgeRequest
+	1,  // 10: sigmoid.sigmoid.Msg.UpdateParams:output_type -> sigmoid.sigmoid.MsgUpdateParamsResponse
+	3,  // 11: sigmoid.sigmoid.Msg.CreateRequest:output_type -> sigmoid.sigmoid.MsgCreateRequestResponse
+	5,  // 12: sigmoid.sigmoid.Msg.ApproveRequest:output_type -> sigmoid.sigmoid.MsgApproveRequestResponse
+	7,  // 13: sigmoid.sigmoid.Msg.ProcessTransaction:output_type -> sigmoid.sigmoid.MsgProcessTransactionResponse
+	9,  // 14: sigmoid.sigmoid.Msg.CreateUnstakeRequest:output_type -> sigmoid.sigmoid.MsgCreateUnstakeRequestResponse
+	11, // 15: sigmoid.sigmoid.Msg.ApproveUnstakeRequest:output_type -> sigmoid.sigmoid.MsgApproveUnstakeRequestResponse
+	13, // 16: sigmoid.sigmoid.Msg.SetRaoCurrentStakedBalance:output_type -> sigmoid.sigmoid.MsgSetRaoCurrentStakedBalanceResponse
+	15, // 17: sigmoid.sigmoid.Msg.CreateBridgeRequest:output_type -> sigmoid.sigmoid.MsgCreateBridgeRequestResponse
+	17, // 18: sigmoid.sigmoid.Msg.ApproveBridgeRequest:output_type -> sigmoid.sigmoid.MsgApproveBridgeRequestResponse
+	10, // [10:19] is the sub-list for method output_type
+	1,  // [1:10] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
 	1,  // [1:1] is the sub-list for extension extendee
 	0,  // [0:1] is the sub-list for field type_name
@@ -8040,6 +8968,30 @@ func file_sigmoid_sigmoid_tx_proto_init() {
 				return nil
 			}
 		}
+		file_sigmoid_sigmoid_tx_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgApproveBridgeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_sigmoid_sigmoid_tx_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgApproveBridgeRequestResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -8047,7 +8999,7 @@ func file_sigmoid_sigmoid_tx_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_sigmoid_sigmoid_tx_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   18,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

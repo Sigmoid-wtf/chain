@@ -81,6 +81,14 @@ export interface MsgCreateBridgeRequest {
 export interface MsgCreateBridgeRequestResponse {
 }
 
+export interface MsgApproveBridgeRequest {
+  creator: string;
+  address: string;
+}
+
+export interface MsgApproveBridgeRequestResponse {
+}
+
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return { authority: "", params: undefined };
 }
@@ -1104,6 +1112,123 @@ export const MsgCreateBridgeRequestResponse = {
   },
 };
 
+function createBaseMsgApproveBridgeRequest(): MsgApproveBridgeRequest {
+  return { creator: "", address: "" };
+}
+
+export const MsgApproveBridgeRequest = {
+  encode(message: MsgApproveBridgeRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.address !== "") {
+      writer.uint32(18).string(message.address);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgApproveBridgeRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgApproveBridgeRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.address = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgApproveBridgeRequest {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      address: isSet(object.address) ? String(object.address) : "",
+    };
+  },
+
+  toJSON(message: MsgApproveBridgeRequest): unknown {
+    const obj: any = {};
+    if (message.creator !== "") {
+      obj.creator = message.creator;
+    }
+    if (message.address !== "") {
+      obj.address = message.address;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgApproveBridgeRequest>, I>>(base?: I): MsgApproveBridgeRequest {
+    return MsgApproveBridgeRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgApproveBridgeRequest>, I>>(object: I): MsgApproveBridgeRequest {
+    const message = createBaseMsgApproveBridgeRequest();
+    message.creator = object.creator ?? "";
+    message.address = object.address ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgApproveBridgeRequestResponse(): MsgApproveBridgeRequestResponse {
+  return {};
+}
+
+export const MsgApproveBridgeRequestResponse = {
+  encode(_: MsgApproveBridgeRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgApproveBridgeRequestResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgApproveBridgeRequestResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgApproveBridgeRequestResponse {
+    return {};
+  },
+
+  toJSON(_: MsgApproveBridgeRequestResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgApproveBridgeRequestResponse>, I>>(base?: I): MsgApproveBridgeRequestResponse {
+    return MsgApproveBridgeRequestResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgApproveBridgeRequestResponse>, I>>(_: I): MsgApproveBridgeRequestResponse {
+    const message = createBaseMsgApproveBridgeRequestResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -1118,6 +1243,7 @@ export interface Msg {
   ApproveUnstakeRequest(request: MsgApproveUnstakeRequest): Promise<MsgApproveUnstakeRequestResponse>;
   SetRaoCurrentStakedBalance(request: MsgSetRaoCurrentStakedBalance): Promise<MsgSetRaoCurrentStakedBalanceResponse>;
   CreateBridgeRequest(request: MsgCreateBridgeRequest): Promise<MsgCreateBridgeRequestResponse>;
+  ApproveBridgeRequest(request: MsgApproveBridgeRequest): Promise<MsgApproveBridgeRequestResponse>;
 }
 
 export const MsgServiceName = "sigmoid.sigmoid.Msg";
@@ -1135,6 +1261,7 @@ export class MsgClientImpl implements Msg {
     this.ApproveUnstakeRequest = this.ApproveUnstakeRequest.bind(this);
     this.SetRaoCurrentStakedBalance = this.SetRaoCurrentStakedBalance.bind(this);
     this.CreateBridgeRequest = this.CreateBridgeRequest.bind(this);
+    this.ApproveBridgeRequest = this.ApproveBridgeRequest.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -1182,6 +1309,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgCreateBridgeRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "CreateBridgeRequest", data);
     return promise.then((data) => MsgCreateBridgeRequestResponse.decode(_m0.Reader.create(data)));
+  }
+
+  ApproveBridgeRequest(request: MsgApproveBridgeRequest): Promise<MsgApproveBridgeRequestResponse> {
+    const data = MsgApproveBridgeRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "ApproveBridgeRequest", data);
+    return promise.then((data) => MsgApproveBridgeRequestResponse.decode(_m0.Reader.create(data)));
   }
 }
 
