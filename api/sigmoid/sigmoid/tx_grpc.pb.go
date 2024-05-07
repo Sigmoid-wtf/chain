@@ -26,6 +26,7 @@ const (
 	Msg_CreateUnstakeRequest_FullMethodName       = "/sigmoid.sigmoid.Msg/CreateUnstakeRequest"
 	Msg_ApproveUnstakeRequest_FullMethodName      = "/sigmoid.sigmoid.Msg/ApproveUnstakeRequest"
 	Msg_SetRaoCurrentStakedBalance_FullMethodName = "/sigmoid.sigmoid.Msg/SetRaoCurrentStakedBalance"
+	Msg_CreateBridgeRequest_FullMethodName        = "/sigmoid.sigmoid.Msg/CreateBridgeRequest"
 )
 
 // MsgClient is the client API for Msg service.
@@ -41,6 +42,7 @@ type MsgClient interface {
 	CreateUnstakeRequest(ctx context.Context, in *MsgCreateUnstakeRequest, opts ...grpc.CallOption) (*MsgCreateUnstakeRequestResponse, error)
 	ApproveUnstakeRequest(ctx context.Context, in *MsgApproveUnstakeRequest, opts ...grpc.CallOption) (*MsgApproveUnstakeRequestResponse, error)
 	SetRaoCurrentStakedBalance(ctx context.Context, in *MsgSetRaoCurrentStakedBalance, opts ...grpc.CallOption) (*MsgSetRaoCurrentStakedBalanceResponse, error)
+	CreateBridgeRequest(ctx context.Context, in *MsgCreateBridgeRequest, opts ...grpc.CallOption) (*MsgCreateBridgeRequestResponse, error)
 }
 
 type msgClient struct {
@@ -114,6 +116,15 @@ func (c *msgClient) SetRaoCurrentStakedBalance(ctx context.Context, in *MsgSetRa
 	return out, nil
 }
 
+func (c *msgClient) CreateBridgeRequest(ctx context.Context, in *MsgCreateBridgeRequest, opts ...grpc.CallOption) (*MsgCreateBridgeRequestResponse, error) {
+	out := new(MsgCreateBridgeRequestResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateBridgeRequest_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -127,6 +138,7 @@ type MsgServer interface {
 	CreateUnstakeRequest(context.Context, *MsgCreateUnstakeRequest) (*MsgCreateUnstakeRequestResponse, error)
 	ApproveUnstakeRequest(context.Context, *MsgApproveUnstakeRequest) (*MsgApproveUnstakeRequestResponse, error)
 	SetRaoCurrentStakedBalance(context.Context, *MsgSetRaoCurrentStakedBalance) (*MsgSetRaoCurrentStakedBalanceResponse, error)
+	CreateBridgeRequest(context.Context, *MsgCreateBridgeRequest) (*MsgCreateBridgeRequestResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -154,6 +166,9 @@ func (UnimplementedMsgServer) ApproveUnstakeRequest(context.Context, *MsgApprove
 }
 func (UnimplementedMsgServer) SetRaoCurrentStakedBalance(context.Context, *MsgSetRaoCurrentStakedBalance) (*MsgSetRaoCurrentStakedBalanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetRaoCurrentStakedBalance not implemented")
+}
+func (UnimplementedMsgServer) CreateBridgeRequest(context.Context, *MsgCreateBridgeRequest) (*MsgCreateBridgeRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBridgeRequest not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -294,6 +309,24 @@ func _Msg_SetRaoCurrentStakedBalance_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateBridgeRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateBridgeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateBridgeRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateBridgeRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateBridgeRequest(ctx, req.(*MsgCreateBridgeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -328,6 +361,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetRaoCurrentStakedBalance",
 			Handler:    _Msg_SetRaoCurrentStakedBalance_Handler,
+		},
+		{
+			MethodName: "CreateBridgeRequest",
+			Handler:    _Msg_CreateBridgeRequest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

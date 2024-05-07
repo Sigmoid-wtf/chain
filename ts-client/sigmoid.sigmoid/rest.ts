@@ -61,6 +61,8 @@ export type MsgApproveRequestResponse = object;
 
 export type MsgApproveUnstakeRequestResponse = object;
 
+export type MsgCreateBridgeRequestResponse = object;
+
 export type MsgCreateRequestResponse = object;
 
 export type MsgCreateUnstakeRequestResponse = object;

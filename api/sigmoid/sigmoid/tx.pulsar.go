@@ -6119,6 +6119,894 @@ func (x *fastReflection_MsgSetRaoCurrentStakedBalanceResponse) ProtoMethods() *p
 	}
 }
 
+var (
+	md_MsgCreateBridgeRequest              protoreflect.MessageDescriptor
+	fd_MsgCreateBridgeRequest_creator      protoreflect.FieldDescriptor
+	fd_MsgCreateBridgeRequest_erc20Address protoreflect.FieldDescriptor
+	fd_MsgCreateBridgeRequest_amount       protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_sigmoid_sigmoid_tx_proto_init()
+	md_MsgCreateBridgeRequest = File_sigmoid_sigmoid_tx_proto.Messages().ByName("MsgCreateBridgeRequest")
+	fd_MsgCreateBridgeRequest_creator = md_MsgCreateBridgeRequest.Fields().ByName("creator")
+	fd_MsgCreateBridgeRequest_erc20Address = md_MsgCreateBridgeRequest.Fields().ByName("erc20Address")
+	fd_MsgCreateBridgeRequest_amount = md_MsgCreateBridgeRequest.Fields().ByName("amount")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgCreateBridgeRequest)(nil)
+
+type fastReflection_MsgCreateBridgeRequest MsgCreateBridgeRequest
+
+func (x *MsgCreateBridgeRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgCreateBridgeRequest)(x)
+}
+
+func (x *MsgCreateBridgeRequest) slowProtoReflect() protoreflect.Message {
+	mi := &file_sigmoid_sigmoid_tx_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgCreateBridgeRequest_messageType fastReflection_MsgCreateBridgeRequest_messageType
+var _ protoreflect.MessageType = fastReflection_MsgCreateBridgeRequest_messageType{}
+
+type fastReflection_MsgCreateBridgeRequest_messageType struct{}
+
+func (x fastReflection_MsgCreateBridgeRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgCreateBridgeRequest)(nil)
+}
+func (x fastReflection_MsgCreateBridgeRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateBridgeRequest)
+}
+func (x fastReflection_MsgCreateBridgeRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateBridgeRequest
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgCreateBridgeRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateBridgeRequest
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgCreateBridgeRequest) Type() protoreflect.MessageType {
+	return _fastReflection_MsgCreateBridgeRequest_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgCreateBridgeRequest) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateBridgeRequest)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgCreateBridgeRequest) Interface() protoreflect.ProtoMessage {
+	return (*MsgCreateBridgeRequest)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgCreateBridgeRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.Creator != "" {
+		value := protoreflect.ValueOfString(x.Creator)
+		if !f(fd_MsgCreateBridgeRequest_creator, value) {
+			return
+		}
+	}
+	if x.Erc20Address != "" {
+		value := protoreflect.ValueOfString(x.Erc20Address)
+		if !f(fd_MsgCreateBridgeRequest_erc20Address, value) {
+			return
+		}
+	}
+	if x.Amount != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.Amount)
+		if !f(fd_MsgCreateBridgeRequest_amount, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgCreateBridgeRequest) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.creator":
+		return x.Creator != ""
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.erc20Address":
+		return x.Erc20Address != ""
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.amount":
+		return x.Amount != uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateBridgeRequest) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.creator":
+		x.Creator = ""
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.erc20Address":
+		x.Erc20Address = ""
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.amount":
+		x.Amount = uint64(0)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgCreateBridgeRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.creator":
+		value := x.Creator
+		return protoreflect.ValueOfString(value)
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.erc20Address":
+		value := x.Erc20Address
+		return protoreflect.ValueOfString(value)
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.amount":
+		value := x.Amount
+		return protoreflect.ValueOfUint64(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequest does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateBridgeRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.creator":
+		x.Creator = value.Interface().(string)
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.erc20Address":
+		x.Erc20Address = value.Interface().(string)
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.amount":
+		x.Amount = value.Uint()
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateBridgeRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.creator":
+		panic(fmt.Errorf("field creator of message sigmoid.sigmoid.MsgCreateBridgeRequest is not mutable"))
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.erc20Address":
+		panic(fmt.Errorf("field erc20Address of message sigmoid.sigmoid.MsgCreateBridgeRequest is not mutable"))
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.amount":
+		panic(fmt.Errorf("field amount of message sigmoid.sigmoid.MsgCreateBridgeRequest is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgCreateBridgeRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.creator":
+		return protoreflect.ValueOfString("")
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.erc20Address":
+		return protoreflect.ValueOfString("")
+	case "sigmoid.sigmoid.MsgCreateBridgeRequest.amount":
+		return protoreflect.ValueOfUint64(uint64(0))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgCreateBridgeRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in sigmoid.sigmoid.MsgCreateBridgeRequest", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgCreateBridgeRequest) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateBridgeRequest) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgCreateBridgeRequest) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgCreateBridgeRequest) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgCreateBridgeRequest)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.Creator)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		l = len(x.Erc20Address)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.Amount != 0 {
+			n += 1 + runtime.Sov(uint64(x.Amount))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgCreateBridgeRequest)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Amount != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.Amount))
+			i--
+			dAtA[i] = 0x18
+		}
+		if len(x.Erc20Address) > 0 {
+			i -= len(x.Erc20Address)
+			copy(dAtA[i:], x.Erc20Address)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Erc20Address)))
+			i--
+			dAtA[i] = 0x12
+		}
+		if len(x.Creator) > 0 {
+			i -= len(x.Creator)
+			copy(dAtA[i:], x.Creator)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Creator)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgCreateBridgeRequest)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateBridgeRequest: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateBridgeRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Creator = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Erc20Address", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Erc20Address = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 3:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Amount", wireType)
+				}
+				x.Amount = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.Amount |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgCreateBridgeRequestResponse protoreflect.MessageDescriptor
+)
+
+func init() {
+	file_sigmoid_sigmoid_tx_proto_init()
+	md_MsgCreateBridgeRequestResponse = File_sigmoid_sigmoid_tx_proto.Messages().ByName("MsgCreateBridgeRequestResponse")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgCreateBridgeRequestResponse)(nil)
+
+type fastReflection_MsgCreateBridgeRequestResponse MsgCreateBridgeRequestResponse
+
+func (x *MsgCreateBridgeRequestResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgCreateBridgeRequestResponse)(x)
+}
+
+func (x *MsgCreateBridgeRequestResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_sigmoid_sigmoid_tx_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgCreateBridgeRequestResponse_messageType fastReflection_MsgCreateBridgeRequestResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgCreateBridgeRequestResponse_messageType{}
+
+type fastReflection_MsgCreateBridgeRequestResponse_messageType struct{}
+
+func (x fastReflection_MsgCreateBridgeRequestResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgCreateBridgeRequestResponse)(nil)
+}
+func (x fastReflection_MsgCreateBridgeRequestResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateBridgeRequestResponse)
+}
+func (x fastReflection_MsgCreateBridgeRequestResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateBridgeRequestResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgCreateBridgeRequestResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgCreateBridgeRequestResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgCreateBridgeRequestResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgCreateBridgeRequestResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequestResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequestResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequestResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequestResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequestResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.MsgCreateBridgeRequestResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.MsgCreateBridgeRequestResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in sigmoid.sigmoid.MsgCreateBridgeRequestResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgCreateBridgeRequestResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgCreateBridgeRequestResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgCreateBridgeRequestResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgCreateBridgeRequestResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateBridgeRequestResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgCreateBridgeRequestResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
 // Code generated by protoc-gen-go. DO NOT EDIT.
 // versions:
 // 	protoc-gen-go v1.27.0
@@ -6652,6 +7540,83 @@ func (*MsgSetRaoCurrentStakedBalanceResponse) Descriptor() ([]byte, []int) {
 	return file_sigmoid_sigmoid_tx_proto_rawDescGZIP(), []int{13}
 }
 
+type MsgCreateBridgeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Creator      string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	Erc20Address string `protobuf:"bytes,2,opt,name=erc20Address,proto3" json:"erc20Address,omitempty"`
+	Amount       uint64 `protobuf:"varint,3,opt,name=amount,proto3" json:"amount,omitempty"`
+}
+
+func (x *MsgCreateBridgeRequest) Reset() {
+	*x = MsgCreateBridgeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sigmoid_sigmoid_tx_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgCreateBridgeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgCreateBridgeRequest) ProtoMessage() {}
+
+// Deprecated: Use MsgCreateBridgeRequest.ProtoReflect.Descriptor instead.
+func (*MsgCreateBridgeRequest) Descriptor() ([]byte, []int) {
+	return file_sigmoid_sigmoid_tx_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *MsgCreateBridgeRequest) GetCreator() string {
+	if x != nil {
+		return x.Creator
+	}
+	return ""
+}
+
+func (x *MsgCreateBridgeRequest) GetErc20Address() string {
+	if x != nil {
+		return x.Erc20Address
+	}
+	return ""
+}
+
+func (x *MsgCreateBridgeRequest) GetAmount() uint64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+type MsgCreateBridgeRequestResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *MsgCreateBridgeRequestResponse) Reset() {
+	*x = MsgCreateBridgeRequestResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sigmoid_sigmoid_tx_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgCreateBridgeRequestResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgCreateBridgeRequestResponse) ProtoMessage() {}
+
+// Deprecated: Use MsgCreateBridgeRequestResponse.ProtoReflect.Descriptor instead.
+func (*MsgCreateBridgeRequestResponse) Descriptor() ([]byte, []int) {
+	return file_sigmoid_sigmoid_tx_proto_rawDescGZIP(), []int{15}
+}
+
 var File_sigmoid_sigmoid_tx_proto protoreflect.FileDescriptor
 
 var file_sigmoid_sigmoid_tx_proto_rawDesc = []byte{
@@ -6739,8 +7704,18 @@ var file_sigmoid_sigmoid_tx_proto_rawDesc = []byte{
 	0x64, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x3a, 0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63,
 	0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x27, 0x0a, 0x25, 0x4d, 0x73, 0x67, 0x53, 0x65, 0x74,
 	0x52, 0x61, 0x6f, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x53, 0x74, 0x61, 0x6b, 0x65, 0x64,
-	0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32,
-	0x89, 0x06, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x5a, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74,
+	0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22,
+	0x7c, 0x0a, 0x16, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x72, 0x69, 0x64,
+	0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x72, 0x65,
+	0x61, 0x74, 0x6f, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x72, 0x65, 0x61,
+	0x74, 0x6f, 0x72, 0x12, 0x22, 0x0a, 0x0c, 0x65, 0x72, 0x63, 0x32, 0x30, 0x41, 0x64, 0x64, 0x72,
+	0x65, 0x73, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x65, 0x72, 0x63, 0x32, 0x30,
+	0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x16, 0x0a, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e,
+	0x74, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x06, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x3a,
+	0x0c, 0x82, 0xe7, 0xb0, 0x2a, 0x07, 0x63, 0x72, 0x65, 0x61, 0x74, 0x6f, 0x72, 0x22, 0x20, 0x0a,
+	0x1e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x72, 0x69, 0x64, 0x67, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32,
+	0xfa, 0x06, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x5a, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74,
 	0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x20, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69,
 	0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64,
 	0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x28, 0x2e, 0x73, 0x69, 0x67, 0x6d,
@@ -6788,18 +7763,25 @@ var file_sigmoid_sigmoid_tx_proto_rawDesc = []byte{
 	0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x4d,
 	0x73, 0x67, 0x53, 0x65, 0x74, 0x52, 0x61, 0x6f, 0x43, 0x75, 0x72, 0x72, 0x65, 0x6e, 0x74, 0x53,
 	0x74, 0x61, 0x6b, 0x65, 0x64, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0x9d, 0x01, 0x0a, 0x13,
-	0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d,
-	0x6f, 0x69, 0x64, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x20,
-	0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69,
-	0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
-	0xa2, 0x02, 0x03, 0x53, 0x53, 0x58, 0xaa, 0x02, 0x0f, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
-	0x2e, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0xca, 0x02, 0x0f, 0x53, 0x69, 0x67, 0x6d, 0x6f,
-	0x69, 0x64, 0x5c, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0xe2, 0x02, 0x1b, 0x53, 0x69, 0x67,
-	0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x47, 0x50, 0x42,
-	0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10, 0x53, 0x69, 0x67, 0x6d, 0x6f,
-	0x69, 0x64, 0x3a, 0x3a, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f,
-	0x74, 0x6f, 0x33,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6f, 0x0a, 0x13, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x72,
+	0x69, 0x64, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x27, 0x2e, 0x73, 0x69,
+	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x4d, 0x73,
+	0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x72, 0x69, 0x64, 0x67, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x2f, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73,
+	0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x42, 0x72, 0x69, 0x64, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a, 0x01, 0x42, 0x9d, 0x01, 0x0a,
+	0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67,
+	0x6d, 0x6f, 0x69, 0x64, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a,
+	0x20, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70,
+	0x69, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69,
+	0x64, 0xa2, 0x02, 0x03, 0x53, 0x53, 0x58, 0xaa, 0x02, 0x0f, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69,
+	0x64, 0x2e, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0xca, 0x02, 0x0f, 0x53, 0x69, 0x67, 0x6d,
+	0x6f, 0x69, 0x64, 0x5c, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0xe2, 0x02, 0x1b, 0x53, 0x69,
+	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x47, 0x50,
+	0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x10, 0x53, 0x69, 0x67, 0x6d,
+	0x6f, 0x69, 0x64, 0x3a, 0x3a, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -6814,7 +7796,7 @@ func file_sigmoid_sigmoid_tx_proto_rawDescGZIP() []byte {
 	return file_sigmoid_sigmoid_tx_proto_rawDescData
 }
 
-var file_sigmoid_sigmoid_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_sigmoid_sigmoid_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_sigmoid_sigmoid_tx_proto_goTypes = []interface{}{
 	(*MsgUpdateParams)(nil),                       // 0: sigmoid.sigmoid.MsgUpdateParams
 	(*MsgUpdateParamsResponse)(nil),               // 1: sigmoid.sigmoid.MsgUpdateParamsResponse
@@ -6830,10 +7812,12 @@ var file_sigmoid_sigmoid_tx_proto_goTypes = []interface{}{
 	(*MsgApproveUnstakeRequestResponse)(nil),      // 11: sigmoid.sigmoid.MsgApproveUnstakeRequestResponse
 	(*MsgSetRaoCurrentStakedBalance)(nil),         // 12: sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance
 	(*MsgSetRaoCurrentStakedBalanceResponse)(nil), // 13: sigmoid.sigmoid.MsgSetRaoCurrentStakedBalanceResponse
-	(*Params)(nil),                                // 14: sigmoid.sigmoid.Params
+	(*MsgCreateBridgeRequest)(nil),                // 14: sigmoid.sigmoid.MsgCreateBridgeRequest
+	(*MsgCreateBridgeRequestResponse)(nil),        // 15: sigmoid.sigmoid.MsgCreateBridgeRequestResponse
+	(*Params)(nil),                                // 16: sigmoid.sigmoid.Params
 }
 var file_sigmoid_sigmoid_tx_proto_depIdxs = []int32{
-	14, // 0: sigmoid.sigmoid.MsgUpdateParams.params:type_name -> sigmoid.sigmoid.Params
+	16, // 0: sigmoid.sigmoid.MsgUpdateParams.params:type_name -> sigmoid.sigmoid.Params
 	0,  // 1: sigmoid.sigmoid.Msg.UpdateParams:input_type -> sigmoid.sigmoid.MsgUpdateParams
 	2,  // 2: sigmoid.sigmoid.Msg.CreateRequest:input_type -> sigmoid.sigmoid.MsgCreateRequest
 	4,  // 3: sigmoid.sigmoid.Msg.ApproveRequest:input_type -> sigmoid.sigmoid.MsgApproveRequest
@@ -6841,15 +7825,17 @@ var file_sigmoid_sigmoid_tx_proto_depIdxs = []int32{
 	8,  // 5: sigmoid.sigmoid.Msg.CreateUnstakeRequest:input_type -> sigmoid.sigmoid.MsgCreateUnstakeRequest
 	10, // 6: sigmoid.sigmoid.Msg.ApproveUnstakeRequest:input_type -> sigmoid.sigmoid.MsgApproveUnstakeRequest
 	12, // 7: sigmoid.sigmoid.Msg.SetRaoCurrentStakedBalance:input_type -> sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance
-	1,  // 8: sigmoid.sigmoid.Msg.UpdateParams:output_type -> sigmoid.sigmoid.MsgUpdateParamsResponse
-	3,  // 9: sigmoid.sigmoid.Msg.CreateRequest:output_type -> sigmoid.sigmoid.MsgCreateRequestResponse
-	5,  // 10: sigmoid.sigmoid.Msg.ApproveRequest:output_type -> sigmoid.sigmoid.MsgApproveRequestResponse
-	7,  // 11: sigmoid.sigmoid.Msg.ProcessTransaction:output_type -> sigmoid.sigmoid.MsgProcessTransactionResponse
-	9,  // 12: sigmoid.sigmoid.Msg.CreateUnstakeRequest:output_type -> sigmoid.sigmoid.MsgCreateUnstakeRequestResponse
-	11, // 13: sigmoid.sigmoid.Msg.ApproveUnstakeRequest:output_type -> sigmoid.sigmoid.MsgApproveUnstakeRequestResponse
-	13, // 14: sigmoid.sigmoid.Msg.SetRaoCurrentStakedBalance:output_type -> sigmoid.sigmoid.MsgSetRaoCurrentStakedBalanceResponse
-	8,  // [8:15] is the sub-list for method output_type
-	1,  // [1:8] is the sub-list for method input_type
+	14, // 8: sigmoid.sigmoid.Msg.CreateBridgeRequest:input_type -> sigmoid.sigmoid.MsgCreateBridgeRequest
+	1,  // 9: sigmoid.sigmoid.Msg.UpdateParams:output_type -> sigmoid.sigmoid.MsgUpdateParamsResponse
+	3,  // 10: sigmoid.sigmoid.Msg.CreateRequest:output_type -> sigmoid.sigmoid.MsgCreateRequestResponse
+	5,  // 11: sigmoid.sigmoid.Msg.ApproveRequest:output_type -> sigmoid.sigmoid.MsgApproveRequestResponse
+	7,  // 12: sigmoid.sigmoid.Msg.ProcessTransaction:output_type -> sigmoid.sigmoid.MsgProcessTransactionResponse
+	9,  // 13: sigmoid.sigmoid.Msg.CreateUnstakeRequest:output_type -> sigmoid.sigmoid.MsgCreateUnstakeRequestResponse
+	11, // 14: sigmoid.sigmoid.Msg.ApproveUnstakeRequest:output_type -> sigmoid.sigmoid.MsgApproveUnstakeRequestResponse
+	13, // 15: sigmoid.sigmoid.Msg.SetRaoCurrentStakedBalance:output_type -> sigmoid.sigmoid.MsgSetRaoCurrentStakedBalanceResponse
+	15, // 16: sigmoid.sigmoid.Msg.CreateBridgeRequest:output_type -> sigmoid.sigmoid.MsgCreateBridgeRequestResponse
+	9,  // [9:17] is the sub-list for method output_type
+	1,  // [1:9] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
 	1,  // [1:1] is the sub-list for extension extendee
 	0,  // [0:1] is the sub-list for field type_name
@@ -7030,6 +8016,30 @@ func file_sigmoid_sigmoid_tx_proto_init() {
 				return nil
 			}
 		}
+		file_sigmoid_sigmoid_tx_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgCreateBridgeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_sigmoid_sigmoid_tx_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgCreateBridgeRequestResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -7037,7 +8047,7 @@ func file_sigmoid_sigmoid_tx_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_sigmoid_sigmoid_tx_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

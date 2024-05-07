@@ -66,10 +66,19 @@ export interface MsgApproveUnstakeRequestResponse {
 
 export interface MsgSetRaoCurrentStakedBalance {
   creator: string;
-  raoCurrentStakedBalance: string;
+  raoCurrentStakedBalance: number;
 }
 
 export interface MsgSetRaoCurrentStakedBalanceResponse {
+}
+
+export interface MsgCreateBridgeRequest {
+  creator: string;
+  erc20Address: string;
+  amount: number;
+}
+
+export interface MsgCreateBridgeRequestResponse {
 }
 
 function createBaseMsgUpdateParams(): MsgUpdateParams {
@@ -841,7 +850,7 @@ export const MsgApproveUnstakeRequestResponse = {
 };
 
 function createBaseMsgSetRaoCurrentStakedBalance(): MsgSetRaoCurrentStakedBalance {
-  return { creator: "", raoCurrentStakedBalance: "" };
+  return { creator: "", raoCurrentStakedBalance: 0 };
 }
 
 export const MsgSetRaoCurrentStakedBalance = {
@@ -849,8 +858,8 @@ export const MsgSetRaoCurrentStakedBalance = {
     if (message.creator !== "") {
       writer.uint32(10).string(message.creator);
     }
-    if (message.raoCurrentStakedBalance !== "") {
-      writer.uint32(18).string(message.raoCurrentStakedBalance);
+    if (message.raoCurrentStakedBalance !== 0) {
+      writer.uint32(16).uint64(message.raoCurrentStakedBalance);
     }
     return writer;
   },
@@ -870,11 +879,11 @@ export const MsgSetRaoCurrentStakedBalance = {
           message.creator = reader.string();
           continue;
         case 2:
-          if (tag !== 18) {
+          if (tag !== 16) {
             break;
           }
 
-          message.raoCurrentStakedBalance = reader.string();
+          message.raoCurrentStakedBalance = longToNumber(reader.uint64() as Long);
           continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
@@ -888,7 +897,7 @@ export const MsgSetRaoCurrentStakedBalance = {
   fromJSON(object: any): MsgSetRaoCurrentStakedBalance {
     return {
       creator: isSet(object.creator) ? String(object.creator) : "",
-      raoCurrentStakedBalance: isSet(object.raoCurrentStakedBalance) ? String(object.raoCurrentStakedBalance) : "",
+      raoCurrentStakedBalance: isSet(object.raoCurrentStakedBalance) ? Number(object.raoCurrentStakedBalance) : 0,
     };
   },
 
@@ -897,8 +906,8 @@ export const MsgSetRaoCurrentStakedBalance = {
     if (message.creator !== "") {
       obj.creator = message.creator;
     }
-    if (message.raoCurrentStakedBalance !== "") {
-      obj.raoCurrentStakedBalance = message.raoCurrentStakedBalance;
+    if (message.raoCurrentStakedBalance !== 0) {
+      obj.raoCurrentStakedBalance = Math.round(message.raoCurrentStakedBalance);
     }
     return obj;
   },
@@ -911,7 +920,7 @@ export const MsgSetRaoCurrentStakedBalance = {
   ): MsgSetRaoCurrentStakedBalance {
     const message = createBaseMsgSetRaoCurrentStakedBalance();
     message.creator = object.creator ?? "";
-    message.raoCurrentStakedBalance = object.raoCurrentStakedBalance ?? "";
+    message.raoCurrentStakedBalance = object.raoCurrentStakedBalance ?? 0;
     return message;
   },
 };
@@ -963,6 +972,138 @@ export const MsgSetRaoCurrentStakedBalanceResponse = {
   },
 };
 
+function createBaseMsgCreateBridgeRequest(): MsgCreateBridgeRequest {
+  return { creator: "", erc20Address: "", amount: 0 };
+}
+
+export const MsgCreateBridgeRequest = {
+  encode(message: MsgCreateBridgeRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.erc20Address !== "") {
+      writer.uint32(18).string(message.erc20Address);
+    }
+    if (message.amount !== 0) {
+      writer.uint32(24).uint64(message.amount);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateBridgeRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCreateBridgeRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.erc20Address = reader.string();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.amount = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgCreateBridgeRequest {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      erc20Address: isSet(object.erc20Address) ? String(object.erc20Address) : "",
+      amount: isSet(object.amount) ? Number(object.amount) : 0,
+    };
+  },
+
+  toJSON(message: MsgCreateBridgeRequest): unknown {
+    const obj: any = {};
+    if (message.creator !== "") {
+      obj.creator = message.creator;
+    }
+    if (message.erc20Address !== "") {
+      obj.erc20Address = message.erc20Address;
+    }
+    if (message.amount !== 0) {
+      obj.amount = Math.round(message.amount);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgCreateBridgeRequest>, I>>(base?: I): MsgCreateBridgeRequest {
+    return MsgCreateBridgeRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgCreateBridgeRequest>, I>>(object: I): MsgCreateBridgeRequest {
+    const message = createBaseMsgCreateBridgeRequest();
+    message.creator = object.creator ?? "";
+    message.erc20Address = object.erc20Address ?? "";
+    message.amount = object.amount ?? 0;
+    return message;
+  },
+};
+
+function createBaseMsgCreateBridgeRequestResponse(): MsgCreateBridgeRequestResponse {
+  return {};
+}
+
+export const MsgCreateBridgeRequestResponse = {
+  encode(_: MsgCreateBridgeRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateBridgeRequestResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCreateBridgeRequestResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgCreateBridgeRequestResponse {
+    return {};
+  },
+
+  toJSON(_: MsgCreateBridgeRequestResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgCreateBridgeRequestResponse>, I>>(base?: I): MsgCreateBridgeRequestResponse {
+    return MsgCreateBridgeRequestResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgCreateBridgeRequestResponse>, I>>(_: I): MsgCreateBridgeRequestResponse {
+    const message = createBaseMsgCreateBridgeRequestResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -976,6 +1117,7 @@ export interface Msg {
   CreateUnstakeRequest(request: MsgCreateUnstakeRequest): Promise<MsgCreateUnstakeRequestResponse>;
   ApproveUnstakeRequest(request: MsgApproveUnstakeRequest): Promise<MsgApproveUnstakeRequestResponse>;
   SetRaoCurrentStakedBalance(request: MsgSetRaoCurrentStakedBalance): Promise<MsgSetRaoCurrentStakedBalanceResponse>;
+  CreateBridgeRequest(request: MsgCreateBridgeRequest): Promise<MsgCreateBridgeRequestResponse>;
 }
 
 export const MsgServiceName = "sigmoid.sigmoid.Msg";
@@ -992,6 +1134,7 @@ export class MsgClientImpl implements Msg {
     this.CreateUnstakeRequest = this.CreateUnstakeRequest.bind(this);
     this.ApproveUnstakeRequest = this.ApproveUnstakeRequest.bind(this);
     this.SetRaoCurrentStakedBalance = this.SetRaoCurrentStakedBalance.bind(this);
+    this.CreateBridgeRequest = this.CreateBridgeRequest.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -1033,6 +1176,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgSetRaoCurrentStakedBalance.encode(request).finish();
     const promise = this.rpc.request(this.service, "SetRaoCurrentStakedBalance", data);
     return promise.then((data) => MsgSetRaoCurrentStakedBalanceResponse.decode(_m0.Reader.create(data)));
+  }
+
+  CreateBridgeRequest(request: MsgCreateBridgeRequest): Promise<MsgCreateBridgeRequestResponse> {
+    const data = MsgCreateBridgeRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "CreateBridgeRequest", data);
+    return promise.then((data) => MsgCreateBridgeRequestResponse.decode(_m0.Reader.create(data)));
   }
 }
 

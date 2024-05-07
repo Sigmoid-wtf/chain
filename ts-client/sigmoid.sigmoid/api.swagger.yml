@@ -286,6 +286,8 @@ definitions:
     type: object
   MsgApproveUnstakeRequestResponse:
     type: object
+  MsgCreateBridgeRequestResponse:
+    type: object
   MsgCreateRequestResponse:
     type: object
   MsgCreateUnstakeRequestResponse:

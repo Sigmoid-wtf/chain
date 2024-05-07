@@ -99,6 +99,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a set-rao-current-staked-balance tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "raoCurrentStakedBalance"}},
 				},
+				{
+					RpcMethod:      "CreateBridgeRequest",
+					Use:            "create-bridge-request [erc-20-address] [amount]",
+					Short:          "Send a create-bridge-request tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "erc20Address"}, {ProtoField: "amount"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},
