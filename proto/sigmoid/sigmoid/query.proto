@@ -49,6 +49,12 @@ service Query {
     option (google.api.http).get = "/sigmoid/sigmoid/get_sigtao_rate_d";
   
   }
+  
+  // Queries a list of GetPendingBridgeRequest items.
+  rpc GetPendingBridgeRequest (QueryGetPendingBridgeRequestRequest) returns (QueryGetPendingBridgeRequestResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/get_pending_bridge_request";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -90,5 +96,11 @@ message QueryGetSigtaoRateDRequest {}
 
 message QueryGetSigtaoRateDResponse {
   uint64 sigtaoRateD = 1;
+}
+
+message QueryGetPendingBridgeRequestRequest {}
+
+message QueryGetPendingBridgeRequestResponse {
+  MsgCreateBridgeRequest request = 1;
 }
 
