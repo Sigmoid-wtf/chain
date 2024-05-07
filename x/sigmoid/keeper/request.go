@@ -142,3 +142,29 @@ func (k Keeper) getSigTaoRateD(ctx sdk.Context) uint64 {
 	}
 	return 1000000000
 }
+
+func (k Keeper) GetBridgeRequest(ctx sdk.Context, address *string) (value types.MsgCreateBridgeRequest, found bool) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PendingBridgeRequestsKey))
+
+	bin := store.Get([]byte(*address))
+	if bin == nil {
+		return value, false
+	}
+	k.cdc.MustUnmarshal(bin, &value)
+	return value, true
+}
+
+func (k Keeper) AppendBridgeRequest(ctx sdk.Context, request *types.MsgCreateBridgeRequest) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PendingBridgeRequestsKey))
+
+	store.Set([]byte(request.Creator), k.cdc.MustMarshal(request))
+}
+
+func (k Keeper) RemoveBridgeRequest(ctx sdk.Context, address *string) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.PendingBridgeRequestsKey))
+
+	store.Delete([]byte(*address))
+}
