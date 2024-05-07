@@ -89,6 +89,15 @@ export interface MsgApproveBridgeRequest {
 export interface MsgApproveBridgeRequestResponse {
 }
 
+export interface MsgIncomeBridgeRequest {
+  creator: string;
+  address: string;
+  amount: number;
+}
+
+export interface MsgIncomeBridgeRequestResponse {
+}
+
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return { authority: "", params: undefined };
 }
@@ -1229,6 +1238,138 @@ export const MsgApproveBridgeRequestResponse = {
   },
 };
 
+function createBaseMsgIncomeBridgeRequest(): MsgIncomeBridgeRequest {
+  return { creator: "", address: "", amount: 0 };
+}
+
+export const MsgIncomeBridgeRequest = {
+  encode(message: MsgIncomeBridgeRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.address !== "") {
+      writer.uint32(18).string(message.address);
+    }
+    if (message.amount !== 0) {
+      writer.uint32(24).uint64(message.amount);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgIncomeBridgeRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgIncomeBridgeRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.address = reader.string();
+          continue;
+        case 3:
+          if (tag !== 24) {
+            break;
+          }
+
+          message.amount = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgIncomeBridgeRequest {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      address: isSet(object.address) ? String(object.address) : "",
+      amount: isSet(object.amount) ? Number(object.amount) : 0,
+    };
+  },
+
+  toJSON(message: MsgIncomeBridgeRequest): unknown {
+    const obj: any = {};
+    if (message.creator !== "") {
+      obj.creator = message.creator;
+    }
+    if (message.address !== "") {
+      obj.address = message.address;
+    }
+    if (message.amount !== 0) {
+      obj.amount = Math.round(message.amount);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgIncomeBridgeRequest>, I>>(base?: I): MsgIncomeBridgeRequest {
+    return MsgIncomeBridgeRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgIncomeBridgeRequest>, I>>(object: I): MsgIncomeBridgeRequest {
+    const message = createBaseMsgIncomeBridgeRequest();
+    message.creator = object.creator ?? "";
+    message.address = object.address ?? "";
+    message.amount = object.amount ?? 0;
+    return message;
+  },
+};
+
+function createBaseMsgIncomeBridgeRequestResponse(): MsgIncomeBridgeRequestResponse {
+  return {};
+}
+
+export const MsgIncomeBridgeRequestResponse = {
+  encode(_: MsgIncomeBridgeRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgIncomeBridgeRequestResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgIncomeBridgeRequestResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgIncomeBridgeRequestResponse {
+    return {};
+  },
+
+  toJSON(_: MsgIncomeBridgeRequestResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgIncomeBridgeRequestResponse>, I>>(base?: I): MsgIncomeBridgeRequestResponse {
+    return MsgIncomeBridgeRequestResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgIncomeBridgeRequestResponse>, I>>(_: I): MsgIncomeBridgeRequestResponse {
+    const message = createBaseMsgIncomeBridgeRequestResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -1244,6 +1385,7 @@ export interface Msg {
   SetRaoCurrentStakedBalance(request: MsgSetRaoCurrentStakedBalance): Promise<MsgSetRaoCurrentStakedBalanceResponse>;
   CreateBridgeRequest(request: MsgCreateBridgeRequest): Promise<MsgCreateBridgeRequestResponse>;
   ApproveBridgeRequest(request: MsgApproveBridgeRequest): Promise<MsgApproveBridgeRequestResponse>;
+  IncomeBridgeRequest(request: MsgIncomeBridgeRequest): Promise<MsgIncomeBridgeRequestResponse>;
 }
 
 export const MsgServiceName = "sigmoid.sigmoid.Msg";
@@ -1262,6 +1404,7 @@ export class MsgClientImpl implements Msg {
     this.SetRaoCurrentStakedBalance = this.SetRaoCurrentStakedBalance.bind(this);
     this.CreateBridgeRequest = this.CreateBridgeRequest.bind(this);
     this.ApproveBridgeRequest = this.ApproveBridgeRequest.bind(this);
+    this.IncomeBridgeRequest = this.IncomeBridgeRequest.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -1315,6 +1458,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgApproveBridgeRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "ApproveBridgeRequest", data);
     return promise.then((data) => MsgApproveBridgeRequestResponse.decode(_m0.Reader.create(data)));
+  }
+
+  IncomeBridgeRequest(request: MsgIncomeBridgeRequest): Promise<MsgIncomeBridgeRequestResponse> {
+    const data = MsgIncomeBridgeRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "IncomeBridgeRequest", data);
+    return promise.then((data) => MsgIncomeBridgeRequestResponse.decode(_m0.Reader.create(data)));
   }
 }
 

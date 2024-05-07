@@ -356,6 +356,8 @@ definitions:
     type: object
   MsgCreateUnstakeRequestResponse:
     type: object
+  MsgIncomeBridgeRequestResponse:
+    type: object
   MsgProcessTransactionResponse:
     type: object
   MsgSetRaoCurrentStakedBalanceResponse:

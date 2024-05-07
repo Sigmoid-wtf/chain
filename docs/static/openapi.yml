@@ -19761,6 +19761,48 @@ paths:
                 format: uint64
       tags:
         - Msg
+  /sigmoid.sigmoid.Msg/IncomeBridgeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_IncomeBridgeRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              address:
+                type: string
+              amount:
+                type: string
+                format: uint64
+      tags:
+        - Msg
   /sigmoid.sigmoid.Msg/ProcessTransaction:
     post:
       operationId: SigmoidSigmoidMsg_ProcessTransaction
@@ -27758,6 +27800,18 @@ definitions:
   sigmoid.sigmoid.MsgCreateRequestResponse:
     type: object
   sigmoid.sigmoid.MsgCreateUnstakeRequestResponse:
+    type: object
+  sigmoid.sigmoid.MsgIncomeBridgeRequest:
+    type: object
+    properties:
+      creator:
+        type: string
+      address:
+        type: string
+      amount:
+        type: string
+        format: uint64
+  sigmoid.sigmoid.MsgIncomeBridgeRequestResponse:
     type: object
   sigmoid.sigmoid.MsgProcessTransaction:
     type: object

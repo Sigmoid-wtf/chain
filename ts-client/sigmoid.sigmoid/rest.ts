@@ -81,6 +81,8 @@ export type MsgCreateRequestResponse = object;
 
 export type MsgCreateUnstakeRequestResponse = object;
 
+export type MsgIncomeBridgeRequestResponse = object;
+
 export type MsgProcessTransactionResponse = object;
 
 export type MsgSetRaoCurrentStakedBalanceResponse = object;

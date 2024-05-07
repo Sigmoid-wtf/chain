@@ -55,6 +55,10 @@ const (
 	// TODO: Determine the simulation weight value
 	defaultWeightMsgApproveBridgeRequest int = 100
 
+	opWeightMsgIncomeBridgeRequest = "op_weight_msg_income_bridge_request"
+	// TODO: Determine the simulation weight value
+	defaultWeightMsgIncomeBridgeRequest int = 100
+
 	// this line is used by starport scaffolding # simapp/module/const
 )
 
@@ -171,6 +175,17 @@ func (am AppModule) WeightedOperations(simState module.SimulationState) []simtyp
 		sigmoidsimulation.SimulateMsgApproveBridgeRequest(am.accountKeeper, am.bankKeeper, am.keeper),
 	))
 
+	var weightMsgIncomeBridgeRequest int
+	simState.AppParams.GetOrGenerate(opWeightMsgIncomeBridgeRequest, &weightMsgIncomeBridgeRequest, nil,
+		func(_ *rand.Rand) {
+			weightMsgIncomeBridgeRequest = defaultWeightMsgIncomeBridgeRequest
+		},
+	)
+	operations = append(operations, simulation.NewWeightedOperation(
+		weightMsgIncomeBridgeRequest,
+		sigmoidsimulation.SimulateMsgIncomeBridgeRequest(am.accountKeeper, am.bankKeeper, am.keeper),
+	))
+
 	// this line is used by starport scaffolding # simapp/module/operation
 
 	return operations
@@ -240,6 +255,14 @@ func (am AppModule) ProposalMsgs(simState module.SimulationState) []simtypes.Wei
 			defaultWeightMsgApproveBridgeRequest,
 			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
 				sigmoidsimulation.SimulateMsgApproveBridgeRequest(am.accountKeeper, am.bankKeeper, am.keeper)
+				return nil
+			},
+		),
+		simulation.NewWeightedProposalMsg(
+			opWeightMsgIncomeBridgeRequest,
+			defaultWeightMsgIncomeBridgeRequest,
+			func(r *rand.Rand, ctx sdk.Context, accs []simtypes.Account) sdk.Msg {
+				sigmoidsimulation.SimulateMsgIncomeBridgeRequest(am.accountKeeper, am.bankKeeper, am.keeper)
 				return nil
 			},
 		),

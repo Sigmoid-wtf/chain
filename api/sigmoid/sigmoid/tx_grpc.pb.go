@@ -28,6 +28,7 @@ const (
 	Msg_SetRaoCurrentStakedBalance_FullMethodName = "/sigmoid.sigmoid.Msg/SetRaoCurrentStakedBalance"
 	Msg_CreateBridgeRequest_FullMethodName        = "/sigmoid.sigmoid.Msg/CreateBridgeRequest"
 	Msg_ApproveBridgeRequest_FullMethodName       = "/sigmoid.sigmoid.Msg/ApproveBridgeRequest"
+	Msg_IncomeBridgeRequest_FullMethodName        = "/sigmoid.sigmoid.Msg/IncomeBridgeRequest"
 )
 
 // MsgClient is the client API for Msg service.
@@ -45,6 +46,7 @@ type MsgClient interface {
 	SetRaoCurrentStakedBalance(ctx context.Context, in *MsgSetRaoCurrentStakedBalance, opts ...grpc.CallOption) (*MsgSetRaoCurrentStakedBalanceResponse, error)
 	CreateBridgeRequest(ctx context.Context, in *MsgCreateBridgeRequest, opts ...grpc.CallOption) (*MsgCreateBridgeRequestResponse, error)
 	ApproveBridgeRequest(ctx context.Context, in *MsgApproveBridgeRequest, opts ...grpc.CallOption) (*MsgApproveBridgeRequestResponse, error)
+	IncomeBridgeRequest(ctx context.Context, in *MsgIncomeBridgeRequest, opts ...grpc.CallOption) (*MsgIncomeBridgeRequestResponse, error)
 }
 
 type msgClient struct {
@@ -136,6 +138,15 @@ func (c *msgClient) ApproveBridgeRequest(ctx context.Context, in *MsgApproveBrid
 	return out, nil
 }
 
+func (c *msgClient) IncomeBridgeRequest(ctx context.Context, in *MsgIncomeBridgeRequest, opts ...grpc.CallOption) (*MsgIncomeBridgeRequestResponse, error) {
+	out := new(MsgIncomeBridgeRequestResponse)
+	err := c.cc.Invoke(ctx, Msg_IncomeBridgeRequest_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -151,6 +162,7 @@ type MsgServer interface {
 	SetRaoCurrentStakedBalance(context.Context, *MsgSetRaoCurrentStakedBalance) (*MsgSetRaoCurrentStakedBalanceResponse, error)
 	CreateBridgeRequest(context.Context, *MsgCreateBridgeRequest) (*MsgCreateBridgeRequestResponse, error)
 	ApproveBridgeRequest(context.Context, *MsgApproveBridgeRequest) (*MsgApproveBridgeRequestResponse, error)
+	IncomeBridgeRequest(context.Context, *MsgIncomeBridgeRequest) (*MsgIncomeBridgeRequestResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -184,6 +196,9 @@ func (UnimplementedMsgServer) CreateBridgeRequest(context.Context, *MsgCreateBri
 }
 func (UnimplementedMsgServer) ApproveBridgeRequest(context.Context, *MsgApproveBridgeRequest) (*MsgApproveBridgeRequestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ApproveBridgeRequest not implemented")
+}
+func (UnimplementedMsgServer) IncomeBridgeRequest(context.Context, *MsgIncomeBridgeRequest) (*MsgIncomeBridgeRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method IncomeBridgeRequest not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -360,6 +375,24 @@ func _Msg_ApproveBridgeRequest_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_IncomeBridgeRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgIncomeBridgeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).IncomeBridgeRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_IncomeBridgeRequest_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).IncomeBridgeRequest(ctx, req.(*MsgIncomeBridgeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -402,6 +435,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ApproveBridgeRequest",
 			Handler:    _Msg_ApproveBridgeRequest_Handler,
+		},
+		{
+			MethodName: "IncomeBridgeRequest",
+			Handler:    _Msg_IncomeBridgeRequest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

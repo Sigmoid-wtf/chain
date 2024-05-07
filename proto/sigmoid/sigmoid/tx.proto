@@ -25,6 +25,7 @@ service Msg {
   rpc SetRaoCurrentStakedBalance (MsgSetRaoCurrentStakedBalance) returns (MsgSetRaoCurrentStakedBalanceResponse);
   rpc CreateBridgeRequest        (MsgCreateBridgeRequest       ) returns (MsgCreateBridgeRequestResponse       );
   rpc ApproveBridgeRequest       (MsgApproveBridgeRequest      ) returns (MsgApproveBridgeRequestResponse      );
+  rpc IncomeBridgeRequest        (MsgIncomeBridgeRequest       ) returns (MsgIncomeBridgeRequestResponse       );
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -112,4 +113,13 @@ message MsgApproveBridgeRequest {
 }
 
 message MsgApproveBridgeRequestResponse {}
+
+message MsgIncomeBridgeRequest {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator = 1;
+  string address = 2;
+  uint64 amount  = 3;
+}
+
+message MsgIncomeBridgeRequestResponse {}
 
