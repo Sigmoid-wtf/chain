@@ -98,6 +98,17 @@ export interface MsgIncomeBridgeRequest {
 export interface MsgIncomeBridgeRequestResponse {
 }
 
+export interface MsgCreateRequestSigned {
+  creator: string;
+  senderAddress: string;
+  signature: string;
+  amount: number;
+  timestamp: number;
+}
+
+export interface MsgCreateRequestSignedResponse {
+}
+
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return { authority: "", params: undefined };
 }
@@ -1370,6 +1381,168 @@ export const MsgIncomeBridgeRequestResponse = {
   },
 };
 
+function createBaseMsgCreateRequestSigned(): MsgCreateRequestSigned {
+  return { creator: "", senderAddress: "", signature: "", amount: 0, timestamp: 0 };
+}
+
+export const MsgCreateRequestSigned = {
+  encode(message: MsgCreateRequestSigned, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.senderAddress !== "") {
+      writer.uint32(18).string(message.senderAddress);
+    }
+    if (message.signature !== "") {
+      writer.uint32(26).string(message.signature);
+    }
+    if (message.amount !== 0) {
+      writer.uint32(32).uint64(message.amount);
+    }
+    if (message.timestamp !== 0) {
+      writer.uint32(40).uint64(message.timestamp);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateRequestSigned {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCreateRequestSigned();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.senderAddress = reader.string();
+          continue;
+        case 3:
+          if (tag !== 26) {
+            break;
+          }
+
+          message.signature = reader.string();
+          continue;
+        case 4:
+          if (tag !== 32) {
+            break;
+          }
+
+          message.amount = longToNumber(reader.uint64() as Long);
+          continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.timestamp = longToNumber(reader.uint64() as Long);
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgCreateRequestSigned {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      senderAddress: isSet(object.senderAddress) ? String(object.senderAddress) : "",
+      signature: isSet(object.signature) ? String(object.signature) : "",
+      amount: isSet(object.amount) ? Number(object.amount) : 0,
+      timestamp: isSet(object.timestamp) ? Number(object.timestamp) : 0,
+    };
+  },
+
+  toJSON(message: MsgCreateRequestSigned): unknown {
+    const obj: any = {};
+    if (message.creator !== "") {
+      obj.creator = message.creator;
+    }
+    if (message.senderAddress !== "") {
+      obj.senderAddress = message.senderAddress;
+    }
+    if (message.signature !== "") {
+      obj.signature = message.signature;
+    }
+    if (message.amount !== 0) {
+      obj.amount = Math.round(message.amount);
+    }
+    if (message.timestamp !== 0) {
+      obj.timestamp = Math.round(message.timestamp);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgCreateRequestSigned>, I>>(base?: I): MsgCreateRequestSigned {
+    return MsgCreateRequestSigned.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgCreateRequestSigned>, I>>(object: I): MsgCreateRequestSigned {
+    const message = createBaseMsgCreateRequestSigned();
+    message.creator = object.creator ?? "";
+    message.senderAddress = object.senderAddress ?? "";
+    message.signature = object.signature ?? "";
+    message.amount = object.amount ?? 0;
+    message.timestamp = object.timestamp ?? 0;
+    return message;
+  },
+};
+
+function createBaseMsgCreateRequestSignedResponse(): MsgCreateRequestSignedResponse {
+  return {};
+}
+
+export const MsgCreateRequestSignedResponse = {
+  encode(_: MsgCreateRequestSignedResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgCreateRequestSignedResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgCreateRequestSignedResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgCreateRequestSignedResponse {
+    return {};
+  },
+
+  toJSON(_: MsgCreateRequestSignedResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgCreateRequestSignedResponse>, I>>(base?: I): MsgCreateRequestSignedResponse {
+    return MsgCreateRequestSignedResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgCreateRequestSignedResponse>, I>>(_: I): MsgCreateRequestSignedResponse {
+    const message = createBaseMsgCreateRequestSignedResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -1386,6 +1559,7 @@ export interface Msg {
   CreateBridgeRequest(request: MsgCreateBridgeRequest): Promise<MsgCreateBridgeRequestResponse>;
   ApproveBridgeRequest(request: MsgApproveBridgeRequest): Promise<MsgApproveBridgeRequestResponse>;
   IncomeBridgeRequest(request: MsgIncomeBridgeRequest): Promise<MsgIncomeBridgeRequestResponse>;
+  CreateRequestSigned(request: MsgCreateRequestSigned): Promise<MsgCreateRequestSignedResponse>;
 }
 
 export const MsgServiceName = "sigmoid.sigmoid.Msg";
@@ -1405,6 +1579,7 @@ export class MsgClientImpl implements Msg {
     this.CreateBridgeRequest = this.CreateBridgeRequest.bind(this);
     this.ApproveBridgeRequest = this.ApproveBridgeRequest.bind(this);
     this.IncomeBridgeRequest = this.IncomeBridgeRequest.bind(this);
+    this.CreateRequestSigned = this.CreateRequestSigned.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -1464,6 +1639,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgIncomeBridgeRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "IncomeBridgeRequest", data);
     return promise.then((data) => MsgIncomeBridgeRequestResponse.decode(_m0.Reader.create(data)));
+  }
+
+  CreateRequestSigned(request: MsgCreateRequestSigned): Promise<MsgCreateRequestSignedResponse> {
+    const data = MsgCreateRequestSigned.encode(request).finish();
+    const promise = this.rpc.request(this.service, "CreateRequestSigned", data);
+    return promise.then((data) => MsgCreateRequestSignedResponse.decode(_m0.Reader.create(data)));
   }
 }
 

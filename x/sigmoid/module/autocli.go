@@ -124,6 +124,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a income-bridge-request tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "address"}, {ProtoField: "amount"}},
 				},
+				{
+					RpcMethod:      "CreateRequestSigned",
+					Use:            "create-request-signed [sender-address] [signature] [amount] [timestamp]",
+					Short:          "Send a create-request-signed tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "senderAddress"}, {ProtoField: "signature"}, {ProtoField: "amount"}, {ProtoField: "timestamp"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

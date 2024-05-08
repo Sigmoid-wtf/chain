@@ -79,6 +79,8 @@ export type MsgCreateBridgeRequestResponse = object;
 
 export type MsgCreateRequestResponse = object;
 
+export type MsgCreateRequestSignedResponse = object;
+
 export type MsgCreateUnstakeRequestResponse = object;
 
 export type MsgIncomeBridgeRequestResponse = object;

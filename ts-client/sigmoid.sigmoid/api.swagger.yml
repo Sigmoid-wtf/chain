@@ -354,6 +354,8 @@ definitions:
     type: object
   MsgCreateRequestResponse:
     type: object
+  MsgCreateRequestSignedResponse:
+    type: object
   MsgCreateUnstakeRequestResponse:
     type: object
   MsgIncomeBridgeRequestResponse:

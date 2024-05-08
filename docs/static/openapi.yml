@@ -19262,6 +19262,474 @@ paths:
               parameters.
       tags:
         - Msg
+  /sigmoid.sigmoid.Msg/ApproveBridgeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_ApproveBridgeRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              address:
+                type: string
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/ApproveRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_ApproveRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              senderAddress:
+                type: string
+              transactionId:
+                type: string
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/ApproveUnstakeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_ApproveUnstakeRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              unstakeAddress:
+                type: string
+              transactionId:
+                type: string
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/CreateBridgeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_CreateBridgeRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              erc20Address:
+                type: string
+              amount:
+                type: string
+                format: uint64
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/CreateRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_CreateRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              senderAddress:
+                type: string
+              amount:
+                type: string
+                format: uint64
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/CreateRequestSigned:
+    post:
+      operationId: SigmoidSigmoidMsg_CreateRequestSigned
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              senderAddress:
+                type: string
+              signature:
+                type: string
+              amount:
+                type: string
+                format: uint64
+              timestamp:
+                type: string
+                format: uint64
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/CreateUnstakeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_CreateUnstakeRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              unstakeAddress:
+                type: string
+              amount:
+                type: string
+                format: uint64
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/IncomeBridgeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_IncomeBridgeRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              address:
+                type: string
+              amount:
+                type: string
+                format: uint64
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/ProcessTransaction:
+    post:
+      operationId: SigmoidSigmoidMsg_ProcessTransaction
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              transactionId:
+                type: string
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/SetRaoCurrentStakedBalance:
+    post:
+      operationId: SigmoidSigmoidMsg_SetRaoCurrentStakedBalance
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              raoCurrentStakedBalance:
+                type: string
+                format: uint64
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/UpdateParams:
+    post:
+      summary: |-
+        UpdateParams defines a (governance) operation for updating the module
+        parameters. The authority defaults to the x/gov module account.
+      operationId: SigmoidSigmoidMsg_UpdateParams
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            description: >-
+              MsgUpdateParamsResponse defines the response structure for
+              executing a
+
+              MsgUpdateParams message.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          description: MsgUpdateParams is the Msg/UpdateParams request type.
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              authority:
+                type: string
+                description: >-
+                  authority is the address that controls the module (defaults to
+                  x/gov unless overwritten).
+              params:
+                description: 'NOTE: All parameters must be supplied.'
+                type: object
+            description: MsgUpdateParams is the Msg/UpdateParams request type.
+      tags:
+        - Msg
   /sigmoid/sigmoid/get_amount/{senderAddress}:
     get:
       summary: Queries a list of GetAmount items.
@@ -19514,427 +19982,6 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
-  /sigmoid.sigmoid.Msg/ApproveBridgeRequest:
-    post:
-      operationId: SigmoidSigmoidMsg_ApproveBridgeRequest
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              address:
-                type: string
-      tags:
-        - Msg
-  /sigmoid.sigmoid.Msg/ApproveRequest:
-    post:
-      operationId: SigmoidSigmoidMsg_ApproveRequest
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              senderAddress:
-                type: string
-              transactionId:
-                type: string
-      tags:
-        - Msg
-  /sigmoid.sigmoid.Msg/ApproveUnstakeRequest:
-    post:
-      operationId: SigmoidSigmoidMsg_ApproveUnstakeRequest
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              unstakeAddress:
-                type: string
-              transactionId:
-                type: string
-      tags:
-        - Msg
-  /sigmoid.sigmoid.Msg/CreateBridgeRequest:
-    post:
-      operationId: SigmoidSigmoidMsg_CreateBridgeRequest
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              erc20Address:
-                type: string
-              amount:
-                type: string
-                format: uint64
-      tags:
-        - Msg
-  /sigmoid.sigmoid.Msg/CreateRequest:
-    post:
-      operationId: SigmoidSigmoidMsg_CreateRequest
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              senderAddress:
-                type: string
-              amount:
-                type: string
-                format: uint64
-      tags:
-        - Msg
-  /sigmoid.sigmoid.Msg/CreateUnstakeRequest:
-    post:
-      operationId: SigmoidSigmoidMsg_CreateUnstakeRequest
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              unstakeAddress:
-                type: string
-              amount:
-                type: string
-                format: uint64
-      tags:
-        - Msg
-  /sigmoid.sigmoid.Msg/IncomeBridgeRequest:
-    post:
-      operationId: SigmoidSigmoidMsg_IncomeBridgeRequest
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              address:
-                type: string
-              amount:
-                type: string
-                format: uint64
-      tags:
-        - Msg
-  /sigmoid.sigmoid.Msg/ProcessTransaction:
-    post:
-      operationId: SigmoidSigmoidMsg_ProcessTransaction
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              transactionId:
-                type: string
-      tags:
-        - Msg
-  /sigmoid.sigmoid.Msg/SetRaoCurrentStakedBalance:
-    post:
-      operationId: SigmoidSigmoidMsg_SetRaoCurrentStakedBalance
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              creator:
-                type: string
-              raoCurrentStakedBalance:
-                type: string
-                format: uint64
-      tags:
-        - Msg
-  /sigmoid.sigmoid.Msg/UpdateParams:
-    post:
-      summary: |-
-        UpdateParams defines a (governance) operation for updating the module
-        parameters. The authority defaults to the x/gov module account.
-      operationId: SigmoidSigmoidMsg_UpdateParams
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            description: >-
-              MsgUpdateParamsResponse defines the response structure for
-              executing a
-
-              MsgUpdateParams message.
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
-      parameters:
-        - name: body
-          description: MsgUpdateParams is the Msg/UpdateParams request type.
-          in: body
-          required: true
-          schema:
-            type: object
-            properties:
-              authority:
-                type: string
-                description: >-
-                  authority is the address that controls the module (defaults to
-                  x/gov unless overwritten).
-              params:
-                description: 'NOTE: All parameters must be supplied.'
-                type: object
-            description: MsgUpdateParams is the Msg/UpdateParams request type.
-      tags:
-        - Msg
 definitions:
   cosmos.auth.v1beta1.MsgUpdateParams:
     type: object
@@ -27675,6 +27722,37 @@ definitions:
     description: |-
       Version defines the versioning scheme used to negotiate the IBC verison in
       the connection handshake.
+  sigmoid.sigmoid.MsgApproveBridgeRequest:
+    type: object
+    properties:
+      creator:
+        type: string
+      address:
+        type: string
+  sigmoid.sigmoid.MsgApproveBridgeRequestResponse:
+    type: object
+  sigmoid.sigmoid.MsgApproveRequest:
+    type: object
+    properties:
+      creator:
+        type: string
+      senderAddress:
+        type: string
+      transactionId:
+        type: string
+  sigmoid.sigmoid.MsgApproveRequestResponse:
+    type: object
+  sigmoid.sigmoid.MsgApproveUnstakeRequest:
+    type: object
+    properties:
+      creator:
+        type: string
+      unstakeAddress:
+        type: string
+      transactionId:
+        type: string
+  sigmoid.sigmoid.MsgApproveUnstakeRequestResponse:
+    type: object
   sigmoid.sigmoid.MsgCreateBridgeRequest:
     type: object
     properties:
@@ -27685,6 +27763,37 @@ definitions:
       amount:
         type: string
         format: uint64
+  sigmoid.sigmoid.MsgCreateBridgeRequestResponse:
+    type: object
+  sigmoid.sigmoid.MsgCreateRequest:
+    type: object
+    properties:
+      creator:
+        type: string
+      senderAddress:
+        type: string
+      amount:
+        type: string
+        format: uint64
+  sigmoid.sigmoid.MsgCreateRequestResponse:
+    type: object
+  sigmoid.sigmoid.MsgCreateRequestSigned:
+    type: object
+    properties:
+      creator:
+        type: string
+      senderAddress:
+        type: string
+      signature:
+        type: string
+      amount:
+        type: string
+        format: uint64
+      timestamp:
+        type: string
+        format: uint64
+  sigmoid.sigmoid.MsgCreateRequestSignedResponse:
+    type: object
   sigmoid.sigmoid.MsgCreateUnstakeRequest:
     type: object
     properties:
@@ -27695,6 +27804,56 @@ definitions:
       amount:
         type: string
         format: uint64
+  sigmoid.sigmoid.MsgCreateUnstakeRequestResponse:
+    type: object
+  sigmoid.sigmoid.MsgIncomeBridgeRequest:
+    type: object
+    properties:
+      creator:
+        type: string
+      address:
+        type: string
+      amount:
+        type: string
+        format: uint64
+  sigmoid.sigmoid.MsgIncomeBridgeRequestResponse:
+    type: object
+  sigmoid.sigmoid.MsgProcessTransaction:
+    type: object
+    properties:
+      creator:
+        type: string
+      transactionId:
+        type: string
+  sigmoid.sigmoid.MsgProcessTransactionResponse:
+    type: object
+  sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance:
+    type: object
+    properties:
+      creator:
+        type: string
+      raoCurrentStakedBalance:
+        type: string
+        format: uint64
+  sigmoid.sigmoid.MsgSetRaoCurrentStakedBalanceResponse:
+    type: object
+  sigmoid.sigmoid.MsgUpdateParams:
+    type: object
+    properties:
+      authority:
+        type: string
+        description: >-
+          authority is the address that controls the module (defaults to x/gov
+          unless overwritten).
+      params:
+        description: 'NOTE: All parameters must be supplied.'
+        type: object
+    description: MsgUpdateParams is the Msg/UpdateParams request type.
+  sigmoid.sigmoid.MsgUpdateParamsResponse:
+    type: object
+    description: |-
+      MsgUpdateParamsResponse defines the response structure for executing a
+      MsgUpdateParams message.
   sigmoid.sigmoid.Params:
     type: object
     description: Params defines the parameters for the module.
@@ -27754,98 +27913,3 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
-  sigmoid.sigmoid.MsgApproveBridgeRequest:
-    type: object
-    properties:
-      creator:
-        type: string
-      address:
-        type: string
-  sigmoid.sigmoid.MsgApproveBridgeRequestResponse:
-    type: object
-  sigmoid.sigmoid.MsgApproveRequest:
-    type: object
-    properties:
-      creator:
-        type: string
-      senderAddress:
-        type: string
-      transactionId:
-        type: string
-  sigmoid.sigmoid.MsgApproveRequestResponse:
-    type: object
-  sigmoid.sigmoid.MsgApproveUnstakeRequest:
-    type: object
-    properties:
-      creator:
-        type: string
-      unstakeAddress:
-        type: string
-      transactionId:
-        type: string
-  sigmoid.sigmoid.MsgApproveUnstakeRequestResponse:
-    type: object
-  sigmoid.sigmoid.MsgCreateBridgeRequestResponse:
-    type: object
-  sigmoid.sigmoid.MsgCreateRequest:
-    type: object
-    properties:
-      creator:
-        type: string
-      senderAddress:
-        type: string
-      amount:
-        type: string
-        format: uint64
-  sigmoid.sigmoid.MsgCreateRequestResponse:
-    type: object
-  sigmoid.sigmoid.MsgCreateUnstakeRequestResponse:
-    type: object
-  sigmoid.sigmoid.MsgIncomeBridgeRequest:
-    type: object
-    properties:
-      creator:
-        type: string
-      address:
-        type: string
-      amount:
-        type: string
-        format: uint64
-  sigmoid.sigmoid.MsgIncomeBridgeRequestResponse:
-    type: object
-  sigmoid.sigmoid.MsgProcessTransaction:
-    type: object
-    properties:
-      creator:
-        type: string
-      transactionId:
-        type: string
-  sigmoid.sigmoid.MsgProcessTransactionResponse:
-    type: object
-  sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance:
-    type: object
-    properties:
-      creator:
-        type: string
-      raoCurrentStakedBalance:
-        type: string
-        format: uint64
-  sigmoid.sigmoid.MsgSetRaoCurrentStakedBalanceResponse:
-    type: object
-  sigmoid.sigmoid.MsgUpdateParams:
-    type: object
-    properties:
-      authority:
-        type: string
-        description: >-
-          authority is the address that controls the module (defaults to x/gov
-          unless overwritten).
-      params:
-        description: 'NOTE: All parameters must be supplied.'
-        type: object
-    description: MsgUpdateParams is the Msg/UpdateParams request type.
-  sigmoid.sigmoid.MsgUpdateParamsResponse:
-    type: object
-    description: |-
-      MsgUpdateParamsResponse defines the response structure for executing a
-      MsgUpdateParams message.

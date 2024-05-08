@@ -8,6 +8,7 @@ package sigmoid
 
 import (
 	context "context"
+
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -29,6 +30,7 @@ const (
 	Msg_CreateBridgeRequest_FullMethodName        = "/sigmoid.sigmoid.Msg/CreateBridgeRequest"
 	Msg_ApproveBridgeRequest_FullMethodName       = "/sigmoid.sigmoid.Msg/ApproveBridgeRequest"
 	Msg_IncomeBridgeRequest_FullMethodName        = "/sigmoid.sigmoid.Msg/IncomeBridgeRequest"
+	Msg_CreateRequestSigned_FullMethodName        = "/sigmoid.sigmoid.Msg/CreateRequestSigned"
 )
 
 // MsgClient is the client API for Msg service.
@@ -47,6 +49,7 @@ type MsgClient interface {
 	CreateBridgeRequest(ctx context.Context, in *MsgCreateBridgeRequest, opts ...grpc.CallOption) (*MsgCreateBridgeRequestResponse, error)
 	ApproveBridgeRequest(ctx context.Context, in *MsgApproveBridgeRequest, opts ...grpc.CallOption) (*MsgApproveBridgeRequestResponse, error)
 	IncomeBridgeRequest(ctx context.Context, in *MsgIncomeBridgeRequest, opts ...grpc.CallOption) (*MsgIncomeBridgeRequestResponse, error)
+	CreateRequestSigned(ctx context.Context, in *MsgCreateRequestSigned, opts ...grpc.CallOption) (*MsgCreateRequestSignedResponse, error)
 }
 
 type msgClient struct {
@@ -147,6 +150,15 @@ func (c *msgClient) IncomeBridgeRequest(ctx context.Context, in *MsgIncomeBridge
 	return out, nil
 }
 
+func (c *msgClient) CreateRequestSigned(ctx context.Context, in *MsgCreateRequestSigned, opts ...grpc.CallOption) (*MsgCreateRequestSignedResponse, error) {
+	out := new(MsgCreateRequestSignedResponse)
+	err := c.cc.Invoke(ctx, Msg_CreateRequestSigned_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 // All implementations must embed UnimplementedMsgServer
 // for forward compatibility
@@ -163,6 +175,7 @@ type MsgServer interface {
 	CreateBridgeRequest(context.Context, *MsgCreateBridgeRequest) (*MsgCreateBridgeRequestResponse, error)
 	ApproveBridgeRequest(context.Context, *MsgApproveBridgeRequest) (*MsgApproveBridgeRequestResponse, error)
 	IncomeBridgeRequest(context.Context, *MsgIncomeBridgeRequest) (*MsgIncomeBridgeRequestResponse, error)
+	CreateRequestSigned(context.Context, *MsgCreateRequestSigned) (*MsgCreateRequestSignedResponse, error)
 	mustEmbedUnimplementedMsgServer()
 }
 
@@ -199,6 +212,9 @@ func (UnimplementedMsgServer) ApproveBridgeRequest(context.Context, *MsgApproveB
 }
 func (UnimplementedMsgServer) IncomeBridgeRequest(context.Context, *MsgIncomeBridgeRequest) (*MsgIncomeBridgeRequestResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IncomeBridgeRequest not implemented")
+}
+func (UnimplementedMsgServer) CreateRequestSigned(context.Context, *MsgCreateRequestSigned) (*MsgCreateRequestSignedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateRequestSigned not implemented")
 }
 func (UnimplementedMsgServer) mustEmbedUnimplementedMsgServer() {}
 
@@ -393,6 +409,24 @@ func _Msg_IncomeBridgeRequest_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_CreateRequestSigned_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgCreateRequestSigned)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).CreateRequestSigned(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_CreateRequestSigned_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).CreateRequestSigned(ctx, req.(*MsgCreateRequestSigned))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Msg_ServiceDesc is the grpc.ServiceDesc for Msg service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -439,6 +473,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "IncomeBridgeRequest",
 			Handler:    _Msg_IncomeBridgeRequest_Handler,
+		},
+		{
+			MethodName: "CreateRequestSigned",
+			Handler:    _Msg_CreateRequestSigned_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
