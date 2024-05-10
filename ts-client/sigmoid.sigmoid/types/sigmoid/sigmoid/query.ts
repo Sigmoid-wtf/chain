@@ -59,6 +59,13 @@ export interface QueryGetPendingBridgeRequestResponse {
   request: MsgCreateBridgeRequest | undefined;
 }
 
+export interface QueryGetLatestProcessedEthBlockRequest {
+}
+
+export interface QueryGetLatestProcessedEthBlockResponse {
+  blockNumber: string;
+}
+
 function createBaseQueryParamsRequest(): QueryParamsRequest {
   return {};
 }
@@ -801,6 +808,114 @@ export const QueryGetPendingBridgeRequestResponse = {
   },
 };
 
+function createBaseQueryGetLatestProcessedEthBlockRequest(): QueryGetLatestProcessedEthBlockRequest {
+  return {};
+}
+
+export const QueryGetLatestProcessedEthBlockRequest = {
+  encode(_: QueryGetLatestProcessedEthBlockRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetLatestProcessedEthBlockRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetLatestProcessedEthBlockRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): QueryGetLatestProcessedEthBlockRequest {
+    return {};
+  },
+
+  toJSON(_: QueryGetLatestProcessedEthBlockRequest): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetLatestProcessedEthBlockRequest>, I>>(
+    base?: I,
+  ): QueryGetLatestProcessedEthBlockRequest {
+    return QueryGetLatestProcessedEthBlockRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetLatestProcessedEthBlockRequest>, I>>(
+    _: I,
+  ): QueryGetLatestProcessedEthBlockRequest {
+    const message = createBaseQueryGetLatestProcessedEthBlockRequest();
+    return message;
+  },
+};
+
+function createBaseQueryGetLatestProcessedEthBlockResponse(): QueryGetLatestProcessedEthBlockResponse {
+  return { blockNumber: "" };
+}
+
+export const QueryGetLatestProcessedEthBlockResponse = {
+  encode(message: QueryGetLatestProcessedEthBlockResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.blockNumber !== "") {
+      writer.uint32(10).string(message.blockNumber);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetLatestProcessedEthBlockResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetLatestProcessedEthBlockResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.blockNumber = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetLatestProcessedEthBlockResponse {
+    return { blockNumber: isSet(object.blockNumber) ? String(object.blockNumber) : "" };
+  },
+
+  toJSON(message: QueryGetLatestProcessedEthBlockResponse): unknown {
+    const obj: any = {};
+    if (message.blockNumber !== "") {
+      obj.blockNumber = message.blockNumber;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetLatestProcessedEthBlockResponse>, I>>(
+    base?: I,
+  ): QueryGetLatestProcessedEthBlockResponse {
+    return QueryGetLatestProcessedEthBlockResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetLatestProcessedEthBlockResponse>, I>>(
+    object: I,
+  ): QueryGetLatestProcessedEthBlockResponse {
+    const message = createBaseQueryGetLatestProcessedEthBlockResponse();
+    message.blockNumber = object.blockNumber ?? "";
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -819,6 +934,10 @@ export interface Query {
   GetSigtaoRateD(request: QueryGetSigtaoRateDRequest): Promise<QueryGetSigtaoRateDResponse>;
   /** Queries a list of GetPendingBridgeRequest items. */
   GetPendingBridgeRequest(request: QueryGetPendingBridgeRequestRequest): Promise<QueryGetPendingBridgeRequestResponse>;
+  /** Queries a list of GetLatestProcessedEthBlock items. */
+  GetLatestProcessedEthBlock(
+    request: QueryGetLatestProcessedEthBlockRequest,
+  ): Promise<QueryGetLatestProcessedEthBlockResponse>;
 }
 
 export const QueryServiceName = "sigmoid.sigmoid.Query";
@@ -835,6 +954,7 @@ export class QueryClientImpl implements Query {
     this.GetRaoStakedBalance = this.GetRaoStakedBalance.bind(this);
     this.GetSigtaoRateD = this.GetSigtaoRateD.bind(this);
     this.GetPendingBridgeRequest = this.GetPendingBridgeRequest.bind(this);
+    this.GetLatestProcessedEthBlock = this.GetLatestProcessedEthBlock.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -878,6 +998,14 @@ export class QueryClientImpl implements Query {
     const data = QueryGetPendingBridgeRequestRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "GetPendingBridgeRequest", data);
     return promise.then((data) => QueryGetPendingBridgeRequestResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetLatestProcessedEthBlock(
+    request: QueryGetLatestProcessedEthBlockRequest,
+  ): Promise<QueryGetLatestProcessedEthBlockResponse> {
+    const data = QueryGetLatestProcessedEthBlockRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetLatestProcessedEthBlock", data);
+    return promise.then((data) => QueryGetLatestProcessedEthBlockResponse.decode(_m0.Reader.create(data)));
   }
 }
 

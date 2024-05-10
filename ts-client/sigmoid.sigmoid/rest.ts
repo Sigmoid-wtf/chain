@@ -47,6 +47,10 @@ export interface QueryGetLastProcessedResponse {
   transactionId?: string;
 }
 
+export interface QueryGetLatestProcessedEthBlockResponse {
+  blockNumber?: string;
+}
+
 export interface QueryGetPendingBridgeRequestResponse {
   request?: { creator?: string; erc20Address?: string; amount?: string };
 }
@@ -241,6 +245,20 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryGetLastProcessed = (params: RequestParams = {}) =>
     this.request<{ transactionId?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
       path: `/sigmoid/sigmoid/get_last_processed`,
+      method: "GET",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryGetLatestProcessedEthBlock
+   * @request GET:/sigmoid/sigmoid/get_latest_processed_eth_block
+   */
+  queryGetLatestProcessedEthBlock = (params: RequestParams = {}) =>
+    this.request<{ blockNumber?: string }, { code?: number; message?: string; details?: { "@type"?: string }[] }>({
+      path: `/sigmoid/sigmoid/get_latest_processed_eth_block`,
       method: "GET",
       ...params,
     });

@@ -55,6 +55,12 @@ service Query {
     option (google.api.http).get = "/sigmoid/sigmoid/get_pending_bridge_request";
   
   }
+  
+  // Queries a list of GetLatestProcessedEthBlock items.
+  rpc GetLatestProcessedEthBlock (QueryGetLatestProcessedEthBlockRequest) returns (QueryGetLatestProcessedEthBlockResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/get_latest_processed_eth_block";
+  
+  }
 }
 // QueryParamsRequest is request type for the Query/Params RPC method.
 message QueryParamsRequest {}
@@ -102,5 +108,11 @@ message QueryGetPendingBridgeRequestRequest {}
 
 message QueryGetPendingBridgeRequestResponse {
   MsgCreateBridgeRequest request = 1;
+}
+
+message QueryGetLatestProcessedEthBlockRequest {}
+
+message QueryGetLatestProcessedEthBlockResponse {
+  string blockNumber = 1;
 }
 

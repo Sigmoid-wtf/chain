@@ -5509,6 +5509,782 @@ func (x *fastReflection_QueryGetPendingBridgeRequestResponse) ProtoMethods() *pr
 	}
 }
 
+var (
+	md_QueryGetLatestProcessedEthBlockRequest protoreflect.MessageDescriptor
+)
+
+func init() {
+	file_sigmoid_sigmoid_query_proto_init()
+	md_QueryGetLatestProcessedEthBlockRequest = File_sigmoid_sigmoid_query_proto.Messages().ByName("QueryGetLatestProcessedEthBlockRequest")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryGetLatestProcessedEthBlockRequest)(nil)
+
+type fastReflection_QueryGetLatestProcessedEthBlockRequest QueryGetLatestProcessedEthBlockRequest
+
+func (x *QueryGetLatestProcessedEthBlockRequest) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetLatestProcessedEthBlockRequest)(x)
+}
+
+func (x *QueryGetLatestProcessedEthBlockRequest) slowProtoReflect() protoreflect.Message {
+	mi := &file_sigmoid_sigmoid_query_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryGetLatestProcessedEthBlockRequest_messageType fastReflection_QueryGetLatestProcessedEthBlockRequest_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetLatestProcessedEthBlockRequest_messageType{}
+
+type fastReflection_QueryGetLatestProcessedEthBlockRequest_messageType struct{}
+
+func (x fastReflection_QueryGetLatestProcessedEthBlockRequest_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetLatestProcessedEthBlockRequest)(nil)
+}
+func (x fastReflection_QueryGetLatestProcessedEthBlockRequest_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetLatestProcessedEthBlockRequest)
+}
+func (x fastReflection_QueryGetLatestProcessedEthBlockRequest_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetLatestProcessedEthBlockRequest
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetLatestProcessedEthBlockRequest
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetLatestProcessedEthBlockRequest_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) New() protoreflect.Message {
+	return new(fastReflection_QueryGetLatestProcessedEthBlockRequest)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetLatestProcessedEthBlockRequest)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockRequest) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryGetLatestProcessedEthBlockRequest)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetLatestProcessedEthBlockRequest)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetLatestProcessedEthBlockRequest)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetLatestProcessedEthBlockRequest: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetLatestProcessedEthBlockRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_QueryGetLatestProcessedEthBlockResponse             protoreflect.MessageDescriptor
+	fd_QueryGetLatestProcessedEthBlockResponse_blockNumber protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_sigmoid_sigmoid_query_proto_init()
+	md_QueryGetLatestProcessedEthBlockResponse = File_sigmoid_sigmoid_query_proto.Messages().ByName("QueryGetLatestProcessedEthBlockResponse")
+	fd_QueryGetLatestProcessedEthBlockResponse_blockNumber = md_QueryGetLatestProcessedEthBlockResponse.Fields().ByName("blockNumber")
+}
+
+var _ protoreflect.Message = (*fastReflection_QueryGetLatestProcessedEthBlockResponse)(nil)
+
+type fastReflection_QueryGetLatestProcessedEthBlockResponse QueryGetLatestProcessedEthBlockResponse
+
+func (x *QueryGetLatestProcessedEthBlockResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_QueryGetLatestProcessedEthBlockResponse)(x)
+}
+
+func (x *QueryGetLatestProcessedEthBlockResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_sigmoid_sigmoid_query_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_QueryGetLatestProcessedEthBlockResponse_messageType fastReflection_QueryGetLatestProcessedEthBlockResponse_messageType
+var _ protoreflect.MessageType = fastReflection_QueryGetLatestProcessedEthBlockResponse_messageType{}
+
+type fastReflection_QueryGetLatestProcessedEthBlockResponse_messageType struct{}
+
+func (x fastReflection_QueryGetLatestProcessedEthBlockResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_QueryGetLatestProcessedEthBlockResponse)(nil)
+}
+func (x fastReflection_QueryGetLatestProcessedEthBlockResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_QueryGetLatestProcessedEthBlockResponse)
+}
+func (x fastReflection_QueryGetLatestProcessedEthBlockResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetLatestProcessedEthBlockResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_QueryGetLatestProcessedEthBlockResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) Type() protoreflect.MessageType {
+	return _fastReflection_QueryGetLatestProcessedEthBlockResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) New() protoreflect.Message {
+	return new(fastReflection_QueryGetLatestProcessedEthBlockResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) Interface() protoreflect.ProtoMessage {
+	return (*QueryGetLatestProcessedEthBlockResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.BlockNumber != "" {
+		value := protoreflect.ValueOfString(x.BlockNumber)
+		if !f(fd_QueryGetLatestProcessedEthBlockResponse_blockNumber, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse.blockNumber":
+		return x.BlockNumber != ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse.blockNumber":
+		x.BlockNumber = ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse.blockNumber":
+		value := x.BlockNumber
+		return protoreflect.ValueOfString(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse.blockNumber":
+		x.BlockNumber = value.Interface().(string)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse.blockNumber":
+		panic(fmt.Errorf("field blockNumber of message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse.blockNumber":
+		return protoreflect.ValueOfString("")
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse"))
+		}
+		panic(fmt.Errorf("message sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_QueryGetLatestProcessedEthBlockResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*QueryGetLatestProcessedEthBlockResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.BlockNumber)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetLatestProcessedEthBlockResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.BlockNumber) > 0 {
+			i -= len(x.BlockNumber)
+			copy(dAtA[i:], x.BlockNumber)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.BlockNumber)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*QueryGetLatestProcessedEthBlockResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetLatestProcessedEthBlockResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: QueryGetLatestProcessedEthBlockResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field BlockNumber", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.BlockNumber = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
 // Code generated by protoc-gen-go. DO NOT EDIT.
 // versions:
 // 	protoc-gen-go v1.27.0
@@ -5961,6 +6737,67 @@ func (x *QueryGetPendingBridgeRequestResponse) GetRequest() *MsgCreateBridgeRequ
 	return nil
 }
 
+type QueryGetLatestProcessedEthBlockRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *QueryGetLatestProcessedEthBlockRequest) Reset() {
+	*x = QueryGetLatestProcessedEthBlockRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sigmoid_sigmoid_query_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryGetLatestProcessedEthBlockRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryGetLatestProcessedEthBlockRequest) ProtoMessage() {}
+
+// Deprecated: Use QueryGetLatestProcessedEthBlockRequest.ProtoReflect.Descriptor instead.
+func (*QueryGetLatestProcessedEthBlockRequest) Descriptor() ([]byte, []int) {
+	return file_sigmoid_sigmoid_query_proto_rawDescGZIP(), []int{14}
+}
+
+type QueryGetLatestProcessedEthBlockResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	BlockNumber string `protobuf:"bytes,1,opt,name=blockNumber,proto3" json:"blockNumber,omitempty"`
+}
+
+func (x *QueryGetLatestProcessedEthBlockResponse) Reset() {
+	*x = QueryGetLatestProcessedEthBlockResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_sigmoid_sigmoid_query_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *QueryGetLatestProcessedEthBlockResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QueryGetLatestProcessedEthBlockResponse) ProtoMessage() {}
+
+// Deprecated: Use QueryGetLatestProcessedEthBlockResponse.ProtoReflect.Descriptor instead.
+func (*QueryGetLatestProcessedEthBlockResponse) Descriptor() ([]byte, []int) {
+	return file_sigmoid_sigmoid_query_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *QueryGetLatestProcessedEthBlockResponse) GetBlockNumber() string {
+	if x != nil {
+		return x.BlockNumber
+	}
+	return ""
+}
+
 var File_sigmoid_sigmoid_query_proto protoreflect.FileDescriptor
 
 var file_sigmoid_sigmoid_query_proto_rawDesc = []byte{
@@ -6029,89 +6866,109 @@ var file_sigmoid_sigmoid_query_proto_rawDesc = []byte{
 	0x0b, 0x32, 0x27, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d,
 	0x6f, 0x69, 0x64, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x42, 0x72, 0x69,
 	0x64, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x07, 0x72, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x32, 0xfa, 0x08, 0x0a, 0x05, 0x51, 0x75, 0x65, 0x72, 0x79, 0x12, 0x74, 0x0a,
-	0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x23, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69,
-	0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50,
-	0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x73,
-	0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x1f, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x19, 0x12, 0x17, 0x2f, 0x73, 0x69, 0x67,
-	0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x70, 0x61, 0x72,
-	0x61, 0x6d, 0x73, 0x12, 0x91, 0x01, 0x0a, 0x09, 0x47, 0x65, 0x74, 0x41, 0x6d, 0x6f, 0x75, 0x6e,
-	0x74, 0x12, 0x26, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d,
-	0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6d, 0x6f, 0x75,
-	0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x27, 0x2e, 0x73, 0x69, 0x67, 0x6d,
-	0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72,
-	0x79, 0x47, 0x65, 0x74, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x22, 0x33, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2d, 0x12, 0x2b, 0x2f, 0x73, 0x69, 0x67,
+	0x65, 0x73, 0x74, 0x22, 0x28, 0x0a, 0x26, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4c,
+	0x61, 0x74, 0x65, 0x73, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x45, 0x74,
+	0x68, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x22, 0x4b, 0x0a,
+	0x27, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x50,
+	0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x45, 0x74, 0x68, 0x42, 0x6c, 0x6f, 0x63, 0x6b,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x62, 0x6c, 0x6f, 0x63,
+	0x6b, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x62,
+	0x6c, 0x6f, 0x63, 0x6b, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x32, 0xc5, 0x0a, 0x0a, 0x05, 0x51,
+	0x75, 0x65, 0x72, 0x79, 0x12, 0x74, 0x0a, 0x06, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x23,
+	0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
+	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x24, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69,
+	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50, 0x61, 0x72, 0x61, 0x6d,
+	0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x1f, 0x82, 0xd3, 0xe4, 0x93, 0x02,
+	0x19, 0x12, 0x17, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d,
+	0x6f, 0x69, 0x64, 0x2f, 0x70, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x91, 0x01, 0x0a, 0x09, 0x47,
+	0x65, 0x74, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x26, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f,
+	0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
+	0x47, 0x65, 0x74, 0x41, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x27, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f,
+	0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x41, 0x6d, 0x6f, 0x75, 0x6e,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x33, 0x82, 0xd3, 0xe4, 0x93, 0x02,
+	0x2d, 0x12, 0x2b, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d,
+	0x6f, 0x69, 0x64, 0x2f, 0x67, 0x65, 0x74, 0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x2f, 0x7b,
+	0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x7d, 0x12, 0x9e,
+	0x01, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x73, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73,
+	0x73, 0x65, 0x64, 0x12, 0x2d, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69,
+	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4c, 0x61,
+	0x73, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x2e, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67,
+	0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x73,
+	0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x2b, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x25, 0x12, 0x23, 0x2f, 0x73, 0x69, 0x67,
 	0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x67, 0x65, 0x74,
-	0x5f, 0x61, 0x6d, 0x6f, 0x75, 0x6e, 0x74, 0x2f, 0x7b, 0x73, 0x65, 0x6e, 0x64, 0x65, 0x72, 0x41,
-	0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x7d, 0x12, 0x9e, 0x01, 0x0a, 0x10, 0x47, 0x65, 0x74, 0x4c,
-	0x61, 0x73, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x12, 0x2d, 0x2e, 0x73,
-	0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51,
-	0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x73, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65,
-	0x73, 0x73, 0x65, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2e, 0x2e, 0x73, 0x69,
-	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75,
-	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x73, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73,
-	0x73, 0x65, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2b, 0x82, 0xd3, 0xe4,
-	0x93, 0x02, 0x25, 0x12, 0x23, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69,
-	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x67, 0x65, 0x74, 0x5f, 0x6c, 0x61, 0x73, 0x74, 0x5f, 0x70,
-	0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x12, 0xbf, 0x01, 0x0a, 0x18, 0x47, 0x65, 0x74,
-	0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x55, 0x6e, 0x73, 0x74, 0x61, 0x6b, 0x65, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x35, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e,
-	0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74,
-	0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x55, 0x6e, 0x73, 0x74, 0x61, 0x6b, 0x65, 0x52, 0x65,
-	0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x36, 0x2e, 0x73,
+	0x5f, 0x6c, 0x61, 0x73, 0x74, 0x5f, 0x70, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x12,
+	0xbf, 0x01, 0x0a, 0x18, 0x47, 0x65, 0x74, 0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x55, 0x6e,
+	0x73, 0x74, 0x61, 0x6b, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x35, 0x2e, 0x73,
 	0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51,
 	0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x55, 0x6e,
-	0x73, 0x74, 0x61, 0x6b, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x34, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2e, 0x12, 0x2c, 0x2f, 0x73,
-	0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x67,
-	0x65, 0x74, 0x5f, 0x70, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x5f, 0x75, 0x6e, 0x73, 0x74, 0x61,
-	0x6b, 0x65, 0x5f, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0xab, 0x01, 0x0a, 0x13, 0x47,
-	0x65, 0x74, 0x52, 0x61, 0x6f, 0x53, 0x74, 0x61, 0x6b, 0x65, 0x64, 0x42, 0x61, 0x6c, 0x61, 0x6e,
-	0x63, 0x65, 0x12, 0x30, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67,
-	0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6f,
-	0x53, 0x74, 0x61, 0x6b, 0x65, 0x64, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x31, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73,
-	0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x52,
-	0x61, 0x6f, 0x53, 0x74, 0x61, 0x6b, 0x65, 0x64, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2f, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x29, 0x12,
-	0x27, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69,
-	0x64, 0x2f, 0x67, 0x65, 0x74, 0x5f, 0x72, 0x61, 0x6f, 0x5f, 0x73, 0x74, 0x61, 0x6b, 0x65, 0x64,
-	0x5f, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x97, 0x01, 0x0a, 0x0e, 0x47, 0x65, 0x74,
-	0x53, 0x69, 0x67, 0x74, 0x61, 0x6f, 0x52, 0x61, 0x74, 0x65, 0x44, 0x12, 0x2b, 0x2e, 0x73, 0x69,
-	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75,
-	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x69, 0x67, 0x74, 0x61, 0x6f, 0x52, 0x61, 0x74, 0x65,
-	0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2c, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f,
-	0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79,
-	0x47, 0x65, 0x74, 0x53, 0x69, 0x67, 0x74, 0x61, 0x6f, 0x52, 0x61, 0x74, 0x65, 0x44, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2a, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x24, 0x12, 0x22,
-	0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
-	0x2f, 0x67, 0x65, 0x74, 0x5f, 0x73, 0x69, 0x67, 0x74, 0x61, 0x6f, 0x5f, 0x72, 0x61, 0x74, 0x65,
-	0x5f, 0x64, 0x12, 0xbb, 0x01, 0x0a, 0x17, 0x47, 0x65, 0x74, 0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e,
-	0x67, 0x42, 0x72, 0x69, 0x64, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x34,
-	0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
-	0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67,
-	0x42, 0x72, 0x69, 0x64, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x1a, 0x35, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73,
-	0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x50,
-	0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x72, 0x69, 0x64, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75,
-	0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x33, 0x82, 0xd3, 0xe4,
-	0x93, 0x02, 0x2d, 0x12, 0x2b, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69,
+	0x73, 0x74, 0x61, 0x6b, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x1a, 0x36, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69,
+	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x50, 0x65,
+	0x6e, 0x64, 0x69, 0x6e, 0x67, 0x55, 0x6e, 0x73, 0x74, 0x61, 0x6b, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x34, 0x82, 0xd3, 0xe4,
+	0x93, 0x02, 0x2e, 0x12, 0x2c, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69,
 	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x67, 0x65, 0x74, 0x5f, 0x70, 0x65, 0x6e, 0x64, 0x69, 0x6e,
-	0x67, 0x5f, 0x62, 0x72, 0x69, 0x64, 0x67, 0x65, 0x5f, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
-	0x42, 0xa0, 0x01, 0x0a, 0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
-	0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72, 0x79, 0x50,
-	0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x20, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x73, 0x64,
-	0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
-	0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0xa2, 0x02, 0x03, 0x53, 0x53, 0x58, 0xaa, 0x02,
-	0x0f, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
-	0xca, 0x02, 0x0f, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x53, 0x69, 0x67, 0x6d, 0x6f,
-	0x69, 0x64, 0xe2, 0x02, 0x1b, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x53, 0x69, 0x67,
-	0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
-	0xea, 0x02, 0x10, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x3a, 0x3a, 0x53, 0x69, 0x67, 0x6d,
-	0x6f, 0x69, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x67, 0x5f, 0x75, 0x6e, 0x73, 0x74, 0x61, 0x6b, 0x65, 0x5f, 0x72, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0xab, 0x01, 0x0a, 0x13, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6f, 0x53, 0x74, 0x61, 0x6b,
+	0x65, 0x64, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x12, 0x30, 0x2e, 0x73, 0x69, 0x67, 0x6d,
+	0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6f, 0x53, 0x74, 0x61, 0x6b, 0x65, 0x64, 0x42, 0x61, 0x6c,
+	0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x31, 0x2e, 0x73, 0x69,
+	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x52, 0x61, 0x6f, 0x53, 0x74, 0x61, 0x6b, 0x65, 0x64, 0x42,
+	0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2f,
+	0x82, 0xd3, 0xe4, 0x93, 0x02, 0x29, 0x12, 0x27, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
+	0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x67, 0x65, 0x74, 0x5f, 0x72, 0x61, 0x6f,
+	0x5f, 0x73, 0x74, 0x61, 0x6b, 0x65, 0x64, 0x5f, 0x62, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x12,
+	0x97, 0x01, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x53, 0x69, 0x67, 0x74, 0x61, 0x6f, 0x52, 0x61, 0x74,
+	0x65, 0x44, 0x12, 0x2b, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67,
+	0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x69, 0x67,
+	0x74, 0x61, 0x6f, 0x52, 0x61, 0x74, 0x65, 0x44, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x2c, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69,
+	0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x53, 0x69, 0x67, 0x74, 0x61, 0x6f,
+	0x52, 0x61, 0x74, 0x65, 0x44, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x2a, 0x82,
+	0xd3, 0xe4, 0x93, 0x02, 0x24, 0x12, 0x22, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f,
+	0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x67, 0x65, 0x74, 0x5f, 0x73, 0x69, 0x67, 0x74,
+	0x61, 0x6f, 0x5f, 0x72, 0x61, 0x74, 0x65, 0x5f, 0x64, 0x12, 0xbb, 0x01, 0x0a, 0x17, 0x47, 0x65,
+	0x74, 0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x72, 0x69, 0x64, 0x67, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x34, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e,
+	0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74,
+	0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x72, 0x69, 0x64, 0x67, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x35, 0x2e, 0x73, 0x69,
+	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75,
+	0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x50, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x42, 0x72, 0x69,
+	0x64, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x33, 0x82, 0xd3, 0xe4, 0x93, 0x02, 0x2d, 0x12, 0x2b, 0x2f, 0x73, 0x69, 0x67,
+	0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x67, 0x65, 0x74,
+	0x5f, 0x70, 0x65, 0x6e, 0x64, 0x69, 0x6e, 0x67, 0x5f, 0x62, 0x72, 0x69, 0x64, 0x67, 0x65, 0x5f,
+	0x72, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0xc8, 0x01, 0x0a, 0x1a, 0x47, 0x65, 0x74, 0x4c,
+	0x61, 0x74, 0x65, 0x73, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x45, 0x74,
+	0x68, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x12, 0x37, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64,
+	0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65,
+	0x74, 0x4c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64,
+	0x45, 0x74, 0x68, 0x42, 0x6c, 0x6f, 0x63, 0x6b, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x38, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69,
+	0x64, 0x2e, 0x51, 0x75, 0x65, 0x72, 0x79, 0x47, 0x65, 0x74, 0x4c, 0x61, 0x74, 0x65, 0x73, 0x74,
+	0x50, 0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x45, 0x74, 0x68, 0x42, 0x6c, 0x6f, 0x63,
+	0x6b, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x37, 0x82, 0xd3, 0xe4, 0x93, 0x02,
+	0x31, 0x12, 0x2f, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d,
+	0x6f, 0x69, 0x64, 0x2f, 0x67, 0x65, 0x74, 0x5f, 0x6c, 0x61, 0x74, 0x65, 0x73, 0x74, 0x5f, 0x70,
+	0x72, 0x6f, 0x63, 0x65, 0x73, 0x73, 0x65, 0x64, 0x5f, 0x65, 0x74, 0x68, 0x5f, 0x62, 0x6c, 0x6f,
+	0x63, 0x6b, 0x42, 0xa0, 0x01, 0x0a, 0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f,
+	0x69, 0x64, 0x2e, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x42, 0x0a, 0x51, 0x75, 0x65, 0x72,
+	0x79, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x20, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x73, 0x64, 0x6b, 0x2e, 0x69, 0x6f, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f,
+	0x69, 0x64, 0x2f, 0x73, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0xa2, 0x02, 0x03, 0x53, 0x53, 0x58,
+	0xaa, 0x02, 0x0f, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x2e, 0x53, 0x69, 0x67, 0x6d, 0x6f,
+	0x69, 0x64, 0xca, 0x02, 0x0f, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x53, 0x69, 0x67,
+	0x6d, 0x6f, 0x69, 0x64, 0xe2, 0x02, 0x1b, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x53,
+	0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61,
+	0x74, 0x61, 0xea, 0x02, 0x10, 0x53, 0x69, 0x67, 0x6d, 0x6f, 0x69, 0x64, 0x3a, 0x3a, 0x53, 0x69,
+	0x67, 0x6d, 0x6f, 0x69, 0x64, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -6126,30 +6983,32 @@ func file_sigmoid_sigmoid_query_proto_rawDescGZIP() []byte {
 	return file_sigmoid_sigmoid_query_proto_rawDescData
 }
 
-var file_sigmoid_sigmoid_query_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_sigmoid_sigmoid_query_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_sigmoid_sigmoid_query_proto_goTypes = []interface{}{
-	(*QueryParamsRequest)(nil),                    // 0: sigmoid.sigmoid.QueryParamsRequest
-	(*QueryParamsResponse)(nil),                   // 1: sigmoid.sigmoid.QueryParamsResponse
-	(*QueryGetAmountRequest)(nil),                 // 2: sigmoid.sigmoid.QueryGetAmountRequest
-	(*QueryGetAmountResponse)(nil),                // 3: sigmoid.sigmoid.QueryGetAmountResponse
-	(*QueryGetLastProcessedRequest)(nil),          // 4: sigmoid.sigmoid.QueryGetLastProcessedRequest
-	(*QueryGetLastProcessedResponse)(nil),         // 5: sigmoid.sigmoid.QueryGetLastProcessedResponse
-	(*QueryGetPendingUnstakeRequestRequest)(nil),  // 6: sigmoid.sigmoid.QueryGetPendingUnstakeRequestRequest
-	(*QueryGetPendingUnstakeRequestResponse)(nil), // 7: sigmoid.sigmoid.QueryGetPendingUnstakeRequestResponse
-	(*QueryGetRaoStakedBalanceRequest)(nil),       // 8: sigmoid.sigmoid.QueryGetRaoStakedBalanceRequest
-	(*QueryGetRaoStakedBalanceResponse)(nil),      // 9: sigmoid.sigmoid.QueryGetRaoStakedBalanceResponse
-	(*QueryGetSigtaoRateDRequest)(nil),            // 10: sigmoid.sigmoid.QueryGetSigtaoRateDRequest
-	(*QueryGetSigtaoRateDResponse)(nil),           // 11: sigmoid.sigmoid.QueryGetSigtaoRateDResponse
-	(*QueryGetPendingBridgeRequestRequest)(nil),   // 12: sigmoid.sigmoid.QueryGetPendingBridgeRequestRequest
-	(*QueryGetPendingBridgeRequestResponse)(nil),  // 13: sigmoid.sigmoid.QueryGetPendingBridgeRequestResponse
-	(*Params)(nil),                  // 14: sigmoid.sigmoid.Params
-	(*MsgCreateUnstakeRequest)(nil), // 15: sigmoid.sigmoid.MsgCreateUnstakeRequest
-	(*MsgCreateBridgeRequest)(nil),  // 16: sigmoid.sigmoid.MsgCreateBridgeRequest
+	(*QueryParamsRequest)(nil),                      // 0: sigmoid.sigmoid.QueryParamsRequest
+	(*QueryParamsResponse)(nil),                     // 1: sigmoid.sigmoid.QueryParamsResponse
+	(*QueryGetAmountRequest)(nil),                   // 2: sigmoid.sigmoid.QueryGetAmountRequest
+	(*QueryGetAmountResponse)(nil),                  // 3: sigmoid.sigmoid.QueryGetAmountResponse
+	(*QueryGetLastProcessedRequest)(nil),            // 4: sigmoid.sigmoid.QueryGetLastProcessedRequest
+	(*QueryGetLastProcessedResponse)(nil),           // 5: sigmoid.sigmoid.QueryGetLastProcessedResponse
+	(*QueryGetPendingUnstakeRequestRequest)(nil),    // 6: sigmoid.sigmoid.QueryGetPendingUnstakeRequestRequest
+	(*QueryGetPendingUnstakeRequestResponse)(nil),   // 7: sigmoid.sigmoid.QueryGetPendingUnstakeRequestResponse
+	(*QueryGetRaoStakedBalanceRequest)(nil),         // 8: sigmoid.sigmoid.QueryGetRaoStakedBalanceRequest
+	(*QueryGetRaoStakedBalanceResponse)(nil),        // 9: sigmoid.sigmoid.QueryGetRaoStakedBalanceResponse
+	(*QueryGetSigtaoRateDRequest)(nil),              // 10: sigmoid.sigmoid.QueryGetSigtaoRateDRequest
+	(*QueryGetSigtaoRateDResponse)(nil),             // 11: sigmoid.sigmoid.QueryGetSigtaoRateDResponse
+	(*QueryGetPendingBridgeRequestRequest)(nil),     // 12: sigmoid.sigmoid.QueryGetPendingBridgeRequestRequest
+	(*QueryGetPendingBridgeRequestResponse)(nil),    // 13: sigmoid.sigmoid.QueryGetPendingBridgeRequestResponse
+	(*QueryGetLatestProcessedEthBlockRequest)(nil),  // 14: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest
+	(*QueryGetLatestProcessedEthBlockResponse)(nil), // 15: sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse
+	(*Params)(nil),                  // 16: sigmoid.sigmoid.Params
+	(*MsgCreateUnstakeRequest)(nil), // 17: sigmoid.sigmoid.MsgCreateUnstakeRequest
+	(*MsgCreateBridgeRequest)(nil),  // 18: sigmoid.sigmoid.MsgCreateBridgeRequest
 }
 var file_sigmoid_sigmoid_query_proto_depIdxs = []int32{
-	14, // 0: sigmoid.sigmoid.QueryParamsResponse.params:type_name -> sigmoid.sigmoid.Params
-	15, // 1: sigmoid.sigmoid.QueryGetPendingUnstakeRequestResponse.request:type_name -> sigmoid.sigmoid.MsgCreateUnstakeRequest
-	16, // 2: sigmoid.sigmoid.QueryGetPendingBridgeRequestResponse.request:type_name -> sigmoid.sigmoid.MsgCreateBridgeRequest
+	16, // 0: sigmoid.sigmoid.QueryParamsResponse.params:type_name -> sigmoid.sigmoid.Params
+	17, // 1: sigmoid.sigmoid.QueryGetPendingUnstakeRequestResponse.request:type_name -> sigmoid.sigmoid.MsgCreateUnstakeRequest
+	18, // 2: sigmoid.sigmoid.QueryGetPendingBridgeRequestResponse.request:type_name -> sigmoid.sigmoid.MsgCreateBridgeRequest
 	0,  // 3: sigmoid.sigmoid.Query.Params:input_type -> sigmoid.sigmoid.QueryParamsRequest
 	2,  // 4: sigmoid.sigmoid.Query.GetAmount:input_type -> sigmoid.sigmoid.QueryGetAmountRequest
 	4,  // 5: sigmoid.sigmoid.Query.GetLastProcessed:input_type -> sigmoid.sigmoid.QueryGetLastProcessedRequest
@@ -6157,15 +7016,17 @@ var file_sigmoid_sigmoid_query_proto_depIdxs = []int32{
 	8,  // 7: sigmoid.sigmoid.Query.GetRaoStakedBalance:input_type -> sigmoid.sigmoid.QueryGetRaoStakedBalanceRequest
 	10, // 8: sigmoid.sigmoid.Query.GetSigtaoRateD:input_type -> sigmoid.sigmoid.QueryGetSigtaoRateDRequest
 	12, // 9: sigmoid.sigmoid.Query.GetPendingBridgeRequest:input_type -> sigmoid.sigmoid.QueryGetPendingBridgeRequestRequest
-	1,  // 10: sigmoid.sigmoid.Query.Params:output_type -> sigmoid.sigmoid.QueryParamsResponse
-	3,  // 11: sigmoid.sigmoid.Query.GetAmount:output_type -> sigmoid.sigmoid.QueryGetAmountResponse
-	5,  // 12: sigmoid.sigmoid.Query.GetLastProcessed:output_type -> sigmoid.sigmoid.QueryGetLastProcessedResponse
-	7,  // 13: sigmoid.sigmoid.Query.GetPendingUnstakeRequest:output_type -> sigmoid.sigmoid.QueryGetPendingUnstakeRequestResponse
-	9,  // 14: sigmoid.sigmoid.Query.GetRaoStakedBalance:output_type -> sigmoid.sigmoid.QueryGetRaoStakedBalanceResponse
-	11, // 15: sigmoid.sigmoid.Query.GetSigtaoRateD:output_type -> sigmoid.sigmoid.QueryGetSigtaoRateDResponse
-	13, // 16: sigmoid.sigmoid.Query.GetPendingBridgeRequest:output_type -> sigmoid.sigmoid.QueryGetPendingBridgeRequestResponse
-	10, // [10:17] is the sub-list for method output_type
-	3,  // [3:10] is the sub-list for method input_type
+	14, // 10: sigmoid.sigmoid.Query.GetLatestProcessedEthBlock:input_type -> sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest
+	1,  // 11: sigmoid.sigmoid.Query.Params:output_type -> sigmoid.sigmoid.QueryParamsResponse
+	3,  // 12: sigmoid.sigmoid.Query.GetAmount:output_type -> sigmoid.sigmoid.QueryGetAmountResponse
+	5,  // 13: sigmoid.sigmoid.Query.GetLastProcessed:output_type -> sigmoid.sigmoid.QueryGetLastProcessedResponse
+	7,  // 14: sigmoid.sigmoid.Query.GetPendingUnstakeRequest:output_type -> sigmoid.sigmoid.QueryGetPendingUnstakeRequestResponse
+	9,  // 15: sigmoid.sigmoid.Query.GetRaoStakedBalance:output_type -> sigmoid.sigmoid.QueryGetRaoStakedBalanceResponse
+	11, // 16: sigmoid.sigmoid.Query.GetSigtaoRateD:output_type -> sigmoid.sigmoid.QueryGetSigtaoRateDResponse
+	13, // 17: sigmoid.sigmoid.Query.GetPendingBridgeRequest:output_type -> sigmoid.sigmoid.QueryGetPendingBridgeRequestResponse
+	15, // 18: sigmoid.sigmoid.Query.GetLatestProcessedEthBlock:output_type -> sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse
+	11, // [11:19] is the sub-list for method output_type
+	3,  // [3:11] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
 	3,  // [3:3] is the sub-list for extension extendee
 	0,  // [0:3] is the sub-list for field type_name
@@ -6347,6 +7208,30 @@ func file_sigmoid_sigmoid_query_proto_init() {
 				return nil
 			}
 		}
+		file_sigmoid_sigmoid_query_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryGetLatestProcessedEthBlockRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_sigmoid_sigmoid_query_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*QueryGetLatestProcessedEthBlockResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -6354,7 +7239,7 @@ func file_sigmoid_sigmoid_query_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_sigmoid_sigmoid_query_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   14,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
