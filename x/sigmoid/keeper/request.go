@@ -168,3 +168,18 @@ func (k Keeper) RemoveBridgeRequest(ctx sdk.Context, address *string) {
 
 	store.Delete([]byte(*address))
 }
+
+func (k Keeper) SetLatestProcessedEthBlock(ctx sdk.Context, blockNumber string) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LastProcessedKey))
+
+	store.Set([]byte("key"), []byte(blockNumber))
+}
+
+func (k Keeper) GetLatestProcessedEthBlock(ctx sdk.Context) string {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	store := prefix.NewStore(storeAdapter, types.KeyPrefix(types.LastProcessedKey))
+
+	val := store.Get([]byte("key"))
+	return string(val)
+}

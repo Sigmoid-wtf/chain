@@ -11,8 +11,7 @@ import (
 func (k msgServer) SetLatestProcessedEthBlock(goCtx context.Context, msg *types.MsgSetLatestProcessedEthBlock) (*types.MsgSetLatestProcessedEthBlockResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Handling the message
-	_ = ctx
+	k.Keeper.SetLatestProcessedEthBlock(ctx, msg.BlockNumber)
 
 	return &types.MsgSetLatestProcessedEthBlockResponse{}, nil
 }
