@@ -130,6 +130,12 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					Short:          "Send a create-request-signed tx",
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "senderAddress"}, {ProtoField: "signature"}, {ProtoField: "amount"}, {ProtoField: "timestamp"}},
 				},
+				{
+					RpcMethod:      "SetLatestProcessedEthBlock",
+					Use:            "set-latest-processed-eth-block [block-number]",
+					Short:          "Send a set-latest-processed-eth-block tx",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "blockNumber"}},
+				},
 				// this line is used by ignite scaffolding # autocli/tx
 			},
 		},

@@ -362,6 +362,8 @@ definitions:
     type: object
   MsgProcessTransactionResponse:
     type: object
+  MsgSetLatestProcessedEthBlockResponse:
+    type: object
   MsgSetRaoCurrentStakedBalanceResponse:
     type: object
   MsgUpdateParamsResponse:

@@ -87,6 +87,8 @@ export type MsgIncomeBridgeRequestResponse = object;
 
 export type MsgProcessTransactionResponse = object;
 
+export type MsgSetLatestProcessedEthBlockResponse = object;
+
 export type MsgSetRaoCurrentStakedBalanceResponse = object;
 
 export type MsgUpdateParamsResponse = object;

@@ -19637,6 +19637,45 @@ paths:
                 type: string
       tags:
         - Msg
+  /sigmoid.sigmoid.Msg/SetLatestProcessedEthBlock:
+    post:
+      operationId: SigmoidSigmoidMsg_SetLatestProcessedEthBlock
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              blockNumber:
+                type: string
+      tags:
+        - Msg
   /sigmoid.sigmoid.Msg/SetRaoCurrentStakedBalance:
     post:
       operationId: SigmoidSigmoidMsg_SetRaoCurrentStakedBalance
@@ -27826,6 +27865,15 @@ definitions:
       transactionId:
         type: string
   sigmoid.sigmoid.MsgProcessTransactionResponse:
+    type: object
+  sigmoid.sigmoid.MsgSetLatestProcessedEthBlock:
+    type: object
+    properties:
+      creator:
+        type: string
+      blockNumber:
+        type: string
+  sigmoid.sigmoid.MsgSetLatestProcessedEthBlockResponse:
     type: object
   sigmoid.sigmoid.MsgSetRaoCurrentStakedBalance:
     type: object

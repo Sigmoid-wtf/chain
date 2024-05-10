@@ -27,6 +27,7 @@ service Msg {
   rpc ApproveBridgeRequest       (MsgApproveBridgeRequest      ) returns (MsgApproveBridgeRequestResponse      );
   rpc IncomeBridgeRequest        (MsgIncomeBridgeRequest       ) returns (MsgIncomeBridgeRequestResponse       );
   rpc CreateRequestSigned        (MsgCreateRequestSigned       ) returns (MsgCreateRequestSignedResponse       );
+  rpc SetLatestProcessedEthBlock (MsgSetLatestProcessedEthBlock) returns (MsgSetLatestProcessedEthBlockResponse);
 }
 // MsgUpdateParams is the Msg/UpdateParams request type.
 message MsgUpdateParams {
@@ -134,4 +135,12 @@ message MsgCreateRequestSigned {
 }
 
 message MsgCreateRequestSignedResponse {}
+
+message MsgSetLatestProcessedEthBlock {
+  option (cosmos.msg.v1.signer) = "creator";
+  string creator     = 1;
+  string blockNumber = 2;
+}
+
+message MsgSetLatestProcessedEthBlockResponse {}
 

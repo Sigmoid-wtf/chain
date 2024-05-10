@@ -38,6 +38,9 @@ func RegisterInterfaces(registry cdctypes.InterfaceRegistry) {
 	registry.RegisterImplementations((*sdk.Msg)(nil),
 		&MsgCreateRequestSigned{},
 	)
+	registry.RegisterImplementations((*sdk.Msg)(nil),
+		&MsgSetLatestProcessedEthBlock{},
+	)
 	// this line is used by starport scaffolding # 3
 
 	registry.RegisterImplementations((*sdk.Msg)(nil),

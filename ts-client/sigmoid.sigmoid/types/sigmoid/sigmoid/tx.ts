@@ -109,6 +109,14 @@ export interface MsgCreateRequestSigned {
 export interface MsgCreateRequestSignedResponse {
 }
 
+export interface MsgSetLatestProcessedEthBlock {
+  creator: string;
+  blockNumber: string;
+}
+
+export interface MsgSetLatestProcessedEthBlockResponse {
+}
+
 function createBaseMsgUpdateParams(): MsgUpdateParams {
   return { authority: "", params: undefined };
 }
@@ -1543,6 +1551,129 @@ export const MsgCreateRequestSignedResponse = {
   },
 };
 
+function createBaseMsgSetLatestProcessedEthBlock(): MsgSetLatestProcessedEthBlock {
+  return { creator: "", blockNumber: "" };
+}
+
+export const MsgSetLatestProcessedEthBlock = {
+  encode(message: MsgSetLatestProcessedEthBlock, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.creator !== "") {
+      writer.uint32(10).string(message.creator);
+    }
+    if (message.blockNumber !== "") {
+      writer.uint32(18).string(message.blockNumber);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSetLatestProcessedEthBlock {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgSetLatestProcessedEthBlock();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.creator = reader.string();
+          continue;
+        case 2:
+          if (tag !== 18) {
+            break;
+          }
+
+          message.blockNumber = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): MsgSetLatestProcessedEthBlock {
+    return {
+      creator: isSet(object.creator) ? String(object.creator) : "",
+      blockNumber: isSet(object.blockNumber) ? String(object.blockNumber) : "",
+    };
+  },
+
+  toJSON(message: MsgSetLatestProcessedEthBlock): unknown {
+    const obj: any = {};
+    if (message.creator !== "") {
+      obj.creator = message.creator;
+    }
+    if (message.blockNumber !== "") {
+      obj.blockNumber = message.blockNumber;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgSetLatestProcessedEthBlock>, I>>(base?: I): MsgSetLatestProcessedEthBlock {
+    return MsgSetLatestProcessedEthBlock.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgSetLatestProcessedEthBlock>, I>>(
+    object: I,
+  ): MsgSetLatestProcessedEthBlock {
+    const message = createBaseMsgSetLatestProcessedEthBlock();
+    message.creator = object.creator ?? "";
+    message.blockNumber = object.blockNumber ?? "";
+    return message;
+  },
+};
+
+function createBaseMsgSetLatestProcessedEthBlockResponse(): MsgSetLatestProcessedEthBlockResponse {
+  return {};
+}
+
+export const MsgSetLatestProcessedEthBlockResponse = {
+  encode(_: MsgSetLatestProcessedEthBlockResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): MsgSetLatestProcessedEthBlockResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseMsgSetLatestProcessedEthBlockResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(_: any): MsgSetLatestProcessedEthBlockResponse {
+    return {};
+  },
+
+  toJSON(_: MsgSetLatestProcessedEthBlockResponse): unknown {
+    const obj: any = {};
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<MsgSetLatestProcessedEthBlockResponse>, I>>(
+    base?: I,
+  ): MsgSetLatestProcessedEthBlockResponse {
+    return MsgSetLatestProcessedEthBlockResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<MsgSetLatestProcessedEthBlockResponse>, I>>(
+    _: I,
+  ): MsgSetLatestProcessedEthBlockResponse {
+    const message = createBaseMsgSetLatestProcessedEthBlockResponse();
+    return message;
+  },
+};
+
 /** Msg defines the Msg service. */
 export interface Msg {
   /**
@@ -1560,6 +1691,7 @@ export interface Msg {
   ApproveBridgeRequest(request: MsgApproveBridgeRequest): Promise<MsgApproveBridgeRequestResponse>;
   IncomeBridgeRequest(request: MsgIncomeBridgeRequest): Promise<MsgIncomeBridgeRequestResponse>;
   CreateRequestSigned(request: MsgCreateRequestSigned): Promise<MsgCreateRequestSignedResponse>;
+  SetLatestProcessedEthBlock(request: MsgSetLatestProcessedEthBlock): Promise<MsgSetLatestProcessedEthBlockResponse>;
 }
 
 export const MsgServiceName = "sigmoid.sigmoid.Msg";
@@ -1580,6 +1712,7 @@ export class MsgClientImpl implements Msg {
     this.ApproveBridgeRequest = this.ApproveBridgeRequest.bind(this);
     this.IncomeBridgeRequest = this.IncomeBridgeRequest.bind(this);
     this.CreateRequestSigned = this.CreateRequestSigned.bind(this);
+    this.SetLatestProcessedEthBlock = this.SetLatestProcessedEthBlock.bind(this);
   }
   UpdateParams(request: MsgUpdateParams): Promise<MsgUpdateParamsResponse> {
     const data = MsgUpdateParams.encode(request).finish();
@@ -1645,6 +1778,12 @@ export class MsgClientImpl implements Msg {
     const data = MsgCreateRequestSigned.encode(request).finish();
     const promise = this.rpc.request(this.service, "CreateRequestSigned", data);
     return promise.then((data) => MsgCreateRequestSignedResponse.decode(_m0.Reader.create(data)));
+  }
+
+  SetLatestProcessedEthBlock(request: MsgSetLatestProcessedEthBlock): Promise<MsgSetLatestProcessedEthBlockResponse> {
+    const data = MsgSetLatestProcessedEthBlock.encode(request).finish();
+    const promise = this.rpc.request(this.service, "SetLatestProcessedEthBlock", data);
+    return promise.then((data) => MsgSetLatestProcessedEthBlockResponse.decode(_m0.Reader.create(data)));
   }
 }
 
