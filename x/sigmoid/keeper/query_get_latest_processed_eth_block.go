@@ -17,8 +17,5 @@ func (k Keeper) GetLatestProcessedEthBlock(goCtx context.Context, req *types.Que
 
 	ctx := sdk.UnwrapSDKContext(goCtx)
 
-	// TODO: Process the query
-	_ = ctx
-
-	return &types.QueryGetLatestProcessedEthBlockResponse{}, nil
+	return &types.QueryGetLatestProcessedEthBlockResponse{BlockNumber: k.getLatestProcessedEthBlock(ctx)}, nil
 }
