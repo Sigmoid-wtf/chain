@@ -4,9 +4,9 @@ package sigmoid.sigmoid;
 option go_package = "sigmoid/x/sigmoid/types";
 
 message Request {
-  
   string senderAddress = 1; 
   string mintAddress = 2; 
   uint64 status = 3; 
   uint64 amount = 4; 
+  uint64 timestamp = 5;
 }
