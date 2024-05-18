@@ -30,6 +30,11 @@ func (k msgServer) CreateRequest(goCtx context.Context, msg *types.MsgCreateRequ
 		}
 	}
 
+	_, found = k.Keeper.GetRequestInReversedStore(ctx, msg.Creator)
+	if found {
+		return nil, sdkerrors.ErrInvalidAddress
+	}
+
 	k.Keeper.AppendRequest(ctx, request)
 	return &types.MsgCreateRequestResponse{}, nil
 }

@@ -24,6 +24,7 @@ var (
 	RaoStakedBalance           = "rao_staked_balance/"
 	SigRaoCount                = "sigrao_count/"
 	UnstakeRequestsKey         = "unstake/"
+	RegisteredSenderAddresses  = "registered_sender_addresses/"
 )
 
 func KeyPrefix(p string) []byte {
