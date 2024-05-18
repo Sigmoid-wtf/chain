@@ -2,6 +2,7 @@
 import Long from "long";
 import _m0 from "protobufjs/minimal";
 import { Params } from "./params";
+import { Request } from "./request";
 import { MsgCreateBridgeRequest, MsgCreateUnstakeRequest } from "./tx";
 
 export const protobufPackage = "sigmoid.sigmoid";
@@ -64,6 +65,22 @@ export interface QueryGetLatestProcessedEthBlockRequest {
 
 export interface QueryGetLatestProcessedEthBlockResponse {
   blockNumber: string;
+}
+
+export interface QueryGetFrontPendingStakeRequestRequest {
+  address: string;
+}
+
+export interface QueryGetFrontPendingStakeRequestResponse {
+  request: Request | undefined;
+}
+
+export interface QueryGetFrontPendingUnstakeRequestRequest {
+  address: string;
+}
+
+export interface QueryGetFrontPendingUnstakeRequestResponse {
+  request: Request | undefined;
 }
 
 function createBaseQueryParamsRequest(): QueryParamsRequest {
@@ -916,6 +933,254 @@ export const QueryGetLatestProcessedEthBlockResponse = {
   },
 };
 
+function createBaseQueryGetFrontPendingStakeRequestRequest(): QueryGetFrontPendingStakeRequestRequest {
+  return { address: "" };
+}
+
+export const QueryGetFrontPendingStakeRequestRequest = {
+  encode(message: QueryGetFrontPendingStakeRequestRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontPendingStakeRequestRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetFrontPendingStakeRequestRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.address = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetFrontPendingStakeRequestRequest {
+    return { address: isSet(object.address) ? String(object.address) : "" };
+  },
+
+  toJSON(message: QueryGetFrontPendingStakeRequestRequest): unknown {
+    const obj: any = {};
+    if (message.address !== "") {
+      obj.address = message.address;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetFrontPendingStakeRequestRequest>, I>>(
+    base?: I,
+  ): QueryGetFrontPendingStakeRequestRequest {
+    return QueryGetFrontPendingStakeRequestRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetFrontPendingStakeRequestRequest>, I>>(
+    object: I,
+  ): QueryGetFrontPendingStakeRequestRequest {
+    const message = createBaseQueryGetFrontPendingStakeRequestRequest();
+    message.address = object.address ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetFrontPendingStakeRequestResponse(): QueryGetFrontPendingStakeRequestResponse {
+  return { request: undefined };
+}
+
+export const QueryGetFrontPendingStakeRequestResponse = {
+  encode(message: QueryGetFrontPendingStakeRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.request !== undefined) {
+      Request.encode(message.request, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontPendingStakeRequestResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetFrontPendingStakeRequestResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.request = Request.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetFrontPendingStakeRequestResponse {
+    return { request: isSet(object.request) ? Request.fromJSON(object.request) : undefined };
+  },
+
+  toJSON(message: QueryGetFrontPendingStakeRequestResponse): unknown {
+    const obj: any = {};
+    if (message.request !== undefined) {
+      obj.request = Request.toJSON(message.request);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetFrontPendingStakeRequestResponse>, I>>(
+    base?: I,
+  ): QueryGetFrontPendingStakeRequestResponse {
+    return QueryGetFrontPendingStakeRequestResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetFrontPendingStakeRequestResponse>, I>>(
+    object: I,
+  ): QueryGetFrontPendingStakeRequestResponse {
+    const message = createBaseQueryGetFrontPendingStakeRequestResponse();
+    message.request = (object.request !== undefined && object.request !== null)
+      ? Request.fromPartial(object.request)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryGetFrontPendingUnstakeRequestRequest(): QueryGetFrontPendingUnstakeRequestRequest {
+  return { address: "" };
+}
+
+export const QueryGetFrontPendingUnstakeRequestRequest = {
+  encode(message: QueryGetFrontPendingUnstakeRequestRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.address !== "") {
+      writer.uint32(10).string(message.address);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontPendingUnstakeRequestRequest {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetFrontPendingUnstakeRequestRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.address = reader.string();
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetFrontPendingUnstakeRequestRequest {
+    return { address: isSet(object.address) ? String(object.address) : "" };
+  },
+
+  toJSON(message: QueryGetFrontPendingUnstakeRequestRequest): unknown {
+    const obj: any = {};
+    if (message.address !== "") {
+      obj.address = message.address;
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetFrontPendingUnstakeRequestRequest>, I>>(
+    base?: I,
+  ): QueryGetFrontPendingUnstakeRequestRequest {
+    return QueryGetFrontPendingUnstakeRequestRequest.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetFrontPendingUnstakeRequestRequest>, I>>(
+    object: I,
+  ): QueryGetFrontPendingUnstakeRequestRequest {
+    const message = createBaseQueryGetFrontPendingUnstakeRequestRequest();
+    message.address = object.address ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetFrontPendingUnstakeRequestResponse(): QueryGetFrontPendingUnstakeRequestResponse {
+  return { request: undefined };
+}
+
+export const QueryGetFrontPendingUnstakeRequestResponse = {
+  encode(message: QueryGetFrontPendingUnstakeRequestResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.request !== undefined) {
+      Request.encode(message.request, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetFrontPendingUnstakeRequestResponse {
+    const reader = input instanceof _m0.Reader ? input : _m0.Reader.create(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetFrontPendingUnstakeRequestResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          if (tag !== 10) {
+            break;
+          }
+
+          message.request = Request.decode(reader, reader.uint32());
+          continue;
+      }
+      if ((tag & 7) === 4 || tag === 0) {
+        break;
+      }
+      reader.skipType(tag & 7);
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetFrontPendingUnstakeRequestResponse {
+    return { request: isSet(object.request) ? Request.fromJSON(object.request) : undefined };
+  },
+
+  toJSON(message: QueryGetFrontPendingUnstakeRequestResponse): unknown {
+    const obj: any = {};
+    if (message.request !== undefined) {
+      obj.request = Request.toJSON(message.request);
+    }
+    return obj;
+  },
+
+  create<I extends Exact<DeepPartial<QueryGetFrontPendingUnstakeRequestResponse>, I>>(
+    base?: I,
+  ): QueryGetFrontPendingUnstakeRequestResponse {
+    return QueryGetFrontPendingUnstakeRequestResponse.fromPartial(base ?? ({} as any));
+  },
+  fromPartial<I extends Exact<DeepPartial<QueryGetFrontPendingUnstakeRequestResponse>, I>>(
+    object: I,
+  ): QueryGetFrontPendingUnstakeRequestResponse {
+    const message = createBaseQueryGetFrontPendingUnstakeRequestResponse();
+    message.request = (object.request !== undefined && object.request !== null)
+      ? Request.fromPartial(object.request)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -938,6 +1203,14 @@ export interface Query {
   GetLatestProcessedEthBlock(
     request: QueryGetLatestProcessedEthBlockRequest,
   ): Promise<QueryGetLatestProcessedEthBlockResponse>;
+  /** Queries a list of GetFrontPendingStakeRequest items. */
+  GetFrontPendingStakeRequest(
+    request: QueryGetFrontPendingStakeRequestRequest,
+  ): Promise<QueryGetFrontPendingStakeRequestResponse>;
+  /** Queries a list of GetFrontPendingUnstakeRequest items. */
+  GetFrontPendingUnstakeRequest(
+    request: QueryGetFrontPendingUnstakeRequestRequest,
+  ): Promise<QueryGetFrontPendingUnstakeRequestResponse>;
 }
 
 export const QueryServiceName = "sigmoid.sigmoid.Query";
@@ -955,6 +1228,8 @@ export class QueryClientImpl implements Query {
     this.GetSigtaoRateD = this.GetSigtaoRateD.bind(this);
     this.GetPendingBridgeRequest = this.GetPendingBridgeRequest.bind(this);
     this.GetLatestProcessedEthBlock = this.GetLatestProcessedEthBlock.bind(this);
+    this.GetFrontPendingStakeRequest = this.GetFrontPendingStakeRequest.bind(this);
+    this.GetFrontPendingUnstakeRequest = this.GetFrontPendingUnstakeRequest.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -1006,6 +1281,22 @@ export class QueryClientImpl implements Query {
     const data = QueryGetLatestProcessedEthBlockRequest.encode(request).finish();
     const promise = this.rpc.request(this.service, "GetLatestProcessedEthBlock", data);
     return promise.then((data) => QueryGetLatestProcessedEthBlockResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetFrontPendingStakeRequest(
+    request: QueryGetFrontPendingStakeRequestRequest,
+  ): Promise<QueryGetFrontPendingStakeRequestResponse> {
+    const data = QueryGetFrontPendingStakeRequestRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetFrontPendingStakeRequest", data);
+    return promise.then((data) => QueryGetFrontPendingStakeRequestResponse.decode(_m0.Reader.create(data)));
+  }
+
+  GetFrontPendingUnstakeRequest(
+    request: QueryGetFrontPendingUnstakeRequestRequest,
+  ): Promise<QueryGetFrontPendingUnstakeRequestResponse> {
+    const data = QueryGetFrontPendingUnstakeRequestRequest.encode(request).finish();
+    const promise = this.rpc.request(this.service, "GetFrontPendingUnstakeRequest", data);
+    return promise.then((data) => QueryGetFrontPendingUnstakeRequestResponse.decode(_m0.Reader.create(data)));
   }
 }
 

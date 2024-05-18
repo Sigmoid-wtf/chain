@@ -66,6 +66,20 @@ func (am AppModule) AutoCLIOptions() *autocliv1.ModuleOptions {
 					PositionalArgs: []*autocliv1.PositionalArgDescriptor{},
 				},
 
+				{
+					RpcMethod:      "GetFrontPendingStakeRequest",
+					Use:            "get-front-pending-stake-request [address]",
+					Short:          "Query get-front-pending-stake-request",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "address"}},
+				},
+
+				{
+					RpcMethod:      "GetFrontPendingUnstakeRequest",
+					Use:            "get-front-pending-unstake-request [address]",
+					Short:          "Query get-front-pending-unstake-request",
+					PositionalArgs: []*autocliv1.PositionalArgDescriptor{{ProtoField: "address"}},
+				},
+
 				// this line is used by ignite scaffolding # autocli/query
 			},
 		},

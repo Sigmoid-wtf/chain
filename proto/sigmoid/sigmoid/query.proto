@@ -8,6 +8,7 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "sigmoid/sigmoid/params.proto";
 import "sigmoid/sigmoid/tx.proto";
+import "sigmoid/sigmoid/request.proto";
 
 option go_package = "sigmoid/x/sigmoid/types";
 
@@ -59,6 +60,18 @@ service Query {
   // Queries a list of GetLatestProcessedEthBlock items.
   rpc GetLatestProcessedEthBlock (QueryGetLatestProcessedEthBlockRequest) returns (QueryGetLatestProcessedEthBlockResponse) {
     option (google.api.http).get = "/sigmoid/sigmoid/get_latest_processed_eth_block";
+  
+  }
+  
+  // Queries a list of GetFrontPendingStakeRequest items.
+  rpc GetFrontPendingStakeRequest (QueryGetFrontPendingStakeRequestRequest) returns (QueryGetFrontPendingStakeRequestResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/get_front_pending_stake_request/{address}";
+  
+  }
+  
+  // Queries a list of GetFrontPendingUnstakeRequest items.
+  rpc GetFrontPendingUnstakeRequest (QueryGetFrontPendingUnstakeRequestRequest) returns (QueryGetFrontPendingUnstakeRequestResponse) {
+    option (google.api.http).get = "/sigmoid/sigmoid/get_front_pending_unstake_request/{address}";
   
   }
 }
@@ -114,5 +127,21 @@ message QueryGetLatestProcessedEthBlockRequest {}
 
 message QueryGetLatestProcessedEthBlockResponse {
   string blockNumber = 1;
+}
+
+message QueryGetFrontPendingStakeRequestRequest {
+  string address = 1;
+}
+
+message QueryGetFrontPendingStakeRequestResponse {
+  Request request = 1;
+}
+
+message QueryGetFrontPendingUnstakeRequestRequest {
+  string address = 1;
+}
+
+message QueryGetFrontPendingUnstakeRequestResponse {
+  Request request = 1;
 }
 
