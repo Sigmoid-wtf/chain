@@ -9,7 +9,8 @@ accounts:
   - 10000token
   - 100000000stake
 - name: frank
-  coins: [1000000000sigTAO]
+  coins:
+  - 1000000000sigTAO
   mnemonic: struggle since inmate safe logic kite tag web win stay security wonder
 faucet:
   name: bob
@@ -19,6 +20,8 @@ faucet:
 client:
   typescript:
     path: ts-client
+  hooks:
+    path: react/src/hooks
   openapi:
     path: docs/static/openapi.yml
 validators:

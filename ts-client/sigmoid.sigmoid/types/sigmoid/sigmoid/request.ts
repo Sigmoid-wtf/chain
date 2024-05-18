@@ -9,10 +9,11 @@ export interface Request {
   mintAddress: string;
   status: number;
   amount: number;
+  timestamp: number;
 }
 
 function createBaseRequest(): Request {
-  return { senderAddress: "", mintAddress: "", status: 0, amount: 0 };
+  return { senderAddress: "", mintAddress: "", status: 0, amount: 0, timestamp: 0 };
 }
 
 export const Request = {
@@ -28,6 +29,9 @@ export const Request = {
     }
     if (message.amount !== 0) {
       writer.uint32(32).uint64(message.amount);
+    }
+    if (message.timestamp !== 0) {
+      writer.uint32(40).uint64(message.timestamp);
     }
     return writer;
   },
@@ -67,6 +71,13 @@ export const Request = {
 
           message.amount = longToNumber(reader.uint64() as Long);
           continue;
+        case 5:
+          if (tag !== 40) {
+            break;
+          }
+
+          message.timestamp = longToNumber(reader.uint64() as Long);
+          continue;
       }
       if ((tag & 7) === 4 || tag === 0) {
         break;
@@ -82,6 +93,7 @@ export const Request = {
       mintAddress: isSet(object.mintAddress) ? String(object.mintAddress) : "",
       status: isSet(object.status) ? Number(object.status) : 0,
       amount: isSet(object.amount) ? Number(object.amount) : 0,
+      timestamp: isSet(object.timestamp) ? Number(object.timestamp) : 0,
     };
   },
 
@@ -99,6 +111,9 @@ export const Request = {
     if (message.amount !== 0) {
       obj.amount = Math.round(message.amount);
     }
+    if (message.timestamp !== 0) {
+      obj.timestamp = Math.round(message.timestamp);
+    }
     return obj;
   },
 
@@ -111,6 +126,7 @@ export const Request = {
     message.mintAddress = object.mintAddress ?? "";
     message.status = object.status ?? 0;
     message.amount = object.amount ?? 0;
+    message.timestamp = object.timestamp ?? 0;
     return message;
   },
 };
