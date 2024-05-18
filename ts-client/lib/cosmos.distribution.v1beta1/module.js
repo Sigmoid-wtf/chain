@@ -3,61 +3,61 @@ import { SigningStargateClient } from "@cosmjs/stargate";
 import { Registry } from "@cosmjs/proto-signing";
 import { msgTypes } from './registry';
 import { Api } from "./rest";
-import { DelegatorStartingInfo } from "./types/cosmos/distribution/v1beta1/distribution";
-import { MsgSetWithdrawAddressResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { MsgDepositValidatorRewardsPoolResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { QueryCommunityPoolRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { MsgFundCommunityPool } from "./types/cosmos/distribution/v1beta1/tx";
-import { MsgDepositValidatorRewardsPool } from "./types/cosmos/distribution/v1beta1/tx";
-import { MsgWithdrawValidatorCommission } from "./types/cosmos/distribution/v1beta1/tx";
-import { MsgUpdateParamsResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { QueryDelegatorValidatorsRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { ValidatorSlashEventRecord } from "./types/cosmos/distribution/v1beta1/genesis";
-import { QueryDelegatorValidatorsResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { MsgWithdrawDelegatorRewardResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { ValidatorAccumulatedCommissionRecord } from "./types/cosmos/distribution/v1beta1/genesis";
-import { QueryValidatorDistributionInfoResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { QueryDelegationRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { MsgCommunityPoolSpend } from "./types/cosmos/distribution/v1beta1/tx";
-import { GenesisState } from "./types/cosmos/distribution/v1beta1/genesis";
+import { QueryValidatorOutstandingRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
 import { QueryDelegationRewardsResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { ValidatorSlashEvents } from "./types/cosmos/distribution/v1beta1/distribution";
-import { DelegationDelegatorReward } from "./types/cosmos/distribution/v1beta1/distribution";
+import { ValidatorAccumulatedCommissionRecord } from "./types/cosmos/distribution/v1beta1/genesis";
 import { MsgWithdrawDelegatorReward } from "./types/cosmos/distribution/v1beta1/tx";
-import { ValidatorHistoricalRewardsRecord } from "./types/cosmos/distribution/v1beta1/genesis";
-import { QueryParamsRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { QueryCommunityPoolRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { MsgCommunityPoolSpend } from "./types/cosmos/distribution/v1beta1/tx";
 import { QueryValidatorCommissionRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { ValidatorCurrentRewardsRecord } from "./types/cosmos/distribution/v1beta1/genesis";
+import { QueryValidatorSlashesResponse } from "./types/cosmos/distribution/v1beta1/query";
+import { CommunityPoolSpendProposalWithDeposit } from "./types/cosmos/distribution/v1beta1/distribution";
+import { MsgSetWithdrawAddress } from "./types/cosmos/distribution/v1beta1/tx";
+import { QueryDelegatorWithdrawAddressRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { DelegatorWithdrawInfo } from "./types/cosmos/distribution/v1beta1/genesis";
+import { QueryValidatorOutstandingRewardsResponse } from "./types/cosmos/distribution/v1beta1/query";
+import { ValidatorSlashEventRecord } from "./types/cosmos/distribution/v1beta1/genesis";
+import { MsgDepositValidatorRewardsPoolResponse } from "./types/cosmos/distribution/v1beta1/tx";
+import { ValidatorSlashEvents } from "./types/cosmos/distribution/v1beta1/distribution";
 import { DelegatorStartingInfoRecord } from "./types/cosmos/distribution/v1beta1/genesis";
+import { ValidatorHistoricalRewardsRecord } from "./types/cosmos/distribution/v1beta1/genesis";
+import { QueryDelegatorWithdrawAddressResponse } from "./types/cosmos/distribution/v1beta1/query";
 import { Params } from "./types/cosmos/distribution/v1beta1/distribution";
+import { FeePool } from "./types/cosmos/distribution/v1beta1/distribution";
+import { MsgFundCommunityPoolResponse } from "./types/cosmos/distribution/v1beta1/tx";
+import { ValidatorCurrentRewardsRecord } from "./types/cosmos/distribution/v1beta1/genesis";
+import { QueryDelegationTotalRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { ValidatorAccumulatedCommission } from "./types/cosmos/distribution/v1beta1/distribution";
+import { ValidatorSlashEvent } from "./types/cosmos/distribution/v1beta1/distribution";
+import { QueryParamsRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { CommunityPoolSpendProposal } from "./types/cosmos/distribution/v1beta1/distribution";
+import { MsgFundCommunityPool } from "./types/cosmos/distribution/v1beta1/tx";
+import { MsgWithdrawValidatorCommission } from "./types/cosmos/distribution/v1beta1/tx";
+import { MsgDepositValidatorRewardsPool } from "./types/cosmos/distribution/v1beta1/tx";
+import { QueryCommunityPoolResponse } from "./types/cosmos/distribution/v1beta1/query";
+import { ValidatorCurrentRewards } from "./types/cosmos/distribution/v1beta1/distribution";
+import { MsgWithdrawDelegatorRewardResponse } from "./types/cosmos/distribution/v1beta1/tx";
 import { MsgWithdrawValidatorCommissionResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { MsgUpdateParams } from "./types/cosmos/distribution/v1beta1/tx";
 import { QueryParamsResponse } from "./types/cosmos/distribution/v1beta1/query";
 import { QueryValidatorDistributionInfoRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { QueryValidatorOutstandingRewardsResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { QueryValidatorSlashesRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { CommunityPoolSpendProposal } from "./types/cosmos/distribution/v1beta1/distribution";
-import { QueryValidatorSlashesResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { ValidatorAccumulatedCommission } from "./types/cosmos/distribution/v1beta1/distribution";
+import { QueryDelegationRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
 import { ValidatorOutstandingRewards } from "./types/cosmos/distribution/v1beta1/distribution";
-import { ValidatorSlashEvent } from "./types/cosmos/distribution/v1beta1/distribution";
-import { MsgCommunityPoolSpendResponse } from "./types/cosmos/distribution/v1beta1/tx";
-import { DelegatorWithdrawInfo } from "./types/cosmos/distribution/v1beta1/genesis";
-import { QueryDelegatorWithdrawAddressResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { ValidatorHistoricalRewards } from "./types/cosmos/distribution/v1beta1/distribution";
-import { MsgSetWithdrawAddress } from "./types/cosmos/distribution/v1beta1/tx";
-import { MsgFundCommunityPoolResponse } from "./types/cosmos/distribution/v1beta1/tx";
+import { GenesisState } from "./types/cosmos/distribution/v1beta1/genesis";
 import { QueryValidatorCommissionResponse } from "./types/cosmos/distribution/v1beta1/query";
+import { ValidatorHistoricalRewards } from "./types/cosmos/distribution/v1beta1/distribution";
+import { DelegatorStartingInfo } from "./types/cosmos/distribution/v1beta1/distribution";
+import { MsgUpdateParams } from "./types/cosmos/distribution/v1beta1/tx";
+import { MsgUpdateParamsResponse } from "./types/cosmos/distribution/v1beta1/tx";
+import { QueryValidatorDistributionInfoResponse } from "./types/cosmos/distribution/v1beta1/query";
 import { QueryDelegationTotalRewardsResponse } from "./types/cosmos/distribution/v1beta1/query";
-import { FeePool } from "./types/cosmos/distribution/v1beta1/distribution";
-import { CommunityPoolSpendProposalWithDeposit } from "./types/cosmos/distribution/v1beta1/distribution";
+import { QueryDelegatorValidatorsResponse } from "./types/cosmos/distribution/v1beta1/query";
 import { ValidatorOutstandingRewardsRecord } from "./types/cosmos/distribution/v1beta1/genesis";
-import { QueryValidatorOutstandingRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { QueryDelegatorWithdrawAddressRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { ValidatorCurrentRewards } from "./types/cosmos/distribution/v1beta1/distribution";
-import { QueryDelegationTotalRewardsRequest } from "./types/cosmos/distribution/v1beta1/query";
-import { QueryCommunityPoolResponse } from "./types/cosmos/distribution/v1beta1/query";
-export { DelegatorStartingInfo, MsgSetWithdrawAddressResponse, MsgDepositValidatorRewardsPoolResponse, QueryCommunityPoolRequest, MsgFundCommunityPool, MsgDepositValidatorRewardsPool, MsgWithdrawValidatorCommission, MsgUpdateParamsResponse, QueryDelegatorValidatorsRequest, ValidatorSlashEventRecord, QueryDelegatorValidatorsResponse, MsgWithdrawDelegatorRewardResponse, ValidatorAccumulatedCommissionRecord, QueryValidatorDistributionInfoResponse, QueryDelegationRewardsRequest, MsgCommunityPoolSpend, GenesisState, QueryDelegationRewardsResponse, ValidatorSlashEvents, DelegationDelegatorReward, MsgWithdrawDelegatorReward, ValidatorHistoricalRewardsRecord, QueryParamsRequest, QueryValidatorCommissionRequest, ValidatorCurrentRewardsRecord, DelegatorStartingInfoRecord, Params, MsgWithdrawValidatorCommissionResponse, MsgUpdateParams, QueryParamsResponse, QueryValidatorDistributionInfoRequest, QueryValidatorOutstandingRewardsResponse, QueryValidatorSlashesRequest, CommunityPoolSpendProposal, QueryValidatorSlashesResponse, ValidatorAccumulatedCommission, ValidatorOutstandingRewards, ValidatorSlashEvent, MsgCommunityPoolSpendResponse, DelegatorWithdrawInfo, QueryDelegatorWithdrawAddressResponse, ValidatorHistoricalRewards, MsgSetWithdrawAddress, MsgFundCommunityPoolResponse, QueryValidatorCommissionResponse, QueryDelegationTotalRewardsResponse, FeePool, CommunityPoolSpendProposalWithDeposit, ValidatorOutstandingRewardsRecord, QueryValidatorOutstandingRewardsRequest, QueryDelegatorWithdrawAddressRequest, ValidatorCurrentRewards, QueryDelegationTotalRewardsRequest, QueryCommunityPoolResponse };
+import { MsgSetWithdrawAddressResponse } from "./types/cosmos/distribution/v1beta1/tx";
+import { QueryValidatorSlashesRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { QueryDelegatorValidatorsRequest } from "./types/cosmos/distribution/v1beta1/query";
+import { DelegationDelegatorReward } from "./types/cosmos/distribution/v1beta1/distribution";
+import { MsgCommunityPoolSpendResponse } from "./types/cosmos/distribution/v1beta1/tx";
+export { QueryValidatorOutstandingRewardsRequest, QueryDelegationRewardsResponse, ValidatorAccumulatedCommissionRecord, MsgWithdrawDelegatorReward, QueryCommunityPoolRequest, MsgCommunityPoolSpend, QueryValidatorCommissionRequest, QueryValidatorSlashesResponse, CommunityPoolSpendProposalWithDeposit, MsgSetWithdrawAddress, QueryDelegatorWithdrawAddressRequest, DelegatorWithdrawInfo, QueryValidatorOutstandingRewardsResponse, ValidatorSlashEventRecord, MsgDepositValidatorRewardsPoolResponse, ValidatorSlashEvents, DelegatorStartingInfoRecord, ValidatorHistoricalRewardsRecord, QueryDelegatorWithdrawAddressResponse, Params, FeePool, MsgFundCommunityPoolResponse, ValidatorCurrentRewardsRecord, QueryDelegationTotalRewardsRequest, ValidatorAccumulatedCommission, ValidatorSlashEvent, QueryParamsRequest, CommunityPoolSpendProposal, MsgFundCommunityPool, MsgWithdrawValidatorCommission, MsgDepositValidatorRewardsPool, QueryCommunityPoolResponse, ValidatorCurrentRewards, MsgWithdrawDelegatorRewardResponse, MsgWithdrawValidatorCommissionResponse, QueryParamsResponse, QueryValidatorDistributionInfoRequest, QueryDelegationRewardsRequest, ValidatorOutstandingRewards, GenesisState, QueryValidatorCommissionResponse, ValidatorHistoricalRewards, DelegatorStartingInfo, MsgUpdateParams, MsgUpdateParamsResponse, QueryValidatorDistributionInfoResponse, QueryDelegationTotalRewardsResponse, QueryDelegatorValidatorsResponse, ValidatorOutstandingRewardsRecord, MsgSetWithdrawAddressResponse, QueryValidatorSlashesRequest, QueryDelegatorValidatorsRequest, DelegationDelegatorReward, MsgCommunityPoolSpendResponse };
 export const registry = new Registry(msgTypes);
 function getStructure(template) {
     const structure = { fields: [] };
@@ -73,242 +73,18 @@ const defaultFee = {
 };
 export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26657", prefix: "cosmos" }) => {
     return {
-        async sendDelegatorStartingInfo({ value, fee, memo }) {
+        async sendQueryValidatorOutstandingRewardsRequest({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendDelegatorStartingInfo: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryValidatorOutstandingRewardsRequest: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.delegatorStartingInfo({ value: DelegatorStartingInfo.fromPartial(value) });
+                let msg = this.queryValidatorOutstandingRewardsRequest({ value: QueryValidatorOutstandingRewardsRequest.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendDelegatorStartingInfo: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgSetWithdrawAddressResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgSetWithdrawAddressResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgSetWithdrawAddressResponse({ value: MsgSetWithdrawAddressResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgSetWithdrawAddressResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgDepositValidatorRewardsPoolResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgDepositValidatorRewardsPoolResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgDepositValidatorRewardsPoolResponse({ value: MsgDepositValidatorRewardsPoolResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgDepositValidatorRewardsPoolResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryCommunityPoolRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryCommunityPoolRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryCommunityPoolRequest({ value: QueryCommunityPoolRequest.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryCommunityPoolRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgFundCommunityPool({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgFundCommunityPool: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgFundCommunityPool({ value: MsgFundCommunityPool.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgFundCommunityPool: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgDepositValidatorRewardsPool({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgDepositValidatorRewardsPool: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgDepositValidatorRewardsPool({ value: MsgDepositValidatorRewardsPool.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgDepositValidatorRewardsPool: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgWithdrawValidatorCommission({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgWithdrawValidatorCommission: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgWithdrawValidatorCommission({ value: MsgWithdrawValidatorCommission.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgWithdrawValidatorCommission: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgUpdateParamsResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryDelegatorValidatorsRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryDelegatorValidatorsRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryDelegatorValidatorsRequest({ value: QueryDelegatorValidatorsRequest.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryDelegatorValidatorsRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendValidatorSlashEventRecord({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendValidatorSlashEventRecord: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.validatorSlashEventRecord({ value: ValidatorSlashEventRecord.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendValidatorSlashEventRecord: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryDelegatorValidatorsResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryDelegatorValidatorsResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryDelegatorValidatorsResponse({ value: QueryDelegatorValidatorsResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryDelegatorValidatorsResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgWithdrawDelegatorRewardResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgWithdrawDelegatorRewardResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgWithdrawDelegatorRewardResponse({ value: MsgWithdrawDelegatorRewardResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgWithdrawDelegatorRewardResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendValidatorAccumulatedCommissionRecord({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendValidatorAccumulatedCommissionRecord: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.validatorAccumulatedCommissionRecord({ value: ValidatorAccumulatedCommissionRecord.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendValidatorAccumulatedCommissionRecord: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryValidatorDistributionInfoResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryValidatorDistributionInfoResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryValidatorDistributionInfoResponse({ value: QueryValidatorDistributionInfoResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryValidatorDistributionInfoResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryDelegationRewardsRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryDelegationRewardsRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryDelegationRewardsRequest({ value: QueryDelegationRewardsRequest.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryDelegationRewardsRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgCommunityPoolSpend({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgCommunityPoolSpend: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgCommunityPoolSpend({ value: MsgCommunityPoolSpend.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgCommunityPoolSpend: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendGenesisState({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.genesisState({ value: GenesisState.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryValidatorOutstandingRewardsRequest: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendQueryDelegationRewardsResponse({ value, fee, memo }) {
@@ -325,32 +101,18 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendQueryDelegationRewardsResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendValidatorSlashEvents({ value, fee, memo }) {
+        async sendValidatorAccumulatedCommissionRecord({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendValidatorSlashEvents: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendValidatorAccumulatedCommissionRecord: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.validatorSlashEvents({ value: ValidatorSlashEvents.fromPartial(value) });
+                let msg = this.validatorAccumulatedCommissionRecord({ value: ValidatorAccumulatedCommissionRecord.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendValidatorSlashEvents: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendDelegationDelegatorReward({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendDelegationDelegatorReward: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.delegationDelegatorReward({ value: DelegationDelegatorReward.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendDelegationDelegatorReward: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendValidatorAccumulatedCommissionRecord: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendMsgWithdrawDelegatorReward({ value, fee, memo }) {
@@ -367,32 +129,32 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendMsgWithdrawDelegatorReward: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendValidatorHistoricalRewardsRecord({ value, fee, memo }) {
+        async sendQueryCommunityPoolRequest({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendValidatorHistoricalRewardsRecord: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryCommunityPoolRequest: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.validatorHistoricalRewardsRecord({ value: ValidatorHistoricalRewardsRecord.fromPartial(value) });
+                let msg = this.queryCommunityPoolRequest({ value: QueryCommunityPoolRequest.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendValidatorHistoricalRewardsRecord: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryCommunityPoolRequest: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryParamsRequest({ value, fee, memo }) {
+        async sendMsgCommunityPoolSpend({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendMsgCommunityPoolSpend: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) });
+                let msg = this.msgCommunityPoolSpend({ value: MsgCommunityPoolSpend.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendMsgCommunityPoolSpend: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendQueryValidatorCommissionRequest({ value, fee, memo }) {
@@ -409,18 +171,130 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendQueryValidatorCommissionRequest: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendValidatorCurrentRewardsRecord({ value, fee, memo }) {
+        async sendQueryValidatorSlashesResponse({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendValidatorCurrentRewardsRecord: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryValidatorSlashesResponse: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.validatorCurrentRewardsRecord({ value: ValidatorCurrentRewardsRecord.fromPartial(value) });
+                let msg = this.queryValidatorSlashesResponse({ value: QueryValidatorSlashesResponse.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendValidatorCurrentRewardsRecord: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryValidatorSlashesResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendCommunityPoolSpendProposalWithDeposit({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendCommunityPoolSpendProposalWithDeposit: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.communityPoolSpendProposalWithDeposit({ value: CommunityPoolSpendProposalWithDeposit.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendCommunityPoolSpendProposalWithDeposit: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgSetWithdrawAddress({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgSetWithdrawAddress: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgSetWithdrawAddress({ value: MsgSetWithdrawAddress.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgSetWithdrawAddress: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryDelegatorWithdrawAddressRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryDelegatorWithdrawAddressRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryDelegatorWithdrawAddressRequest({ value: QueryDelegatorWithdrawAddressRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryDelegatorWithdrawAddressRequest: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendDelegatorWithdrawInfo({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendDelegatorWithdrawInfo: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.delegatorWithdrawInfo({ value: DelegatorWithdrawInfo.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendDelegatorWithdrawInfo: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryValidatorOutstandingRewardsResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryValidatorOutstandingRewardsResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryValidatorOutstandingRewardsResponse({ value: QueryValidatorOutstandingRewardsResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryValidatorOutstandingRewardsResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendValidatorSlashEventRecord({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendValidatorSlashEventRecord: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.validatorSlashEventRecord({ value: ValidatorSlashEventRecord.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendValidatorSlashEventRecord: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgDepositValidatorRewardsPoolResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgDepositValidatorRewardsPoolResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgDepositValidatorRewardsPoolResponse({ value: MsgDepositValidatorRewardsPoolResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgDepositValidatorRewardsPoolResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendValidatorSlashEvents({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendValidatorSlashEvents: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.validatorSlashEvents({ value: ValidatorSlashEvents.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendValidatorSlashEvents: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendDelegatorStartingInfoRecord({ value, fee, memo }) {
@@ -437,6 +311,34 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendDelegatorStartingInfoRecord: Could not broadcast Tx: ' + e.message);
             }
         },
+        async sendValidatorHistoricalRewardsRecord({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendValidatorHistoricalRewardsRecord: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.validatorHistoricalRewardsRecord({ value: ValidatorHistoricalRewardsRecord.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendValidatorHistoricalRewardsRecord: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryDelegatorWithdrawAddressResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryDelegatorWithdrawAddressResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryDelegatorWithdrawAddressResponse({ value: QueryDelegatorWithdrawAddressResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryDelegatorWithdrawAddressResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
         async sendParams({ value, fee, memo }) {
             if (!signer) {
                 throw new Error('TxClient:sendParams: Unable to sign Tx. Signer is not present.');
@@ -451,6 +353,202 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendParams: Could not broadcast Tx: ' + e.message);
             }
         },
+        async sendFeePool({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendFeePool: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.feePool({ value: FeePool.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendFeePool: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgFundCommunityPoolResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgFundCommunityPoolResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgFundCommunityPoolResponse({ value: MsgFundCommunityPoolResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgFundCommunityPoolResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendValidatorCurrentRewardsRecord({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendValidatorCurrentRewardsRecord: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.validatorCurrentRewardsRecord({ value: ValidatorCurrentRewardsRecord.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendValidatorCurrentRewardsRecord: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryDelegationTotalRewardsRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryDelegationTotalRewardsRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryDelegationTotalRewardsRequest({ value: QueryDelegationTotalRewardsRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryDelegationTotalRewardsRequest: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendValidatorAccumulatedCommission({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendValidatorAccumulatedCommission: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.validatorAccumulatedCommission({ value: ValidatorAccumulatedCommission.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendValidatorAccumulatedCommission: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendValidatorSlashEvent({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendValidatorSlashEvent: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.validatorSlashEvent({ value: ValidatorSlashEvent.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendValidatorSlashEvent: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryParamsRequest({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryParamsRequest: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryParamsRequest({ value: QueryParamsRequest.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryParamsRequest: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendCommunityPoolSpendProposal({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendCommunityPoolSpendProposal: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.communityPoolSpendProposal({ value: CommunityPoolSpendProposal.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendCommunityPoolSpendProposal: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgFundCommunityPool({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgFundCommunityPool: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgFundCommunityPool({ value: MsgFundCommunityPool.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgFundCommunityPool: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgWithdrawValidatorCommission({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgWithdrawValidatorCommission: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgWithdrawValidatorCommission({ value: MsgWithdrawValidatorCommission.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgWithdrawValidatorCommission: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgDepositValidatorRewardsPool({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgDepositValidatorRewardsPool: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgDepositValidatorRewardsPool({ value: MsgDepositValidatorRewardsPool.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgDepositValidatorRewardsPool: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryCommunityPoolResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryCommunityPoolResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryCommunityPoolResponse({ value: QueryCommunityPoolResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryCommunityPoolResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendValidatorCurrentRewards({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendValidatorCurrentRewards: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.validatorCurrentRewards({ value: ValidatorCurrentRewards.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendValidatorCurrentRewards: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgWithdrawDelegatorRewardResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgWithdrawDelegatorRewardResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgWithdrawDelegatorRewardResponse({ value: MsgWithdrawDelegatorRewardResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgWithdrawDelegatorRewardResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
         async sendMsgWithdrawValidatorCommissionResponse({ value, fee, memo }) {
             if (!signer) {
                 throw new Error('TxClient:sendMsgWithdrawValidatorCommissionResponse: Unable to sign Tx. Signer is not present.');
@@ -463,20 +561,6 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
             }
             catch (e) {
                 throw new Error('TxClient:sendMsgWithdrawValidatorCommissionResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgUpdateParams({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendQueryParamsResponse({ value, fee, memo }) {
@@ -507,74 +591,18 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendQueryValidatorDistributionInfoRequest: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryValidatorOutstandingRewardsResponse({ value, fee, memo }) {
+        async sendQueryDelegationRewardsRequest({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryValidatorOutstandingRewardsResponse: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryDelegationRewardsRequest: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryValidatorOutstandingRewardsResponse({ value: QueryValidatorOutstandingRewardsResponse.fromPartial(value) });
+                let msg = this.queryDelegationRewardsRequest({ value: QueryDelegationRewardsRequest.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryValidatorOutstandingRewardsResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryValidatorSlashesRequest({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryValidatorSlashesRequest: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryValidatorSlashesRequest({ value: QueryValidatorSlashesRequest.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryValidatorSlashesRequest: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendCommunityPoolSpendProposal({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendCommunityPoolSpendProposal: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.communityPoolSpendProposal({ value: CommunityPoolSpendProposal.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendCommunityPoolSpendProposal: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryValidatorSlashesResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryValidatorSlashesResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryValidatorSlashesResponse({ value: QueryValidatorSlashesResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryValidatorSlashesResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendValidatorAccumulatedCommission({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendValidatorAccumulatedCommission: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.validatorAccumulatedCommission({ value: ValidatorAccumulatedCommission.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendValidatorAccumulatedCommission: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryDelegationRewardsRequest: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendValidatorOutstandingRewards({ value, fee, memo }) {
@@ -591,102 +619,18 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendValidatorOutstandingRewards: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendValidatorSlashEvent({ value, fee, memo }) {
+        async sendGenesisState({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendValidatorSlashEvent: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendGenesisState: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.validatorSlashEvent({ value: ValidatorSlashEvent.fromPartial(value) });
+                let msg = this.genesisState({ value: GenesisState.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendValidatorSlashEvent: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgCommunityPoolSpendResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgCommunityPoolSpendResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgCommunityPoolSpendResponse({ value: MsgCommunityPoolSpendResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgCommunityPoolSpendResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendDelegatorWithdrawInfo({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendDelegatorWithdrawInfo: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.delegatorWithdrawInfo({ value: DelegatorWithdrawInfo.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendDelegatorWithdrawInfo: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendQueryDelegatorWithdrawAddressResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendQueryDelegatorWithdrawAddressResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryDelegatorWithdrawAddressResponse({ value: QueryDelegatorWithdrawAddressResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendQueryDelegatorWithdrawAddressResponse: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendValidatorHistoricalRewards({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendValidatorHistoricalRewards: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.validatorHistoricalRewards({ value: ValidatorHistoricalRewards.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendValidatorHistoricalRewards: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgSetWithdrawAddress({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgSetWithdrawAddress: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgSetWithdrawAddress({ value: MsgSetWithdrawAddress.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgSetWithdrawAddress: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendMsgFundCommunityPoolResponse({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendMsgFundCommunityPoolResponse: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.msgFundCommunityPoolResponse({ value: MsgFundCommunityPoolResponse.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendMsgFundCommunityPoolResponse: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendGenesisState: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendQueryValidatorCommissionResponse({ value, fee, memo }) {
@@ -703,6 +647,76 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendQueryValidatorCommissionResponse: Could not broadcast Tx: ' + e.message);
             }
         },
+        async sendValidatorHistoricalRewards({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendValidatorHistoricalRewards: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.validatorHistoricalRewards({ value: ValidatorHistoricalRewards.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendValidatorHistoricalRewards: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendDelegatorStartingInfo({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendDelegatorStartingInfo: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.delegatorStartingInfo({ value: DelegatorStartingInfo.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendDelegatorStartingInfo: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgUpdateParams({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgUpdateParams: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgUpdateParams({ value: MsgUpdateParams.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgUpdateParams: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendMsgUpdateParamsResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendMsgUpdateParamsResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.msgUpdateParamsResponse({ value: MsgUpdateParamsResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendMsgUpdateParamsResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
+        async sendQueryValidatorDistributionInfoResponse({ value, fee, memo }) {
+            if (!signer) {
+                throw new Error('TxClient:sendQueryValidatorDistributionInfoResponse: Unable to sign Tx. Signer is not present.');
+            }
+            try {
+                const { address } = (await signer.getAccounts())[0];
+                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
+                let msg = this.queryValidatorDistributionInfoResponse({ value: QueryValidatorDistributionInfoResponse.fromPartial(value) });
+                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
+            }
+            catch (e) {
+                throw new Error('TxClient:sendQueryValidatorDistributionInfoResponse: Could not broadcast Tx: ' + e.message);
+            }
+        },
         async sendQueryDelegationTotalRewardsResponse({ value, fee, memo }) {
             if (!signer) {
                 throw new Error('TxClient:sendQueryDelegationTotalRewardsResponse: Unable to sign Tx. Signer is not present.');
@@ -717,32 +731,18 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendQueryDelegationTotalRewardsResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendFeePool({ value, fee, memo }) {
+        async sendQueryDelegatorValidatorsResponse({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendFeePool: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryDelegatorValidatorsResponse: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.feePool({ value: FeePool.fromPartial(value) });
+                let msg = this.queryDelegatorValidatorsResponse({ value: QueryDelegatorValidatorsResponse.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendFeePool: Could not broadcast Tx: ' + e.message);
-            }
-        },
-        async sendCommunityPoolSpendProposalWithDeposit({ value, fee, memo }) {
-            if (!signer) {
-                throw new Error('TxClient:sendCommunityPoolSpendProposalWithDeposit: Unable to sign Tx. Signer is not present.');
-            }
-            try {
-                const { address } = (await signer.getAccounts())[0];
-                const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.communityPoolSpendProposalWithDeposit({ value: CommunityPoolSpendProposalWithDeposit.fromPartial(value) });
-                return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
-            }
-            catch (e) {
-                throw new Error('TxClient:sendCommunityPoolSpendProposalWithDeposit: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryDelegatorValidatorsResponse: Could not broadcast Tx: ' + e.message);
             }
         },
         async sendValidatorOutstandingRewardsRecord({ value, fee, memo }) {
@@ -759,210 +759,82 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:sendValidatorOutstandingRewardsRecord: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryValidatorOutstandingRewardsRequest({ value, fee, memo }) {
+        async sendMsgSetWithdrawAddressResponse({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryValidatorOutstandingRewardsRequest: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendMsgSetWithdrawAddressResponse: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryValidatorOutstandingRewardsRequest({ value: QueryValidatorOutstandingRewardsRequest.fromPartial(value) });
+                let msg = this.msgSetWithdrawAddressResponse({ value: MsgSetWithdrawAddressResponse.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryValidatorOutstandingRewardsRequest: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendMsgSetWithdrawAddressResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryDelegatorWithdrawAddressRequest({ value, fee, memo }) {
+        async sendQueryValidatorSlashesRequest({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryDelegatorWithdrawAddressRequest: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryValidatorSlashesRequest: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryDelegatorWithdrawAddressRequest({ value: QueryDelegatorWithdrawAddressRequest.fromPartial(value) });
+                let msg = this.queryValidatorSlashesRequest({ value: QueryValidatorSlashesRequest.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryDelegatorWithdrawAddressRequest: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryValidatorSlashesRequest: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendValidatorCurrentRewards({ value, fee, memo }) {
+        async sendQueryDelegatorValidatorsRequest({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendValidatorCurrentRewards: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendQueryDelegatorValidatorsRequest: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.validatorCurrentRewards({ value: ValidatorCurrentRewards.fromPartial(value) });
+                let msg = this.queryDelegatorValidatorsRequest({ value: QueryDelegatorValidatorsRequest.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendValidatorCurrentRewards: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendQueryDelegatorValidatorsRequest: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryDelegationTotalRewardsRequest({ value, fee, memo }) {
+        async sendDelegationDelegatorReward({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryDelegationTotalRewardsRequest: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendDelegationDelegatorReward: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryDelegationTotalRewardsRequest({ value: QueryDelegationTotalRewardsRequest.fromPartial(value) });
+                let msg = this.delegationDelegatorReward({ value: DelegationDelegatorReward.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryDelegationTotalRewardsRequest: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendDelegationDelegatorReward: Could not broadcast Tx: ' + e.message);
             }
         },
-        async sendQueryCommunityPoolResponse({ value, fee, memo }) {
+        async sendMsgCommunityPoolSpendResponse({ value, fee, memo }) {
             if (!signer) {
-                throw new Error('TxClient:sendQueryCommunityPoolResponse: Unable to sign Tx. Signer is not present.');
+                throw new Error('TxClient:sendMsgCommunityPoolSpendResponse: Unable to sign Tx. Signer is not present.');
             }
             try {
                 const { address } = (await signer.getAccounts())[0];
                 const signingClient = await SigningStargateClient.connectWithSigner(addr, signer, { registry });
-                let msg = this.queryCommunityPoolResponse({ value: QueryCommunityPoolResponse.fromPartial(value) });
+                let msg = this.msgCommunityPoolSpendResponse({ value: MsgCommunityPoolSpendResponse.fromPartial(value) });
                 return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo);
             }
             catch (e) {
-                throw new Error('TxClient:sendQueryCommunityPoolResponse: Could not broadcast Tx: ' + e.message);
+                throw new Error('TxClient:sendMsgCommunityPoolSpendResponse: Could not broadcast Tx: ' + e.message);
             }
         },
-        delegatorStartingInfo({ value }) {
+        queryValidatorOutstandingRewardsRequest({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.DelegatorStartingInfo", value: DelegatorStartingInfo.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequest", value: QueryValidatorOutstandingRewardsRequest.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:DelegatorStartingInfo: Could not create message: ' + e.message);
-            }
-        },
-        msgSetWithdrawAddressResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse", value: MsgSetWithdrawAddressResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgSetWithdrawAddressResponse: Could not create message: ' + e.message);
-            }
-        },
-        msgDepositValidatorRewardsPoolResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPoolResponse", value: MsgDepositValidatorRewardsPoolResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgDepositValidatorRewardsPoolResponse: Could not create message: ' + e.message);
-            }
-        },
-        queryCommunityPoolRequest({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryCommunityPoolRequest", value: QueryCommunityPoolRequest.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryCommunityPoolRequest: Could not create message: ' + e.message);
-            }
-        },
-        msgFundCommunityPool({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgFundCommunityPool", value: MsgFundCommunityPool.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgFundCommunityPool: Could not create message: ' + e.message);
-            }
-        },
-        msgDepositValidatorRewardsPool({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool", value: MsgDepositValidatorRewardsPool.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgDepositValidatorRewardsPool: Could not create message: ' + e.message);
-            }
-        },
-        msgWithdrawValidatorCommission({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission", value: MsgWithdrawValidatorCommission.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgWithdrawValidatorCommission: Could not create message: ' + e.message);
-            }
-        },
-        msgUpdateParamsResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message);
-            }
-        },
-        queryDelegatorValidatorsRequest({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegatorValidatorsRequest", value: QueryDelegatorValidatorsRequest.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryDelegatorValidatorsRequest: Could not create message: ' + e.message);
-            }
-        },
-        validatorSlashEventRecord({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEventRecord", value: ValidatorSlashEventRecord.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:ValidatorSlashEventRecord: Could not create message: ' + e.message);
-            }
-        },
-        queryDelegatorValidatorsResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse", value: QueryDelegatorValidatorsResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryDelegatorValidatorsResponse: Could not create message: ' + e.message);
-            }
-        },
-        msgWithdrawDelegatorRewardResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse", value: MsgWithdrawDelegatorRewardResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgWithdrawDelegatorRewardResponse: Could not create message: ' + e.message);
-            }
-        },
-        validatorAccumulatedCommissionRecord({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommissionRecord", value: ValidatorAccumulatedCommissionRecord.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:ValidatorAccumulatedCommissionRecord: Could not create message: ' + e.message);
-            }
-        },
-        queryValidatorDistributionInfoResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse", value: QueryValidatorDistributionInfoResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryValidatorDistributionInfoResponse: Could not create message: ' + e.message);
-            }
-        },
-        queryDelegationRewardsRequest({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegationRewardsRequest", value: QueryDelegationRewardsRequest.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryDelegationRewardsRequest: Could not create message: ' + e.message);
-            }
-        },
-        msgCommunityPoolSpend({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpend", value: MsgCommunityPoolSpend.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgCommunityPoolSpend: Could not create message: ' + e.message);
-            }
-        },
-        genesisState({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.GenesisState", value: GenesisState.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:GenesisState: Could not create message: ' + e.message);
+                throw new Error('TxClient:QueryValidatorOutstandingRewardsRequest: Could not create message: ' + e.message);
             }
         },
         queryDelegationRewardsResponse({ value }) {
@@ -973,20 +845,12 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:QueryDelegationRewardsResponse: Could not create message: ' + e.message);
             }
         },
-        validatorSlashEvents({ value }) {
+        validatorAccumulatedCommissionRecord({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvents", value: ValidatorSlashEvents.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommissionRecord", value: ValidatorAccumulatedCommissionRecord.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:ValidatorSlashEvents: Could not create message: ' + e.message);
-            }
-        },
-        delegationDelegatorReward({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.DelegationDelegatorReward", value: DelegationDelegatorReward.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:DelegationDelegatorReward: Could not create message: ' + e.message);
+                throw new Error('TxClient:ValidatorAccumulatedCommissionRecord: Could not create message: ' + e.message);
             }
         },
         msgWithdrawDelegatorReward({ value }) {
@@ -997,20 +861,20 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:MsgWithdrawDelegatorReward: Could not create message: ' + e.message);
             }
         },
-        validatorHistoricalRewardsRecord({ value }) {
+        queryCommunityPoolRequest({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewardsRecord", value: ValidatorHistoricalRewardsRecord.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryCommunityPoolRequest", value: QueryCommunityPoolRequest.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:ValidatorHistoricalRewardsRecord: Could not create message: ' + e.message);
+                throw new Error('TxClient:QueryCommunityPoolRequest: Could not create message: ' + e.message);
             }
         },
-        queryParamsRequest({ value }) {
+        msgCommunityPoolSpend({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryParamsRequest", value: QueryParamsRequest.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpend", value: MsgCommunityPoolSpend.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message);
+                throw new Error('TxClient:MsgCommunityPoolSpend: Could not create message: ' + e.message);
             }
         },
         queryValidatorCommissionRequest({ value }) {
@@ -1021,12 +885,76 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:QueryValidatorCommissionRequest: Could not create message: ' + e.message);
             }
         },
-        validatorCurrentRewardsRecord({ value }) {
+        queryValidatorSlashesResponse({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecord", value: ValidatorCurrentRewardsRecord.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorSlashesResponse", value: QueryValidatorSlashesResponse.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:ValidatorCurrentRewardsRecord: Could not create message: ' + e.message);
+                throw new Error('TxClient:QueryValidatorSlashesResponse: Could not create message: ' + e.message);
+            }
+        },
+        communityPoolSpendProposalWithDeposit({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit", value: CommunityPoolSpendProposalWithDeposit.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:CommunityPoolSpendProposalWithDeposit: Could not create message: ' + e.message);
+            }
+        },
+        msgSetWithdrawAddress({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgSetWithdrawAddress", value: MsgSetWithdrawAddress.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgSetWithdrawAddress: Could not create message: ' + e.message);
+            }
+        },
+        queryDelegatorWithdrawAddressRequest({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressRequest", value: QueryDelegatorWithdrawAddressRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryDelegatorWithdrawAddressRequest: Could not create message: ' + e.message);
+            }
+        },
+        delegatorWithdrawInfo({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.DelegatorWithdrawInfo", value: DelegatorWithdrawInfo.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:DelegatorWithdrawInfo: Could not create message: ' + e.message);
+            }
+        },
+        queryValidatorOutstandingRewardsResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsResponse", value: QueryValidatorOutstandingRewardsResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryValidatorOutstandingRewardsResponse: Could not create message: ' + e.message);
+            }
+        },
+        validatorSlashEventRecord({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEventRecord", value: ValidatorSlashEventRecord.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:ValidatorSlashEventRecord: Could not create message: ' + e.message);
+            }
+        },
+        msgDepositValidatorRewardsPoolResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPoolResponse", value: MsgDepositValidatorRewardsPoolResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgDepositValidatorRewardsPoolResponse: Could not create message: ' + e.message);
+            }
+        },
+        validatorSlashEvents({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvents", value: ValidatorSlashEvents.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:ValidatorSlashEvents: Could not create message: ' + e.message);
             }
         },
         delegatorStartingInfoRecord({ value }) {
@@ -1037,6 +965,22 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:DelegatorStartingInfoRecord: Could not create message: ' + e.message);
             }
         },
+        validatorHistoricalRewardsRecord({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewardsRecord", value: ValidatorHistoricalRewardsRecord.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:ValidatorHistoricalRewardsRecord: Could not create message: ' + e.message);
+            }
+        },
+        queryDelegatorWithdrawAddressResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse", value: QueryDelegatorWithdrawAddressResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryDelegatorWithdrawAddressResponse: Could not create message: ' + e.message);
+            }
+        },
         params({ value }) {
             try {
                 return { typeUrl: "/cosmos.distribution.v1beta1.Params", value: Params.fromPartial(value) };
@@ -1045,20 +989,124 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:Params: Could not create message: ' + e.message);
             }
         },
+        feePool({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.FeePool", value: FeePool.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:FeePool: Could not create message: ' + e.message);
+            }
+        },
+        msgFundCommunityPoolResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgFundCommunityPoolResponse", value: MsgFundCommunityPoolResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgFundCommunityPoolResponse: Could not create message: ' + e.message);
+            }
+        },
+        validatorCurrentRewardsRecord({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorCurrentRewardsRecord", value: ValidatorCurrentRewardsRecord.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:ValidatorCurrentRewardsRecord: Could not create message: ' + e.message);
+            }
+        },
+        queryDelegationTotalRewardsRequest({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegationTotalRewardsRequest", value: QueryDelegationTotalRewardsRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryDelegationTotalRewardsRequest: Could not create message: ' + e.message);
+            }
+        },
+        validatorAccumulatedCommission({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommission", value: ValidatorAccumulatedCommission.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:ValidatorAccumulatedCommission: Could not create message: ' + e.message);
+            }
+        },
+        validatorSlashEvent({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvent", value: ValidatorSlashEvent.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:ValidatorSlashEvent: Could not create message: ' + e.message);
+            }
+        },
+        queryParamsRequest({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryParamsRequest", value: QueryParamsRequest.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryParamsRequest: Could not create message: ' + e.message);
+            }
+        },
+        communityPoolSpendProposal({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal", value: CommunityPoolSpendProposal.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:CommunityPoolSpendProposal: Could not create message: ' + e.message);
+            }
+        },
+        msgFundCommunityPool({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgFundCommunityPool", value: MsgFundCommunityPool.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgFundCommunityPool: Could not create message: ' + e.message);
+            }
+        },
+        msgWithdrawValidatorCommission({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommission", value: MsgWithdrawValidatorCommission.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgWithdrawValidatorCommission: Could not create message: ' + e.message);
+            }
+        },
+        msgDepositValidatorRewardsPool({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgDepositValidatorRewardsPool", value: MsgDepositValidatorRewardsPool.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgDepositValidatorRewardsPool: Could not create message: ' + e.message);
+            }
+        },
+        queryCommunityPoolResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryCommunityPoolResponse", value: QueryCommunityPoolResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryCommunityPoolResponse: Could not create message: ' + e.message);
+            }
+        },
+        validatorCurrentRewards({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorCurrentRewards", value: ValidatorCurrentRewards.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:ValidatorCurrentRewards: Could not create message: ' + e.message);
+            }
+        },
+        msgWithdrawDelegatorRewardResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorRewardResponse", value: MsgWithdrawDelegatorRewardResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgWithdrawDelegatorRewardResponse: Could not create message: ' + e.message);
+            }
+        },
         msgWithdrawValidatorCommissionResponse({ value }) {
             try {
                 return { typeUrl: "/cosmos.distribution.v1beta1.MsgWithdrawValidatorCommissionResponse", value: MsgWithdrawValidatorCommissionResponse.fromPartial(value) };
             }
             catch (e) {
                 throw new Error('TxClient:MsgWithdrawValidatorCommissionResponse: Could not create message: ' + e.message);
-            }
-        },
-        msgUpdateParams({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgUpdateParams", value: MsgUpdateParams.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message);
             }
         },
         queryParamsResponse({ value }) {
@@ -1077,44 +1125,12 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:QueryValidatorDistributionInfoRequest: Could not create message: ' + e.message);
             }
         },
-        queryValidatorOutstandingRewardsResponse({ value }) {
+        queryDelegationRewardsRequest({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsResponse", value: QueryValidatorOutstandingRewardsResponse.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegationRewardsRequest", value: QueryDelegationRewardsRequest.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryValidatorOutstandingRewardsResponse: Could not create message: ' + e.message);
-            }
-        },
-        queryValidatorSlashesRequest({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorSlashesRequest", value: QueryValidatorSlashesRequest.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryValidatorSlashesRequest: Could not create message: ' + e.message);
-            }
-        },
-        communityPoolSpendProposal({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposal", value: CommunityPoolSpendProposal.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:CommunityPoolSpendProposal: Could not create message: ' + e.message);
-            }
-        },
-        queryValidatorSlashesResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorSlashesResponse", value: QueryValidatorSlashesResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryValidatorSlashesResponse: Could not create message: ' + e.message);
-            }
-        },
-        validatorAccumulatedCommission({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorAccumulatedCommission", value: ValidatorAccumulatedCommission.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:ValidatorAccumulatedCommission: Could not create message: ' + e.message);
+                throw new Error('TxClient:QueryDelegationRewardsRequest: Could not create message: ' + e.message);
             }
         },
         validatorOutstandingRewards({ value }) {
@@ -1125,60 +1141,12 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:ValidatorOutstandingRewards: Could not create message: ' + e.message);
             }
         },
-        validatorSlashEvent({ value }) {
+        genesisState({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorSlashEvent", value: ValidatorSlashEvent.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.GenesisState", value: GenesisState.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:ValidatorSlashEvent: Could not create message: ' + e.message);
-            }
-        },
-        msgCommunityPoolSpendResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse", value: MsgCommunityPoolSpendResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgCommunityPoolSpendResponse: Could not create message: ' + e.message);
-            }
-        },
-        delegatorWithdrawInfo({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.DelegatorWithdrawInfo", value: DelegatorWithdrawInfo.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:DelegatorWithdrawInfo: Could not create message: ' + e.message);
-            }
-        },
-        queryDelegatorWithdrawAddressResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse", value: QueryDelegatorWithdrawAddressResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:QueryDelegatorWithdrawAddressResponse: Could not create message: ' + e.message);
-            }
-        },
-        validatorHistoricalRewards({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards", value: ValidatorHistoricalRewards.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:ValidatorHistoricalRewards: Could not create message: ' + e.message);
-            }
-        },
-        msgSetWithdrawAddress({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgSetWithdrawAddress", value: MsgSetWithdrawAddress.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgSetWithdrawAddress: Could not create message: ' + e.message);
-            }
-        },
-        msgFundCommunityPoolResponse({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.MsgFundCommunityPoolResponse", value: MsgFundCommunityPoolResponse.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:MsgFundCommunityPoolResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:GenesisState: Could not create message: ' + e.message);
             }
         },
         queryValidatorCommissionResponse({ value }) {
@@ -1189,6 +1157,46 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:QueryValidatorCommissionResponse: Could not create message: ' + e.message);
             }
         },
+        validatorHistoricalRewards({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorHistoricalRewards", value: ValidatorHistoricalRewards.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:ValidatorHistoricalRewards: Could not create message: ' + e.message);
+            }
+        },
+        delegatorStartingInfo({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.DelegatorStartingInfo", value: DelegatorStartingInfo.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:DelegatorStartingInfo: Could not create message: ' + e.message);
+            }
+        },
+        msgUpdateParams({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgUpdateParams", value: MsgUpdateParams.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgUpdateParams: Could not create message: ' + e.message);
+            }
+        },
+        msgUpdateParamsResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgUpdateParamsResponse", value: MsgUpdateParamsResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:MsgUpdateParamsResponse: Could not create message: ' + e.message);
+            }
+        },
+        queryValidatorDistributionInfoResponse({ value }) {
+            try {
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorDistributionInfoResponse", value: QueryValidatorDistributionInfoResponse.fromPartial(value) };
+            }
+            catch (e) {
+                throw new Error('TxClient:QueryValidatorDistributionInfoResponse: Could not create message: ' + e.message);
+            }
+        },
         queryDelegationTotalRewardsResponse({ value }) {
             try {
                 return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse", value: QueryDelegationTotalRewardsResponse.fromPartial(value) };
@@ -1197,20 +1205,12 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:QueryDelegationTotalRewardsResponse: Could not create message: ' + e.message);
             }
         },
-        feePool({ value }) {
+        queryDelegatorValidatorsResponse({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.FeePool", value: FeePool.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse", value: QueryDelegatorValidatorsResponse.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:FeePool: Could not create message: ' + e.message);
-            }
-        },
-        communityPoolSpendProposalWithDeposit({ value }) {
-            try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit", value: CommunityPoolSpendProposalWithDeposit.fromPartial(value) };
-            }
-            catch (e) {
-                throw new Error('TxClient:CommunityPoolSpendProposalWithDeposit: Could not create message: ' + e.message);
+                throw new Error('TxClient:QueryDelegatorValidatorsResponse: Could not create message: ' + e.message);
             }
         },
         validatorOutstandingRewardsRecord({ value }) {
@@ -1221,44 +1221,44 @@ export const txClient = ({ signer, prefix, addr } = { addr: "http://localhost:26
                 throw new Error('TxClient:ValidatorOutstandingRewardsRecord: Could not create message: ' + e.message);
             }
         },
-        queryValidatorOutstandingRewardsRequest({ value }) {
+        msgSetWithdrawAddressResponse({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorOutstandingRewardsRequest", value: QueryValidatorOutstandingRewardsRequest.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgSetWithdrawAddressResponse", value: MsgSetWithdrawAddressResponse.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryValidatorOutstandingRewardsRequest: Could not create message: ' + e.message);
+                throw new Error('TxClient:MsgSetWithdrawAddressResponse: Could not create message: ' + e.message);
             }
         },
-        queryDelegatorWithdrawAddressRequest({ value }) {
+        queryValidatorSlashesRequest({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressRequest", value: QueryDelegatorWithdrawAddressRequest.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryValidatorSlashesRequest", value: QueryValidatorSlashesRequest.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryDelegatorWithdrawAddressRequest: Could not create message: ' + e.message);
+                throw new Error('TxClient:QueryValidatorSlashesRequest: Could not create message: ' + e.message);
             }
         },
-        validatorCurrentRewards({ value }) {
+        queryDelegatorValidatorsRequest({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.ValidatorCurrentRewards", value: ValidatorCurrentRewards.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegatorValidatorsRequest", value: QueryDelegatorValidatorsRequest.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:ValidatorCurrentRewards: Could not create message: ' + e.message);
+                throw new Error('TxClient:QueryDelegatorValidatorsRequest: Could not create message: ' + e.message);
             }
         },
-        queryDelegationTotalRewardsRequest({ value }) {
+        delegationDelegatorReward({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryDelegationTotalRewardsRequest", value: QueryDelegationTotalRewardsRequest.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.DelegationDelegatorReward", value: DelegationDelegatorReward.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryDelegationTotalRewardsRequest: Could not create message: ' + e.message);
+                throw new Error('TxClient:DelegationDelegatorReward: Could not create message: ' + e.message);
             }
         },
-        queryCommunityPoolResponse({ value }) {
+        msgCommunityPoolSpendResponse({ value }) {
             try {
-                return { typeUrl: "/cosmos.distribution.v1beta1.QueryCommunityPoolResponse", value: QueryCommunityPoolResponse.fromPartial(value) };
+                return { typeUrl: "/cosmos.distribution.v1beta1.MsgCommunityPoolSpendResponse", value: MsgCommunityPoolSpendResponse.fromPartial(value) };
             }
             catch (e) {
-                throw new Error('TxClient:QueryCommunityPoolResponse: Could not create message: ' + e.message);
+                throw new Error('TxClient:MsgCommunityPoolSpendResponse: Could not create message: ' + e.message);
             }
         },
     };

@@ -97,6 +97,30 @@ export class Api extends HttpClient {
          * No description
          *
          * @tags Query
+         * @name QueryGetFrontPendingStakeRequest
+         * @request GET:/sigmoid/sigmoid/get_front_pending_stake_request/{address}
+         */
+        this.queryGetFrontPendingStakeRequest = (address, params = {}) => this.request({
+            path: `/sigmoid/sigmoid/get_front_pending_stake_request/${address}`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
+         * @name QueryGetFrontPendingUnstakeRequest
+         * @request GET:/sigmoid/sigmoid/get_front_pending_unstake_request/{address}
+         */
+        this.queryGetFrontPendingUnstakeRequest = (address, params = {}) => this.request({
+            path: `/sigmoid/sigmoid/get_front_pending_unstake_request/${address}`,
+            method: "GET",
+            ...params,
+        });
+        /**
+         * No description
+         *
+         * @tags Query
          * @name QueryGetLastProcessed
          * @request GET:/sigmoid/sigmoid/get_last_processed
          */

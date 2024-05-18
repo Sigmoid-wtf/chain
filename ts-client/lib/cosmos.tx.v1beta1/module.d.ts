@@ -2,100 +2,40 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner, Registry } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { GetTxsEventRequest } from "./types/cosmos/tx/v1beta1/service";
-import { BroadcastTxResponse } from "./types/cosmos/tx/v1beta1/service";
-import { TxEncodeResponse } from "./types/cosmos/tx/v1beta1/service";
-import { ModeInfo_Single } from "./types/cosmos/tx/v1beta1/tx";
-import { TxDecodeResponse } from "./types/cosmos/tx/v1beta1/service";
-import { Fee } from "./types/cosmos/tx/v1beta1/tx";
-import { Tip } from "./types/cosmos/tx/v1beta1/tx";
-import { GetTxsEventResponse } from "./types/cosmos/tx/v1beta1/service";
 import { GetTxResponse } from "./types/cosmos/tx/v1beta1/service";
-import { Tx } from "./types/cosmos/tx/v1beta1/tx";
-import { TxBody } from "./types/cosmos/tx/v1beta1/tx";
-import { SimulateRequest } from "./types/cosmos/tx/v1beta1/service";
-import { GetTxRequest } from "./types/cosmos/tx/v1beta1/service";
 import { GetBlockWithTxsRequest } from "./types/cosmos/tx/v1beta1/service";
-import { TxDecodeAminoResponse } from "./types/cosmos/tx/v1beta1/service";
-import { AuthInfo } from "./types/cosmos/tx/v1beta1/tx";
-import { BroadcastTxRequest } from "./types/cosmos/tx/v1beta1/service";
-import { TxRaw } from "./types/cosmos/tx/v1beta1/tx";
-import { SignDoc } from "./types/cosmos/tx/v1beta1/tx";
 import { GetBlockWithTxsResponse } from "./types/cosmos/tx/v1beta1/service";
-import { TxEncodeAminoResponse } from "./types/cosmos/tx/v1beta1/service";
-import { TxDecodeAminoRequest } from "./types/cosmos/tx/v1beta1/service";
-import { ModeInfo } from "./types/cosmos/tx/v1beta1/tx";
-import { TxDecodeRequest } from "./types/cosmos/tx/v1beta1/service";
-import { TxEncodeRequest } from "./types/cosmos/tx/v1beta1/service";
-import { TxEncodeAminoRequest } from "./types/cosmos/tx/v1beta1/service";
+import { TxBody } from "./types/cosmos/tx/v1beta1/tx";
+import { ModeInfo_Single } from "./types/cosmos/tx/v1beta1/tx";
+import { GetTxsEventRequest } from "./types/cosmos/tx/v1beta1/service";
+import { SimulateResponse } from "./types/cosmos/tx/v1beta1/service";
 import { ModeInfo_Multi } from "./types/cosmos/tx/v1beta1/tx";
 import { AuxSignerData } from "./types/cosmos/tx/v1beta1/tx";
-import { SimulateResponse } from "./types/cosmos/tx/v1beta1/service";
-import { SignDocDirectAux } from "./types/cosmos/tx/v1beta1/tx";
+import { TxDecodeResponse } from "./types/cosmos/tx/v1beta1/service";
+import { TxEncodeResponse } from "./types/cosmos/tx/v1beta1/service";
+import { Tx } from "./types/cosmos/tx/v1beta1/tx";
 import { SignerInfo } from "./types/cosmos/tx/v1beta1/tx";
-export { GetTxsEventRequest, BroadcastTxResponse, TxEncodeResponse, ModeInfo_Single, TxDecodeResponse, Fee, Tip, GetTxsEventResponse, GetTxResponse, Tx, TxBody, SimulateRequest, GetTxRequest, GetBlockWithTxsRequest, TxDecodeAminoResponse, AuthInfo, BroadcastTxRequest, TxRaw, SignDoc, GetBlockWithTxsResponse, TxEncodeAminoResponse, TxDecodeAminoRequest, ModeInfo, TxDecodeRequest, TxEncodeRequest, TxEncodeAminoRequest, ModeInfo_Multi, AuxSignerData, SimulateResponse, SignDocDirectAux, SignerInfo };
-type sendGetTxsEventRequestParams = {
-    value: GetTxsEventRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendBroadcastTxResponseParams = {
-    value: BroadcastTxResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendTxEncodeResponseParams = {
-    value: TxEncodeResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendModeInfo_SingleParams = {
-    value: ModeInfo_Single;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendTxDecodeResponseParams = {
-    value: TxDecodeResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendFeeParams = {
-    value: Fee;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendTipParams = {
-    value: Tip;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGetTxsEventResponseParams = {
-    value: GetTxsEventResponse;
-    fee?: StdFee;
-    memo?: string;
-};
+import { ModeInfo } from "./types/cosmos/tx/v1beta1/tx";
+import { Fee } from "./types/cosmos/tx/v1beta1/tx";
+import { GetTxsEventResponse } from "./types/cosmos/tx/v1beta1/service";
+import { SimulateRequest } from "./types/cosmos/tx/v1beta1/service";
+import { GetTxRequest } from "./types/cosmos/tx/v1beta1/service";
+import { SignDoc } from "./types/cosmos/tx/v1beta1/tx";
+import { TxEncodeAminoRequest } from "./types/cosmos/tx/v1beta1/service";
+import { TxDecodeAminoRequest } from "./types/cosmos/tx/v1beta1/service";
+import { Tip } from "./types/cosmos/tx/v1beta1/tx";
+import { BroadcastTxRequest } from "./types/cosmos/tx/v1beta1/service";
+import { BroadcastTxResponse } from "./types/cosmos/tx/v1beta1/service";
+import { TxEncodeRequest } from "./types/cosmos/tx/v1beta1/service";
+import { SignDocDirectAux } from "./types/cosmos/tx/v1beta1/tx";
+import { TxDecodeRequest } from "./types/cosmos/tx/v1beta1/service";
+import { TxEncodeAminoResponse } from "./types/cosmos/tx/v1beta1/service";
+import { TxDecodeAminoResponse } from "./types/cosmos/tx/v1beta1/service";
+import { TxRaw } from "./types/cosmos/tx/v1beta1/tx";
+import { AuthInfo } from "./types/cosmos/tx/v1beta1/tx";
+export { GetTxResponse, GetBlockWithTxsRequest, GetBlockWithTxsResponse, TxBody, ModeInfo_Single, GetTxsEventRequest, SimulateResponse, ModeInfo_Multi, AuxSignerData, TxDecodeResponse, TxEncodeResponse, Tx, SignerInfo, ModeInfo, Fee, GetTxsEventResponse, SimulateRequest, GetTxRequest, SignDoc, TxEncodeAminoRequest, TxDecodeAminoRequest, Tip, BroadcastTxRequest, BroadcastTxResponse, TxEncodeRequest, SignDocDirectAux, TxDecodeRequest, TxEncodeAminoResponse, TxDecodeAminoResponse, TxRaw, AuthInfo };
 type sendGetTxResponseParams = {
     value: GetTxResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendTxParams = {
-    value: Tx;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendTxBodyParams = {
-    value: TxBody;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendSimulateRequestParams = {
-    value: SimulateRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGetTxRequestParams = {
-    value: GetTxRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -104,63 +44,28 @@ type sendGetBlockWithTxsRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendTxDecodeAminoResponseParams = {
-    value: TxDecodeAminoResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendAuthInfoParams = {
-    value: AuthInfo;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendBroadcastTxRequestParams = {
-    value: BroadcastTxRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendTxRawParams = {
-    value: TxRaw;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendSignDocParams = {
-    value: SignDoc;
-    fee?: StdFee;
-    memo?: string;
-};
 type sendGetBlockWithTxsResponseParams = {
     value: GetBlockWithTxsResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendTxEncodeAminoResponseParams = {
-    value: TxEncodeAminoResponse;
+type sendTxBodyParams = {
+    value: TxBody;
     fee?: StdFee;
     memo?: string;
 };
-type sendTxDecodeAminoRequestParams = {
-    value: TxDecodeAminoRequest;
+type sendModeInfo_SingleParams = {
+    value: ModeInfo_Single;
     fee?: StdFee;
     memo?: string;
 };
-type sendModeInfoParams = {
-    value: ModeInfo;
+type sendGetTxsEventRequestParams = {
+    value: GetTxsEventRequest;
     fee?: StdFee;
     memo?: string;
 };
-type sendTxDecodeRequestParams = {
-    value: TxDecodeRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendTxEncodeRequestParams = {
-    value: TxEncodeRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendTxEncodeAminoRequestParams = {
-    value: TxEncodeAminoRequest;
+type sendSimulateResponseParams = {
+    value: SimulateResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -174,13 +79,18 @@ type sendAuxSignerDataParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendSimulateResponseParams = {
-    value: SimulateResponse;
+type sendTxDecodeResponseParams = {
+    value: TxDecodeResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendSignDocDirectAuxParams = {
-    value: SignDocDirectAux;
+type sendTxEncodeResponseParams = {
+    value: TxEncodeResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendTxParams = {
+    value: Tx;
     fee?: StdFee;
     memo?: string;
 };
@@ -189,83 +99,116 @@ type sendSignerInfoParams = {
     fee?: StdFee;
     memo?: string;
 };
-type getTxsEventRequestParams = {
-    value: GetTxsEventRequest;
+type sendModeInfoParams = {
+    value: ModeInfo;
+    fee?: StdFee;
+    memo?: string;
 };
-type broadcastTxResponseParams = {
-    value: BroadcastTxResponse;
-};
-type txEncodeResponseParams = {
-    value: TxEncodeResponse;
-};
-type modeInfoSingleParams = {
-    value: ModeInfo_Single;
-};
-type txDecodeResponseParams = {
-    value: TxDecodeResponse;
-};
-type feeParams = {
+type sendFeeParams = {
     value: Fee;
+    fee?: StdFee;
+    memo?: string;
 };
-type tipParams = {
-    value: Tip;
-};
-type getTxsEventResponseParams = {
+type sendGetTxsEventResponseParams = {
     value: GetTxsEventResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendSimulateRequestParams = {
+    value: SimulateRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGetTxRequestParams = {
+    value: GetTxRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendSignDocParams = {
+    value: SignDoc;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendTxEncodeAminoRequestParams = {
+    value: TxEncodeAminoRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendTxDecodeAminoRequestParams = {
+    value: TxDecodeAminoRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendTipParams = {
+    value: Tip;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendBroadcastTxRequestParams = {
+    value: BroadcastTxRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendBroadcastTxResponseParams = {
+    value: BroadcastTxResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendTxEncodeRequestParams = {
+    value: TxEncodeRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendSignDocDirectAuxParams = {
+    value: SignDocDirectAux;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendTxDecodeRequestParams = {
+    value: TxDecodeRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendTxEncodeAminoResponseParams = {
+    value: TxEncodeAminoResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendTxDecodeAminoResponseParams = {
+    value: TxDecodeAminoResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendTxRawParams = {
+    value: TxRaw;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendAuthInfoParams = {
+    value: AuthInfo;
+    fee?: StdFee;
+    memo?: string;
 };
 type getTxResponseParams = {
     value: GetTxResponse;
 };
-type txParams = {
-    value: Tx;
-};
-type txBodyParams = {
-    value: TxBody;
-};
-type simulateRequestParams = {
-    value: SimulateRequest;
-};
-type getTxRequestParams = {
-    value: GetTxRequest;
-};
 type getBlockWithTxsRequestParams = {
     value: GetBlockWithTxsRequest;
-};
-type txDecodeAminoResponseParams = {
-    value: TxDecodeAminoResponse;
-};
-type authInfoParams = {
-    value: AuthInfo;
-};
-type broadcastTxRequestParams = {
-    value: BroadcastTxRequest;
-};
-type txRawParams = {
-    value: TxRaw;
-};
-type signDocParams = {
-    value: SignDoc;
 };
 type getBlockWithTxsResponseParams = {
     value: GetBlockWithTxsResponse;
 };
-type txEncodeAminoResponseParams = {
-    value: TxEncodeAminoResponse;
+type txBodyParams = {
+    value: TxBody;
 };
-type txDecodeAminoRequestParams = {
-    value: TxDecodeAminoRequest;
+type modeInfoSingleParams = {
+    value: ModeInfo_Single;
 };
-type modeInfoParams = {
-    value: ModeInfo;
+type getTxsEventRequestParams = {
+    value: GetTxsEventRequest;
 };
-type txDecodeRequestParams = {
-    value: TxDecodeRequest;
-};
-type txEncodeRequestParams = {
-    value: TxEncodeRequest;
-};
-type txEncodeAminoRequestParams = {
-    value: TxEncodeAminoRequest;
+type simulateResponseParams = {
+    value: SimulateResponse;
 };
 type modeInfoMultiParams = {
     value: ModeInfo_Multi;
@@ -273,14 +216,71 @@ type modeInfoMultiParams = {
 type auxSignerDataParams = {
     value: AuxSignerData;
 };
-type simulateResponseParams = {
-    value: SimulateResponse;
+type txDecodeResponseParams = {
+    value: TxDecodeResponse;
+};
+type txEncodeResponseParams = {
+    value: TxEncodeResponse;
+};
+type txParams = {
+    value: Tx;
+};
+type signerInfoParams = {
+    value: SignerInfo;
+};
+type modeInfoParams = {
+    value: ModeInfo;
+};
+type feeParams = {
+    value: Fee;
+};
+type getTxsEventResponseParams = {
+    value: GetTxsEventResponse;
+};
+type simulateRequestParams = {
+    value: SimulateRequest;
+};
+type getTxRequestParams = {
+    value: GetTxRequest;
+};
+type signDocParams = {
+    value: SignDoc;
+};
+type txEncodeAminoRequestParams = {
+    value: TxEncodeAminoRequest;
+};
+type txDecodeAminoRequestParams = {
+    value: TxDecodeAminoRequest;
+};
+type tipParams = {
+    value: Tip;
+};
+type broadcastTxRequestParams = {
+    value: BroadcastTxRequest;
+};
+type broadcastTxResponseParams = {
+    value: BroadcastTxResponse;
+};
+type txEncodeRequestParams = {
+    value: TxEncodeRequest;
 };
 type signDocDirectAuxParams = {
     value: SignDocDirectAux;
 };
-type signerInfoParams = {
-    value: SignerInfo;
+type txDecodeRequestParams = {
+    value: TxDecodeRequest;
+};
+type txEncodeAminoResponseParams = {
+    value: TxEncodeAminoResponse;
+};
+type txDecodeAminoResponseParams = {
+    value: TxDecodeAminoResponse;
+};
+type txRawParams = {
+    value: TxRaw;
+};
+type authInfoParams = {
+    value: AuthInfo;
 };
 export declare const registry: Registry;
 interface TxClientOptions {
@@ -289,68 +289,68 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendGetTxsEventRequest({ value, fee, memo }: sendGetTxsEventRequestParams): Promise<DeliverTxResponse>;
-    sendBroadcastTxResponse({ value, fee, memo }: sendBroadcastTxResponseParams): Promise<DeliverTxResponse>;
-    sendTxEncodeResponse({ value, fee, memo }: sendTxEncodeResponseParams): Promise<DeliverTxResponse>;
-    sendModeInfo_Single({ value, fee, memo }: sendModeInfo_SingleParams): Promise<DeliverTxResponse>;
-    sendTxDecodeResponse({ value, fee, memo }: sendTxDecodeResponseParams): Promise<DeliverTxResponse>;
-    sendFee({ value, fee, memo }: sendFeeParams): Promise<DeliverTxResponse>;
-    sendTip({ value, fee, memo }: sendTipParams): Promise<DeliverTxResponse>;
-    sendGetTxsEventResponse({ value, fee, memo }: sendGetTxsEventResponseParams): Promise<DeliverTxResponse>;
     sendGetTxResponse({ value, fee, memo }: sendGetTxResponseParams): Promise<DeliverTxResponse>;
-    sendTx({ value, fee, memo }: sendTxParams): Promise<DeliverTxResponse>;
-    sendTxBody({ value, fee, memo }: sendTxBodyParams): Promise<DeliverTxResponse>;
-    sendSimulateRequest({ value, fee, memo }: sendSimulateRequestParams): Promise<DeliverTxResponse>;
-    sendGetTxRequest({ value, fee, memo }: sendGetTxRequestParams): Promise<DeliverTxResponse>;
     sendGetBlockWithTxsRequest({ value, fee, memo }: sendGetBlockWithTxsRequestParams): Promise<DeliverTxResponse>;
-    sendTxDecodeAminoResponse({ value, fee, memo }: sendTxDecodeAminoResponseParams): Promise<DeliverTxResponse>;
-    sendAuthInfo({ value, fee, memo }: sendAuthInfoParams): Promise<DeliverTxResponse>;
-    sendBroadcastTxRequest({ value, fee, memo }: sendBroadcastTxRequestParams): Promise<DeliverTxResponse>;
-    sendTxRaw({ value, fee, memo }: sendTxRawParams): Promise<DeliverTxResponse>;
-    sendSignDoc({ value, fee, memo }: sendSignDocParams): Promise<DeliverTxResponse>;
     sendGetBlockWithTxsResponse({ value, fee, memo }: sendGetBlockWithTxsResponseParams): Promise<DeliverTxResponse>;
-    sendTxEncodeAminoResponse({ value, fee, memo }: sendTxEncodeAminoResponseParams): Promise<DeliverTxResponse>;
-    sendTxDecodeAminoRequest({ value, fee, memo }: sendTxDecodeAminoRequestParams): Promise<DeliverTxResponse>;
-    sendModeInfo({ value, fee, memo }: sendModeInfoParams): Promise<DeliverTxResponse>;
-    sendTxDecodeRequest({ value, fee, memo }: sendTxDecodeRequestParams): Promise<DeliverTxResponse>;
-    sendTxEncodeRequest({ value, fee, memo }: sendTxEncodeRequestParams): Promise<DeliverTxResponse>;
-    sendTxEncodeAminoRequest({ value, fee, memo }: sendTxEncodeAminoRequestParams): Promise<DeliverTxResponse>;
+    sendTxBody({ value, fee, memo }: sendTxBodyParams): Promise<DeliverTxResponse>;
+    sendModeInfo_Single({ value, fee, memo }: sendModeInfo_SingleParams): Promise<DeliverTxResponse>;
+    sendGetTxsEventRequest({ value, fee, memo }: sendGetTxsEventRequestParams): Promise<DeliverTxResponse>;
+    sendSimulateResponse({ value, fee, memo }: sendSimulateResponseParams): Promise<DeliverTxResponse>;
     sendModeInfo_Multi({ value, fee, memo }: sendModeInfo_MultiParams): Promise<DeliverTxResponse>;
     sendAuxSignerData({ value, fee, memo }: sendAuxSignerDataParams): Promise<DeliverTxResponse>;
-    sendSimulateResponse({ value, fee, memo }: sendSimulateResponseParams): Promise<DeliverTxResponse>;
-    sendSignDocDirectAux({ value, fee, memo }: sendSignDocDirectAuxParams): Promise<DeliverTxResponse>;
+    sendTxDecodeResponse({ value, fee, memo }: sendTxDecodeResponseParams): Promise<DeliverTxResponse>;
+    sendTxEncodeResponse({ value, fee, memo }: sendTxEncodeResponseParams): Promise<DeliverTxResponse>;
+    sendTx({ value, fee, memo }: sendTxParams): Promise<DeliverTxResponse>;
     sendSignerInfo({ value, fee, memo }: sendSignerInfoParams): Promise<DeliverTxResponse>;
-    getTxsEventRequest({ value }: getTxsEventRequestParams): EncodeObject;
-    broadcastTxResponse({ value }: broadcastTxResponseParams): EncodeObject;
-    txEncodeResponse({ value }: txEncodeResponseParams): EncodeObject;
-    modeInfoSingle({ value }: modeInfoSingleParams): EncodeObject;
-    txDecodeResponse({ value }: txDecodeResponseParams): EncodeObject;
-    fee({ value }: feeParams): EncodeObject;
-    tip({ value }: tipParams): EncodeObject;
-    getTxsEventResponse({ value }: getTxsEventResponseParams): EncodeObject;
+    sendModeInfo({ value, fee, memo }: sendModeInfoParams): Promise<DeliverTxResponse>;
+    sendFee({ value, fee, memo }: sendFeeParams): Promise<DeliverTxResponse>;
+    sendGetTxsEventResponse({ value, fee, memo }: sendGetTxsEventResponseParams): Promise<DeliverTxResponse>;
+    sendSimulateRequest({ value, fee, memo }: sendSimulateRequestParams): Promise<DeliverTxResponse>;
+    sendGetTxRequest({ value, fee, memo }: sendGetTxRequestParams): Promise<DeliverTxResponse>;
+    sendSignDoc({ value, fee, memo }: sendSignDocParams): Promise<DeliverTxResponse>;
+    sendTxEncodeAminoRequest({ value, fee, memo }: sendTxEncodeAminoRequestParams): Promise<DeliverTxResponse>;
+    sendTxDecodeAminoRequest({ value, fee, memo }: sendTxDecodeAminoRequestParams): Promise<DeliverTxResponse>;
+    sendTip({ value, fee, memo }: sendTipParams): Promise<DeliverTxResponse>;
+    sendBroadcastTxRequest({ value, fee, memo }: sendBroadcastTxRequestParams): Promise<DeliverTxResponse>;
+    sendBroadcastTxResponse({ value, fee, memo }: sendBroadcastTxResponseParams): Promise<DeliverTxResponse>;
+    sendTxEncodeRequest({ value, fee, memo }: sendTxEncodeRequestParams): Promise<DeliverTxResponse>;
+    sendSignDocDirectAux({ value, fee, memo }: sendSignDocDirectAuxParams): Promise<DeliverTxResponse>;
+    sendTxDecodeRequest({ value, fee, memo }: sendTxDecodeRequestParams): Promise<DeliverTxResponse>;
+    sendTxEncodeAminoResponse({ value, fee, memo }: sendTxEncodeAminoResponseParams): Promise<DeliverTxResponse>;
+    sendTxDecodeAminoResponse({ value, fee, memo }: sendTxDecodeAminoResponseParams): Promise<DeliverTxResponse>;
+    sendTxRaw({ value, fee, memo }: sendTxRawParams): Promise<DeliverTxResponse>;
+    sendAuthInfo({ value, fee, memo }: sendAuthInfoParams): Promise<DeliverTxResponse>;
     getTxResponse({ value }: getTxResponseParams): EncodeObject;
-    tx({ value }: txParams): EncodeObject;
-    txBody({ value }: txBodyParams): EncodeObject;
-    simulateRequest({ value }: simulateRequestParams): EncodeObject;
-    getTxRequest({ value }: getTxRequestParams): EncodeObject;
     getBlockWithTxsRequest({ value }: getBlockWithTxsRequestParams): EncodeObject;
-    txDecodeAminoResponse({ value }: txDecodeAminoResponseParams): EncodeObject;
-    authInfo({ value }: authInfoParams): EncodeObject;
-    broadcastTxRequest({ value }: broadcastTxRequestParams): EncodeObject;
-    txRaw({ value }: txRawParams): EncodeObject;
-    signDoc({ value }: signDocParams): EncodeObject;
     getBlockWithTxsResponse({ value }: getBlockWithTxsResponseParams): EncodeObject;
-    txEncodeAminoResponse({ value }: txEncodeAminoResponseParams): EncodeObject;
-    txDecodeAminoRequest({ value }: txDecodeAminoRequestParams): EncodeObject;
-    modeInfo({ value }: modeInfoParams): EncodeObject;
-    txDecodeRequest({ value }: txDecodeRequestParams): EncodeObject;
-    txEncodeRequest({ value }: txEncodeRequestParams): EncodeObject;
-    txEncodeAminoRequest({ value }: txEncodeAminoRequestParams): EncodeObject;
+    txBody({ value }: txBodyParams): EncodeObject;
+    modeInfoSingle({ value }: modeInfoSingleParams): EncodeObject;
+    getTxsEventRequest({ value }: getTxsEventRequestParams): EncodeObject;
+    simulateResponse({ value }: simulateResponseParams): EncodeObject;
     modeInfoMulti({ value }: modeInfoMultiParams): EncodeObject;
     auxSignerData({ value }: auxSignerDataParams): EncodeObject;
-    simulateResponse({ value }: simulateResponseParams): EncodeObject;
-    signDocDirectAux({ value }: signDocDirectAuxParams): EncodeObject;
+    txDecodeResponse({ value }: txDecodeResponseParams): EncodeObject;
+    txEncodeResponse({ value }: txEncodeResponseParams): EncodeObject;
+    tx({ value }: txParams): EncodeObject;
     signerInfo({ value }: signerInfoParams): EncodeObject;
+    modeInfo({ value }: modeInfoParams): EncodeObject;
+    fee({ value }: feeParams): EncodeObject;
+    getTxsEventResponse({ value }: getTxsEventResponseParams): EncodeObject;
+    simulateRequest({ value }: simulateRequestParams): EncodeObject;
+    getTxRequest({ value }: getTxRequestParams): EncodeObject;
+    signDoc({ value }: signDocParams): EncodeObject;
+    txEncodeAminoRequest({ value }: txEncodeAminoRequestParams): EncodeObject;
+    txDecodeAminoRequest({ value }: txDecodeAminoRequestParams): EncodeObject;
+    tip({ value }: tipParams): EncodeObject;
+    broadcastTxRequest({ value }: broadcastTxRequestParams): EncodeObject;
+    broadcastTxResponse({ value }: broadcastTxResponseParams): EncodeObject;
+    txEncodeRequest({ value }: txEncodeRequestParams): EncodeObject;
+    signDocDirectAux({ value }: signDocDirectAuxParams): EncodeObject;
+    txDecodeRequest({ value }: txDecodeRequestParams): EncodeObject;
+    txEncodeAminoResponse({ value }: txEncodeAminoResponseParams): EncodeObject;
+    txDecodeAminoResponse({ value }: txDecodeAminoResponseParams): EncodeObject;
+    txRaw({ value }: txRawParams): EncodeObject;
+    authInfo({ value }: authInfoParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

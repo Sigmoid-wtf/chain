@@ -2,18 +2,38 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner, Registry } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
+import { QueryInflationRequest } from "./types/cosmos/mint/v1beta1/query";
+import { MsgUpdateParams } from "./types/cosmos/mint/v1beta1/tx";
+import { Params } from "./types/cosmos/mint/v1beta1/mint";
+import { GenesisState } from "./types/cosmos/mint/v1beta1/genesis";
 import { QueryInflationResponse } from "./types/cosmos/mint/v1beta1/query";
 import { QueryAnnualProvisionsRequest } from "./types/cosmos/mint/v1beta1/query";
-import { MsgUpdateParams } from "./types/cosmos/mint/v1beta1/tx";
-import { GenesisState } from "./types/cosmos/mint/v1beta1/genesis";
-import { Params } from "./types/cosmos/mint/v1beta1/mint";
-import { Minter } from "./types/cosmos/mint/v1beta1/mint";
+import { QueryParamsRequest } from "./types/cosmos/mint/v1beta1/query";
 import { QueryParamsResponse } from "./types/cosmos/mint/v1beta1/query";
 import { MsgUpdateParamsResponse } from "./types/cosmos/mint/v1beta1/tx";
-import { QueryParamsRequest } from "./types/cosmos/mint/v1beta1/query";
-import { QueryInflationRequest } from "./types/cosmos/mint/v1beta1/query";
+import { Minter } from "./types/cosmos/mint/v1beta1/mint";
 import { QueryAnnualProvisionsResponse } from "./types/cosmos/mint/v1beta1/query";
-export { QueryInflationResponse, QueryAnnualProvisionsRequest, MsgUpdateParams, GenesisState, Params, Minter, QueryParamsResponse, MsgUpdateParamsResponse, QueryParamsRequest, QueryInflationRequest, QueryAnnualProvisionsResponse };
+export { QueryInflationRequest, MsgUpdateParams, Params, GenesisState, QueryInflationResponse, QueryAnnualProvisionsRequest, QueryParamsRequest, QueryParamsResponse, MsgUpdateParamsResponse, Minter, QueryAnnualProvisionsResponse };
+type sendQueryInflationRequestParams = {
+    value: QueryInflationRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgUpdateParamsParams = {
+    value: MsgUpdateParams;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendParamsParams = {
+    value: Params;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendGenesisStateParams = {
+    value: GenesisState;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendQueryInflationResponseParams = {
     value: QueryInflationResponse;
     fee?: StdFee;
@@ -24,23 +44,8 @@ type sendQueryAnnualProvisionsRequestParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendMsgUpdateParamsParams = {
-    value: MsgUpdateParams;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendGenesisStateParams = {
-    value: GenesisState;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendParamsParams = {
-    value: Params;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMinterParams = {
-    value: Minter;
+type sendQueryParamsRequestParams = {
+    value: QueryParamsRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -54,13 +59,8 @@ type sendMsgUpdateParamsResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryParamsRequestParams = {
-    value: QueryParamsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryInflationRequestParams = {
-    value: QueryInflationRequest;
+type sendMinterParams = {
+    value: Minter;
     fee?: StdFee;
     memo?: string;
 };
@@ -69,23 +69,26 @@ type sendQueryAnnualProvisionsResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
+type queryInflationRequestParams = {
+    value: QueryInflationRequest;
+};
+type msgUpdateParamsParams = {
+    value: MsgUpdateParams;
+};
+type paramsParams = {
+    value: Params;
+};
+type genesisStateParams = {
+    value: GenesisState;
+};
 type queryInflationResponseParams = {
     value: QueryInflationResponse;
 };
 type queryAnnualProvisionsRequestParams = {
     value: QueryAnnualProvisionsRequest;
 };
-type msgUpdateParamsParams = {
-    value: MsgUpdateParams;
-};
-type genesisStateParams = {
-    value: GenesisState;
-};
-type paramsParams = {
-    value: Params;
-};
-type minterParams = {
-    value: Minter;
+type queryParamsRequestParams = {
+    value: QueryParamsRequest;
 };
 type queryParamsResponseParams = {
     value: QueryParamsResponse;
@@ -93,11 +96,8 @@ type queryParamsResponseParams = {
 type msgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
 };
-type queryParamsRequestParams = {
-    value: QueryParamsRequest;
-};
-type queryInflationRequestParams = {
-    value: QueryInflationRequest;
+type minterParams = {
+    value: Minter;
 };
 type queryAnnualProvisionsResponseParams = {
     value: QueryAnnualProvisionsResponse;
@@ -109,27 +109,27 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
+    sendQueryInflationRequest({ value, fee, memo }: sendQueryInflationRequestParams): Promise<DeliverTxResponse>;
+    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
+    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
+    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
     sendQueryInflationResponse({ value, fee, memo }: sendQueryInflationResponseParams): Promise<DeliverTxResponse>;
     sendQueryAnnualProvisionsRequest({ value, fee, memo }: sendQueryAnnualProvisionsRequestParams): Promise<DeliverTxResponse>;
-    sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
-    sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
-    sendParams({ value, fee, memo }: sendParamsParams): Promise<DeliverTxResponse>;
-    sendMinter({ value, fee, memo }: sendMinterParams): Promise<DeliverTxResponse>;
+    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
     sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryInflationRequest({ value, fee, memo }: sendQueryInflationRequestParams): Promise<DeliverTxResponse>;
+    sendMinter({ value, fee, memo }: sendMinterParams): Promise<DeliverTxResponse>;
     sendQueryAnnualProvisionsResponse({ value, fee, memo }: sendQueryAnnualProvisionsResponseParams): Promise<DeliverTxResponse>;
+    queryInflationRequest({ value }: queryInflationRequestParams): EncodeObject;
+    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
+    params({ value }: paramsParams): EncodeObject;
+    genesisState({ value }: genesisStateParams): EncodeObject;
     queryInflationResponse({ value }: queryInflationResponseParams): EncodeObject;
     queryAnnualProvisionsRequest({ value }: queryAnnualProvisionsRequestParams): EncodeObject;
-    msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
-    genesisState({ value }: genesisStateParams): EncodeObject;
-    params({ value }: paramsParams): EncodeObject;
-    minter({ value }: minterParams): EncodeObject;
+    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
     queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
     msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
-    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
-    queryInflationRequest({ value }: queryInflationRequestParams): EncodeObject;
+    minter({ value }: minterParams): EncodeObject;
     queryAnnualProvisionsResponse({ value }: queryAnnualProvisionsResponseParams): EncodeObject;
 };
 interface QueryClientOptions {
