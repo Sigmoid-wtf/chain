@@ -30,6 +30,9 @@ func (k Keeper) AppendRequest(ctx sdk.Context, request *types.Request) {
 
 	appendedValue := k.cdc.MustMarshal(request)
 	store.Set([]byte(request.SenderAddress), appendedValue)
+
+	registeredSenderAddressesStore := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RegisteredSenderAddresses))
+	registeredSenderAddressesStore.Set([]byte(request.MintAddress), []byte(request.SenderAddress))
 }
 
 func (k Keeper) GetRequest(ctx sdk.Context, senderAddress *string) (value types.Request, found bool) {
@@ -43,6 +46,18 @@ func (k Keeper) GetRequest(ctx sdk.Context, senderAddress *string) (value types.
 
 	k.cdc.MustUnmarshal(bin, &value)
 	return value, true
+}
+
+func (k Keeper) GetRequestInReversedStore(ctx sdk.Context, senderAddress string) (value string, found bool) {
+	storeAdapter := runtime.KVStoreAdapter(k.storeService.OpenKVStore(ctx))
+	registeredSenderAddressesStore := prefix.NewStore(storeAdapter, types.KeyPrefix(types.RegisteredSenderAddresses))
+
+	bin := registeredSenderAddressesStore.Get([]byte(senderAddress))
+	if bin == nil {
+		return "", false
+	}
+
+	return string(bin), true
 }
 
 func (k Keeper) RemoveRequest(ctx sdk.Context, senderAddress *string) {

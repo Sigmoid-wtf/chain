@@ -686,6 +686,194 @@ func (m *QueryGetLatestProcessedEthBlockResponse) GetBlockNumber() string {
 	return ""
 }
 
+type QueryGetFrontPendingStakeRequestRequest struct {
+	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+}
+
+func (m *QueryGetFrontPendingStakeRequestRequest) Reset() {
+	*m = QueryGetFrontPendingStakeRequestRequest{}
+}
+func (m *QueryGetFrontPendingStakeRequestRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetFrontPendingStakeRequestRequest) ProtoMessage()    {}
+func (*QueryGetFrontPendingStakeRequestRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f67ad21978010b4c, []int{16}
+}
+func (m *QueryGetFrontPendingStakeRequestRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetFrontPendingStakeRequestRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetFrontPendingStakeRequestRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetFrontPendingStakeRequestRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetFrontPendingStakeRequestRequest.Merge(m, src)
+}
+func (m *QueryGetFrontPendingStakeRequestRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetFrontPendingStakeRequestRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetFrontPendingStakeRequestRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetFrontPendingStakeRequestRequest proto.InternalMessageInfo
+
+func (m *QueryGetFrontPendingStakeRequestRequest) GetAddress() string {
+	if m != nil {
+		return m.Address
+	}
+	return ""
+}
+
+type QueryGetFrontPendingStakeRequestResponse struct {
+	Request *Request `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+}
+
+func (m *QueryGetFrontPendingStakeRequestResponse) Reset() {
+	*m = QueryGetFrontPendingStakeRequestResponse{}
+}
+func (m *QueryGetFrontPendingStakeRequestResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetFrontPendingStakeRequestResponse) ProtoMessage()    {}
+func (*QueryGetFrontPendingStakeRequestResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f67ad21978010b4c, []int{17}
+}
+func (m *QueryGetFrontPendingStakeRequestResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetFrontPendingStakeRequestResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetFrontPendingStakeRequestResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetFrontPendingStakeRequestResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetFrontPendingStakeRequestResponse.Merge(m, src)
+}
+func (m *QueryGetFrontPendingStakeRequestResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetFrontPendingStakeRequestResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetFrontPendingStakeRequestResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetFrontPendingStakeRequestResponse proto.InternalMessageInfo
+
+func (m *QueryGetFrontPendingStakeRequestResponse) GetRequest() *Request {
+	if m != nil {
+		return m.Request
+	}
+	return nil
+}
+
+type QueryGetFrontPendingUnstakeRequestRequest struct {
+	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
+}
+
+func (m *QueryGetFrontPendingUnstakeRequestRequest) Reset() {
+	*m = QueryGetFrontPendingUnstakeRequestRequest{}
+}
+func (m *QueryGetFrontPendingUnstakeRequestRequest) String() string {
+	return proto.CompactTextString(m)
+}
+func (*QueryGetFrontPendingUnstakeRequestRequest) ProtoMessage() {}
+func (*QueryGetFrontPendingUnstakeRequestRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f67ad21978010b4c, []int{18}
+}
+func (m *QueryGetFrontPendingUnstakeRequestRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetFrontPendingUnstakeRequestRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetFrontPendingUnstakeRequestRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetFrontPendingUnstakeRequestRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetFrontPendingUnstakeRequestRequest.Merge(m, src)
+}
+func (m *QueryGetFrontPendingUnstakeRequestRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetFrontPendingUnstakeRequestRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetFrontPendingUnstakeRequestRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetFrontPendingUnstakeRequestRequest proto.InternalMessageInfo
+
+func (m *QueryGetFrontPendingUnstakeRequestRequest) GetAddress() string {
+	if m != nil {
+		return m.Address
+	}
+	return ""
+}
+
+type QueryGetFrontPendingUnstakeRequestResponse struct {
+	Request *Request `protobuf:"bytes,1,opt,name=request,proto3" json:"request,omitempty"`
+}
+
+func (m *QueryGetFrontPendingUnstakeRequestResponse) Reset() {
+	*m = QueryGetFrontPendingUnstakeRequestResponse{}
+}
+func (m *QueryGetFrontPendingUnstakeRequestResponse) String() string {
+	return proto.CompactTextString(m)
+}
+func (*QueryGetFrontPendingUnstakeRequestResponse) ProtoMessage() {}
+func (*QueryGetFrontPendingUnstakeRequestResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_f67ad21978010b4c, []int{19}
+}
+func (m *QueryGetFrontPendingUnstakeRequestResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetFrontPendingUnstakeRequestResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetFrontPendingUnstakeRequestResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetFrontPendingUnstakeRequestResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetFrontPendingUnstakeRequestResponse.Merge(m, src)
+}
+func (m *QueryGetFrontPendingUnstakeRequestResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetFrontPendingUnstakeRequestResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetFrontPendingUnstakeRequestResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetFrontPendingUnstakeRequestResponse proto.InternalMessageInfo
+
+func (m *QueryGetFrontPendingUnstakeRequestResponse) GetRequest() *Request {
+	if m != nil {
+		return m.Request
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "sigmoid.sigmoid.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "sigmoid.sigmoid.QueryParamsResponse")
@@ -703,65 +891,78 @@ func init() {
 	proto.RegisterType((*QueryGetPendingBridgeRequestResponse)(nil), "sigmoid.sigmoid.QueryGetPendingBridgeRequestResponse")
 	proto.RegisterType((*QueryGetLatestProcessedEthBlockRequest)(nil), "sigmoid.sigmoid.QueryGetLatestProcessedEthBlockRequest")
 	proto.RegisterType((*QueryGetLatestProcessedEthBlockResponse)(nil), "sigmoid.sigmoid.QueryGetLatestProcessedEthBlockResponse")
+	proto.RegisterType((*QueryGetFrontPendingStakeRequestRequest)(nil), "sigmoid.sigmoid.QueryGetFrontPendingStakeRequestRequest")
+	proto.RegisterType((*QueryGetFrontPendingStakeRequestResponse)(nil), "sigmoid.sigmoid.QueryGetFrontPendingStakeRequestResponse")
+	proto.RegisterType((*QueryGetFrontPendingUnstakeRequestRequest)(nil), "sigmoid.sigmoid.QueryGetFrontPendingUnstakeRequestRequest")
+	proto.RegisterType((*QueryGetFrontPendingUnstakeRequestResponse)(nil), "sigmoid.sigmoid.QueryGetFrontPendingUnstakeRequestResponse")
 }
 
 func init() { proto.RegisterFile("sigmoid/sigmoid/query.proto", fileDescriptor_f67ad21978010b4c) }
 
 var fileDescriptor_f67ad21978010b4c = []byte{
-	// 840 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x56, 0x4f, 0x4f, 0x1b, 0x47,
-	0x14, 0xf7, 0x56, 0xad, 0x2b, 0x1e, 0xa2, 0xa5, 0x03, 0xc5, 0x74, 0xa1, 0x86, 0x2e, 0x06, 0x53,
-	0x03, 0x5e, 0xcc, 0x9f, 0x52, 0x55, 0xaa, 0x2a, 0xdc, 0xa2, 0xaa, 0x6a, 0x8b, 0xc0, 0x28, 0x97,
-	0x5c, 0x56, 0x63, 0xef, 0x68, 0x59, 0x61, 0xef, 0x2c, 0x3b, 0xe3, 0x08, 0x14, 0xe5, 0x92, 0x4f,
-	0x90, 0x28, 0x87, 0xdc, 0x72, 0x8e, 0x94, 0x4b, 0xee, 0x39, 0xe4, 0x14, 0x89, 0x23, 0x52, 0x2e,
-	0x39, 0x45, 0x11, 0x44, 0xca, 0xd7, 0x88, 0x3c, 0x3b, 0x63, 0xe3, 0xf5, 0xae, 0x8d, 0x2f, 0xd8,
-	0xbc, 0x79, 0xbf, 0x3f, 0xfb, 0x3c, 0xef, 0xa7, 0x85, 0x19, 0xe6, 0x3a, 0x0d, 0xea, 0xda, 0xa6,
-	0xfa, 0x3c, 0x6d, 0x92, 0xe0, 0xbc, 0xe8, 0x07, 0x94, 0x53, 0xf4, 0xad, 0x2c, 0x16, 0xe5, 0xa7,
-	0xfe, 0x1d, 0x6e, 0xb8, 0x1e, 0x35, 0xc5, 0xdf, 0xb0, 0x47, 0x9f, 0x74, 0xa8, 0x43, 0xc5, 0x57,
-	0xb3, 0xf5, 0x4d, 0x56, 0x67, 0x1d, 0x4a, 0x9d, 0x3a, 0x31, 0xb1, 0xef, 0x9a, 0xd8, 0xf3, 0x28,
-	0xc7, 0xdc, 0xa5, 0x1e, 0x93, 0xa7, 0x85, 0x1a, 0x65, 0x0d, 0xca, 0xcc, 0x2a, 0x66, 0x24, 0x14,
-	0x34, 0xef, 0x95, 0xaa, 0x84, 0xe3, 0x92, 0xe9, 0x63, 0xc7, 0xf5, 0x44, 0xb3, 0x62, 0x8a, 0x1a,
-	0xf4, 0x71, 0x80, 0x1b, 0x8a, 0x69, 0x3a, 0x7a, 0xca, 0xcf, 0xc2, 0x13, 0x63, 0x12, 0xd0, 0x61,
-	0x8b, 0xf9, 0x40, 0xb4, 0x57, 0xc8, 0x69, 0x93, 0x30, 0x6e, 0x1c, 0xc2, 0x44, 0x57, 0x95, 0xf9,
-	0xd4, 0x63, 0x04, 0xfd, 0x06, 0xe9, 0x90, 0x76, 0x5a, 0x9b, 0xd7, 0x96, 0x47, 0x37, 0x32, 0xc5,
-	0xc8, 0x93, 0x17, 0x43, 0x40, 0x79, 0xe4, 0xe2, 0xfd, 0x5c, 0xea, 0xf9, 0xa7, 0x97, 0x05, 0xad,
-	0x22, 0x11, 0xc6, 0xef, 0xf0, 0xbd, 0xa0, 0xfc, 0x9b, 0xf0, 0xdd, 0x06, 0x6d, 0x7a, 0x5c, 0x6a,
-	0xa1, 0x1c, 0x8c, 0x31, 0xe2, 0xd9, 0x24, 0xd8, 0xb5, 0xed, 0x80, 0xb0, 0x90, 0x7b, 0xa4, 0xd2,
-	0x5d, 0x34, 0xd6, 0x61, 0x2a, 0x0a, 0x97, 0xa6, 0xa6, 0x20, 0x8d, 0x45, 0x45, 0x00, 0xbf, 0xac,
-	0xc8, 0xff, 0x8c, 0x2c, 0xcc, 0x2a, 0xc4, 0x7f, 0x98, 0xf1, 0x83, 0x80, 0xd6, 0x08, 0x63, 0xc4,
-	0x56, 0xcf, 0xb8, 0x07, 0x3f, 0x26, 0x9c, 0x4b, 0xe2, 0x1c, 0x8c, 0xf1, 0x00, 0x7b, 0x0c, 0xd7,
-	0x5a, 0x73, 0xfe, 0xc7, 0x56, 0xc6, 0xba, 0x8a, 0xc6, 0x12, 0xe4, 0x14, 0xcd, 0x01, 0xf1, 0x6c,
-	0xd7, 0x73, 0xee, 0x78, 0x8c, 0xe3, 0x13, 0x22, 0x75, 0x94, 0xdc, 0x09, 0x2c, 0x0e, 0xe8, 0x93,
-	0xb2, 0x65, 0xf8, 0x3a, 0x08, 0x4b, 0x72, 0xca, 0xcb, 0x3d, 0x53, 0xfe, 0x9f, 0x39, 0x7f, 0x06,
-	0x04, 0x73, 0x12, 0xa1, 0x50, 0x40, 0xe3, 0x27, 0x98, 0x53, 0x62, 0x15, 0x4c, 0x8f, 0x5a, 0x3d,
-	0x76, 0x19, 0xd7, 0xb1, 0x57, 0x53, 0xbd, 0xc6, 0x3e, 0xcc, 0x27, 0xb7, 0x48, 0x2b, 0x05, 0x18,
-	0x0f, 0x22, 0x67, 0x72, 0xc8, 0x3d, 0x75, 0x63, 0x16, 0x74, 0xc5, 0x77, 0xe4, 0x3a, 0x1c, 0xd3,
-	0x0a, 0xe6, 0xe4, 0x2f, 0xa5, 0xf6, 0x07, 0xcc, 0xc4, 0x9e, 0x4a, 0xa1, 0x79, 0x18, 0x65, 0x9d,
-	0xb2, 0xd4, 0xb8, 0x59, 0x32, 0x16, 0x61, 0x21, 0x32, 0xbe, 0x72, 0xe0, 0xda, 0x4e, 0x74, 0xca,
-	0x6e, 0xcf, 0xaf, 0x11, 0x69, 0x93, 0x82, 0xbb, 0xd1, 0x21, 0xe7, 0x93, 0x87, 0xdc, 0xcd, 0xd0,
-	0x9e, 0xf1, 0x32, 0x2c, 0x75, 0xee, 0x0f, 0x27, 0x37, 0x6e, 0xd0, 0x1e, 0x3f, 0x2e, 0xd7, 0x69,
-	0xed, 0x44, 0x99, 0xfa, 0x17, 0xf2, 0x03, 0x3b, 0x3b, 0x83, 0xa8, 0xb6, 0x0a, 0xfb, 0xcd, 0x46,
-	0x95, 0x04, 0xf2, 0xc6, 0xdd, 0x2c, 0x6d, 0xbc, 0x01, 0xf8, 0x4a, 0xb0, 0x21, 0x0e, 0xe9, 0x70,
-	0xdd, 0xd0, 0x42, 0x8f, 0xf9, 0xde, 0x9d, 0xd6, 0x73, 0xfd, 0x9b, 0x42, 0x03, 0xc6, 0xdc, 0xc3,
-	0xb7, 0x1f, 0x9f, 0x7c, 0xf1, 0x03, 0xca, 0x98, 0xf1, 0x81, 0x82, 0x1e, 0x6b, 0x30, 0xd2, 0x5e,
-	0x42, 0xb4, 0x14, 0x4f, 0x1a, 0x5d, 0x72, 0x3d, 0x3f, 0xb0, 0x4f, 0xea, 0x6f, 0x0a, 0xfd, 0x35,
-	0xb4, 0xd2, 0xa3, 0xef, 0x10, 0x6e, 0x85, 0xab, 0x6d, 0xde, 0xef, 0xca, 0x86, 0x07, 0xe8, 0x99,
-	0x06, 0xe3, 0xd1, 0x35, 0x46, 0x6b, 0x89, 0x92, 0x71, 0x71, 0xa0, 0x17, 0x6f, 0xdb, 0x2e, 0x8d,
-	0xae, 0x08, 0xa3, 0x8b, 0x68, 0x21, 0xd6, 0x68, 0x1d, 0x33, 0x6e, 0xf9, 0x6d, 0x2f, 0xaf, 0x35,
-	0x98, 0x4e, 0x5a, 0x7c, 0xb4, 0x9d, 0xa8, 0xdc, 0x2f, 0x50, 0xf4, 0x5f, 0x86, 0x85, 0x49, 0xe3,
-	0x5b, 0xc2, 0x78, 0x11, 0xad, 0xc6, 0x1a, 0xf7, 0x43, 0xac, 0xd5, 0x0c, 0xc1, 0x96, 0xbc, 0xed,
-	0xe8, 0x85, 0x06, 0x13, 0x31, 0x51, 0x81, 0xd6, 0x13, 0x5d, 0x24, 0x04, 0x8f, 0x5e, 0x1a, 0x02,
-	0x21, 0x2d, 0x9b, 0xc2, 0xf2, 0xcf, 0x28, 0x1f, 0x6b, 0x39, 0xc0, 0xd4, 0x12, 0x66, 0x6d, 0xab,
-	0x2a, 0x5d, 0x3d, 0xd5, 0xe0, 0x9b, 0xee, 0xa8, 0x41, 0x2b, 0x89, 0xb2, 0xbd, 0x71, 0xa5, 0xaf,
-	0xde, 0xae, 0x59, 0xda, 0x2b, 0x08, 0x7b, 0x39, 0x64, 0xc4, 0xda, 0x0b, 0x53, 0xcc, 0x0a, 0x30,
-	0x27, 0x96, 0x8d, 0x5e, 0x69, 0x90, 0x49, 0x08, 0x27, 0xb4, 0x35, 0xe8, 0x17, 0x8d, 0x8b, 0x3c,
-	0x7d, 0x7b, 0x48, 0xd4, 0xad, 0x16, 0x4d, 0x5d, 0x83, 0xaa, 0xc0, 0xb6, 0x6f, 0xc1, 0x85, 0x06,
-	0x7a, 0x72, 0x8a, 0xa1, 0x9d, 0x3e, 0x3b, 0xd4, 0x2f, 0x21, 0xf5, 0x5f, 0x87, 0x07, 0xca, 0xc7,
-	0xd8, 0x11, 0x8f, 0x51, 0x42, 0x66, 0xc2, 0x1a, 0xb6, 0xd0, 0x9d, 0x45, 0xb4, 0x08, 0x3f, 0xb6,
-	0x44, 0x9a, 0x96, 0x4b, 0x17, 0x57, 0x59, 0xed, 0xf2, 0x2a, 0xab, 0x7d, 0xb8, 0xca, 0x6a, 0x8f,
-	0xae, 0xb3, 0xa9, 0xcb, 0xeb, 0x6c, 0xea, 0xdd, 0x75, 0x36, 0x75, 0x37, 0xa3, 0x18, 0xce, 0x3a,
-	0xaf, 0x4b, 0xe7, 0x3e, 0x61, 0xd5, 0xb4, 0x78, 0x65, 0xda, 0xfc, 0x1c, 0x00, 0x00, 0xff, 0xff,
-	0xf2, 0x12, 0xad, 0xa3, 0x0d, 0x0a, 0x00, 0x00,
+	// 977 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x57, 0xcf, 0x6f, 0x1b, 0x45,
+	0x14, 0xf6, 0x22, 0x70, 0x95, 0x57, 0x05, 0xca, 0xb4, 0xd4, 0x66, 0x93, 0x38, 0x61, 0xe3, 0xc4,
+	0xae, 0xd3, 0x7a, 0xeb, 0xb4, 0xa5, 0x10, 0x0a, 0x28, 0x6e, 0x03, 0x42, 0x40, 0x95, 0x3a, 0xe2,
+	0xc2, 0x81, 0x65, 0xec, 0x1d, 0xb6, 0xab, 0xd8, 0x3b, 0xdb, 0x9d, 0x31, 0x6a, 0x14, 0x71, 0xe1,
+	0x2f, 0x00, 0x71, 0xe0, 0xc6, 0x19, 0x89, 0x0b, 0x77, 0x0e, 0x5c, 0x73, 0x8c, 0x84, 0x84, 0x38,
+	0x45, 0x28, 0x41, 0xe2, 0xcf, 0x00, 0x79, 0x76, 0xc6, 0xce, 0xfe, 0xf2, 0x8f, 0x5c, 0x12, 0xfb,
+	0xcd, 0xfb, 0xde, 0xf7, 0xbd, 0x37, 0x33, 0xdf, 0xc8, 0xb0, 0xc0, 0x5c, 0xa7, 0x47, 0x5d, 0xdb,
+	0x54, 0xff, 0x9f, 0xf5, 0x49, 0x70, 0x50, 0xf7, 0x03, 0xca, 0x29, 0x7a, 0x45, 0x06, 0xeb, 0xf2,
+	0xbf, 0xfe, 0x2a, 0xee, 0xb9, 0x1e, 0x35, 0xc5, 0xdf, 0x30, 0x47, 0xbf, 0xe6, 0x50, 0x87, 0x8a,
+	0x8f, 0xe6, 0xe0, 0x93, 0x8c, 0x2e, 0x3a, 0x94, 0x3a, 0x5d, 0x62, 0x62, 0xdf, 0x35, 0xb1, 0xe7,
+	0x51, 0x8e, 0xb9, 0x4b, 0x3d, 0x26, 0x57, 0x6b, 0x1d, 0xca, 0x7a, 0x94, 0x99, 0x6d, 0xcc, 0x48,
+	0x48, 0x68, 0x7e, 0xdd, 0x68, 0x13, 0x8e, 0x1b, 0xa6, 0x8f, 0x1d, 0xd7, 0x13, 0xc9, 0xaa, 0x52,
+	0x5c, 0xa0, 0x8f, 0x03, 0xdc, 0x53, 0x95, 0x8a, 0xf1, 0x55, 0xfe, 0x5c, 0xae, 0x2c, 0xc5, 0x57,
+	0x02, 0xf2, 0xac, 0x4f, 0x18, 0x0f, 0x97, 0x8d, 0x6b, 0x80, 0x9e, 0x0c, 0x88, 0x77, 0x45, 0xb5,
+	0x56, 0xb8, 0x66, 0x3c, 0x81, 0xab, 0x91, 0x28, 0xf3, 0xa9, 0xc7, 0x08, 0xda, 0x82, 0x7c, 0xc8,
+	0x5a, 0xd4, 0x56, 0xb4, 0xea, 0xe5, 0xcd, 0x42, 0x3d, 0x36, 0x98, 0x7a, 0x08, 0x68, 0xce, 0x1d,
+	0x9d, 0x2c, 0xe7, 0x7e, 0xfe, 0xf7, 0xd7, 0x9a, 0xd6, 0x92, 0x08, 0xe3, 0x5d, 0x78, 0x4d, 0x94,
+	0xfc, 0x90, 0xf0, 0xed, 0x1e, 0xed, 0x7b, 0x5c, 0x72, 0xa1, 0x32, 0xcc, 0x33, 0xe2, 0xd9, 0x24,
+	0xd8, 0xb6, 0xed, 0x80, 0xb0, 0xb0, 0xf6, 0x5c, 0x2b, 0x1a, 0x34, 0x6e, 0xc3, 0xf5, 0x38, 0x5c,
+	0x8a, 0xba, 0x0e, 0x79, 0x2c, 0x22, 0x02, 0xf8, 0x62, 0x4b, 0x7e, 0x33, 0x4a, 0xb0, 0xa8, 0x10,
+	0x9f, 0x60, 0xc6, 0x77, 0x03, 0xda, 0x21, 0x8c, 0x11, 0x5b, 0xf5, 0xb8, 0x03, 0x4b, 0x19, 0xeb,
+	0xb2, 0x70, 0x19, 0xe6, 0x79, 0x80, 0x3d, 0x86, 0x3b, 0x83, 0x6d, 0xf8, 0xc8, 0x56, 0xc2, 0x22,
+	0x41, 0x63, 0x1d, 0xca, 0xaa, 0xcc, 0x2e, 0xf1, 0x6c, 0xd7, 0x73, 0x3e, 0xf3, 0x18, 0xc7, 0xfb,
+	0x44, 0xf2, 0x28, 0xba, 0x7d, 0x58, 0x9b, 0x90, 0x27, 0x69, 0x9b, 0x70, 0x49, 0x6e, 0x91, 0x9c,
+	0x72, 0x35, 0x31, 0xe5, 0x4f, 0x99, 0xf3, 0x30, 0x20, 0x98, 0x93, 0x58, 0x09, 0x05, 0x34, 0xde,
+	0x80, 0x65, 0x45, 0xd6, 0xc2, 0x74, 0x6f, 0x90, 0x63, 0x37, 0x71, 0x17, 0x7b, 0x1d, 0x95, 0x6b,
+	0x3c, 0x86, 0x95, 0xec, 0x14, 0x29, 0xa5, 0x06, 0x57, 0x82, 0xd8, 0x9a, 0x1c, 0x72, 0x22, 0x6e,
+	0x2c, 0x82, 0xae, 0xea, 0xed, 0xb9, 0x0e, 0xc7, 0xb4, 0x85, 0x39, 0x79, 0xa4, 0xd8, 0xde, 0x87,
+	0x85, 0xd4, 0x55, 0x49, 0xb4, 0x02, 0x97, 0xd9, 0x28, 0x2c, 0x39, 0xce, 0x87, 0x8c, 0x35, 0x58,
+	0x8d, 0x8d, 0xaf, 0x19, 0xb8, 0xb6, 0x13, 0x9f, 0xb2, 0x9b, 0xd8, 0x8d, 0x58, 0x9a, 0x24, 0xdc,
+	0x8e, 0x0f, 0xb9, 0x92, 0x3d, 0xe4, 0x68, 0x85, 0xe1, 0x8c, 0xab, 0xb0, 0x3e, 0x3a, 0x3f, 0x9c,
+	0x9c, 0x3b, 0x41, 0x3b, 0xfc, 0x69, 0xb3, 0x4b, 0x3b, 0xfb, 0x4a, 0xd4, 0xc7, 0x50, 0x99, 0x98,
+	0x39, 0x1a, 0x44, 0x7b, 0x10, 0x78, 0xdc, 0xef, 0xb5, 0x49, 0x20, 0x4f, 0xdc, 0xf9, 0x90, 0xf1,
+	0x70, 0x54, 0xec, 0x83, 0x80, 0x7a, 0xaa, 0xcd, 0xbd, 0xe4, 0x91, 0x43, 0x45, 0xb8, 0x84, 0x23,
+	0x77, 0x4a, 0x7d, 0x35, 0xbe, 0x80, 0xea, 0xe4, 0x22, 0x52, 0xd2, 0x66, 0x7c, 0x54, 0xc5, 0xc4,
+	0xa8, 0x12, 0xb3, 0xd9, 0x81, 0x1b, 0x69, 0xf5, 0x53, 0x6f, 0xc6, 0x18, 0x99, 0x5f, 0x42, 0x6d,
+	0x9a, 0x32, 0x17, 0x17, 0xba, 0xf9, 0xdf, 0x3c, 0xbc, 0x24, 0x28, 0x10, 0x87, 0x7c, 0x68, 0x5e,
+	0x68, 0x35, 0x01, 0x4b, 0x3a, 0xa4, 0x5e, 0x1e, 0x9f, 0x14, 0x4a, 0x32, 0x96, 0xbf, 0xfd, 0xe3,
+	0x9f, 0x1f, 0x5e, 0x78, 0x1d, 0x15, 0xcc, 0x74, 0xf7, 0x46, 0xdf, 0x6b, 0x30, 0x37, 0xb4, 0x34,
+	0xb4, 0x9e, 0x5e, 0x34, 0x6e, 0x99, 0x7a, 0x65, 0x62, 0x9e, 0xe4, 0xbf, 0x23, 0xf8, 0x6f, 0xa1,
+	0x8d, 0x04, 0xbf, 0x43, 0xb8, 0x15, 0x1a, 0xa5, 0x79, 0x18, 0x71, 0xda, 0x6f, 0xd0, 0x4f, 0x1a,
+	0x5c, 0x89, 0x9b, 0x22, 0xba, 0x95, 0x49, 0x99, 0x66, 0xae, 0x7a, 0x7d, 0xda, 0x74, 0x29, 0x74,
+	0x43, 0x08, 0x5d, 0x43, 0xab, 0xa9, 0x42, 0xbb, 0x98, 0x71, 0xcb, 0x1f, 0x6a, 0xf9, 0x5d, 0x83,
+	0x62, 0x96, 0x8d, 0xa2, 0x7b, 0x99, 0xcc, 0xe3, 0x0e, 0xa1, 0xfe, 0xe6, 0xac, 0x30, 0x29, 0xfc,
+	0xae, 0x10, 0x5e, 0x47, 0x37, 0x53, 0x85, 0xfb, 0x21, 0xd6, 0xea, 0x87, 0x60, 0x4b, 0x1e, 0x3b,
+	0xf4, 0x8b, 0x06, 0x57, 0x53, 0x8c, 0x17, 0xdd, 0xce, 0x54, 0x91, 0x61, 0xe3, 0x7a, 0x63, 0x06,
+	0x84, 0x94, 0x6c, 0x0a, 0xc9, 0x37, 0x50, 0x25, 0x55, 0x72, 0x80, 0xa9, 0x25, 0xc4, 0xda, 0x56,
+	0x5b, 0xaa, 0xfa, 0x51, 0x83, 0x97, 0xa3, 0xc6, 0x8d, 0x36, 0x32, 0x69, 0x93, 0xe6, 0xaf, 0xdf,
+	0x9c, 0x2e, 0x59, 0xca, 0xab, 0x09, 0x79, 0x65, 0x64, 0xa4, 0xca, 0x0b, 0xdf, 0x04, 0x2b, 0xc0,
+	0x9c, 0x58, 0x36, 0xfa, 0x4d, 0x83, 0x42, 0x86, 0xd5, 0xa3, 0xbb, 0x93, 0x76, 0x34, 0xed, 0x01,
+	0xd1, 0xef, 0xcd, 0x88, 0x9a, 0xea, 0xa2, 0xa9, 0x63, 0xd0, 0x16, 0xd8, 0xe1, 0x29, 0x38, 0xd2,
+	0x40, 0xcf, 0x7e, 0x13, 0xd0, 0xfd, 0x31, 0x77, 0x68, 0xdc, 0x7b, 0xa3, 0xbf, 0x35, 0x3b, 0x50,
+	0xb6, 0x71, 0x5f, 0xb4, 0xd1, 0x40, 0x66, 0xc6, 0x35, 0x1c, 0xa0, 0x47, 0x17, 0xd1, 0x22, 0xfc,
+	0xa9, 0x25, 0xde, 0x26, 0xf4, 0xa7, 0x06, 0x0b, 0x63, 0x1e, 0x13, 0x94, 0x2d, 0x69, 0xc2, 0x23,
+	0xa6, 0xbf, 0x7d, 0x01, 0xa4, 0xec, 0xa6, 0x29, 0xba, 0x79, 0x80, 0xb6, 0x52, 0xbb, 0xf9, 0x6a,
+	0x00, 0x1f, 0x6e, 0x4d, 0xe4, 0x7e, 0x9a, 0x87, 0x58, 0x99, 0xe1, 0x89, 0x06, 0x4b, 0x63, 0x9f,
+	0x1f, 0xb4, 0x35, 0x95, 0xc0, 0x74, 0xd7, 0x79, 0xe7, 0x42, 0x58, 0xd9, 0xde, 0x23, 0xd1, 0xde,
+	0x7b, 0xe8, 0xc1, 0x14, 0xed, 0xc5, 0x0c, 0x68, 0xd4, 0x60, 0xb3, 0x71, 0x74, 0x5a, 0xd2, 0x8e,
+	0x4f, 0x4b, 0xda, 0xdf, 0xa7, 0x25, 0xed, 0xbb, 0xb3, 0x52, 0xee, 0xf8, 0xac, 0x94, 0xfb, 0xeb,
+	0xac, 0x94, 0xfb, 0xbc, 0xa0, 0xca, 0x3d, 0x1f, 0xfd, 0xaa, 0x38, 0xf0, 0x09, 0x6b, 0xe7, 0xc5,
+	0x4f, 0x87, 0x3b, 0xff, 0x07, 0x00, 0x00, 0xff, 0xff, 0x6a, 0x31, 0xd0, 0xdf, 0x34, 0x0d, 0x00,
+	0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -792,6 +993,10 @@ type QueryClient interface {
 	GetPendingBridgeRequest(ctx context.Context, in *QueryGetPendingBridgeRequestRequest, opts ...grpc.CallOption) (*QueryGetPendingBridgeRequestResponse, error)
 	// Queries a list of GetLatestProcessedEthBlock items.
 	GetLatestProcessedEthBlock(ctx context.Context, in *QueryGetLatestProcessedEthBlockRequest, opts ...grpc.CallOption) (*QueryGetLatestProcessedEthBlockResponse, error)
+	// Queries a list of GetFrontPendingStakeRequest items.
+	GetFrontPendingStakeRequest(ctx context.Context, in *QueryGetFrontPendingStakeRequestRequest, opts ...grpc.CallOption) (*QueryGetFrontPendingStakeRequestResponse, error)
+	// Queries a list of GetFrontPendingUnstakeRequest items.
+	GetFrontPendingUnstakeRequest(ctx context.Context, in *QueryGetFrontPendingUnstakeRequestRequest, opts ...grpc.CallOption) (*QueryGetFrontPendingUnstakeRequestResponse, error)
 }
 
 type queryClient struct {
@@ -874,6 +1079,24 @@ func (c *queryClient) GetLatestProcessedEthBlock(ctx context.Context, in *QueryG
 	return out, nil
 }
 
+func (c *queryClient) GetFrontPendingStakeRequest(ctx context.Context, in *QueryGetFrontPendingStakeRequestRequest, opts ...grpc.CallOption) (*QueryGetFrontPendingStakeRequestResponse, error) {
+	out := new(QueryGetFrontPendingStakeRequestResponse)
+	err := c.cc.Invoke(ctx, "/sigmoid.sigmoid.Query/GetFrontPendingStakeRequest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) GetFrontPendingUnstakeRequest(ctx context.Context, in *QueryGetFrontPendingUnstakeRequestRequest, opts ...grpc.CallOption) (*QueryGetFrontPendingUnstakeRequestResponse, error) {
+	out := new(QueryGetFrontPendingUnstakeRequestResponse)
+	err := c.cc.Invoke(ctx, "/sigmoid.sigmoid.Query/GetFrontPendingUnstakeRequest", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
@@ -892,6 +1115,10 @@ type QueryServer interface {
 	GetPendingBridgeRequest(context.Context, *QueryGetPendingBridgeRequestRequest) (*QueryGetPendingBridgeRequestResponse, error)
 	// Queries a list of GetLatestProcessedEthBlock items.
 	GetLatestProcessedEthBlock(context.Context, *QueryGetLatestProcessedEthBlockRequest) (*QueryGetLatestProcessedEthBlockResponse, error)
+	// Queries a list of GetFrontPendingStakeRequest items.
+	GetFrontPendingStakeRequest(context.Context, *QueryGetFrontPendingStakeRequestRequest) (*QueryGetFrontPendingStakeRequestResponse, error)
+	// Queries a list of GetFrontPendingUnstakeRequest items.
+	GetFrontPendingUnstakeRequest(context.Context, *QueryGetFrontPendingUnstakeRequestRequest) (*QueryGetFrontPendingUnstakeRequestResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -921,6 +1148,12 @@ func (*UnimplementedQueryServer) GetPendingBridgeRequest(ctx context.Context, re
 }
 func (*UnimplementedQueryServer) GetLatestProcessedEthBlock(ctx context.Context, req *QueryGetLatestProcessedEthBlockRequest) (*QueryGetLatestProcessedEthBlockResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetLatestProcessedEthBlock not implemented")
+}
+func (*UnimplementedQueryServer) GetFrontPendingStakeRequest(ctx context.Context, req *QueryGetFrontPendingStakeRequestRequest) (*QueryGetFrontPendingStakeRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFrontPendingStakeRequest not implemented")
+}
+func (*UnimplementedQueryServer) GetFrontPendingUnstakeRequest(ctx context.Context, req *QueryGetFrontPendingUnstakeRequestRequest) (*QueryGetFrontPendingUnstakeRequestResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFrontPendingUnstakeRequest not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -1071,6 +1304,42 @@ func _Query_GetLatestProcessedEthBlock_Handler(srv interface{}, ctx context.Cont
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_GetFrontPendingStakeRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetFrontPendingStakeRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetFrontPendingStakeRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sigmoid.sigmoid.Query/GetFrontPendingStakeRequest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetFrontPendingStakeRequest(ctx, req.(*QueryGetFrontPendingStakeRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_GetFrontPendingUnstakeRequest_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetFrontPendingUnstakeRequestRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).GetFrontPendingUnstakeRequest(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sigmoid.sigmoid.Query/GetFrontPendingUnstakeRequest",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).GetFrontPendingUnstakeRequest(ctx, req.(*QueryGetFrontPendingUnstakeRequestRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "sigmoid.sigmoid.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -1106,6 +1375,14 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetLatestProcessedEthBlock",
 			Handler:    _Query_GetLatestProcessedEthBlock_Handler,
+		},
+		{
+			MethodName: "GetFrontPendingStakeRequest",
+			Handler:    _Query_GetFrontPendingStakeRequest_Handler,
+		},
+		{
+			MethodName: "GetFrontPendingUnstakeRequest",
+			Handler:    _Query_GetFrontPendingUnstakeRequest_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1550,6 +1827,136 @@ func (m *QueryGetLatestProcessedEthBlockResponse) MarshalToSizedBuffer(dAtA []by
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetFrontPendingStakeRequestRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetFrontPendingStakeRequestRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetFrontPendingStakeRequestRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Address) > 0 {
+		i -= len(m.Address)
+		copy(dAtA[i:], m.Address)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Address)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetFrontPendingStakeRequestResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetFrontPendingStakeRequestResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetFrontPendingStakeRequestResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Request != nil {
+		{
+			size, err := m.Request.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetFrontPendingUnstakeRequestRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetFrontPendingUnstakeRequestRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetFrontPendingUnstakeRequestRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Address) > 0 {
+		i -= len(m.Address)
+		copy(dAtA[i:], m.Address)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Address)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetFrontPendingUnstakeRequestResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetFrontPendingUnstakeRequestResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetFrontPendingUnstakeRequestResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Request != nil {
+		{
+			size, err := m.Request.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -1731,6 +2138,58 @@ func (m *QueryGetLatestProcessedEthBlockResponse) Size() (n int) {
 	_ = l
 	l = len(m.BlockNumber)
 	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetFrontPendingStakeRequestRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Address)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetFrontPendingStakeRequestResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Request != nil {
+		l = m.Request.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetFrontPendingUnstakeRequestRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Address)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetFrontPendingUnstakeRequestResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Request != nil {
+		l = m.Request.Size()
 		n += 1 + l + sovQuery(uint64(l))
 	}
 	return n
@@ -2778,6 +3237,342 @@ func (m *QueryGetLatestProcessedEthBlockResponse) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.BlockNumber = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetFrontPendingStakeRequestRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetFrontPendingStakeRequestRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetFrontPendingStakeRequestRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Address = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetFrontPendingStakeRequestResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetFrontPendingStakeRequestResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetFrontPendingStakeRequestResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Request", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Request == nil {
+				m.Request = &Request{}
+			}
+			if err := m.Request.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetFrontPendingUnstakeRequestRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetFrontPendingUnstakeRequestRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetFrontPendingUnstakeRequestRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Address = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetFrontPendingUnstakeRequestResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetFrontPendingUnstakeRequestResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetFrontPendingUnstakeRequestResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Request", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Request == nil {
+				m.Request = &Request{}
+			}
+			if err := m.Request.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

@@ -19300,6 +19300,123 @@ paths:
           type: string
       tags:
         - Query
+  /sigmoid/sigmoid/get_front_pending_stake_request/{address}:
+    get:
+      summary: Queries a list of GetFrontPendingStakeRequest items.
+      operationId: SigmoidSigmoidQuery_GetFrontPendingStakeRequest
+      
+  /sigmoid/sigmoid/get_last_processed:
+    get:
+      summary: Queries a list of GetLastProcessed items.
+      operationId: SigmoidSigmoidQuery_GetLastProcessed
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              request:
+                type: object
+                properties:
+                  senderAddress:
+                    type: string
+                  mintAddress:
+                    type: string
+                  status:
+                    type: string
+                    format: uint64
+                  amount:
+                    type: string
+                    format: uint64
+                  timestamp:
+                    type: string
+                    format: uint64
+              transactionId:
+                type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: address
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /sigmoid/sigmoid/get_front_pending_unstake_request/{address}:
+    get:
+      summary: Queries a list of GetFrontPendingUnstakeRequest items.
+      operationId: SigmoidSigmoidQuery_GetFrontPendingUnstakeRequest
+      tags:
+        - Query
+  /sigmoid/sigmoid/get_latest_processed_eth_block:
+    get:
+      summary: Queries a list of GetLatestProcessedEthBlock items.
+      operationId: SigmoidSigmoidQuery_GetLatestProcessedEthBlock
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              request:
+                type: object
+                properties:
+                  senderAddress:
+                    type: string
+                  mintAddress:
+                    type: string
+                  status:
+                    type: string
+                    format: uint64
+                  amount:
+                    type: string
+                    format: uint64
+                  timestamp:
+                    type: string
+                    format: uint64
+              blockNumber:
+                type: string
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: address
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
   /sigmoid/sigmoid/get_last_processed:
     get:
       summary: Queries a list of GetLastProcessed items.
@@ -19336,6 +19453,12 @@ paths:
     get:
       summary: Queries a list of GetLatestProcessedEthBlock items.
       operationId: SigmoidSigmoidQuery_GetLatestProcessedEthBlock
+      tags:
+        - Query
+  /sigmoid/sigmoid/get_pending_bridge_request:
+    get:
+      summary: Queries a list of GetPendingBridgeRequest items.
+      operationId: SigmoidSigmoidQuery_GetPendingBridgeRequest
       responses:
         '200':
           description: A successful response.
@@ -19344,6 +19467,16 @@ paths:
             properties:
               blockNumber:
                 type: string
+              request:
+                type: object
+                properties:
+                  creator:
+                    type: string
+                  erc20Address:
+                    type: string
+                  amount:
+                    type: string
+                    format: uint64
         default:
           description: An unexpected error response.
           schema:
@@ -19481,12 +19614,62 @@ paths:
     get:
       summary: Queries a list of GetSigtaoRateD items.
       operationId: SigmoidSigmoidQuery_GetSigtaoRateD
+      tags:
+        - Query
+  /sigmoid/sigmoid/get_rao_staked_balance:
+    get:
+      summary: Queries a list of GetRaoStakedBalance items.
+      operationId: SigmoidSigmoidQuery_GetRaoStakedBalance
       responses:
         '200':
           description: A successful response.
           schema:
             type: object
             properties:
+              sigtaoRateD:
+              raoStakedBalance:
+                type: string
+                format: uint64
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      tags:
+        - Query
+  /sigmoid/sigmoid/params:
+    get:
+      summary: Parameters queries the parameters of the module.
+      operationId: SigmoidSigmoidQuery_Params
+  /sigmoid/sigmoid/get_sigtao_rate_d:
+    get:
+      summary: Queries a list of GetSigtaoRateD items.
+      operationId: SigmoidSigmoidQuery_GetSigtaoRateD
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              params:
+                description: params holds all the parameters of this module.
+                type: object
+            description: >-
+              QueryParamsResponse is response type for the Query/Params RPC
+              method.
               sigtaoRateD:
                 type: string
                 format: uint64
@@ -19510,6 +19693,9 @@ paths:
                   additionalProperties: {}
       tags:
         - Query
+  /sigmoid.sigmoid.Msg/ApproveBridgeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_ApproveBridgeRequest
   /sigmoid/sigmoid/params:
     get:
       summary: Parameters queries the parameters of the module.
@@ -19544,34 +19730,6 @@ paths:
                     '@type':
                       type: string
                   additionalProperties: {}
-      tags:
-        - Query
-  /sigmoid.sigmoid.Msg/ApproveBridgeRequest:
-    post:
-      operationId: SigmoidSigmoidMsg_ApproveBridgeRequest
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-        default:
-          description: An unexpected error response.
-          schema:
-            type: object
-            properties:
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    '@type':
-                      type: string
-                  additionalProperties: {}
       parameters:
         - name: body
           in: body
@@ -19588,6 +19746,11 @@ paths:
   /sigmoid.sigmoid.Msg/ApproveRequest:
     post:
       operationId: SigmoidSigmoidMsg_ApproveRequest
+      tags:
+        - Query
+  /sigmoid.sigmoid.Msg/ApproveBridgeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_ApproveBridgeRequest
       responses:
         '200':
           description: A successful response.
@@ -19629,6 +19792,11 @@ paths:
   /sigmoid.sigmoid.Msg/ApproveUnstakeRequest:
     post:
       operationId: SigmoidSigmoidMsg_ApproveUnstakeRequest
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/ApproveRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_ApproveRequest
       responses:
         '200':
           description: A successful response.
@@ -19662,6 +19830,7 @@ paths:
               creator:
                 type: string
               unstakeAddress:
+              senderAddress:
                 type: string
               transactionId:
                 type: string
@@ -19670,6 +19839,9 @@ paths:
   /sigmoid.sigmoid.Msg/CreateBridgeRequest:
     post:
       operationId: SigmoidSigmoidMsg_CreateBridgeRequest
+  /sigmoid.sigmoid.Msg/ApproveUnstakeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_ApproveUnstakeRequest
       responses:
         '200':
           description: A successful response.
@@ -19705,6 +19877,9 @@ paths:
               erc20Address:
                 type: string
               amount:
+              unstakeAddress:
+                type: string
+              transactionId:
                 type: string
                 format: uint64
       tags:
@@ -19712,6 +19887,9 @@ paths:
   /sigmoid.sigmoid.Msg/CreateRequest:
     post:
       operationId: SigmoidSigmoidMsg_CreateRequest
+  /sigmoid.sigmoid.Msg/CreateBridgeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_CreateBridgeRequest
       responses:
         '200':
           description: A successful response.
@@ -19745,6 +19923,7 @@ paths:
               creator:
                 type: string
               senderAddress:
+              erc20Address:
                 type: string
               amount:
                 type: string
@@ -19754,6 +19933,9 @@ paths:
   /sigmoid.sigmoid.Msg/CreateRequestSigned:
     post:
       operationId: SigmoidSigmoidMsg_CreateRequestSigned
+  /sigmoid.sigmoid.Msg/CreateRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_CreateRequest
       responses:
         '200':
           description: A successful response.
@@ -19801,6 +19983,14 @@ paths:
   /sigmoid.sigmoid.Msg/CreateUnstakeRequest:
     post:
       operationId: SigmoidSigmoidMsg_CreateUnstakeRequest
+              amount:
+                type: string
+                format: uint64
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/CreateRequestSigned:
+    post:
+      operationId: SigmoidSigmoidMsg_CreateRequestSigned
       responses:
         '200':
           description: A successful response.
@@ -19843,6 +20033,21 @@ paths:
   /sigmoid.sigmoid.Msg/IncomeBridgeRequest:
     post:
       operationId: SigmoidSigmoidMsg_IncomeBridgeRequest
+              senderAddress:
+                type: string
+              signature:
+                type: string
+              amount:
+                type: string
+                format: uint64
+              timestamp:
+                type: string
+                format: uint64
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/CreateUnstakeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_CreateUnstakeRequest
       responses:
         '200':
           description: A successful response.
@@ -19875,6 +20080,59 @@ paths:
             properties:
               creator:
                 type: string
+              address:
+              unstakeAddress:
+                type: string
+              amount:
+                type: string
+                format: uint64
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/ProcessTransaction:
+    post:
+      operationId: SigmoidSigmoidMsg_ProcessTransaction
+  /sigmoid.sigmoid.Msg/IncomeBridgeRequest:
+    post:
+      operationId: SigmoidSigmoidMsg_IncomeBridgeRequest
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    '@type':
+                      type: string
+                  additionalProperties: {}
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              transactionId:
+                type: string
+      tags:
+        - Msg
+  /sigmoid.sigmoid.Msg/SetLatestProcessedEthBlock:
+    post:
+      operationId: SigmoidSigmoidMsg_SetLatestProcessedEthBlock
               address:
                 type: string
               amount:
@@ -19912,6 +20170,13 @@ paths:
         - name: body
           in: body
           required: true
+          schema:
+            type: object
+            properties:
+              creator:
+                type: string
+              blockNumber:
+                type: string
           schema:
             type: object
             properties:
@@ -27822,6 +28087,44 @@ definitions:
       amount:
         type: string
         format: uint64
+  sigmoid.sigmoid.QueryGetFrontPendingStakeRequestResponse:
+    type: object
+    properties:
+      request:
+        type: object
+        properties:
+          senderAddress:
+            type: string
+          mintAddress:
+            type: string
+          status:
+            type: string
+            format: uint64
+          amount:
+            type: string
+            format: uint64
+          timestamp:
+            type: string
+            format: uint64
+  sigmoid.sigmoid.QueryGetFrontPendingUnstakeRequestResponse:
+    type: object
+    properties:
+      request:
+        type: object
+        properties:
+          senderAddress:
+            type: string
+          mintAddress:
+            type: string
+          status:
+            type: string
+            format: uint64
+          amount:
+            type: string
+            format: uint64
+          timestamp:
+            type: string
+            format: uint64
   sigmoid.sigmoid.QueryGetLastProcessedResponse:
     type: object
     properties:
@@ -27877,6 +28180,22 @@ definitions:
         description: params holds all the parameters of this module.
         type: object
     description: QueryParamsResponse is response type for the Query/Params RPC method.
+  sigmoid.sigmoid.Request:
+    type: object
+    properties:
+      senderAddress:
+        type: string
+      mintAddress:
+        type: string
+      status:
+        type: string
+        format: uint64
+      amount:
+        type: string
+        format: uint64
+      timestamp:
+        type: string
+        format: uint64
   sigmoid.sigmoid.MsgApproveBridgeRequest:
     type: object
     properties:

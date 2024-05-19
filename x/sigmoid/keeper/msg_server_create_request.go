@@ -30,6 +30,14 @@ func (k msgServer) CreateRequest(goCtx context.Context, msg *types.MsgCreateRequ
 		}
 	}
 
+	_, found = k.Keeper.GetRequestInReversedStore(ctx, msg.Creator)
+	if found {
+		oldRequestTs := time.Unix(int64(oldRequest.Timestamp), 0)
+		if tsNow.Sub(oldRequestTs) < time.Minute*15 {
+			return nil, sdkerrors.ErrConflict
+		}
+	}
+
 	k.Keeper.AppendRequest(ctx, request)
 	return &types.MsgCreateRequestResponse{}, nil
 }
