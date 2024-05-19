@@ -2,97 +2,32 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner, Registry } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { QueryClassesRequest } from "./types/cosmos/nft/v1beta1/query";
-import { QueryClassesResponse } from "./types/cosmos/nft/v1beta1/query";
 import { EventSend } from "./types/cosmos/nft/v1beta1/event";
-import { QueryBalanceResponse } from "./types/cosmos/nft/v1beta1/query";
-import { MsgSend } from "./types/cosmos/nft/v1beta1/tx";
-import { QuerySupplyRequest } from "./types/cosmos/nft/v1beta1/query";
-import { QueryNFTsResponse } from "./types/cosmos/nft/v1beta1/query";
-import { QueryClassRequest } from "./types/cosmos/nft/v1beta1/query";
-import { EventBurn } from "./types/cosmos/nft/v1beta1/event";
-import { QueryBalanceRequest } from "./types/cosmos/nft/v1beta1/query";
-import { QueryOwnerRequest } from "./types/cosmos/nft/v1beta1/query";
-import { QueryOwnerResponse } from "./types/cosmos/nft/v1beta1/query";
-import { MsgSendResponse } from "./types/cosmos/nft/v1beta1/tx";
-import { NFT } from "./types/cosmos/nft/v1beta1/nft";
 import { GenesisState } from "./types/cosmos/nft/v1beta1/genesis";
+import { QueryBalanceResponse } from "./types/cosmos/nft/v1beta1/query";
 import { QuerySupplyResponse } from "./types/cosmos/nft/v1beta1/query";
+import { QueryClassesResponse } from "./types/cosmos/nft/v1beta1/query";
 import { EventMint } from "./types/cosmos/nft/v1beta1/event";
 import { Entry } from "./types/cosmos/nft/v1beta1/genesis";
+import { QuerySupplyRequest } from "./types/cosmos/nft/v1beta1/query";
+import { QueryClassesRequest } from "./types/cosmos/nft/v1beta1/query";
 import { QueryNFTRequest } from "./types/cosmos/nft/v1beta1/query";
+import { EventBurn } from "./types/cosmos/nft/v1beta1/event";
+import { MsgSend } from "./types/cosmos/nft/v1beta1/tx";
 import { Class } from "./types/cosmos/nft/v1beta1/nft";
-import { QueryClassResponse } from "./types/cosmos/nft/v1beta1/query";
-import { QueryNFTsRequest } from "./types/cosmos/nft/v1beta1/query";
+import { MsgSendResponse } from "./types/cosmos/nft/v1beta1/tx";
+import { QueryOwnerResponse } from "./types/cosmos/nft/v1beta1/query";
+import { QueryClassRequest } from "./types/cosmos/nft/v1beta1/query";
+import { NFT } from "./types/cosmos/nft/v1beta1/nft";
+import { QueryBalanceRequest } from "./types/cosmos/nft/v1beta1/query";
 import { QueryNFTResponse } from "./types/cosmos/nft/v1beta1/query";
-export { QueryClassesRequest, QueryClassesResponse, EventSend, QueryBalanceResponse, MsgSend, QuerySupplyRequest, QueryNFTsResponse, QueryClassRequest, EventBurn, QueryBalanceRequest, QueryOwnerRequest, QueryOwnerResponse, MsgSendResponse, NFT, GenesisState, QuerySupplyResponse, EventMint, Entry, QueryNFTRequest, Class, QueryClassResponse, QueryNFTsRequest, QueryNFTResponse };
-type sendQueryClassesRequestParams = {
-    value: QueryClassesRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryClassesResponseParams = {
-    value: QueryClassesResponse;
-    fee?: StdFee;
-    memo?: string;
-};
+import { QueryClassResponse } from "./types/cosmos/nft/v1beta1/query";
+import { QueryOwnerRequest } from "./types/cosmos/nft/v1beta1/query";
+import { QueryNFTsRequest } from "./types/cosmos/nft/v1beta1/query";
+import { QueryNFTsResponse } from "./types/cosmos/nft/v1beta1/query";
+export { EventSend, GenesisState, QueryBalanceResponse, QuerySupplyResponse, QueryClassesResponse, EventMint, Entry, QuerySupplyRequest, QueryClassesRequest, QueryNFTRequest, EventBurn, MsgSend, Class, MsgSendResponse, QueryOwnerResponse, QueryClassRequest, NFT, QueryBalanceRequest, QueryNFTResponse, QueryClassResponse, QueryOwnerRequest, QueryNFTsRequest, QueryNFTsResponse };
 type sendEventSendParams = {
     value: EventSend;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryBalanceResponseParams = {
-    value: QueryBalanceResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgSendParams = {
-    value: MsgSend;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQuerySupplyRequestParams = {
-    value: QuerySupplyRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryNFTsResponseParams = {
-    value: QueryNFTsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryClassRequestParams = {
-    value: QueryClassRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendEventBurnParams = {
-    value: EventBurn;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryBalanceRequestParams = {
-    value: QueryBalanceRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryOwnerRequestParams = {
-    value: QueryOwnerRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryOwnerResponseParams = {
-    value: QueryOwnerResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendMsgSendResponseParams = {
-    value: MsgSendResponse;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendNFTParams = {
-    value: NFT;
     fee?: StdFee;
     memo?: string;
 };
@@ -101,8 +36,18 @@ type sendGenesisStateParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendQueryBalanceResponseParams = {
+    value: QueryBalanceResponse;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendQuerySupplyResponseParams = {
     value: QuerySupplyResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryClassesResponseParams = {
+    value: QueryClassesResponse;
     fee?: StdFee;
     memo?: string;
 };
@@ -116,8 +61,28 @@ type sendEntryParams = {
     fee?: StdFee;
     memo?: string;
 };
+type sendQuerySupplyRequestParams = {
+    value: QuerySupplyRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryClassesRequestParams = {
+    value: QueryClassesRequest;
+    fee?: StdFee;
+    memo?: string;
+};
 type sendQueryNFTRequestParams = {
     value: QueryNFTRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendEventBurnParams = {
+    value: EventBurn;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendMsgSendParams = {
+    value: MsgSend;
     fee?: StdFee;
     memo?: string;
 };
@@ -126,13 +91,28 @@ type sendClassParams = {
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryClassResponseParams = {
-    value: QueryClassResponse;
+type sendMsgSendResponseParams = {
+    value: MsgSendResponse;
     fee?: StdFee;
     memo?: string;
 };
-type sendQueryNFTsRequestParams = {
-    value: QueryNFTsRequest;
+type sendQueryOwnerResponseParams = {
+    value: QueryOwnerResponse;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryClassRequestParams = {
+    value: QueryClassRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendNFTParams = {
+    value: NFT;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryBalanceRequestParams = {
+    value: QueryBalanceRequest;
     fee?: StdFee;
     memo?: string;
 };
@@ -141,53 +121,40 @@ type sendQueryNFTResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type queryClassesRequestParams = {
-    value: QueryClassesRequest;
+type sendQueryClassResponseParams = {
+    value: QueryClassResponse;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryClassesResponseParams = {
-    value: QueryClassesResponse;
+type sendQueryOwnerRequestParams = {
+    value: QueryOwnerRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryNFTsRequestParams = {
+    value: QueryNFTsRequest;
+    fee?: StdFee;
+    memo?: string;
+};
+type sendQueryNFTsResponseParams = {
+    value: QueryNFTsResponse;
+    fee?: StdFee;
+    memo?: string;
 };
 type eventSendParams = {
     value: EventSend;
 };
-type queryBalanceResponseParams = {
-    value: QueryBalanceResponse;
-};
-type msgSendParams = {
-    value: MsgSend;
-};
-type querySupplyRequestParams = {
-    value: QuerySupplyRequest;
-};
-type queryNftsResponseParams = {
-    value: QueryNFTsResponse;
-};
-type queryClassRequestParams = {
-    value: QueryClassRequest;
-};
-type eventBurnParams = {
-    value: EventBurn;
-};
-type queryBalanceRequestParams = {
-    value: QueryBalanceRequest;
-};
-type queryOwnerRequestParams = {
-    value: QueryOwnerRequest;
-};
-type queryOwnerResponseParams = {
-    value: QueryOwnerResponse;
-};
-type msgSendResponseParams = {
-    value: MsgSendResponse;
-};
-type nftParams = {
-    value: NFT;
-};
 type genesisStateParams = {
     value: GenesisState;
 };
+type queryBalanceResponseParams = {
+    value: QueryBalanceResponse;
+};
 type querySupplyResponseParams = {
     value: QuerySupplyResponse;
+};
+type queryClassesResponseParams = {
+    value: QueryClassesResponse;
 };
 type eventMintParams = {
     value: EventMint;
@@ -195,20 +162,53 @@ type eventMintParams = {
 type entryParams = {
     value: Entry;
 };
+type querySupplyRequestParams = {
+    value: QuerySupplyRequest;
+};
+type queryClassesRequestParams = {
+    value: QueryClassesRequest;
+};
 type queryNftrequestParams = {
     value: QueryNFTRequest;
+};
+type eventBurnParams = {
+    value: EventBurn;
+};
+type msgSendParams = {
+    value: MsgSend;
 };
 type classParams = {
     value: Class;
 };
+type msgSendResponseParams = {
+    value: MsgSendResponse;
+};
+type queryOwnerResponseParams = {
+    value: QueryOwnerResponse;
+};
+type queryClassRequestParams = {
+    value: QueryClassRequest;
+};
+type nftParams = {
+    value: NFT;
+};
+type queryBalanceRequestParams = {
+    value: QueryBalanceRequest;
+};
+type queryNftresponseParams = {
+    value: QueryNFTResponse;
+};
 type queryClassResponseParams = {
     value: QueryClassResponse;
+};
+type queryOwnerRequestParams = {
+    value: QueryOwnerRequest;
 };
 type queryNftsRequestParams = {
     value: QueryNFTsRequest;
 };
-type queryNftresponseParams = {
-    value: QueryNFTResponse;
+type queryNftsResponseParams = {
+    value: QueryNFTsResponse;
 };
 export declare const registry: Registry;
 interface TxClientOptions {
@@ -217,52 +217,52 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendQueryClassesRequest({ value, fee, memo }: sendQueryClassesRequestParams): Promise<DeliverTxResponse>;
-    sendQueryClassesResponse({ value, fee, memo }: sendQueryClassesResponseParams): Promise<DeliverTxResponse>;
     sendEventSend({ value, fee, memo }: sendEventSendParams): Promise<DeliverTxResponse>;
-    sendQueryBalanceResponse({ value, fee, memo }: sendQueryBalanceResponseParams): Promise<DeliverTxResponse>;
-    sendMsgSend({ value, fee, memo }: sendMsgSendParams): Promise<DeliverTxResponse>;
-    sendQuerySupplyRequest({ value, fee, memo }: sendQuerySupplyRequestParams): Promise<DeliverTxResponse>;
-    sendQueryNFTsResponse({ value, fee, memo }: sendQueryNFTsResponseParams): Promise<DeliverTxResponse>;
-    sendQueryClassRequest({ value, fee, memo }: sendQueryClassRequestParams): Promise<DeliverTxResponse>;
-    sendEventBurn({ value, fee, memo }: sendEventBurnParams): Promise<DeliverTxResponse>;
-    sendQueryBalanceRequest({ value, fee, memo }: sendQueryBalanceRequestParams): Promise<DeliverTxResponse>;
-    sendQueryOwnerRequest({ value, fee, memo }: sendQueryOwnerRequestParams): Promise<DeliverTxResponse>;
-    sendQueryOwnerResponse({ value, fee, memo }: sendQueryOwnerResponseParams): Promise<DeliverTxResponse>;
-    sendMsgSendResponse({ value, fee, memo }: sendMsgSendResponseParams): Promise<DeliverTxResponse>;
-    sendNFT({ value, fee, memo }: sendNFTParams): Promise<DeliverTxResponse>;
     sendGenesisState({ value, fee, memo }: sendGenesisStateParams): Promise<DeliverTxResponse>;
+    sendQueryBalanceResponse({ value, fee, memo }: sendQueryBalanceResponseParams): Promise<DeliverTxResponse>;
     sendQuerySupplyResponse({ value, fee, memo }: sendQuerySupplyResponseParams): Promise<DeliverTxResponse>;
+    sendQueryClassesResponse({ value, fee, memo }: sendQueryClassesResponseParams): Promise<DeliverTxResponse>;
     sendEventMint({ value, fee, memo }: sendEventMintParams): Promise<DeliverTxResponse>;
     sendEntry({ value, fee, memo }: sendEntryParams): Promise<DeliverTxResponse>;
+    sendQuerySupplyRequest({ value, fee, memo }: sendQuerySupplyRequestParams): Promise<DeliverTxResponse>;
+    sendQueryClassesRequest({ value, fee, memo }: sendQueryClassesRequestParams): Promise<DeliverTxResponse>;
     sendQueryNFTRequest({ value, fee, memo }: sendQueryNFTRequestParams): Promise<DeliverTxResponse>;
+    sendEventBurn({ value, fee, memo }: sendEventBurnParams): Promise<DeliverTxResponse>;
+    sendMsgSend({ value, fee, memo }: sendMsgSendParams): Promise<DeliverTxResponse>;
     sendClass({ value, fee, memo }: sendClassParams): Promise<DeliverTxResponse>;
-    sendQueryClassResponse({ value, fee, memo }: sendQueryClassResponseParams): Promise<DeliverTxResponse>;
-    sendQueryNFTsRequest({ value, fee, memo }: sendQueryNFTsRequestParams): Promise<DeliverTxResponse>;
+    sendMsgSendResponse({ value, fee, memo }: sendMsgSendResponseParams): Promise<DeliverTxResponse>;
+    sendQueryOwnerResponse({ value, fee, memo }: sendQueryOwnerResponseParams): Promise<DeliverTxResponse>;
+    sendQueryClassRequest({ value, fee, memo }: sendQueryClassRequestParams): Promise<DeliverTxResponse>;
+    sendNFT({ value, fee, memo }: sendNFTParams): Promise<DeliverTxResponse>;
+    sendQueryBalanceRequest({ value, fee, memo }: sendQueryBalanceRequestParams): Promise<DeliverTxResponse>;
     sendQueryNFTResponse({ value, fee, memo }: sendQueryNFTResponseParams): Promise<DeliverTxResponse>;
-    queryClassesRequest({ value }: queryClassesRequestParams): EncodeObject;
-    queryClassesResponse({ value }: queryClassesResponseParams): EncodeObject;
+    sendQueryClassResponse({ value, fee, memo }: sendQueryClassResponseParams): Promise<DeliverTxResponse>;
+    sendQueryOwnerRequest({ value, fee, memo }: sendQueryOwnerRequestParams): Promise<DeliverTxResponse>;
+    sendQueryNFTsRequest({ value, fee, memo }: sendQueryNFTsRequestParams): Promise<DeliverTxResponse>;
+    sendQueryNFTsResponse({ value, fee, memo }: sendQueryNFTsResponseParams): Promise<DeliverTxResponse>;
     eventSend({ value }: eventSendParams): EncodeObject;
-    queryBalanceResponse({ value }: queryBalanceResponseParams): EncodeObject;
-    msgSend({ value }: msgSendParams): EncodeObject;
-    querySupplyRequest({ value }: querySupplyRequestParams): EncodeObject;
-    queryNftsResponse({ value }: queryNftsResponseParams): EncodeObject;
-    queryClassRequest({ value }: queryClassRequestParams): EncodeObject;
-    eventBurn({ value }: eventBurnParams): EncodeObject;
-    queryBalanceRequest({ value }: queryBalanceRequestParams): EncodeObject;
-    queryOwnerRequest({ value }: queryOwnerRequestParams): EncodeObject;
-    queryOwnerResponse({ value }: queryOwnerResponseParams): EncodeObject;
-    msgSendResponse({ value }: msgSendResponseParams): EncodeObject;
-    nft({ value }: nftParams): EncodeObject;
     genesisState({ value }: genesisStateParams): EncodeObject;
+    queryBalanceResponse({ value }: queryBalanceResponseParams): EncodeObject;
     querySupplyResponse({ value }: querySupplyResponseParams): EncodeObject;
+    queryClassesResponse({ value }: queryClassesResponseParams): EncodeObject;
     eventMint({ value }: eventMintParams): EncodeObject;
     entry({ value }: entryParams): EncodeObject;
+    querySupplyRequest({ value }: querySupplyRequestParams): EncodeObject;
+    queryClassesRequest({ value }: queryClassesRequestParams): EncodeObject;
     queryNftrequest({ value }: queryNftrequestParams): EncodeObject;
+    eventBurn({ value }: eventBurnParams): EncodeObject;
+    msgSend({ value }: msgSendParams): EncodeObject;
     class({ value }: classParams): EncodeObject;
-    queryClassResponse({ value }: queryClassResponseParams): EncodeObject;
-    queryNftsRequest({ value }: queryNftsRequestParams): EncodeObject;
+    msgSendResponse({ value }: msgSendResponseParams): EncodeObject;
+    queryOwnerResponse({ value }: queryOwnerResponseParams): EncodeObject;
+    queryClassRequest({ value }: queryClassRequestParams): EncodeObject;
+    nft({ value }: nftParams): EncodeObject;
+    queryBalanceRequest({ value }: queryBalanceRequestParams): EncodeObject;
     queryNftresponse({ value }: queryNftresponseParams): EncodeObject;
+    queryClassResponse({ value }: queryClassResponseParams): EncodeObject;
+    queryOwnerRequest({ value }: queryOwnerRequestParams): EncodeObject;
+    queryNftsRequest({ value }: queryNftsRequestParams): EncodeObject;
+    queryNftsResponse({ value }: queryNftsResponseParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

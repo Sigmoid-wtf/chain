@@ -8,6 +8,8 @@ import { Amount } from "../utils/interfaces";
 import { IgntButton, IgntTxArrowIcon } from "@ignt/react-library";
 import useSigmoidSigmoid from "../hooks/useSigmoidSigmoid";
 import IgntDenom from "./IgntDenom";
+import { Keyring } from "@polkadot/api";
+import { u8aToHex } from "@polkadot/util";
 
 interface IgntStackProps {
   className?: string;
@@ -80,11 +82,34 @@ export default function IgntStack(props: IgntStackProps) {
 
     setState((oldState) => ({ ...oldState, currentUIState: UI_STATE.TX_SIGNING }));
     try {
-      const txResult = await client.SigmoidSigmoid.tx.sendMsgCreateRequest({
+      console.log("HERE!!!!!");
+      const currentTimestamp = Math.floor(Date.now() / 1000);
+      // Create a new keyring instance
+      const keyring = new Keyring({ type: "sr25519" });
+
+      const pair = keyring.addFromMnemonic("grab kite company west pond total farm credit guess undo silver legend");
+
+      console.log("Public kkk", pair.address);
+      console.log("Private", pair);
+
+      const raew = `${currentTimestamp}//0//${state.tx.receiver}`;
+      const encrypted = pair.sign(raew);
+
+      const encryptedHex = u8aToHex(encrypted);
+
+      console.log("Type:", keyring.type);
+      console.log("Encrypted message:", encryptedHex);
+      console.log("Timestamp:", currentTimestamp);
+      console.log("Address:", state.tx.receiver);
+      console.log("Raw message:", raew);
+
+      const txResult = await client.SigmoidSigmoid.tx.sendMsgCreateRequestSigned({
         value: {
           creator: address,
           senderAddress: state.tx.receiver,
+          signature: encryptedHex,
           amount: 0,
+          timestamp: currentTimestamp,
         },
         fee: { amount: fee as Readonly<Amount[]>, gas: "200000" },
         memo,
@@ -102,8 +127,8 @@ export default function IgntStack(props: IgntStackProps) {
 
   const { QueryGetFrontPendingStakeRequest } = useSigmoidSigmoid();
   const data = QueryGetFrontPendingStakeRequest(address, {});
-  console.log("STAKES CURRENT");
-  console.log(data);
+//   console.log("STAKES CURRENT");
+//   console.log(data);
 
   return (
     <div className={props.className ?? ""}>
