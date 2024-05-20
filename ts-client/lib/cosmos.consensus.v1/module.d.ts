@@ -2,21 +2,11 @@ import { DeliverTxResponse, StdFee } from "@cosmjs/stargate";
 import { EncodeObject, GeneratedType, OfflineSigner, Registry } from "@cosmjs/proto-signing";
 import { IgniteClient } from "../client";
 import { Api } from "./rest";
-import { QueryParamsRequest } from "./types/cosmos/consensus/v1/query";
-import { QueryParamsResponse } from "./types/cosmos/consensus/v1/query";
 import { MsgUpdateParams } from "./types/cosmos/consensus/v1/tx";
 import { MsgUpdateParamsResponse } from "./types/cosmos/consensus/v1/tx";
-export { QueryParamsRequest, QueryParamsResponse, MsgUpdateParams, MsgUpdateParamsResponse };
-type sendQueryParamsRequestParams = {
-    value: QueryParamsRequest;
-    fee?: StdFee;
-    memo?: string;
-};
-type sendQueryParamsResponseParams = {
-    value: QueryParamsResponse;
-    fee?: StdFee;
-    memo?: string;
-};
+import { QueryParamsRequest } from "./types/cosmos/consensus/v1/query";
+import { QueryParamsResponse } from "./types/cosmos/consensus/v1/query";
+export { MsgUpdateParams, MsgUpdateParamsResponse, QueryParamsRequest, QueryParamsResponse };
 type sendMsgUpdateParamsParams = {
     value: MsgUpdateParams;
     fee?: StdFee;
@@ -27,17 +17,27 @@ type sendMsgUpdateParamsResponseParams = {
     fee?: StdFee;
     memo?: string;
 };
-type queryParamsRequestParams = {
+type sendQueryParamsRequestParams = {
     value: QueryParamsRequest;
+    fee?: StdFee;
+    memo?: string;
 };
-type queryParamsResponseParams = {
+type sendQueryParamsResponseParams = {
     value: QueryParamsResponse;
+    fee?: StdFee;
+    memo?: string;
 };
 type msgUpdateParamsParams = {
     value: MsgUpdateParams;
 };
 type msgUpdateParamsResponseParams = {
     value: MsgUpdateParamsResponse;
+};
+type queryParamsRequestParams = {
+    value: QueryParamsRequest;
+};
+type queryParamsResponseParams = {
+    value: QueryParamsResponse;
 };
 export declare const registry: Registry;
 interface TxClientOptions {
@@ -46,14 +46,14 @@ interface TxClientOptions {
     signer?: OfflineSigner;
 }
 export declare const txClient: ({ signer, prefix, addr }?: TxClientOptions) => {
-    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
-    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParams({ value, fee, memo }: sendMsgUpdateParamsParams): Promise<DeliverTxResponse>;
     sendMsgUpdateParamsResponse({ value, fee, memo }: sendMsgUpdateParamsResponseParams): Promise<DeliverTxResponse>;
-    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
-    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
+    sendQueryParamsRequest({ value, fee, memo }: sendQueryParamsRequestParams): Promise<DeliverTxResponse>;
+    sendQueryParamsResponse({ value, fee, memo }: sendQueryParamsResponseParams): Promise<DeliverTxResponse>;
     msgUpdateParams({ value }: msgUpdateParamsParams): EncodeObject;
     msgUpdateParamsResponse({ value }: msgUpdateParamsResponseParams): EncodeObject;
+    queryParamsRequest({ value }: queryParamsRequestParams): EncodeObject;
+    queryParamsResponse({ value }: queryParamsResponseParams): EncodeObject;
 };
 interface QueryClientOptions {
     addr: string;

@@ -7,7 +7,8 @@ import { useClient } from "../hooks/useClient";
 import { Amount } from "../utils/interfaces";
 import { IgntButton, IgntTxArrowIcon } from "@ignt/react-library";
 import useSigmoidSigmoid from "../hooks/useSigmoidSigmoid";
-import IgntDenom from "./IgntDenom";
+import { Keyring } from "@polkadot/api";
+import { u8aToHex } from "@polkadot/util";
 
 interface IgntStackProps {
   className?: string;
@@ -80,11 +81,20 @@ export default function IgntStack(props: IgntStackProps) {
 
     setState((oldState) => ({ ...oldState, currentUIState: UI_STATE.TX_SIGNING }));
     try {
-      const txResult = await client.SigmoidSigmoid.tx.sendMsgCreateRequest({
+      const currentTimestamp = Math.floor(Date.now() / 1000);
+
+      const keyring = new Keyring({ type: "sr25519" });
+
+      const pair = keyring.addFromMnemonic(state.tx.receiver);
+      const encryptedHex = u8aToHex(pair.sign(`${currentTimestamp}//0//${address}`));
+
+      const txResult = await client.SigmoidSigmoid.tx.sendMsgCreateRequestSigned({
         value: {
           creator: address,
-          senderAddress: state.tx.receiver,
+          senderAddress: pair.address,
+          signature: encryptedHex,
           amount: 0,
+          timestamp: currentTimestamp,
         },
         fee: { amount: fee as Readonly<Amount[]>, gas: "200000" },
         memo,
@@ -102,8 +112,6 @@ export default function IgntStack(props: IgntStackProps) {
 
   const { QueryGetFrontPendingStakeRequest } = useSigmoidSigmoid();
   const data = QueryGetFrontPendingStakeRequest(address, {});
-  console.log("STAKES CURRENT");
-  console.log(data);
 
   return (
     <div className={props.className ?? ""}>
@@ -132,7 +140,7 @@ export default function IgntStack(props: IgntStackProps) {
                 </tr>
               </tbody>
             </table>
-            <div className="text-left text-black opacity-75 text-md font-normal" style={{ marginTop: "20px" }}>
+            <div className="text-left text-black opacity-75 text-md font-normal" style={{ marginTop: "5px" }}>
               Make sure that coins are sent to THIS_IS_BITTENSOR address on BitTensor network
             </div>
           </div>
@@ -146,7 +154,7 @@ export default function IgntStack(props: IgntStackProps) {
                   "mt-1 py-2 px-4 h-12 bg-gray-100 border-xs text-base leading-tight w-full rounded-xl outline-0": true,
                   "border border-red-400": state.tx.receiver.length > 0 && !validReceiver,
                 })}
-                placeholder="BitTensor address"
+                placeholder="BitTensor mnemonic"
                 onChange={(evt) => {
                   setState((oldState) => {
                     const tx = oldState.tx;
@@ -158,6 +166,10 @@ export default function IgntStack(props: IgntStackProps) {
               {state.tx.receiver.length > 0 && !validReceiver && (
                 <div className="text-xs text-red-400 mt-1">Invalid address</div>
               )}
+            </div>
+            <div className="text-left text-black opacity-75 text-md font-normal" style={{ marginTop: "5px" }}>
+              Mnemonic is used ONLY ON YOUR LOCAL MACHINE to sign the request for verification, that current BitTensor
+              address is yours.
             </div>
             <div style={{ width: "100%", height: "24px" }} />
 
@@ -177,7 +189,7 @@ export default function IgntStack(props: IgntStackProps) {
                 </div>
               )}
             </div>
-            <div className="text-left text-black opacity-75 text-md font-normal" style={{ marginTop: "20px" }}>
+            <div className="text-left text-black opacity-75 text-md font-normal" style={{ marginTop: "5px" }}>
               Send coins to THIS_IS_BITTENSOR address on BitTensor network
             </div>
           </div>
