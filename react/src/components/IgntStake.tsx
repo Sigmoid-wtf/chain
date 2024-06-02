@@ -7,8 +7,10 @@ import { useClient } from "../hooks/useClient";
 import { Amount } from "../utils/interfaces";
 import { IgntButton, IgntTxArrowIcon } from "@ignt/react-library";
 import useSigmoidSigmoid from "../hooks/useSigmoidSigmoid";
-import { Keyring } from "@polkadot/api";
-import { u8aToHex } from "@polkadot/util";
+import { stringToHex } from "@polkadot/util";
+import { web3Accounts, web3Enable, web3FromSource } from "@polkadot/extension-dapp";
+import IgntAmountSimple from "./IgntAmountSimple";
+import BigNumber from "bignumber.js";
 
 interface IgntStackProps {
   className?: string;
@@ -16,7 +18,7 @@ interface IgntStackProps {
 interface TxData {
   receiver: string;
   ch: string;
-  amounts: Array<Amount>;
+  amount: BigNumber;
   memo: string;
   fees: Array<Amount>;
 }
@@ -45,7 +47,7 @@ const initialState: State = {
   tx: {
     receiver: "",
     ch: "",
-    amounts: [],
+    amount: BigNumber(0),
     memo: "",
     fees: [],
   },
@@ -59,10 +61,8 @@ export default function IgntStack(props: IgntStackProps) {
   const isTxOngoing = useMemo(() => state.currentUIState === UI_STATE.TX_SIGNING, [state.currentUIState]);
   const isTxSuccess = useMemo(() => state.currentUIState === UI_STATE.TX_SUCCESS, [state.currentUIState]);
   const isTxError = useMemo(() => state.currentUIState === UI_STATE.TX_ERROR, [state.currentUIState]);
-  const validReceiver = useMemo(() => {
-    return state.tx.receiver !== "";
-  }, [state.tx.receiver]);
-  const ableToTx = useMemo<boolean>(() => validReceiver && !!address, [validReceiver, address]);
+  const [txErrorText, setTxErrorText] = useState("");
+  const ableToTx = useMemo<boolean>(() => state.tx.amount.isPositive() && !state.tx.amount.isZero(), [state.tx.amount]);
   const resetTx = (): void => {
     setState({ ...initialState });
   };
@@ -81,19 +81,56 @@ export default function IgntStack(props: IgntStackProps) {
 
     setState((oldState) => ({ ...oldState, currentUIState: UI_STATE.TX_SIGNING }));
     try {
+      const extensions = await web3Enable("sigmoid");
+
+      if (extensions.length === 0) {
+        setTxErrorText("There are no available extensions to interact with BitTensor wallet or request was deslined");
+        setState((oldState) => ({ ...oldState, currentUIState: UI_STATE.TX_ERROR }));
+        return;
+      }
+
+      const allAccounts = await web3Accounts();
+
       const currentTimestamp = Math.floor(Date.now() / 1000);
 
-      const keyring = new Keyring({ type: "sr25519" });
+      const msgToSign = `${currentTimestamp}//${state.tx.amount.toNumber()}//${address}`;
 
-      const pair = keyring.addFromMnemonic(state.tx.receiver);
-      const encryptedHex = u8aToHex(pair.sign(`${currentTimestamp}//0//${address}`));
+      if (allAccounts.length === 0) {
+        setTxErrorText("There is no one account in import");
+        setState((oldState) => ({ ...oldState, currentUIState: UI_STATE.TX_ERROR }));
+        return;
+      } else if (allAccounts.length > 1) {
+        setTxErrorText("There are more than one accounts in import");
+        setState((oldState) => ({ ...oldState, currentUIState: UI_STATE.TX_ERROR }));
+        return;
+      }
+      const account = allAccounts[0];
+
+      const injector = await web3FromSource(account.meta.source);
+
+      const signRaw = injector?.signer?.signRaw;
+
+      let signedMessage = "";
+
+      if (signRaw) {
+        signedMessage = (
+          await signRaw({
+            address: account.address,
+            data: stringToHex(msgToSign),
+            type: "bytes",
+          })
+        ).signature;
+      } else {
+        setTxErrorText("Plugin can't sign message");
+        return;
+      }
 
       const txResult = await client.SigmoidSigmoid.tx.sendMsgCreateRequestSigned({
         value: {
           creator: address,
-          senderAddress: pair.address,
-          signature: encryptedHex,
-          amount: 0,
+          senderAddress: account.address,
+          signature: signedMessage,
+          amount: state.tx.amount.toNumber(),
           timestamp: currentTimestamp,
         },
         fee: { amount: fee as Readonly<Amount[]>, gas: "200000" },
@@ -103,11 +140,20 @@ export default function IgntStack(props: IgntStackProps) {
       if (txResult.code) {
         throw new Error();
       }
+
       setState(() => ({ ...initialState, currentUIState: UI_STATE.TX_SUCCESS }));
     } catch (e) {
       console.error(e);
       setState((oldState) => ({ ...oldState, currentUIState: UI_STATE.TX_ERROR }));
     }
+  };
+
+  const handleTxAmountUpdate = (amount: BigNumber) => {
+    setState((oldState) => {
+      const tx = oldState.tx;
+      tx.amount = amount;
+      return { ...oldState, tx };
+    });
   };
 
   const { QueryGetFrontPendingStakeRequest } = useSigmoidSigmoid();
@@ -146,30 +192,8 @@ export default function IgntStack(props: IgntStackProps) {
           </div>
         ) : (
           <div>
-            <div className="text-xs text-gray-600">Add BitTensor address</div>
             <div>
-              <input
-                value={state.tx.receiver}
-                className={cx({
-                  "mt-1 py-2 px-4 h-12 bg-gray-100 border-xs text-base leading-tight w-full rounded-xl outline-0": true,
-                  "border border-red-400": state.tx.receiver.length > 0 && !validReceiver,
-                })}
-                placeholder="BitTensor mnemonic"
-                onChange={(evt) => {
-                  setState((oldState) => {
-                    const tx = oldState.tx;
-                    tx.receiver = evt.target.value;
-                    return { ...oldState, tx };
-                  });
-                }}
-              />
-              {state.tx.receiver.length > 0 && !validReceiver && (
-                <div className="text-xs text-red-400 mt-1">Invalid address</div>
-              )}
-            </div>
-            <div className="text-left text-black opacity-75 text-md font-normal" style={{ marginTop: "5px" }}>
-              Mnemonic is used ONLY ON YOUR LOCAL MACHINE to sign the request for verification, that current BitTensor
-              address is yours.
+              <IgntAmountSimple className="token-selector--main" denom="TAO" update={handleTxAmountUpdate} />
             </div>
             <div style={{ width: "100%", height: "24px" }} />
 
@@ -182,6 +206,9 @@ export default function IgntStack(props: IgntStackProps) {
                   {" "}
                   Error submitting Tx
                 </div>
+              )}
+              {txErrorText != "" && (
+                <div className="flex items-center justify-center text-xs text-red-500 italic mt-2"> {txErrorText}</div>
               )}
               {isTxSuccess && (
                 <div className="flex items-center justify-center text-xs text-green-500 italic mt-2">

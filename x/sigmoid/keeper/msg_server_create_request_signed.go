@@ -44,7 +44,7 @@ func (k msgServer) CreateRequestSigned(goCtx context.Context, msg *types.MsgCrea
 		return nil, fmt.Errorf("signature is incorrect")
 	}
 
-	textToSign := fmt.Sprintf("%d//%d//%s", msg.Timestamp, msg.Amount, msg.Creator)
+	textToSign := fmt.Sprintf("<Bytes>%d//%d//%s</Bytes>", msg.Timestamp, msg.Amount, msg.Creator)
 	k.logger.Error(textToSign)
 	transcript := schnorrkel.NewSigningContext([]byte("substrate"), []byte(textToSign))
 	ok, err := key.Verify(signature, transcript)
