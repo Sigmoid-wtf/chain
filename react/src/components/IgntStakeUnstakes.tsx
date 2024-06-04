@@ -1,7 +1,7 @@
 import { useAddressContext } from "../def-hooks/addressContext";
 import { IgntTabs } from "@ignt/react-library";
-import IgntUnstack from "./IgntUnstake";
-import IgntStack from "./IgntStake";
+import IgntUnstake from "./IgntUnstake";
+import IgntStake from "./IgntStake";
 import useSigmoidSigmoid from "../hooks/useSigmoidSigmoid";
 interface IgntTransferProps {
   className?: string;
@@ -19,10 +19,10 @@ export default function IgntTransfer(props: IgntTransferProps) {
         className={props.className ?? ""}
       >
         <div className="" title="Stake">
-          {address && <IgntStack />}
+          {address && <IgntStake />}
         </div>
         <div className="" title="Unstake">
-          {address && <IgntUnstack />}
+          {address && <IgntUnstake />}
         </div>
       </IgntTabs>
     </>

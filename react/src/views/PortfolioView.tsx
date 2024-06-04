@@ -4,6 +4,7 @@ import IgntAssets from "../components/IgntAssets";
 import IgntStakeUnstakes from "../components/IgntStakeUnstakes";
 import IgntTransactions from "../components/IgntTransactions";
 import IgntTransfer from "../components/IgntTransfer";
+import IgntTransferPolygon from "../components/IgntTransferPolygon";
 import useSigmoidSigmoid from "../hooks/useSigmoidSigmoid";
 
 export default function PortfolioView() {
@@ -24,7 +25,7 @@ export default function PortfolioView() {
               className="text-left text-black opacity-75 text-md font-normal"
               style={{ marginLeft: 10, marginBottom: 20 }}
             >
-              Current Rate: {rateRsp.data?.sigtaoRateD}
+              Current Rate: {rateRsp.data?.sigtaoRateD / 1000000000}
             </div>
             <IgntAssets className="px-2.5 mb-10" displayLimit={3} />
             <IgntTransactions className="px-2.5" />
@@ -33,7 +34,12 @@ export default function PortfolioView() {
             <div style={{ marginBottom: "50px" }}>
               <IgntTransfer className="px-2.5 w-4/6 mx-auto" />
             </div>
-            <IgntStakeUnstakes className="px-2.5 w-4/6 mx-auto" />
+            <div style={{ marginBottom: "50px" }}>
+              <IgntStakeUnstakes className="px-2.5 w-4/6 mx-auto" />
+            </div>
+            <div style={{ marginBottom: "50px" }}>
+              <IgntTransferPolygon className="px-2.5 w-4/6 mx-auto" />
+            </div>
           </div>
         </div>
       </div>

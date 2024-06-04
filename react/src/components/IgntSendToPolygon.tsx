@@ -126,10 +126,10 @@ export default function IgntUnstack(props: IgntUnstackProps) {
     try {
       const amount = state.tx.amounts.filter((value) => value.denom === "sigRAO").at(0)?.amount ?? "0";
 
-      const txResult = await client.SigmoidSigmoid.tx.sendMsgCreateUnstakeRequest({
+      const txResult = await client.SigmoidSigmoid.tx.sendMsgCreateBridgeRequest({
         value: {
           creator: address,
-          unstakeAddress: state.tx.receiver,
+          erc20Address: state.tx.receiver,
           amount: Number(amount),
         },
         fee: { amount: fee as Readonly<Amount[]>, gas: "200000" },
@@ -234,7 +234,7 @@ export default function IgntUnstack(props: IgntUnstackProps) {
           </div>
         ) : (
           <div>
-            <div className="text-xs text-gray-600">Unstake to</div>
+            <div className="text-xs text-gray-600">Send to</div>
 
             <div>
               <input
@@ -243,7 +243,7 @@ export default function IgntUnstack(props: IgntUnstackProps) {
                   "mt-1 py-2 px-4 h-12 bg-gray-100 border-xs text-base leading-tight w-full rounded-xl outline-0": true,
                   "border border-red-400": state.tx.receiver.length > 0 && !validReceiver,
                 })}
-                placeholder="BitTensor address"
+                placeholder="Polygon address"
                 disabled={!hasAnyBalance}
                 onChange={(evt) => {
                   setState((oldState) => {
